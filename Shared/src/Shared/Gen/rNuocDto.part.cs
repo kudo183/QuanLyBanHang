@@ -4,7 +4,7 @@
     {
         partial void RaiseDependentPropertyChanged(string basePropertyName)
         {
-            if (basePropertyName == nameof(ID))
+            if (basePropertyName == nameof(TenNuoc))
             {
                 OnPropertyChanged(nameof(DisplayText));
             }
@@ -12,7 +12,7 @@
 
         public string DisplayText
         {
-            get { return ID.ToString(); }
+            get { return TenNuoc; }
         }
     }
 }

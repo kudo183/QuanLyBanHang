@@ -12,27 +12,24 @@
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhachHang"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaKhachHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaKhachHangDataSource}"/>
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhoHang"
+                SelectedValuePath="ID"
+                DisplayMemberPath="DisplayText"
+                SelectedValueBinding="{Binding MaKhoHang, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding MaKhoHangDataSource}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChanh"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaChanh, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaChanhDataSource}"/>
-            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay}"/>
-            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="Xong" Binding="{Binding Xong}"/>
-            <SimpleDataGrid:DataGridForeignKeyColumn Header="MaKhoHang"
-                SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
-                Binding="{Binding MaKhoHang}"
-                DisplayTextBinding="{Binding rKhoHangDto.DisplayText}">
-                <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
-                    <view:rKhoHangView KeepSelectionType="KeepSelectedValue"/>
-                </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
-            </SimpleDataGrid:DataGridForeignKeyColumn>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuong" Binding="{Binding TongSoLuong, StringFormat=\{0:N0\}}"/>
+            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="Xong" IsReadOnly="True" Binding="{Binding Xong, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuong" IsReadOnly="True" Binding="{Binding TongSoLuong, StringFormat=\{0:N0\}, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

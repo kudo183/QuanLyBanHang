@@ -103,19 +103,19 @@
         },
         {
           "ColumnName": "MaMatHang",
-          "DataGridColumnType": "DataGridForeignKeyColumn",
-          "IsReadOnly": false,
-          "IsTabStop": true,
-          "Width": 0,
-          "Order": 1
-        },
-        {
-          "ColumnName": "MaKhoHang",
-          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
           "Order": 2
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
         },
         {
           "ColumnName": "TonCaoNhat",
@@ -1507,7 +1507,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 1
+          "Order": 2
         },
         {
           "ColumnName": "MaKhoHangXuat",
@@ -1515,7 +1515,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 2
+          "Order": 3
         },
         {
           "ColumnName": "MaKhoHangNhap",
@@ -1523,7 +1523,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 3
+          "Order": 4
         },
         {
           "ColumnName": "Ngay",
@@ -1531,7 +1531,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 4
+          "Order": 1
         },
         {
           "ColumnName": "TenantID",
@@ -1576,7 +1576,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 1
+          "Order": 2
         },
         {
           "ColumnName": "MaChanh",
@@ -1584,7 +1584,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 2
+          "Order": 4
         },
         {
           "ColumnName": "Ngay",
@@ -1592,29 +1592,29 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 3
+          "Order": 1
         },
         {
           "ColumnName": "Xong",
           "DataGridColumnType": "DataGridCheckBoxColumnExt",
-          "IsReadOnly": false,
-          "IsTabStop": true,
-          "Width": 0,
-          "Order": 4
-        },
-        {
-          "ColumnName": "MaKhoHang",
-          "DataGridColumnType": "DataGridForeignKeyColumn",
-          "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsReadOnly": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 5
         },
         {
-          "ColumnName": "TongSoLuong",
-          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
           "IsReadOnly": false,
           "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TongSoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 6
         },
@@ -1746,7 +1746,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 3
+          "Order": 5
         },
         {
           "ColumnName": "SoMet",
@@ -1754,7 +1754,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 4
+          "Order": 6
         },
         {
           "ColumnName": "TenMatHangDayDu",
@@ -1762,7 +1762,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 5
+          "Order": 3
         },
         {
           "ColumnName": "TenMatHangIn",
@@ -1770,7 +1770,7 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 6
+          "Order": 4
         },
         {
           "ColumnName": "TenantID",

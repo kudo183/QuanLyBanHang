@@ -18,10 +18,10 @@
                 SelectedValueBinding="{Binding MaLoai, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaLoaiDataSource}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="TenMatHang" Binding="{Binding TenMatHang}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoKy" Binding="{Binding SoKy, StringFormat=\{0:N0\}}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoMet" Binding="{Binding SoMet, StringFormat=\{0:N0\}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="TenMatHangDayDu" Binding="{Binding TenMatHangDayDu}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="TenMatHangIn" Binding="{Binding TenMatHangIn}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoKy" Binding="{Binding SoKy, StringFormat=\{0:N0\}}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoMet" Binding="{Binding SoMet, StringFormat=\{0:N0\}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

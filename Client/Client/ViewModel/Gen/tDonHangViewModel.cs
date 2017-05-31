@@ -53,7 +53,18 @@ namespace Client.ViewModel
             };
             _NgayFilter = new HeaderDateFilterModel(TextManager.tDonHang_Ngay, nameof(tDonHangDto.Ngay), typeof(System.DateTime));
             _XongFilter = new HeaderCheckFilterModel(TextManager.tDonHang_Xong, nameof(tDonHangDto.Xong), typeof(bool));
-            _MaKhoHangFilter = new HeaderTextFilterModel(TextManager.tDonHang_MaKhoHang, nameof(tDonHangDto.MaKhoHang), typeof(int));
+            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.tDonHang_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(tDonHangDto.MaKhoHang),
+                typeof(int),
+                nameof(rKhoHangDto.DisplayText),
+                nameof(rKhoHangDto.ID))
+            {
+                AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.rKhoHangView(), "rKhoHang", ReferenceDataManager<rKhoHangDto>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rKhoHangDto>.Instance.Get()
+            };
             _TongSoLuongFilter = new HeaderTextFilterModel(TextManager.tDonHang_TongSoLuong, nameof(tDonHangDto.TongSoLuong), typeof(int));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.tDonHang_TenantID, nameof(tDonHangDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tDonHang_CreateTime, nameof(tDonHangDto.CreateTime), typeof(long));
@@ -77,6 +88,7 @@ namespace Client.ViewModel
         {
             ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate();
             ReferenceDataManager<rChanhDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhoHangDto>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
@@ -85,6 +97,7 @@ namespace Client.ViewModel
         {
             dto.MaKhachHangDataSource = ReferenceDataManager<rKhachHangDto>.Instance.Get();
             dto.MaChanhDataSource = ReferenceDataManager<rChanhDto>.Instance.Get();
+            dto.MaKhoHangDataSource = ReferenceDataManager<rKhoHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

@@ -108,11 +108,14 @@ namespace Shared
 
         object _MaKhachHangDataSource;
         object _MaChanhDataSource;
+        object _MaKhoHangDataSource;
 
         [Newtonsoft.Json.JsonIgnore]
         public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonIgnore]
         public object MaChanhDataSource { get { return _MaChanhDataSource; } set { _MaChanhDataSource = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonIgnore]
+        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
         public int ID { get { return Ma; } set { Ma = value;} }
