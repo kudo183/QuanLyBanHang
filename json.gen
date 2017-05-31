@@ -1,0 +1,2253 @@
+{
+  "DBName": "PhuDinh",
+  "ViewPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\View\\Gen",
+  "ViewModelPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\ViewModel\\Gen",
+  "TextPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\Text\\Gen",
+  "ControllerPath": "C:\\github\\QuanLyBanHang\\Server\\src\\Server\\Controllers\\Gen",
+  "DtoPath": "C:\\github\\QuanLyBanHang\\Shared\\src\\Shared\\Gen",
+  "EntityPath": "C:\\github\\QuanLyBanHang\\Server\\src\\Server\\Entities",
+  "MasterDetailList": [
+    {
+      "ViewName": "DonHang",
+      "Levels": [
+        "tDonHang",
+        "tChiTietDonHang"
+      ]
+    },
+    {
+      "ViewName": "ChuyenHang",
+      "Levels": [
+        "tChuyenHang",
+        "tChuyenHangDonHang",
+        "tChiTietChuyenHangDonHang"
+      ]
+    },
+    {
+      "ViewName": "ChuyenKho",
+      "Levels": [
+        "tChuyenKho",
+        "tChiTietChuyenKho"
+      ]
+    },
+    {
+      "ViewName": "NhapHang",
+      "Levels": [
+        "tNhapHang",
+        "tChiTietNhapHang"
+      ]
+    },
+    {
+      "ViewName": "ToaHang",
+      "Levels": [
+        "tToaHang",
+        "tChiTietToaHang"
+      ]
+    }
+  ],
+  "TableSettingList": [
+    {
+      "TableName": "rBaiXe",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "DiaDiemBaiXe",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "rCanhBaoTonKho",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TonCaoNhat",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TonThapNhat",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "rChanh",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaBaiXe",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenChanh",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rDiaDiem",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNuoc",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "Tinh",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rKhachHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaDiaDiem",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenKhachHang",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "KhachRieng",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "rKhachHangChanh",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaChanh",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "LaMacDinh",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "rKhoHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenKho",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TrangThai",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rLoaiChiPhi",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenLoaiChiPhi",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "rLoaiHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenLoai",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "HangNhaLam",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rLoaiNguyenLieu",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenLoai",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "rMatHangNguyenLieu",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaNguyenLieu",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rNuoc",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenNuoc",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "rNguyenLieu",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaLoaiNguyenLieu",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "DuongKinh",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rNhaCungCap",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenNhaCungCap",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "rNhanVien",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaPhuongTien",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenNhanVien",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "rPhuongTien",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "TenPhuongTien",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        }
+      ]
+    },
+    {
+      "TableName": "tCongNoKhachHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "tChiPhi",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNhanVienGiaoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "MaLoaiChiPhi",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 8
+        }
+      ]
+    },
+    {
+      "TableName": "tChiTietChuyenHangDonHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaChuyenHangDonHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaChiTietDonHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "SoLuongTheoDonHang",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tChiTietChuyenKho",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaChuyenKho",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "tChiTietDonHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaDonHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "Xong",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tChiTietNhapHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNhapHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "tChiTietToaHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaToaHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaChiTietDonHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "GiaTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "tChuyenHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNhanVienGiaoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "Gio",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TongDonHang",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TongSoLuongTheoDonHang",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "TongSoLuongThucTe",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 8
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 9
+        }
+      ]
+    },
+    {
+      "TableName": "tChuyenHangDonHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaChuyenHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaDonHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TongSoLuongTheoDonHang",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TongSoLuongThucTe",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tChuyenKho",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNhanVien",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaKhoHangXuat",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "MaKhoHangNhap",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tDonHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaChanh",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "Xong",
+          "DataGridColumnType": "DataGridCheckBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridForeignKeyColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "TongSoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 8
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 9
+        }
+      ]
+    },
+    {
+      "TableName": "tGiamTruKhachHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tMatHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaLoai",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenMatHang",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "SoKy",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "SoMet",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenMatHangDayDu",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "TenMatHangIn",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 8
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 9
+        }
+      ]
+    },
+    {
+      "TableName": "tNhanTienKhachHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        }
+      ]
+    },
+    {
+      "TableName": "tNhapHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaNhanVien",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "MaNhaCungCap",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tNhapNguyenLieu",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaNguyenLieu",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "MaNhaCungCap",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tPhuThuKhachHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        }
+      ]
+    },
+    {
+      "TableName": "tToaHang",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    },
+    {
+      "TableName": "tTonKho",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataGridColumnType": "DataGridComboBoxColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "SoLuongCu",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 6
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 7
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 8
+        }
+      ]
+    },
+    {
+      "TableName": "ThamSoNgay",
+      "ColumnSettingList": [
+        {
+          "ColumnName": "Ma",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 80,
+          "Order": 0
+        },
+        {
+          "ColumnName": "Ten",
+          "DataGridColumnType": "DataGridTextColumnExt",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 1
+        },
+        {
+          "ColumnName": "GiaTri",
+          "DataGridColumnType": "DataGridDateColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 2
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 3
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 4
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": true,
+          "IsTabStop": false,
+          "Width": 0,
+          "Order": 5
+        }
+      ]
+    }
+  ]
+}
