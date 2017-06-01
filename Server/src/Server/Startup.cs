@@ -23,6 +23,11 @@ namespace Server
         {
             loggerFactory.AddConsole();
 
+            SmtSettings.Instance.DefaultOrderOption = new QueryBuilder.OrderByExpression.OrderOption()
+            {
+                PropertyPath = "Ma",
+                IsAscending = true
+            };
             app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod());
             app.UseSmt<SqlDbContext, SmtTenant, SmtUser, SmtUserClaim>("Server");
         }
