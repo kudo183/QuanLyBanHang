@@ -27,6 +27,7 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_CreateTime, nameof(rNhaCungCapDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_LastUpdateTime, nameof(rNhaCungCapDto.LastUpdateTime), typeof(long));
 
+
             InitFilterPartial();
 
             AddHeaderFilter(_MaFilter);

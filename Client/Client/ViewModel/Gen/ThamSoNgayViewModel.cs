@@ -29,6 +29,7 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_CreateTime, nameof(ThamSoNgayDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_LastUpdateTime, nameof(ThamSoNgayDto.LastUpdateTime), typeof(long));
 
+
             InitFilterPartial();
 
             AddHeaderFilter(_MaFilter);

@@ -44,6 +44,7 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tPhuThuKhachHang_CreateTime, nameof(tPhuThuKhachHangDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tPhuThuKhachHang_LastUpdateTime, nameof(tPhuThuKhachHangDto.LastUpdateTime), typeof(long));
 
+
             InitFilterPartial();
 
             AddHeaderFilter(_MaFilter);

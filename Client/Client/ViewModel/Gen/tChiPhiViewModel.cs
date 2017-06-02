@@ -57,6 +57,8 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_CreateTime, nameof(tChiPhiDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_LastUpdateTime, nameof(tChiPhiDto.LastUpdateTime), typeof(long));
 
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
+
             InitFilterPartial();
 
             AddHeaderFilter(_MaFilter);
