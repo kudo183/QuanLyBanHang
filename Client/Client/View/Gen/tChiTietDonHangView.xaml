@@ -15,7 +15,7 @@
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaDonHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaDonHang}"
-                DisplayTextBinding="{Binding tDonHangDto.DisplayText}">
+                DisplayTextBinding="{Binding MaDonHangtDonHangDto.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
                     <view:tDonHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>

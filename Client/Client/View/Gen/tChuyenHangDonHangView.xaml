@@ -15,7 +15,7 @@
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaChuyenHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaChuyenHang}"
-                DisplayTextBinding="{Binding tChuyenHangDto.DisplayText}">
+                DisplayTextBinding="{Binding MaChuyenHangtChuyenHangDto.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
                     <view:tChuyenHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
@@ -23,7 +23,7 @@
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaDonHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaDonHang}"
-                DisplayTextBinding="{Binding tDonHangDto.DisplayText}">
+                DisplayTextBinding="{Binding MaDonHangtDonHangDto.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
                     <view:tDonHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
