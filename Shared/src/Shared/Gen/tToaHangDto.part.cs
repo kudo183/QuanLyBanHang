@@ -4,15 +4,27 @@
     {
         partial void RaiseDependentPropertyChanged(string basePropertyName)
         {
-            if (basePropertyName == nameof(ID))
+            switch (basePropertyName)
             {
-                OnPropertyChanged(nameof(DisplayText));
+                case nameof(Ngay):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
+                case nameof(MaKhachHang):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
             }
         }
 
         public string DisplayText
         {
-            get { return ID.ToString(); }
+            get
+            {
+                if (MaKhachHangrKhachHangDto != null)
+                {
+                    return string.Format("{0}|{1}", Ngay.ToString("d"), MaKhachHangrKhachHangDto.DisplayText);
+                }
+                return ID.ToString();
+            }
         }
     }
 }

@@ -84,6 +84,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ViewModel\tChiTietChuyenHangDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietToaHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietChuyenKhoViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietNhapHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="View\Gen\*.cs">
       <DependentUpon>%(Filename)</DependentUpon>
       <SubType>Code</SubType>

@@ -1,18 +1,35 @@
-﻿namespace Shared
+﻿using System;
+
+namespace Shared
 {
     public partial class tChuyenHangDto : huypq.SmtShared.IDisplayText
     {
         partial void RaiseDependentPropertyChanged(string basePropertyName)
         {
-            if (basePropertyName == nameof(ID))
+            switch (basePropertyName)
             {
-                OnPropertyChanged(nameof(DisplayText));
+                case nameof(Ngay):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
+                case nameof(Gio):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
+                case nameof(MaNhanVienGiaoHang):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
             }
         }
 
         public string DisplayText
         {
-            get { return ID.ToString(); }
+            get
+            {
+                if (MaNhanVienGiaoHangrNhanVienDto != null)
+                {
+                    return string.Format("{0}|{1:hh\\:mm}|{2}", Ngay.ToString("d"), Gio ?? new TimeSpan(0, 0, 0), MaNhanVienGiaoHangrNhanVienDto.DisplayText);
+                }
+                return ID.ToString();
+            }
         }
     }
 }
