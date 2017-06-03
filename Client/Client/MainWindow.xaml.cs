@@ -3,7 +3,7 @@ using huypq.SmtWpfClient.Abstraction;
 using huypq.SmtWpfClient.View;
 using huypq.SmtWpfClient.ViewModel;
 using System.Windows;
-using Client.View;
+using Client.View.Smt;
 
 namespace Client
 {
@@ -38,7 +38,8 @@ namespace Client
 
             ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
             {
-                RootUri = "http://localhost:5000",
+                //RootUri = "http://localhost:5000",
+                RootUri = "http://luoithepvinhphat.com:5000",
 #if DEBUG
                 Token = "CfDJ8J0CZcxInRhFvSirfZanTFxyyClsDqrYCKm-bYI7m81IUN1mbBwdvBQhfY4Pzrc60hYVpBTuL-opgPuE64VrObZ513BSHyzEb7_u3AnqY5M5FBRtn7XRnZUlYpmDsMWkymPplqy6ANs2t9cHP4IvDRXWU3j-ujSGnvqUp2S96Vt6"
 #endif

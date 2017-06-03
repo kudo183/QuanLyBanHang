@@ -1,6 +1,6 @@
 ﻿using huypq.SmtWpfClient.Abstraction;
 
-namespace Client.View
+namespace Client.View.Smt
 {
     /// <summary>
     /// Interaction logic for ManageUserView.xaml
