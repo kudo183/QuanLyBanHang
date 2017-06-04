@@ -41,7 +41,7 @@ namespace Client
                 //RootUri = "http://localhost:5000",
                 RootUri = "http://luoithepvinhphat.com:5000",
 #if DEBUG
-                Token = "CfDJ8J0CZcxInRhFvSirfZanTFxyyClsDqrYCKm-bYI7m81IUN1mbBwdvBQhfY4Pzrc60hYVpBTuL-opgPuE64VrObZ513BSHyzEb7_u3AnqY5M5FBRtn7XRnZUlYpmDsMWkymPplqy6ANs2t9cHP4IvDRXWU3j-ujSGnvqUp2S96Vt6"
+                Token = "CfDJ8J0CZcxInRhFvSirfZanTFyk8fHk5vjz-W15GWkoPkkskq56hc_BY703cjKiS6LtYAiM8Y3-5g0JHWSOpyO9T1osA622eK7ehoQNMyr0dPnVnrKR8qbsCltAZ-cMUJSoB_qqLcaojDswxMjh-TgmRHEhfZlk6NgvbU5Yr7yfM9jB"
 #endif
             });
 
@@ -50,8 +50,7 @@ namespace Client
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            _dataService.Logout();
-            (loginView.DataContext as LoginViewModel).ClearData();
+            (loginView.DataContext as LoginViewModel).Logout();
         }
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
