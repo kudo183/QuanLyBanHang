@@ -44,6 +44,8 @@ namespace Client.ViewModel
                 chdh.MaChuyenHangtChuyenHangDto = chuyenHangs[chdh.MaChuyenHang];
                 chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHangrNhanVienDto = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHang);
                 chdh.MaDonHangtDonHangDto = donHangs[chdh.MaDonHang];
+                chdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhoHang);
+                chdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhachHang);
             }
 
             foreach (var item in chiTietDonHangs)
@@ -103,6 +105,8 @@ namespace Client.ViewModel
                 chdh.MaChuyenHangtChuyenHangDto = FindtChuyenHangDto(chdh.MaChuyenHang);
                 chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHangrNhanVienDto = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHang);
                 chdh.MaDonHangtDonHangDto = FindtDonHangDto(chdh.MaDonHang);
+                chdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhoHang);
+                chdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhachHang);
                 chuyenHangDonHangs.Add(maChuyenHangDonHang, chdh);
             }
 
