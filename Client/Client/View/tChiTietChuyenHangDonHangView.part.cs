@@ -38,7 +38,7 @@ namespace Client.View
             selectedDto.PropertyChanged -= SelectedDto_PropertyChanged;
             selectedDto.PropertyChanged += SelectedDto_PropertyChanged;
         }
-        
+
         private void SelectedDto_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang))
@@ -52,7 +52,7 @@ namespace Client.View
         {
             var vm = (GridView.dataGrid.Columns[2] as DataGridForeignKeyColumn).PopupView.DataContext as tChiTietDonHangViewModel;
             var maDonHang = selectedDto.MaChuyenHangDonHangtChuyenHangDonHangDto.MaDonHang;
-            vm.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = maDonHang; });
+            vm.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = maDonHang; p.IsHitTestVisible = false; });
             if (_isLoaded == true)
             {
                 vm.Load();
