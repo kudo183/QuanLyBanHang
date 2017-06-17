@@ -11,15 +11,15 @@
                       xmlns:view="clr-namespace:Client.View">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhachHang"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaKhachHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaKhachHangDataSource}"/>
-            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoTien" Binding="{Binding SoTien, StringFormat=\{0:N0\}}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Header="GhiChu" Binding="{Binding GhiChu}"/>
+            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoTien" Binding="{Binding SoTien, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="GhiChu" Binding="{Binding GhiChu, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

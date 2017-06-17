@@ -11,17 +11,17 @@
                       xmlns:view="clr-namespace:Client.View">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Header="Gio" Binding="{Binding Gio}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="Gio" Binding="{Binding Gio, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaNhanVienGiaoHang"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaNhanVienGiaoHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaNhanVienGiaoHangDataSource}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongDonHang" IsReadOnly="True" Binding="{Binding TongDonHang, StringFormat=\{0:N0\}, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongTheoDonHang" IsReadOnly="True" Binding="{Binding TongSoLuongTheoDonHang, StringFormat=\{0:N0\}, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongThucTe" IsReadOnly="True" Binding="{Binding TongSoLuongThucTe, StringFormat=\{0:N0\}, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongDonHang" IsReadOnly="True" Binding="{Binding TongDonHang, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongTheoDonHang" IsReadOnly="True" Binding="{Binding TongSoLuongTheoDonHang, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongThucTe" IsReadOnly="True" Binding="{Binding TongSoLuongThucTe, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

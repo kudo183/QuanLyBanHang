@@ -11,14 +11,14 @@
                       xmlns:view="clr-namespace:Client.View">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaDiaDiem"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaDiaDiem, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaDiaDiemDataSource}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Header="TenKhachHang" Binding="{Binding TenKhachHang}"/>
-            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="KhachRieng" Binding="{Binding KhachRieng}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="TenKhachHang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="KhachRieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

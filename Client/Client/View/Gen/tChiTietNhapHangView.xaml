@@ -11,7 +11,7 @@
                       xmlns:view="clr-namespace:Client.View">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaNhapHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaNhapHang}"
@@ -25,7 +25,7 @@
                 DisplayMemberPath="DisplayText"
                 SelectedValueBinding="{Binding MaMatHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaMatHangDataSource}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoLuong" Binding="{Binding SoLuong, StringFormat=\{0:N0\}}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoLuong" Binding="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

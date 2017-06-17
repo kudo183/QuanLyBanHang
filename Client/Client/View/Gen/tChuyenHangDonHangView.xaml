@@ -11,7 +11,7 @@
                       xmlns:view="clr-namespace:Client.View">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaChuyenHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaChuyenHang}"
@@ -28,8 +28,8 @@
                     <view:tDonHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
             </SimpleDataGrid:DataGridForeignKeyColumn>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongTheoDonHang" IsReadOnly="True" Binding="{Binding TongSoLuongTheoDonHang, StringFormat=\{0:N0\}, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongThucTe" IsReadOnly="True" Binding="{Binding TongSoLuongThucTe, StringFormat=\{0:N0\}, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongTheoDonHang" IsReadOnly="True" Binding="{Binding TongSoLuongTheoDonHang, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="TongSoLuongThucTe" IsReadOnly="True" Binding="{Binding TongSoLuongThucTe, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>
