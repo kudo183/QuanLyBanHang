@@ -21,7 +21,6 @@
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
             </SimpleDataGrid:DataGridForeignKeyColumn>
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaDonHang"
-                SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaDonHang}"
                 DisplayTextBinding="{Binding MaDonHangtDonHangDto.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>

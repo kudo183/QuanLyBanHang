@@ -1141,7 +1141,7 @@
           "ColumnName": "MaChuyenHangDonHang",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
@@ -1218,7 +1218,7 @@
           "ColumnName": "MaChuyenKho",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
@@ -1286,7 +1286,7 @@
           "ColumnName": "MaDonHang",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
@@ -1363,7 +1363,7 @@
           "ColumnName": "MaNhapHang",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
@@ -1431,7 +1431,7 @@
           "ColumnName": "MaToaHang",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
@@ -1594,7 +1594,7 @@
           "ColumnName": "MaChuyenHang",
           "DataGridColumnType": "DataGridForeignKeyColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 0
