@@ -1,5 +1,4 @@
-﻿using Client.ViewModel;
-using huypq.SmtWpfClient.Abstraction;
+﻿using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using SimpleDataGrid;
 
@@ -50,12 +49,16 @@ namespace Client.View
 
         private void UpdateChiTietDonHangForeignKeyPicker()
         {
-            var vm = (GridView.dataGrid.Columns[2] as DataGridForeignKeyColumn).PopupView.DataContext as tChiTietDonHangViewModel;
+            var column = GridView.FindColumn(nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang));
+            var ctdhFKP = (column as DataGridForeignKeyColumn).PopupView as tChiTietDonHangView;
+
             var maDonHang = selectedDto.MaChuyenHangDonHangtChuyenHangDonHangDto.MaDonHang;
-            vm.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = maDonHang; p.IsHitTestVisible = false; });
-            if (_isLoaded == true)
+            var filter = ctdhFKP.GridView.FindHeaderFilter(nameof(tChiTietDonHangDto.MaDonHang));
+            filter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = maDonHang; p.IsHitTestVisible = false; });
+
+            if (ctdhFKP.IsLoaded == true)
             {
-                vm.Load();
+                ctdhFKP.ViewModel.Load();
             }
         }
     }
