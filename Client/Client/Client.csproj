@@ -68,6 +68,7 @@
     <Compile Include="Smt\SmtUserClaimViewModel.cs" />
     <Compile Include="Smt\SmtUserView.cs" />
     <Compile Include="Smt\SmtUserViewModel.cs" />
+    <Compile Include="View\tChuyenHangDonHangView.part.cs" />
     <Compile Include="View\tChiTietChuyenHangDonHangView.part.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
