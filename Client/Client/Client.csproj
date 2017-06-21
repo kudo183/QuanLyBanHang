@@ -71,6 +71,7 @@
     <Compile Include="View\ChuyenHangComplexView.part.cs" />
     <Compile Include="View\tChuyenHangDonHangView.part.cs" />
     <Compile Include="View\tChiTietChuyenHangDonHangView.part.cs" />
+    <Compile Include="View\ToaHangComplexView.part.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
