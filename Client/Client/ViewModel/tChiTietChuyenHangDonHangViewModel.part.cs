@@ -41,26 +41,26 @@ namespace Client.ViewModel
             foreach (var item in chuyenHangDonHangs)
             {
                 var chdh = item.Value;
-                chdh.MaChuyenHangtChuyenHangDto = chuyenHangs[chdh.MaChuyenHang];
-                chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHangrNhanVienDto = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHang);
-                chdh.MaDonHangtDonHangDto = donHangs[chdh.MaDonHang];
-                chdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhoHang);
-                chdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhachHang);
+                chdh.MaChuyenHangNavigation = chuyenHangs[chdh.MaChuyenHang];
+                chdh.MaChuyenHangNavigation.MaNhanVienGiaoHangNavigation = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangNavigation.MaNhanVienGiaoHang);
+                chdh.MaDonHangNavigation = donHangs[chdh.MaDonHang];
+                chdh.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangNavigation.MaKhoHang);
+                chdh.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangNavigation.MaKhachHang);
             }
 
             foreach (var item in chiTietDonHangs)
             {
                 var ctdh = item.Value;
-                ctdh.MaDonHangtDonHangDto = donHangs[ctdh.MaDonHang];
-                ctdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(ctdh.MaDonHangtDonHangDto.MaKhoHang);
-                ctdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(ctdh.MaDonHangtDonHangDto.MaKhachHang);
-                ctdh.MaMatHangtMatHangDto = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
+                ctdh.MaDonHangNavigation = donHangs[ctdh.MaDonHang];
+                ctdh.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(ctdh.MaDonHangNavigation.MaKhoHang);
+                ctdh.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(ctdh.MaDonHangNavigation.MaKhachHang);
+                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
             }
 
             foreach (var dto in Entities)
             {
-                dto.MaChuyenHangDonHangtChuyenHangDonHangDto = chuyenHangDonHangs[dto.MaChuyenHangDonHang];
-                dto.MaChiTietDonHangtChiTietDonHangDto = chiTietDonHangs[dto.MaChiTietDonHang];
+                dto.MaChuyenHangDonHangNavigation = chuyenHangDonHangs[dto.MaChuyenHangDonHang];
+                dto.MaChiTietDonHangNavigation = chiTietDonHangs[dto.MaChiTietDonHang];
                 dto.PropertyChanged += Item_PropertyChanged;
             }
         }
@@ -72,12 +72,12 @@ namespace Client.ViewModel
             {
                 case nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang):
                     {
-                        dto.MaChuyenHangDonHangtChuyenHangDonHangDto = FindtChuyenHangDonHangDto(dto.MaChuyenHangDonHang);
+                        dto.MaChuyenHangDonHangNavigation = FindtChuyenHangDonHangDto(dto.MaChuyenHangDonHang);
                     }
                     break;
                 case nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang):
                     {
-                        dto.MaChiTietDonHangtChiTietDonHangDto = FindtChiTietDonHangDto(dto.MaChiTietDonHang);
+                        dto.MaChiTietDonHangNavigation = FindtChiTietDonHangDto(dto.MaChiTietDonHang);
                     }
                     break;
             }
@@ -85,13 +85,13 @@ namespace Client.ViewModel
 
         partial void ProcessNewAddedDtoPartial(tChiTietChuyenHangDonHangDto dto)
         {
-            if (dto.MaChuyenHangDonHang != 0 && dto.MaChuyenHangDonHangtChuyenHangDonHangDto == null)
+            if (dto.MaChuyenHangDonHang != 0 && dto.MaChuyenHangDonHangNavigation == null)
             {
-                dto.MaChuyenHangDonHangtChuyenHangDonHangDto = FindtChuyenHangDonHangDto(dto.MaChuyenHangDonHang);
+                dto.MaChuyenHangDonHangNavigation = FindtChuyenHangDonHangDto(dto.MaChuyenHangDonHang);
             }
-            if (dto.MaChiTietDonHang != 0 && dto.MaChiTietDonHangtChiTietDonHangDto == null)
+            if (dto.MaChiTietDonHang != 0 && dto.MaChiTietDonHangNavigation == null)
             {
-                dto.MaChiTietDonHangtChiTietDonHangDto = FindtChiTietDonHangDto(dto.MaChiTietDonHang);
+                dto.MaChiTietDonHangNavigation = FindtChiTietDonHangDto(dto.MaChiTietDonHang);
             }
             dto.PropertyChanged += Item_PropertyChanged;
         }
@@ -102,11 +102,11 @@ namespace Client.ViewModel
             if (chuyenHangDonHangs.TryGetValue(maChuyenHangDonHang, out chdh) == false)
             {
                 chdh = DataService.GetByID<tChuyenHangDonHangDto>(maChuyenHangDonHang);
-                chdh.MaChuyenHangtChuyenHangDto = FindtChuyenHangDto(chdh.MaChuyenHang);
-                chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHangrNhanVienDto = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangtChuyenHangDto.MaNhanVienGiaoHang);
-                chdh.MaDonHangtDonHangDto = FindtDonHangDto(chdh.MaDonHang);
-                chdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhoHang);
-                chdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangtDonHangDto.MaKhachHang);
+                chdh.MaChuyenHangNavigation = FindtChuyenHangDto(chdh.MaChuyenHang);
+                chdh.MaChuyenHangNavigation.MaNhanVienGiaoHangNavigation = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(chdh.MaChuyenHangNavigation.MaNhanVienGiaoHang);
+                chdh.MaDonHangNavigation = FindtDonHangDto(chdh.MaDonHang);
+                chdh.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(chdh.MaDonHangNavigation.MaKhoHang);
+                chdh.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(chdh.MaDonHangNavigation.MaKhachHang);
                 chuyenHangDonHangs.Add(maChuyenHangDonHang, chdh);
             }
 
@@ -119,10 +119,10 @@ namespace Client.ViewModel
             if (chiTietDonHangs.TryGetValue(maChiTietDonHang, out ctdh) == false)
             {
                 ctdh = DataService.GetByID<tChiTietDonHangDto>(maChiTietDonHang);
-                ctdh.MaDonHangtDonHangDto = FindtDonHangDto(ctdh.MaDonHang);
-                ctdh.MaDonHangtDonHangDto.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(ctdh.MaDonHangtDonHangDto.MaKhoHang);
-                ctdh.MaDonHangtDonHangDto.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(ctdh.MaDonHangtDonHangDto.MaKhachHang);
-                ctdh.MaMatHangtMatHangDto = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
+                ctdh.MaDonHangNavigation = FindtDonHangDto(ctdh.MaDonHang);
+                ctdh.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(ctdh.MaDonHangNavigation.MaKhoHang);
+                ctdh.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(ctdh.MaDonHangNavigation.MaKhachHang);
+                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
                 chiTietDonHangs.Add(maChiTietDonHang, ctdh);
             }
 
@@ -135,7 +135,7 @@ namespace Client.ViewModel
             if (chuyenHangs.TryGetValue(maChuyenHang, out ch) == false)
             {
                 ch = DataService.GetByID<tChuyenHangDto>(maChuyenHang);
-                ch.MaNhanVienGiaoHangrNhanVienDto = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(ch.MaNhanVienGiaoHang);
+                ch.MaNhanVienGiaoHangNavigation = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(ch.MaNhanVienGiaoHang);
                 chuyenHangs.Add(maChuyenHang, ch);
             }
 
@@ -148,8 +148,8 @@ namespace Client.ViewModel
             if (donHangs.TryGetValue(maDonHang, out dh) == false)
             {
                 dh = DataService.GetByID<tDonHangDto>(maDonHang);
-                dh.MaKhoHangrKhoHangDto = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dh.MaKhoHang);
-                dh.MaKhachHangrKhachHangDto = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(dh.MaKhachHang);
+                dh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dh.MaKhoHang);
+                dh.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(dh.MaKhachHang);
                 donHangs.Add(maDonHang, dh);
             }
 

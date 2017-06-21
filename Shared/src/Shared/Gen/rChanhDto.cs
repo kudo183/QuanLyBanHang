@@ -74,7 +74,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rBaiXeDto MaBaiXerBaiXeDto { get; set; }
+        public rBaiXeDto MaBaiXeNavigation { get; set; }
 
         object _MaBaiXeDataSource;
 

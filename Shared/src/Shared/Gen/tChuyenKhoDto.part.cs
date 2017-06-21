@@ -25,10 +25,10 @@
         {
             get
             {
-                if (MaKhoHangXuatrKhoHangDto != null && MaKhoHangNhaprKhoHangDto != null && MaNhanVienrNhanVienDto != null)
+                if (MaKhoHangXuatNavigation != null && MaKhoHangNhapNavigation != null && MaNhanVienNavigation != null)
                 {
                     return string.Format("{0}|{1}|{2}|{3}", Ngay.ToString("d"),
-                        MaKhoHangXuatrKhoHangDto.DisplayText, MaKhoHangNhaprKhoHangDto.DisplayText, MaNhanVienrNhanVienDto.DisplayText);
+                        MaKhoHangXuatNavigation.DisplayText, MaKhoHangNhapNavigation.DisplayText, MaNhanVienNavigation.DisplayText);
                 }
                 return ID.ToString();
             }

@@ -15,14 +15,14 @@
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaToaHang"
                 SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False"
                 Binding="{Binding MaToaHang}"
-                DisplayTextBinding="{Binding MaToaHangtToaHangDto.DisplayText}">
+                DisplayTextBinding="{Binding MaToaHangNavigation.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
                     <view:tToaHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
             </SimpleDataGrid:DataGridForeignKeyColumn>
             <SimpleDataGrid:DataGridForeignKeyColumn Header="MaChiTietDonHang"
                 Binding="{Binding MaChiTietDonHang}"
-                DisplayTextBinding="{Binding MaChiTietDonHangtChiTietDonHangDto.DisplayText}">
+                DisplayTextBinding="{Binding MaChiTietDonHangNavigation.DisplayText}">
                 <SimpleDataGrid:DataGridForeignKeyColumn.PopupView>
                     <view:tChiTietDonHangView KeepSelectionType="KeepSelectedValue"/>
                 </SimpleDataGrid:DataGridForeignKeyColumn.PopupView>

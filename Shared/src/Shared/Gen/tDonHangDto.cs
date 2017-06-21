@@ -102,9 +102,9 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rKhachHangDto MaKhachHangrKhachHangDto { get; set; }
-        public rChanhDto MaChanhrChanhDto { get; set; }
-        public rKhoHangDto MaKhoHangrKhoHangDto { get; set; }
+        public rKhachHangDto MaKhachHangNavigation { get; set; }
+        public rChanhDto MaChanhNavigation { get; set; }
+        public rKhoHangDto MaKhoHangNavigation { get; set; }
 
         object _MaKhachHangDataSource;
         object _MaChanhDataSource;

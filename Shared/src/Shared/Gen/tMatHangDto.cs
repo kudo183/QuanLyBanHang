@@ -102,7 +102,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rLoaiHangDto MaLoairLoaiHangDto { get; set; }
+        public rLoaiHangDto MaLoaiNavigation { get; set; }
 
         object _MaLoaiDataSource;
 

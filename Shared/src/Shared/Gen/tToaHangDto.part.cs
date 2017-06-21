@@ -19,9 +19,9 @@
         {
             get
             {
-                if (MaKhachHangrKhachHangDto != null)
+                if (MaKhachHangNavigation != null)
                 {
-                    return string.Format("{0}|{1}", Ngay.ToString("d"), MaKhachHangrKhachHangDto.DisplayText);
+                    return string.Format("{0}|{1}", Ngay.ToString("d"), MaKhachHangNavigation.DisplayText);
                 }
                 return ID.ToString();
             }

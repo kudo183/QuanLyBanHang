@@ -102,7 +102,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rNhanVienDto MaNhanVienGiaoHangrNhanVienDto { get; set; }
+        public rNhanVienDto MaNhanVienGiaoHangNavigation { get; set; }
 
         object _MaNhanVienGiaoHangDataSource;
 

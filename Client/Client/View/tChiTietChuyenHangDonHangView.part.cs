@@ -26,12 +26,12 @@ namespace Client.View
                 return;
             }
 
-            if (selectedDto.MaChuyenHangDonHangtChuyenHangDonHangDto == null)
+            if (selectedDto.MaChuyenHangDonHangNavigation == null)
             {
                 return;
             }
 
-            Logger.Instance.Info("selected tChiTietChuyenHangDonHangDto changed: UpdateDonHangForeignKeyPicker", Logger.Categories.UI);
+            Logger.Instance.Info("selected MaChuyenHangDonHangNavigation changed: UpdateDonHangForeignKeyPicker", Logger.Categories.UI);
             UpdateChiTietDonHangForeignKeyPicker();
 
             selectedDto.PropertyChanged -= SelectedDto_PropertyChanged;
@@ -52,7 +52,7 @@ namespace Client.View
             var column = GridView.FindColumn(nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang));
             var ctdhFKP = (column as DataGridForeignKeyColumn).PopupView as tChiTietDonHangView;
 
-            var maDonHang = selectedDto.MaChuyenHangDonHangtChuyenHangDonHangDto.MaDonHang;
+            var maDonHang = selectedDto.MaChuyenHangDonHangNavigation.MaDonHang;
             var filter = ctdhFKP.GridView.FindHeaderFilter(nameof(tChiTietDonHangDto.MaDonHang));
             filter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = maDonHang; p.IsHitTestVisible = false; });
 

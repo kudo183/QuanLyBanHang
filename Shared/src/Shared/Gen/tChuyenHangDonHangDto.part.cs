@@ -19,9 +19,9 @@
         {
             get
             {
-                if (MaChuyenHangtChuyenHangDto != null && MaDonHangtDonHangDto != null)
+                if (MaChuyenHangNavigation != null && MaDonHangNavigation != null)
                 {
-                    return string.Format("{0}|{1}", MaChuyenHangtChuyenHangDto.DisplayText, MaDonHangtDonHangDto.DisplayText);
+                    return string.Format("{0}|{1}", MaChuyenHangNavigation.DisplayText, MaDonHangNavigation.DisplayText);
                 }
 
                 return ID.ToString();

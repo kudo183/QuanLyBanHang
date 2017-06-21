@@ -88,8 +88,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rNguyenLieuDto MaNguyenLieurNguyenLieuDto { get; set; }
-        public rNhaCungCapDto MaNhaCungCaprNhaCungCapDto { get; set; }
+        public rNguyenLieuDto MaNguyenLieuNavigation { get; set; }
+        public rNhaCungCapDto MaNhaCungCapNavigation { get; set; }
 
         object _MaNguyenLieuDataSource;
         object _MaNhaCungCapDataSource;

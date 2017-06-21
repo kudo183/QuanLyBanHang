@@ -81,8 +81,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public tToaHangDto MaToaHangtToaHangDto { get; set; }
-        public tChiTietDonHangDto MaChiTietDonHangtChiTietDonHangDto { get; set; }
+        public tToaHangDto MaToaHangNavigation { get; set; }
+        public tChiTietDonHangDto MaChiTietDonHangNavigation { get; set; }
 
 
 

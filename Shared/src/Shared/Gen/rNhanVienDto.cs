@@ -74,7 +74,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rPhuongTienDto MaPhuongTienrPhuongTienDto { get; set; }
+        public rPhuongTienDto MaPhuongTienNavigation { get; set; }
 
         object _MaPhuongTienDataSource;
 

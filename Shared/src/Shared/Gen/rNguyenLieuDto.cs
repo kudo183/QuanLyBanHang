@@ -74,7 +74,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rLoaiNguyenLieuDto MaLoaiNguyenLieurLoaiNguyenLieuDto { get; set; }
+        public rLoaiNguyenLieuDto MaLoaiNguyenLieuNavigation { get; set; }
 
         object _MaLoaiNguyenLieuDataSource;
 

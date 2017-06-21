@@ -81,7 +81,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rKhachHangDto MaKhachHangrKhachHangDto { get; set; }
+        public rKhachHangDto MaKhachHangNavigation { get; set; }
 
         object _MaKhachHangDataSource;
 

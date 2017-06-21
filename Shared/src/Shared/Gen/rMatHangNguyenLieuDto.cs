@@ -74,8 +74,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public tMatHangDto MaMatHangtMatHangDto { get; set; }
-        public rNguyenLieuDto MaNguyenLieurNguyenLieuDto { get; set; }
+        public tMatHangDto MaMatHangNavigation { get; set; }
+        public rNguyenLieuDto MaNguyenLieuNavigation { get; set; }
 
         object _MaMatHangDataSource;
         object _MaNguyenLieuDataSource;

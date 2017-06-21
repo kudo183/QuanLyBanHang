@@ -95,8 +95,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rNhanVienDto MaNhanVienGiaoHangrNhanVienDto { get; set; }
-        public rLoaiChiPhiDto MaLoaiChiPhirLoaiChiPhiDto { get; set; }
+        public rNhanVienDto MaNhanVienGiaoHangNavigation { get; set; }
+        public rLoaiChiPhiDto MaLoaiChiPhiNavigation { get; set; }
 
         object _MaNhanVienGiaoHangDataSource;
         object _MaLoaiChiPhiDataSource;

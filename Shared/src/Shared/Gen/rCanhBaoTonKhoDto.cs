@@ -88,8 +88,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public tMatHangDto MaMatHangtMatHangDto { get; set; }
-        public rKhoHangDto MaKhoHangrKhoHangDto { get; set; }
+        public tMatHangDto MaMatHangNavigation { get; set; }
+        public rKhoHangDto MaKhoHangNavigation { get; set; }
 
         object _MaMatHangDataSource;
         object _MaKhoHangDataSource;

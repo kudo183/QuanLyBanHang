@@ -81,8 +81,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public tChuyenKhoDto MaChuyenKhotChuyenKhoDto { get; set; }
-        public tMatHangDto MaMatHangtMatHangDto { get; set; }
+        public tChuyenKhoDto MaChuyenKhoNavigation { get; set; }
+        public tMatHangDto MaMatHangNavigation { get; set; }
 
         object _MaMatHangDataSource;
 

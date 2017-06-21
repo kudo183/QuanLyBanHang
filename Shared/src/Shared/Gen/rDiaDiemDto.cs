@@ -74,7 +74,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rNuocDto MaNuocrNuocDto { get; set; }
+        public rNuocDto MaNuocNavigation { get; set; }
 
         object _MaNuocDataSource;
 

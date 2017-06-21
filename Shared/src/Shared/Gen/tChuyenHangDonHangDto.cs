@@ -88,8 +88,8 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public tChuyenHangDto MaChuyenHangtChuyenHangDto { get; set; }
-        public tDonHangDto MaDonHangtDonHangDto { get; set; }
+        public tChuyenHangDto MaChuyenHangNavigation { get; set; }
+        public tDonHangDto MaDonHangNavigation { get; set; }
 
 
 

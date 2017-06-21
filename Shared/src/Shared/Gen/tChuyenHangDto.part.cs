@@ -24,9 +24,9 @@ namespace Shared
         {
             get
             {
-                if (MaNhanVienGiaoHangrNhanVienDto != null)
+                if (MaNhanVienGiaoHangNavigation != null)
                 {
-                    return string.Format("{0}|{1:hh\\:mm}|{2}", Ngay.ToString("d"), Gio ?? new TimeSpan(0, 0, 0), MaNhanVienGiaoHangrNhanVienDto.DisplayText);
+                    return string.Format("{0}|{1:hh\\:mm}|{2}", Ngay.ToString("d"), Gio ?? new TimeSpan(0, 0, 0), MaNhanVienGiaoHangNavigation.DisplayText);
                 }
                 return ID.ToString();
             }

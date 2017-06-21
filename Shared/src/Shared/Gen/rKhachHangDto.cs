@@ -81,7 +81,7 @@ namespace Shared
             (oLastUpdateTime != LastUpdateTime);
         }
 
-        public rDiaDiemDto MaDiaDiemrDiaDiemDto { get; set; }
+        public rDiaDiemDto MaDiaDiemNavigation { get; set; }
 
         object _MaDiaDiemDataSource;
 

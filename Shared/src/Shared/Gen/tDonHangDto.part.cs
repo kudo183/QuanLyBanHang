@@ -22,9 +22,9 @@
         {
             get
             {
-                if (MaKhoHangrKhoHangDto != null && MaKhachHangrKhachHangDto != null)
+                if (MaKhoHangNavigation != null && MaKhachHangNavigation != null)
                 {
-                    return string.Format("{0}|{1}|{2}", Ngay.ToString("d"), MaKhoHangrKhoHangDto.DisplayText, MaKhachHangrKhachHangDto.DisplayText);
+                    return string.Format("{0}|{1}|{2}", Ngay.ToString("d"), MaKhoHangNavigation.DisplayText, MaKhachHangNavigation.DisplayText);
                 }
 
                 return ID.ToString();
