@@ -19,17 +19,18 @@ namespace Client.View
             base.OnMoveFocus(currentView, nextView);
         }
 
-        protected override void OnAfterSave(IBaseView previousView, IBaseView currentView, IBaseView nextView)
+        protected override void OnSelectedIndexChanged(IBaseView currentView, IBaseView nextView, object selectedValue)
         {
-            base.OnAfterSave(previousView, currentView, nextView);
+            base.OnSelectedIndexChanged(currentView, nextView, selectedValue);
 
             if (currentView is tChuyenHangDonHangView)
             {
                 var view = nextView as tChiTietChuyenHangDonHangView;
                 var viewModel = view.DataContext as tChiTietChuyenHangDonHangViewModel;
                 var chdh = viewModel.ParentItem as tChuyenHangDonHangDto;
-                if (chdh != null && viewModel.Entities.Count == 0)
+                if (chdh != null && viewModel.Entities.Any(p => p.ID != 0) == false)
                 {
+                    viewModel.Entities.Clear();
                     var qe = new QueryExpression();
                     qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
                         WhereExpression.Equal, nameof(tChiTietDonHangDto.MaDonHang), chdh.MaDonHang);
