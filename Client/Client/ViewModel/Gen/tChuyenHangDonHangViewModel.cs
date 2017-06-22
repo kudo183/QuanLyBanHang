@@ -25,8 +25,8 @@ namespace Client.ViewModel
         public tChuyenHangDonHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_Ma, nameof(tChuyenHangDonHangDto.Ma), typeof(int));
-            _MaChuyenHangFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_MaChuyenHang, nameof(tChuyenHangDonHangDto.MaChuyenHang), typeof(int));
-            _MaDonHangFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_MaDonHang, nameof(tChuyenHangDonHangDto.MaDonHang), typeof(int));
+            _MaChuyenHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChuyenHangDonHang_MaChuyenHang, nameof(tChuyenHangDonHangDto.MaChuyenHang), typeof(int), new View.tChuyenHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
+            _MaDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChuyenHangDonHang_MaDonHang, nameof(tChuyenHangDonHangDto.MaDonHang), typeof(int), new View.tDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _TongSoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_TongSoLuongTheoDonHang, nameof(tChuyenHangDonHangDto.TongSoLuongTheoDonHang), typeof(int));
             _TongSoLuongThucTeFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_TongSoLuongThucTe, nameof(tChuyenHangDonHangDto.TongSoLuongThucTe), typeof(int));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_TenantID, nameof(tChuyenHangDonHangDto.TenantID), typeof(int));

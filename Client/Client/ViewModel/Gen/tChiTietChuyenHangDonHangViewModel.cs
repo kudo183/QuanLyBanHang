@@ -25,8 +25,8 @@ namespace Client.ViewModel
         public tChiTietChuyenHangDonHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_Ma, nameof(tChiTietChuyenHangDonHangDto.Ma), typeof(int));
-            _MaChuyenHangDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChuyenHangDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang), typeof(int));
-            _MaChiTietDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChiTietDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), typeof(int));
+            _MaChuyenHangDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChuyenHangDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang), typeof(int), new View.tChuyenHangDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
+            _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChiTietDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuong, nameof(tChiTietChuyenHangDonHangDto.SoLuong), typeof(int));
             _SoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuongTheoDonHang, nameof(tChiTietChuyenHangDonHangDto.SoLuongTheoDonHang), typeof(int));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_TenantID, nameof(tChiTietChuyenHangDonHangDto.TenantID), typeof(int));

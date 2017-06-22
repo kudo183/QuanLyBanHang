@@ -24,7 +24,7 @@ namespace Client.ViewModel
         public tChiTietChuyenKhoViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenKho_Ma, nameof(tChiTietChuyenKhoDto.Ma), typeof(int));
-            _MaChuyenKhoFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenKho_MaChuyenKho, nameof(tChiTietChuyenKhoDto.MaChuyenKho), typeof(int));
+            _MaChuyenKhoFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenKho_MaChuyenKho, nameof(tChiTietChuyenKhoDto.MaChuyenKho), typeof(int), new View.tChuyenKhoView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.tChiTietChuyenKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(tChiTietChuyenKhoDto.MaMatHang),

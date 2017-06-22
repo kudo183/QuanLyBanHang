@@ -24,8 +24,8 @@ namespace Client.ViewModel
         public tChiTietToaHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_Ma, nameof(tChiTietToaHangDto.Ma), typeof(int));
-            _MaToaHangFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_MaToaHang, nameof(tChiTietToaHangDto.MaToaHang), typeof(int));
-            _MaChiTietDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_MaChiTietDonHang, nameof(tChiTietToaHangDto.MaChiTietDonHang), typeof(int));
+            _MaToaHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietToaHang_MaToaHang, nameof(tChiTietToaHangDto.MaToaHang), typeof(int), new View.tToaHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
+            _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietToaHang_MaChiTietDonHang, nameof(tChiTietToaHangDto.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _GiaTienFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_GiaTien, nameof(tChiTietToaHangDto.GiaTien), typeof(int));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_TenantID, nameof(tChiTietToaHangDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_CreateTime, nameof(tChiTietToaHangDto.CreateTime), typeof(long));
