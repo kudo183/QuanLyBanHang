@@ -3,6 +3,7 @@ using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Client.ViewModel
 {
@@ -37,6 +38,30 @@ namespace Client.ViewModel
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(dto.MaMatHang);
                 dto.PropertyChanged += Item_PropertyChanged;
             }
+
+            var tongSoKg = 0;
+            var sb = new StringBuilder();
+            sb.Append(", ");
+            foreach (var item in Entities)
+            {
+                item.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(item.MaMatHang);
+                if (item.MaMatHangNavigation == null)
+                    continue;
+
+                if (item.MaMatHangNavigation.SoKy == 0)
+                {
+                    sb.Append(item.MaMatHangNavigation.TenMatHang);
+                    sb.Append(", ");
+                }
+                else
+                {
+                    tongSoKg += item.SoLuong * item.MaMatHangNavigation.SoKy;
+                }
+            }
+
+            tongSoKg = tongSoKg / 10;
+
+            Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg, sb.ToString(0, sb.Length - 2));
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
