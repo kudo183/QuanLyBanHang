@@ -68,7 +68,23 @@
     <Compile Include="Smt\SmtUserClaimViewModel.cs" />
     <Compile Include="Smt\SmtUserView.cs" />
     <Compile Include="Smt\SmtUserViewModel.cs" />
+    <Compile Include="ViewModel\Report\ChiPhiViewModel.cs" />
+    <Compile Include="ViewModel\Report\HangNgayViewModel.cs" />
+    <Compile Include="ViewModel\Report\KhachHangViewModel.cs" />
+    <Compile Include="ViewModel\Report\XuatViewModel.cs" />
     <Compile Include="View\ChuyenHangComplexView.part.cs" />
+    <Compile Include="View\Report\ChiPhi.xaml.cs">
+      <DependentUpon>ChiPhi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\HangNgay.xaml.cs">
+      <DependentUpon>HangNgay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\KhachHang.xaml.cs">
+      <DependentUpon>KhachHang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\Xuat.xaml.cs">
+      <DependentUpon>Xuat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\tChuyenHangDonHangView.part.cs" />
     <Compile Include="View\tChiTietChuyenHangDonHangView.part.cs" />
     <Compile Include="View\ToaHangComplexView.part.cs" />
@@ -104,6 +120,22 @@
     </Page>
     <Compile Include="ViewModel\Gen\*.cs" />
     <Compile Include="Text\Gen\*.cs" />
+    <Page Include="View\Report\ChiPhi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Report\HangNgay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Report\KhachHang.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Report\Xuat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -145,6 +177,10 @@
     <ProjectReference Include="..\..\..\huypq.SmtWpfClient\huypq.SmtWpfClient\huypq.SmtWpfClient.csproj">
       <Project>{8e941c6e-74ca-4baa-af1d-9d98283db1d1}</Project>
       <Name>huypq.SmtWpfClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.wpf.controls\huypq.wpf.controls\huypq.wpf.controls.csproj">
+      <Project>{2a2ba72b-c536-419c-8741-a09e21ed70c7}</Project>
+      <Name>huypq.wpf.controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\QueryBuilder\old.NET\QueryBuilder\QueryBuilder\QueryBuilder.csproj">
       <Project>{e9fbfac6-4189-4eb2-bea0-d81d78687c17}</Project>

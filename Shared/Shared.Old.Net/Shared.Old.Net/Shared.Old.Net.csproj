@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\Shared\Report\ReportChiPhiDto.cs">
+      <Link>Report\ReportChiPhiDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Shared\Report\ReportDailyDto.cs">
+      <Link>Report\ReportDailyDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Shared\Report\ReportKhachHangDto.cs">
+      <Link>Report\ReportKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\Shared\Report\ReportXuatDto.cs">
+      <Link>Report\ReportXuatDto.cs</Link>
+    </Compile>
     <Compile Include="..\..\src\Shared\SmtUserClaimDto.cs">
       <Link>SmtUserClaimDto.cs</Link>
     </Compile>
@@ -68,6 +80,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

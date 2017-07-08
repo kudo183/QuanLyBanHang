@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Client.View.Report.HangNgay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.View.Report"
+             xmlns:CustomControl="clr-namespace:SimpleDataGrid;assembly=SimpleDataGrid"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <TextBlock Text="Ngay: " VerticalAlignment="Center" Margin="5"/>
+                <CustomControl:CustomDatePicker SelectedDateBinding="{Binding SelectedDate}" Margin="5" Width="200"/>
+                <Button Content="Ok" Margin="5" Width="50" Click="Button_OkClick"/>
+                <Button Content="Copy (Excel)" Margin="5" Click="Button_CopyClick"/>
+                <TextBlock Text="{Binding Msg}" Foreground="Blue" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Grid>
+        <CustomControl:DataGridExt Grid.Row="1" ItemsSourceEx="{Binding Items}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
+            <CustomControl:DataGridExt.Columns>
+                <DataGridTextColumn Binding="{Binding TenKho}" Header="Kho Hang" Width="100"/>
+                <DataGridTextColumn Binding="{Binding TenKhachHang}" Header="Ten Khach Hang" Width="200"/>
+                <DataGridTextColumn Binding="{Binding TenMatHang}" Header="Ten Mat Hang" Width="350"/>
+                <DataGridTextColumn Binding="{Binding SoLuongString}" Header="So Luong" Width="100"/>
+            </CustomControl:DataGridExt.Columns>
+        </CustomControl:DataGridExt>
+    </Grid>
+</UserControl>
