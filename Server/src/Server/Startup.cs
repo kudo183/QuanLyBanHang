@@ -28,15 +28,10 @@ namespace Server
 
             if (env.IsDevelopment())
             {
-                app.UseFileServer();
-            }
-            else
-            {
                 app.UseFileServer(new FileServerOptions()
                 {
                     FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\release")),
-                    RequestPath = new PathString("/quanly")
+                        Path.Combine(Directory.GetCurrentDirectory(), @"website"))
                 });
             }
 
@@ -45,7 +40,7 @@ namespace Server
                 PropertyPath = "Ma",
                 IsAscending = true
             };
-            app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod());
+            //app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod());
             app.UseSmt<SqlDbContext, SmtTenant, SmtUser, SmtUserClaim>("Server");
         }
     }

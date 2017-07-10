@@ -22,7 +22,7 @@ window.app.webApi = (function (logger) {
     return webApi;
 
     //function apiUrl(controller, action) { return "/" + controller + "/" + action; }
-    function apiUrl(controller, action) { return "http://localhost:5000/" + controller + "/" + action; }
+    function apiUrl(controller, action) { return window.rootUri + controller + "/" + action; }
 
     function getApiUrl(controller) { return apiUrl(controller, "get"); }
 
