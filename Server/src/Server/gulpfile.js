@@ -13,12 +13,13 @@ var gulp = require("gulp"),
   uglify = require("gulp-uglify");
 
 var paths = {
-    webroot: "./wwwroot/"
+    webroot: "./website/",
+    release: "./wwwroot/"
 };
 
-paths.minJsDest = paths.webroot + "release/site.min.js";
-paths.minCssDest = paths.webroot + "release/site.min.css";
-paths.imageDest = paths.webroot + "release/images";
+paths.minJsDest = paths.release + "site.min.js";
+paths.minCssDest = paths.release + "site.min.css";
+paths.imageDest = paths.release + "images";
 
 //specify js files path, order is important
 paths.js = [
