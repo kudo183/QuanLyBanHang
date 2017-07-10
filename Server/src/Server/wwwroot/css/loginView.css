@@ -1,0 +1,21 @@
+﻿
+#loginView #tenant {
+    display: block;
+    margin:5px;
+}
+
+#loginView #email {
+    display: block;
+    margin:5px;
+}
+
+#loginView #password {
+    display: block;
+    margin:5px;
+}
+
+#loginView .h-comboBox {
+    width: 160px;
+    height: 30px;
+    margin-top:5px;
+}

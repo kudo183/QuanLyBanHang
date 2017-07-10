@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Quan ly</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="site.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
+</head>
+<body>
+    <script>
+
+        window.params = (function () {
+            var result = {};
+            window.location.search.substring(1).split("&").forEach(function (p) {
+                var keyValue = p.split("=");
+                result[keyValue[0]] = decodeURIComponent(keyValue[1]);
+            });
+            return result;
+        })();
+
+        console.log("app params: " + JSON.stringify(window.params));
+
+        window.huypq_DEBUG = false;
+    </script>
+    <script src="site.min.js"></script>
+</body>
+</html>

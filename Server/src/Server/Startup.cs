@@ -2,9 +2,12 @@
 using huypq.SmtMiddleware.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Server.Entities;
+using System.IO;
 
 namespace Server
 {
@@ -22,6 +25,20 @@ namespace Server
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseFileServer();
+            }
+            else
+            {
+                app.UseFileServer(new FileServerOptions()
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\release")),
+                    RequestPath = new PathString("/quanly")
+                });
+            }
 
             SmtSettings.Instance.DefaultOrderOption = new QueryBuilder.OrderByExpression.OrderOption()
             {
