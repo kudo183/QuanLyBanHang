@@ -101,16 +101,16 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaLoai != MaLoai)||
-            (oTenMatHang != TenMatHang)||
-            (oSoKy != SoKy)||
-            (oSoMet != SoMet)||
-            (oTenMatHangDayDu != TenMatHangDayDu)||
-            (oTenMatHangIn != TenMatHangIn)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaLoai != MaLoai) ||
+            (oTenMatHang != TenMatHang) ||
+            (oSoKy != SoKy) ||
+            (oSoMet != SoMet) ||
+            (oTenMatHangDayDu != TenMatHangDayDu) ||
+            (oTenMatHangIn != TenMatHangIn) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public rLoaiHangDto MaLoaiNavigation { get; set; }

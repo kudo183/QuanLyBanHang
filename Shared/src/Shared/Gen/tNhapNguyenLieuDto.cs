@@ -87,14 +87,14 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oNgay != Ngay)||
-            (oMaNguyenLieu != MaNguyenLieu)||
-            (oMaNhaCungCap != MaNhaCungCap)||
-            (oSoLuong != SoLuong)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oNgay != Ngay) ||
+            (oMaNguyenLieu != MaNguyenLieu) ||
+            (oMaNhaCungCap != MaNhaCungCap) ||
+            (oSoLuong != SoLuong) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public rNguyenLieuDto MaNguyenLieuNavigation { get; set; }

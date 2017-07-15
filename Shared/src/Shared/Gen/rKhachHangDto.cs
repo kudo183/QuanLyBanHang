@@ -80,13 +80,13 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaDiaDiem != MaDiaDiem)||
-            (oTenKhachHang != TenKhachHang)||
-            (oKhachRieng != KhachRieng)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaDiaDiem != MaDiaDiem) ||
+            (oTenKhachHang != TenKhachHang) ||
+            (oKhachRieng != KhachRieng) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public rDiaDiemDto MaDiaDiemNavigation { get; set; }

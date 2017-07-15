@@ -66,11 +66,11 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oTenLoai != TenLoai)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oTenLoai != TenLoai) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
 

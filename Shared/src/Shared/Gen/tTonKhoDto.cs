@@ -94,15 +94,15 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaKhoHang != MaKhoHang)||
-            (oMaMatHang != MaMatHang)||
-            (oNgay != Ngay)||
-            (oSoLuong != SoLuong)||
-            (oSoLuongCu != SoLuongCu)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaKhoHang != MaKhoHang) ||
+            (oMaMatHang != MaMatHang) ||
+            (oNgay != Ngay) ||
+            (oSoLuong != SoLuong) ||
+            (oSoLuongCu != SoLuongCu) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public rKhoHangDto MaKhoHangNavigation { get; set; }

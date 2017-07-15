@@ -101,16 +101,16 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaKhachHang != MaKhachHang)||
-            (oMaChanh != MaChanh)||
-            (oNgay != Ngay)||
-            (oXong != Xong)||
-            (oMaKhoHang != MaKhoHang)||
-            (oTongSoLuong != TongSoLuong)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaKhachHang != MaKhachHang) ||
+            (oMaChanh != MaChanh) ||
+            (oNgay != Ngay) ||
+            (oXong != Xong) ||
+            (oMaKhoHang != MaKhoHang) ||
+            (oTongSoLuong != TongSoLuong) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public rKhachHangDto MaKhachHangNavigation { get; set; }

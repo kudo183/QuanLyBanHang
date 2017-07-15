@@ -73,12 +73,12 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaMatHang != MaMatHang)||
-            (oMaNguyenLieu != MaNguyenLieu)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaMatHang != MaMatHang) ||
+            (oMaNguyenLieu != MaNguyenLieu) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public tMatHangDto MaMatHangNavigation { get; set; }

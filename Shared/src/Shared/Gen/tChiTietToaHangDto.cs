@@ -80,13 +80,13 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma)||
-            (oMaToaHang != MaToaHang)||
-            (oMaChiTietDonHang != MaChiTietDonHang)||
-            (oGiaTien != GiaTien)||
-            (oTenantID != TenantID)||
-            (oCreateTime != CreateTime)||
-            (oLastUpdateTime != LastUpdateTime);
+            (oMa != Ma) ||
+            (oMaToaHang != MaToaHang) ||
+            (oMaChiTietDonHang != MaChiTietDonHang) ||
+            (oGiaTien != GiaTien) ||
+            (oTenantID != TenantID) ||
+            (oCreateTime != CreateTime) ||
+            (oLastUpdateTime != LastUpdateTime) ;
         }
 
         public tToaHangDto MaToaHangNavigation { get; set; }
