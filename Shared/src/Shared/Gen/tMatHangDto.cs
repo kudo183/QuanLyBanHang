@@ -7,6 +7,17 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tMatHangDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static int DMaLoai;
+        public static string DTenMatHang;
+        public static int DSoKy;
+        public static int DSoMet;
+        public static string DTenMatHangDayDu;
+        public static string DTenMatHangIn;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         int oMaLoai;
         string oTenMatHang;
@@ -18,16 +29,16 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        int _MaLoai;
-        string _TenMatHang;
-        int _SoKy;
-        int _SoMet;
-        string _TenMatHangDayDu;
-        string _TenMatHangIn;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        int _MaLoai = DMaLoai;
+        string _TenMatHang = DTenMatHang;
+        int _SoKy = DSoKy;
+        int _SoMet = DSoMet;
+        string _TenMatHangDayDu = DTenMatHangDayDu;
+        string _TenMatHangIn = DTenMatHangIn;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -52,7 +63,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -110,7 +121,7 @@ namespace Shared
         public object MaLoaiDataSource { get { return _MaLoaiDataSource; } set { _MaLoaiDataSource = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

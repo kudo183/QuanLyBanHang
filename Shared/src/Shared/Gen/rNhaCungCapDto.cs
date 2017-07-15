@@ -7,17 +7,23 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rNhaCungCapDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static string DTenNhaCungCap;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         string oTenNhaCungCap;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        string _TenNhaCungCap;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        string _TenNhaCungCap = DTenNhaCungCap;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -32,7 +38,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -71,7 +77,7 @@ namespace Shared
 
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

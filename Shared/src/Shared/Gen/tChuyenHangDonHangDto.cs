@@ -7,6 +7,15 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tChuyenHangDonHangDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static int DMaChuyenHang;
+        public static int DMaDonHang;
+        public static int DTongSoLuongTheoDonHang;
+        public static int DTongSoLuongThucTe;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         int oMaChuyenHang;
         int oMaDonHang;
@@ -16,14 +25,14 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        int _MaChuyenHang;
-        int _MaDonHang;
-        int _TongSoLuongTheoDonHang;
-        int _TongSoLuongThucTe;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        int _MaChuyenHang = DMaChuyenHang;
+        int _MaDonHang = DMaDonHang;
+        int _TongSoLuongTheoDonHang = DTongSoLuongTheoDonHang;
+        int _TongSoLuongThucTe = DTongSoLuongThucTe;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -44,7 +53,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -94,7 +103,7 @@ namespace Shared
 
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

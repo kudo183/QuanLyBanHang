@@ -7,6 +7,15 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rCanhBaoTonKhoDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static int DMaMatHang;
+        public static int DMaKhoHang;
+        public static int DTonCaoNhat;
+        public static int DTonThapNhat;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         int oMaMatHang;
         int oMaKhoHang;
@@ -16,14 +25,14 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        int _MaMatHang;
-        int _MaKhoHang;
-        int _TonCaoNhat;
-        int _TonThapNhat;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        int _MaMatHang = DMaMatHang;
+        int _MaKhoHang = DMaKhoHang;
+        int _TonCaoNhat = DTonCaoNhat;
+        int _TonThapNhat = DTonThapNhat;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -44,7 +53,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -100,7 +109,7 @@ namespace Shared
         public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

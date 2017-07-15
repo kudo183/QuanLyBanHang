@@ -7,6 +7,16 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tTonKhoDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static int DMaKhoHang;
+        public static int DMaMatHang;
+        public static System.DateTime DNgay;
+        public static int DSoLuong;
+        public static int DSoLuongCu;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         int oMaKhoHang;
         int oMaMatHang;
@@ -17,15 +27,15 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        int _MaKhoHang;
-        int _MaMatHang;
-        System.DateTime _Ngay;
-        int _SoLuong;
-        int _SoLuongCu;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        int _MaKhoHang = DMaKhoHang;
+        int _MaMatHang = DMaMatHang;
+        System.DateTime _Ngay = DNgay;
+        int _SoLuong = DSoLuong;
+        int _SoLuongCu = DSoLuongCu;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -48,7 +58,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -107,7 +117,7 @@ namespace Shared
         public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { _MaMatHangDataSource = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

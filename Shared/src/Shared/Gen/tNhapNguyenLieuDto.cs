@@ -7,6 +7,15 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tNhapNguyenLieuDto : IDto, INotifyPropertyChanged
     {
+        public static int DMa;
+        public static System.DateTime DNgay;
+        public static int DMaNguyenLieu;
+        public static int DMaNhaCungCap;
+        public static int DSoLuong;
+        public static int DTenantID;
+        public static long DCreateTime;
+        public static long DLastUpdateTime;
+
         int oMa;
         System.DateTime oNgay;
         int oMaNguyenLieu;
@@ -16,14 +25,14 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma;
-        System.DateTime _Ngay;
-        int _MaNguyenLieu;
-        int _MaNhaCungCap;
-        int _SoLuong;
-        int _TenantID;
-        long _CreateTime;
-        long _LastUpdateTime;
+        int _Ma = DMa;
+        System.DateTime _Ngay = DNgay;
+        int _MaNguyenLieu = DMaNguyenLieu;
+        int _MaNhaCungCap = DMaNhaCungCap;
+        int _SoLuong = DSoLuong;
+        int _TenantID = DTenantID;
+        long _CreateTime = DCreateTime;
+        long _LastUpdateTime = DLastUpdateTime;
 
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
@@ -44,7 +53,7 @@ namespace Shared
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             oMa = Ma;
@@ -100,7 +109,7 @@ namespace Shared
         public object MaNhaCungCapDataSource { get { return _MaNhaCungCapDataSource; } set { _MaNhaCungCapDataSource = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public int ID { get { return Ma; } set { Ma = value;} }
+        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

@@ -7,13 +7,15 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class <EntityName>Dto : IDto, INotifyPropertyChanged
     {
+        <DefaultValues>
+
         <PrivateFields>
 
         <PublicProperties>
 
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-        
+
         public void SetCurrentValueAsOriginalValue()
         {
             <SetCurrentValueAsOriginalValue>
