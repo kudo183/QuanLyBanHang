@@ -11,10 +11,13 @@ namespace Client
         public App()
         {
             Startup += App_Startup;
+            Exit += App_Exit;
         }
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
+            SettingsWrapper.Load();
+
             //apply Window Style in App.xaml to all Window type
             FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
             {
@@ -26,8 +29,13 @@ namespace Client
             {
                 DefaultValue = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentUICulture.Name)
             });
-            
+
             StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
+        }
+
+        private void App_Exit(object sender, ExitEventArgs e)
+        {
+            SettingsWrapper.Save();
         }
     }
 }

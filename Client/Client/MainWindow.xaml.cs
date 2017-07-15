@@ -38,10 +38,9 @@ namespace Client
 
             ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
             {
-                //RootUri = "http://localhost:5000",
-                RootUri = "http://luoithepvinhphat.com:5000",
+                RootUri = SettingsWrapper.Instance.Server,
 #if DEBUG
-                Token = "CfDJ8J0CZcxInRhFvSirfZanTFyk8fHk5vjz-W15GWkoPkkskq56hc_BY703cjKiS6LtYAiM8Y3-5g0JHWSOpyO9T1osA622eK7ehoQNMyr0dPnVnrKR8qbsCltAZ-cMUJSoB_qqLcaojDswxMjh-TgmRHEhfZlk6NgvbU5Yr7yfM9jB"
+                Token = "CfDJ8J0Vem16TkFEi6NUK4o55Aq1oLWtnzQB4QMkwpV1b8cI-ZmU-f6ma5EiIfR-caLTHzOk8369KjfDJjLIFUaN1ZdcX6d-FhWQ3D4sNMLaecazjnM4NsUlGU6oVeid9zomwZwakM8eORcqo1wqwigrE0AQLxNVvWTJWMg7fElpfqKW"
 #endif
             });
 
