@@ -5,7 +5,13 @@ namespace Client
 {
     public sealed class SettingsWrapper
     {
-        private static Settings _instance = new Settings();
+        private static Settings _instance;
+
+        static SettingsWrapper()
+        {
+            _instance = new Settings();
+            _instance.PropertyChanged += _instance_PropertyChanged;
+        }
 
         public static Settings Instance
         {
@@ -21,11 +27,7 @@ namespace Client
                 var text = System.IO.File.ReadAllText(SettingsFileName);
                 try
                 {
-                    _instance.PropertyChanged -= _instance_PropertyChanged;
-
-                    _instance = Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(text);
-
-                    _instance.PropertyChanged += _instance_PropertyChanged;
+                    _instance.Update(Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(text));
                 }
                 catch { }
             }
@@ -37,12 +39,12 @@ namespace Client
             {
                 case nameof(Settings.tDonHang_MaKhoHangDefault):
                     {
-
+                        Shared.tDonHangDto.DMaKhoHang = Instance.tDonHang_MaKhoHangDefault;
                     }
                     break;
                 case nameof(Settings.tDonHang_MaKhachHangDefault):
                     {
-
+                        Shared.tDonHangDto.DMaKhachHang = Instance.tDonHang_MaKhachHangDefault;
                     }
                     break;
             }
@@ -58,7 +60,7 @@ namespace Client
 
         public class Settings : INotifyPropertyChanged
         {
-            private string _server;
+            private string _server = "http://luoithepvinhphat.com";
 
             public string Server
             {
@@ -92,7 +94,7 @@ namespace Client
 
             public int tDonHang_MaKhachHangDefault
             {
-                get { return _tDonHang_MaKhoHangDefault; }
+                get { return _tDonHang_MaKhachHangDefault; }
                 set
                 {
                     if (_tDonHang_MaKhachHangDefault == value)
@@ -108,6 +110,13 @@ namespace Client
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            public void Update(Settings settings)
+            {
+                Server = settings.Server;
+                tDonHang_MaKhoHangDefault = settings.tDonHang_MaKhoHangDefault;
+                tDonHang_MaKhachHangDefault = settings.tDonHang_MaKhachHangDefault;
             }
         }
     }
