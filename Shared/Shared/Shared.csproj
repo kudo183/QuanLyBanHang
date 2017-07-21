@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Protobuf-net" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\huypq.SmtShared\huypq.SmtShared\huypq.SmtShared.csproj">
+      <ReferenceOutputAssembly></ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

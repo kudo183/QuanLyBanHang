@@ -37,12 +37,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="protobuf-net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.0\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -170,13 +173,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj">
+      <Project>{c3b36888-e0f1-4e30-8549-50d20dd636c5}</Project>
+      <Name>huypq.QueryBuilder.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\SimpleDataGrid.csproj">
       <Project>{9cfa4fe9-01d0-4bd1-aa8a-bca4b4a60375}</Project>
       <Name>SimpleDataGrid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.SmtShared\old.NET\huypq.SmtShared\huypq.SmtShared\huypq.SmtShared.csproj">
-      <Project>{d0ea0474-d927-4193-9dda-58363e8a64c4}</Project>
-      <Name>huypq.SmtShared</Name>
+    <ProjectReference Include="..\..\..\huypq.SmtShared\huypq.SmtShared.Framework\huypq.SmtShared.Framework.csproj">
+      <Project>{dbb09141-9d0c-4867-9248-1fc2e8a5eec5}</Project>
+      <Name>huypq.SmtShared.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\huypq.SmtWpfClient\huypq.SmtWpfClient\huypq.SmtWpfClient.csproj">
       <Project>{8e941c6e-74ca-4baa-af1d-9d98283db1d1}</Project>
@@ -186,13 +193,9 @@
       <Project>{2a2ba72b-c536-419c-8741-a09e21ed70c7}</Project>
       <Name>huypq.wpf.controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\QueryBuilder\old.NET\QueryBuilder\QueryBuilder\QueryBuilder.csproj">
-      <Project>{e9fbfac6-4189-4eb2-bea0-d81d78687c17}</Project>
-      <Name>QueryBuilder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Shared.Old.Net\Shared.Old.Net\Shared.Old.Net.csproj">
-      <Project>{50E90245-41E9-4B66-9C7B-72F9B013833F}</Project>
-      <Name>Shared.Old.Net</Name>
+    <ProjectReference Include="..\..\Shared\Shared.Framework\Shared.Framework.csproj">
+      <Project>{ee12e158-369b-4e25-8a4b-99d0e8d8723c}</Project>
+      <Name>Shared.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -211,13 +214,15 @@
     <Resource Include="View\Gen\#ComplexViewTemplate.xaml.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.2.0.6\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.2.0.6\build\dotnet\Fody.targets') And '$(Configuration)' == 'Release'" />
+  <Import Project="..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets" Condition="Exists('..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.2.0.6\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.0.6\build\dotnet\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
   </Target>
+  <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets') And '$(Configuration)' == 'Release'" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

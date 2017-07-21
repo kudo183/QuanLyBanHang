@@ -17,7 +17,7 @@ namespace Server
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
             services.AddSmtWithTrustedConnection<SqlDbContext, SmtTenant, SmtUser, SmtUserClaim>("PhuDinh", @"c:\Server.key");
         }
 
@@ -35,7 +35,7 @@ namespace Server
                 });
             }
 
-            SmtSettings.Instance.DefaultOrderOption = new QueryBuilder.OrderByExpression.OrderOption()
+            SmtSettings.Instance.DefaultOrderOption = new huypq.QueryBuilder.OrderByExpression.OrderOption()
             {
                 PropertyPath = "Ma",
                 IsAscending = true

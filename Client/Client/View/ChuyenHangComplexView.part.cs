@@ -1,6 +1,6 @@
 ﻿using Client.ViewModel;
 using huypq.SmtWpfClient.Abstraction;
-using QueryBuilder;
+using huypq.QueryBuilder;
 using Shared;
 using System.Linq;
 

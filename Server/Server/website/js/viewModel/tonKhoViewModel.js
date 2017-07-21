@@ -37,14 +37,14 @@
         itemText: "tenKho",
         itemValue: "ma",
         filterValue: ko.observable(f.tk),
-        whereType: "QueryBuilder.WhereExpression+WhereOptionInt, QueryBuilder"
+        whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
     };
 
     var filterNgay = {
         type: "date",
         propertyPath: "Ngay",
         filterValue: ko.observable(f.d),
-        whereType: "QueryBuilder.WhereExpression+WhereOptionDate, QueryBuilder"
+        whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionDate, huypq.QueryBuilder"
     };
 
     var filterLoaiHang = {
@@ -54,7 +54,7 @@
         itemText: "tenLoai",
         itemValue: "ma",
         filterValue: ko.observable(f.ml),
-        whereType: "QueryBuilder.WhereExpression+WhereOptionInt, QueryBuilder"
+        whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
     };
 
     viewModel.addCustomFilters([filterKhoHang, filterNgay, filterLoaiHang]);

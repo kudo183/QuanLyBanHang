@@ -1,3 +1,3 @@
-[submodule "Server/src/Server/website/lib"]
-	path = Server/src/Server/website/lib
+[submodule "Server/Server/website/lib"]
+	path = Server/Server/website/lib
 	url = C:/github/jsControl

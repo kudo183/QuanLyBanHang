@@ -1,6 +1,6 @@
 ﻿using huypq.SmtMiddleware;
 using huypq.SmtMiddleware.Entities;
-using QueryBuilder;
+using huypq.QueryBuilder;
 using Server.Entities;
 using Shared;
 

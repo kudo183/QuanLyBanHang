@@ -5,7 +5,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:SimpleDataGrid="clr-namespace:SimpleDataGrid;assembly=SimpleDataGrid"
-                      xmlns:Dto="clr-namespace:Shared;assembly=Shared.Old.Net"
+                      xmlns:Dto="clr-namespace:Shared;assembly=Shared.Framework"
                       xmlns:Abstraction="clr-namespace:huypq.SmtWpfClient.Abstraction;assembly=huypq.SmtWpfClient"
                       xmlns:converter="clr-namespace:huypq.SmtWpfClient.Converter;assembly=huypq.SmtWpfClient"
                       xmlns:view="clr-namespace:Client.View">
