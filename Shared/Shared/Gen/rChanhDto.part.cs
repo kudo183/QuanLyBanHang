@@ -4,15 +4,27 @@
     {
         partial void RaiseDependentPropertyChanged(string basePropertyName)
         {
-            if (basePropertyName == nameof(TenChanh))
+            switch (basePropertyName)
             {
-                OnPropertyChanged(nameof(DisplayText));
+                case nameof(TenChanh):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
+                case nameof(MaBaiXe):
+                    OnPropertyChanged(nameof(DisplayText));
+                    break;
             }
         }
 
         public string DisplayText
         {
-            get { return TenChanh; }
+            get
+            {
+                if (MaBaiXeNavigation != null)
+                {
+                    return string.Format("{0} - {1}", TenChanh, MaBaiXeNavigation.DiaDiemBaiXe);
+                }
+                return ID.ToString();
+            }
         }
     }
 }

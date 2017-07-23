@@ -4,18 +4,109 @@ using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using SimpleDataGrid;
+using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace Client.ViewModel
 {
     public partial class tDonHangViewModel : BaseViewModel<tDonHangDto>
     {
+        private string MsgSelectedItemIsNull = "please select tDonHang";
+        private string MsgtChiTietDonHangsIsEmtpy = "tChiTietDonHangs Is Emtpy";
+
         partial void InitFilterPartial()
         {
             TonKhoCommand = new SimpleCommand(nameof(TonKhoCommand), () => TonKhoAction());
             PrintAllCommand = new SimpleCommand(nameof(PrintAllCommand), () => PrintAll());
             PrintRemainCommand = new SimpleCommand(nameof(PrintRemainCommand), () => PrintRemain());
+
+            _MaChanhFilter = new HeaderComboBoxFilterModel(
+                TextManager.tDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(tDonHangDto.MaChanh),
+                typeof(int?),
+                nameof(rChanhDto.DisplayText),
+                nameof(rChanhDto.ID))
+            {
+                AddCommand = new SimpleCommand("ChanhAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.rKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)),
+                ItemSource = ReferenceDataManager<rChanhDto>.Instance.Get()
+            };
+
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
+        }
+
+        protected override void BeforeLoad()
+        {
+            foreach (var dto in Entities)
+            {
+                dto.PropertyChanged -= Dto_PropertyChanged;
+            }
+        }
+
+        partial void LoadReferenceDataPartial()
+        {
+            ReferenceDataManager<rKhachHangChanhDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rBaiXeDto>.Instance.LoadOrUpdate();
+        }
+
+        partial void ProcessDtoBeforeAddToEntitiesPartial(tDonHangDto dto)
+        {
+            UpdateChanhs(dto);
+
+            dto.PropertyChanged += Dto_PropertyChanged;
+        }
+
+        void AfterKhachHangChanhDialog()
+        {
+            ReferenceDataManager<rChanhDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangChanhDto>.Instance.LoadOrUpdate();
+            foreach (var dto in Entities)
+            {
+                UpdateChanhs(dto);
+            }
+        }
+
+        void UpdateChanhs(tDonHangDto dto)
+        {
+            var khachHangChanhs = ReferenceDataManager<rKhachHangChanhDto>.Instance.Get()
+                 .Where(p => p.MaKhachHang == dto.MaKhachHang);
+
+            var chanhs = new List<rChanhDto>();
+            foreach (var item in khachHangChanhs)
+            {
+                var chanh = ReferenceDataManager<rChanhDto>.Instance.GetByID(item.MaChanh);
+                if (chanh.MaBaiXeNavigation == null)
+                {
+                    chanh.MaBaiXeNavigation = ReferenceDataManager<rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+                }
+                if (item.LaMacDinh == true)
+                {
+                    chanhs.Insert(0, chanh);
+                }
+                else
+                {
+                    chanhs.Add(chanh);
+                }
+            }
+            dto.MaChanhDataSource = chanhs;
+            if (chanhs.Count > 0 && dto.MaChanh == null)
+            {
+                dto.MaChanh = chanhs[0].ID;
+            }
+        }
+
+        void Dto_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var dto = sender as tDonHangDto;
+            switch (e.PropertyName)
+            {
+                case nameof(tDonHangDto.MaKhachHang):
+                    UpdateChanhs(dto);
+                    break;
+            }
         }
 
         public SimpleCommand TonKhoCommand { get; set; }
@@ -24,8 +115,13 @@ namespace Client.ViewModel
 
         private void TonKhoAction()
         {
+            var data = new List<MessageBox2.MessageBox2Data>();
+
             if (SelectedItem == null)
+            {
+                SysMsg = MsgSelectedItemIsNull;
                 return;
+            }
 
             var donHang = SelectedItem;
             var qe = new QueryExpression();
@@ -33,6 +129,11 @@ namespace Client.ViewModel
                 WhereExpression.Equal, nameof(tChiTietDonHangDto.MaDonHang), donHang.ID);
 
             var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
+            if (tChiTietDonHangs.Count == 0)
+            {
+                SysMsg = MsgtChiTietDonHangsIsEmtpy;
+                return;
+            }
 
             var maMatHangs = tChiTietDonHangs.Select(p => p.MaMatHang).ToList();
 
@@ -45,8 +146,6 @@ namespace Client.ViewModel
                 WhereExpression.In, nameof(tTonKhoDto.MaMatHang), maMatHangs);
 
             var tTonKhoes = DataService.Get<tTonKhoDto>(qe).Items;
-
-            var data = new List<MessageBox2.MessageBox2Data>();
 
             foreach (var tTonKho in tTonKhoes)
             {
@@ -63,7 +162,10 @@ namespace Client.ViewModel
         private void PrintAll()
         {
             if (SelectedItem == null)
+            {
+                SysMsg = MsgSelectedItemIsNull;
                 return;
+            }
 
             var donHang = SelectedItem as tDonHangDto;
             var qe = new QueryExpression();
@@ -72,7 +174,10 @@ namespace Client.ViewModel
             var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
 
             if (tChiTietDonHangs.Count == 0)
+            {
+                SysMsg = MsgtChiTietDonHangsIsEmtpy;
                 return;
+            }
 
             var content = new List<string>();
 
@@ -90,7 +195,10 @@ namespace Client.ViewModel
         private void PrintRemain()
         {
             if (SelectedItem == null)
+            {
+                SysMsg = MsgSelectedItemIsNull;
                 return;
+            }
 
             var donHang = SelectedItem as tDonHangDto;
 
@@ -102,7 +210,10 @@ namespace Client.ViewModel
             var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
 
             if (tChiTietDonHangs.Count == 0)
+            {
+                SysMsg = MsgtChiTietDonHangsIsEmtpy;
                 return;
+            }
 
             var content = new List<string>();
 

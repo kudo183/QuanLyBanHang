@@ -70,6 +70,9 @@
     <Compile Include="..\Shared\Gen\rKhachHangChanhDto.cs">
       <Link>Gen\rKhachHangChanhDto.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Gen\rKhachHangChanhDto.part.cs">
+      <Link>Gen\rKhachHangChanhDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\Shared\Gen\rKhachHangDto.cs">
       <Link>Gen\rKhachHangDto.cs</Link>
     </Compile>
