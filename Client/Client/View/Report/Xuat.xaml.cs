@@ -30,7 +30,7 @@ namespace Client.View.Report
             vm.DateRangePickerViewModel = new huypq.wpf.controls.DateRangePickerViewModel();
 
             vm.PropertyChanged += Vm_PropertyChanged;
-            
+
             DataContext = vm;
 
             parameters.Add("dateFrom", DateToString(vm.DateRangePickerViewModel.DateFrom));
@@ -87,6 +87,11 @@ namespace Client.View.Report
             var dicLoaiHangs = new Dictionary<int, XuatViewModel.GroupByLoaiHang>();
             foreach (var xuat in reportData)
             {
+                if (xuat.ChiTietXuat == null)
+                {
+                    continue;
+                }
+
                 foreach (var ctXuat in xuat.ChiTietXuat)
                 {
                     XuatViewModel.GroupByLoaiHang item = null;
