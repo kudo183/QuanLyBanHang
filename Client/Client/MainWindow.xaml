@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:control="clr-namespace:huypq.SmtWpfClient.View;assembly=huypq.SmtWpfClient"
         xmlns:converter="clr-namespace:huypq.SmtWpfClient.Converter;assembly=huypq.SmtWpfClient"
-        xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized">
+        Title="MainWindow" WindowState="Maximized"
+        Background="#FF627E97">
     <Window.Resources>
         <converter:InverseBoolToVisibilityConverter x:Key="InverseBoolToVis"/>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -22,6 +22,48 @@
             <Button Content="Change Password" Click="ChangePasswordButton_Click"/>
             <Button Content="ManageUser" Click="ManageUserButton_Click" Visibility="{Binding IsTenant, Converter={StaticResource BoolToVis}}"/>
             <Button Content="All View" Click="AllViewButton_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Button.Click="StackPanel_Click"
+                    Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVis}}">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Width="200" Orientation="Vertical">
+                <Button Height="80" Content="Canh Bao Ton Kho" Tag="rCanhBaoTonKhoView"/>
+                <Button Height="80" Content="Chi Phi" Tag="tChiPhiView"/>
+            </StackPanel>
+            <StackPanel Width="150" Orientation="Vertical">
+                <Button Height="80" Content="Nhan Vien" Tag="rNhanVienView"/>
+                <Button Height="80" Content="Nhap Hang" Tag="NhapHangComplexView"/>
+                <Button Height="80" Content="Don Hang" Tag="DonHangComplexView"/>
+                <Button Height="80" Content="Chuyen Hang" Tag="ChuyenHangComplexView"/>
+            </StackPanel>
+            <StackPanel Width="150" Orientation="Vertical">
+                <Button Height="80" Content="Mat Hang" Tag="tMatHangView"/>
+                <Button Height="80" Content="Khach Hang" Tag="rKhachHangView"/>
+                <Button Height="80" Content="Ton Kho" Tag="tTonKhoView"/>
+                <Button Height="80" Content="Chuyen Kho" Tag="ChuyenKhoComplexView"/>
+            </StackPanel>
+            <StackPanel Width="150" Orientation="Vertical" Background="BlanchedAlmond">
+                <Button Height="80" Content="Toa Hang" Tag="ToaHangComplexView"/>
+                <Button Height="80" Content="Nhan Tien" Tag="tNhanTienKhachHangView"/>
+                <Button Height="80" Content="Cong No" Tag="tCongNoKhachHangView"/>
+                <Button Height="80" Content="Phu Thu" Tag="tPhuThuKhachHangView"/>
+                <Button Height="80" Content="Giam Tru" Tag="tGiamTruKhachHangView"/>
+            </StackPanel>
+            <StackPanel Width="280" Orientation="Vertical" Background="Red">
+                <Button Height="80" Content="Thong Ke Xuat" Tag="Xuat"/>
+                <Button Height="80" Content="Thong Ke Theo Khach Hang" Tag="KhachHang"/>
+                <Button Height="80" Content="Thong Ke Hang Ngay" Tag="HangNgay"/>
+                <Button Height="80" Content="Thong Ke Chi Phi" Tag="ChiPhi"/>
+            </StackPanel>
+            <StackPanel Width="280" Orientation="Vertical" Background="Blue">
+                <Button Height="80" Content="Thong Ke Nhap Hang" IsEnabled="False"/>
+                <Button Height="80" Content="Thong Ke Nhap Nguyen Lieu" IsEnabled="False"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

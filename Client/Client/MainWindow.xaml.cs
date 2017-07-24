@@ -4,6 +4,7 @@ using huypq.SmtWpfClient.View;
 using huypq.SmtWpfClient.ViewModel;
 using System.Windows;
 using Client.View.Smt;
+using System.Windows.Controls;
 
 namespace Client
 {
@@ -40,7 +41,7 @@ namespace Client
             {
                 RootUri = SettingsWrapper.Instance.Server,
 #if DEBUG
-                Token = "CfDJ8J0Vem16TkFEi6NUK4o55Aq1oLWtnzQB4QMkwpV1b8cI-ZmU-f6ma5EiIfR-caLTHzOk8369KjfDJjLIFUaN1ZdcX6d-FhWQ3D4sNMLaecazjnM4NsUlGU6oVeid9zomwZwakM8eORcqo1wqwigrE0AQLxNVvWTJWMg7fElpfqKW"
+                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AqtojUMnMK-uzygFJrEuySYvZZh37c8xK8vM4JXKdilsQtxYw6IKwfTx2mOKdkT6Pppn_y6z2Kr1oi2xezvRYPyEN7zDM3uBCCb8TBc_si8hC5oKakNLpvuGVr45lTxcILSy7tlVmsZlh9zLcjFtb2X"
 #endif
             });
 
@@ -72,6 +73,29 @@ namespace Client
             var w = new Window()
             {
                 Content = new AllView()
+            };
+            w.Show();
+        }
+
+        private void StackPanel_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (e.OriginalSource as Button);
+            if (button == null)
+            {
+                return;
+            }
+
+            var viewType = System.Type.GetType("Client.View." + button.Tag);
+            if (viewType == null)
+            {
+                viewType = System.Type.GetType("Client.View.Report." + button.Tag);
+            }
+
+            var w = new Window()
+            {
+                Title = button.Content.ToString(),
+                WindowState = WindowState.Maximized,
+                Content = System.Activator.CreateInstance(viewType)
             };
             w.Show();
         }
