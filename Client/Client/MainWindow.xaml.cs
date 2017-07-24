@@ -39,9 +39,11 @@ namespace Client
 
             ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
             {
-                RootUri = SettingsWrapper.Instance.Server,
 #if DEBUG
-                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AqtojUMnMK-uzygFJrEuySYvZZh37c8xK8vM4JXKdilsQtxYw6IKwfTx2mOKdkT6Pppn_y6z2Kr1oi2xezvRYPyEN7zDM3uBCCb8TBc_si8hC5oKakNLpvuGVr45lTxcILSy7tlVmsZlh9zLcjFtb2X"
+                RootUri = "http://localhost:64406",
+                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AoAW9xUGy9ZFcoiW1dRgPuBmXIRdkeIyy4Mc60kE5-_2nAmHzcS1w9oIvTVi7k5DKwuS5zKEgf3qBJFtOvk24heIN0PcXBDpvxMf7GBcTEKkvv8zoiL9MBvArmHike0-mAC7ZCEIFhYVlCI3mU3o-Po",
+#else
+                RootUri = SettingsWrapper.Instance.Server
 #endif
             });
 

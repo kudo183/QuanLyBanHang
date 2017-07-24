@@ -24,6 +24,7 @@
             <Button Content="All View" Click="AllViewButton_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Button.Click="StackPanel_Click"
+                    DataContext="{Binding ElementName=loginView, Path=DataContext}"
                     Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVis}}">
             <StackPanel.Resources>
                 <Style TargetType="Button">
