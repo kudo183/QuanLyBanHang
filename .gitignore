@@ -251,3 +251,6 @@ paket-files/
 .idea/
 *.sln.iml
 PublishOutput
+/Server/Server/wwwroot/images/refresh.png
+/Server/Server/wwwroot/site.min.css
+/Server/Server/wwwroot/site.min.js

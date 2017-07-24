@@ -2,6 +2,9 @@
 {
     public partial class tNhapHangDto : huypq.SmtShared.IDisplayText
     {
+        [ProtoBuf.ProtoMember(50)]
+        public int TongSoLuong { get; set; }
+
         partial void RaiseDependentPropertyChanged(string basePropertyName)
         {
             switch (basePropertyName)

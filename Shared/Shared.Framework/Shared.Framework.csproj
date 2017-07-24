@@ -157,6 +157,9 @@
     <Compile Include="..\Shared\Gen\tChiTietToaHangDto.cs">
       <Link>Gen\tChiTietToaHangDto.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\Gen\tChiTietToaHangDto.part.cs">
+      <Link>Gen\tChiTietToaHangDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\Shared\Gen\tChuyenHangDonHangDto.cs">
       <Link>Gen\tChuyenHangDonHangDto.cs</Link>
     </Compile>
