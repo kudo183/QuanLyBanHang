@@ -3,6 +3,7 @@ using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Client.ViewModel
 {
@@ -29,14 +30,31 @@ namespace Client.ViewModel
         {
             nhapHangs = DataService.GetByListInt<tNhapHangDto>(nameof(tNhapHangDto.Ma), Entities.Select(p => p.MaNhapHang).ToList()).ToDictionary(p => p.ID);
 
+            var tongSoKg = 0;
+            var sb = new StringBuilder();
+            sb.Append(", ");
+
             foreach (var dto in Entities)
             {
                 dto.MaNhapHangNavigation = nhapHangs[dto.MaNhapHang];
                 dto.MaNhapHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dto.MaNhapHangNavigation.MaKhoHang);
                 dto.MaNhapHangNavigation.MaNhaCungCapNavigation = ReferenceDataManager<rNhaCungCapDto>.Instance.GetByID(dto.MaNhapHangNavigation.MaNhaCungCap);
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(dto.MaMatHang);
+
                 dto.PropertyChanged += Item_PropertyChanged;
+
+                if (dto.MaMatHangNavigation.SoKy == 0)
+                {
+                    sb.Append(dto.MaMatHangNavigation.TenMatHang);
+                    sb.Append(", ");
+                }
+                else
+                {
+                    tongSoKg += dto.SoLuong * dto.MaMatHangNavigation.SoKy;
+                }
             }
+
+            Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg / 10, sb.ToString(0, sb.Length - 2));
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

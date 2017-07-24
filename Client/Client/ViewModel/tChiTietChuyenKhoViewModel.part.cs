@@ -3,6 +3,7 @@ using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Client.ViewModel
 {
@@ -29,6 +30,10 @@ namespace Client.ViewModel
         {
             chuyenKhos = DataService.GetByListInt<tChuyenKhoDto>(nameof(tChuyenKhoDto.Ma), Entities.Select(p => p.MaChuyenKho).ToList()).ToDictionary(p => p.ID);
 
+            var tongSoKg = 0;
+            var sb = new StringBuilder();
+            sb.Append(", ");
+
             foreach (var dto in Entities)
             {
                 dto.MaChuyenKhoNavigation = chuyenKhos[dto.MaChuyenKho];
@@ -36,8 +41,21 @@ namespace Client.ViewModel
                 dto.MaChuyenKhoNavigation.MaKhoHangNhapNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dto.MaChuyenKhoNavigation.MaKhoHangNhap);
                 dto.MaChuyenKhoNavigation.MaNhanVienNavigation = ReferenceDataManager<rNhanVienDto>.Instance.GetByID(dto.MaChuyenKhoNavigation.MaNhanVien);
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(dto.MaMatHang);
+
                 dto.PropertyChanged += Item_PropertyChanged;
+
+                if (dto.MaMatHangNavigation.SoKy == 0)
+                {
+                    sb.Append(dto.MaMatHangNavigation.TenMatHang);
+                    sb.Append(", ");
+                }
+                else
+                {
+                    tongSoKg += dto.SoLuong * dto.MaMatHangNavigation.SoKy;
+                }
             }
+            
+            Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg / 10, sb.ToString(0, sb.Length - 2));
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
