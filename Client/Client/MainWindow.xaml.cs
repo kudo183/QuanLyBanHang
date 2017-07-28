@@ -14,6 +14,7 @@ namespace Client
     public partial class MainWindow : Window
     {
         IDataService _dataService;
+        LoginViewModel _loginViewModel;
 
         public MainWindow()
         {
@@ -21,10 +22,34 @@ namespace Client
 
             InitializeComponent();
 
+            _loginViewModel = loginView.DataContext as LoginViewModel;
+
 #if DEBUG
-            (loginView.DataContext as LoginViewModel).IsLoggedIn = true;
-            (loginView.DataContext as LoginViewModel).IsTenant = true;
+            _loginViewModel.IsLoggedIn = true;
+            _loginViewModel.IsTenant = true;
+#else
+            _loginViewModel.Email = SettingsWrapper.Instance.User;
+            _loginViewModel.TenantName = SettingsWrapper.Instance.Tenant;
 #endif
+
+            _loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged;
+        }
+
+        private void LoginViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch(e.PropertyName)
+            {
+                case nameof(LoginViewModel.TenantName):
+                    {
+                        SettingsWrapper.Instance.Tenant = _loginViewModel.TenantName;
+                    }
+                    break;
+                case nameof(LoginViewModel.Email):
+                    {
+                        SettingsWrapper.Instance.User = _loginViewModel.Email;
+                    }
+                    break;
+            }
         }
 
         private void Init()

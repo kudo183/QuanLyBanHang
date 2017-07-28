@@ -75,6 +75,37 @@ namespace Client
                 }
             }
 
+
+            private string _tenant;
+
+            public string Tenant
+            {
+                get { return _tenant; }
+                set
+                {
+                    if (_tenant == value)
+                        return;
+
+                    _tenant = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private string _user;
+
+            public string User
+            {
+                get { return _user; }
+                set
+                {
+                    if (_user == value)
+                        return;
+
+                    _user = value;
+                    OnPropertyChanged();
+                }
+            }
+
             private int _tDonHang_MaKhoHangDefault;
 
             public int tDonHang_MaKhoHangDefault
@@ -115,6 +146,8 @@ namespace Client
             public void Update(Settings settings)
             {
                 Server = settings.Server;
+                Tenant = settings.Tenant;
+                User = settings.User;
                 tDonHang_MaKhoHangDefault = settings.tDonHang_MaKhoHangDefault;
                 tDonHang_MaKhachHangDefault = settings.tDonHang_MaKhachHangDefault;
             }
