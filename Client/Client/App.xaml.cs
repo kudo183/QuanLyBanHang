@@ -24,6 +24,8 @@ namespace Client
                 DefaultValue = FindResource(typeof(Window))
             });
 
+            System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
             //apply language to all FrameworkElement
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata()
             {
