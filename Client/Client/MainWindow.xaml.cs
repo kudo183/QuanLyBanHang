@@ -7,6 +7,7 @@ using Client.View.Smt;
 using System.Windows.Controls;
 using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Client
 {
@@ -104,14 +105,10 @@ namespace Client
 
         private void AllViewButton_Click(object sender, RoutedEventArgs e)
         {
-            var w = new Window()
-            {
-                Content = new AllView()
-            };
-            w.Show();
+            allViewPopup.IsOpen = !allViewPopup.IsOpen;
         }
 
-        private void StackPanel_Click(object sender, RoutedEventArgs e)
+        private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
             var button = (e.OriginalSource as Button);
             if (button == null)
@@ -119,12 +116,12 @@ namespace Client
                 return;
             }
 
-            var viewName = button.Tag.ToString();
-            var viewType = System.Type.GetType("Client.View." + viewName);
-            if (viewType == null)
+            if (sender is AllView)
             {
-                viewType = System.Type.GetType("Client.View.Report." + viewName);
+                allViewPopup.IsOpen = false;
             }
+
+            var viewType = button.Tag as System.Type;
 
             var view = System.Activator.CreateInstance(viewType);
 
@@ -168,21 +165,23 @@ namespace Client
                         var columnSetting = settings.ListGridColumnSettings[i];
                         gridView.Columns[i].Width = columnSetting.ColumnWidth;
                         var header = gridView.Columns[i].Header as HeaderFilterBaseModel;
-
-                        var filterValue = settings.ListGridColumnSettings[i].FilterValue;
-                        if (filterValue != null)
+                        if (header != null)
                         {
-                            //int is deserialized at long, so need ChangeType to correct type to prevent binding exception
-                            filterValue = System.Convert.ChangeType(filterValue, header.PropertyType);
+                            var filterValue = settings.ListGridColumnSettings[i].FilterValue;
+                            if (filterValue != null)
+                            {
+                                //int is deserialized at long, so need ChangeType to correct type to prevent binding exception
+                                filterValue = System.Convert.ChangeType(filterValue, header.PropertyType);
+                            }
+
+                            header.DisableChangedAction(p =>
+                            {
+                                p.FilterValue = filterValue;
+                                p.IsUsed = settings.ListGridColumnSettings[i].IsUsed;
+                                p.Predicate = settings.ListGridColumnSettings[i].Predicate;
+                                p.IsSorted = settings.ListGridColumnSettings[i].SortDirection;
+                            });
                         }
-
-                        header.DisableChangedAction(p =>
-                        {
-                            p.FilterValue = filterValue;
-                            p.IsUsed = settings.ListGridColumnSettings[i].IsUsed;
-                            p.Predicate = settings.ListGridColumnSettings[i].Predicate;
-                            p.IsSorted = settings.ListGridColumnSettings[i].SortDirection;
-                        });
                     }
                 }
             }
@@ -208,10 +207,13 @@ namespace Client
                 {
                     settings.ListGridColumnSettings[i].ColumnWidth = gridView.Columns[i].Width;
                     var header = gridView.Columns[i].Header as HeaderFilterBaseModel;
-                    settings.ListGridColumnSettings[i].FilterValue = header.FilterValue;
-                    settings.ListGridColumnSettings[i].IsUsed = header.IsUsed;
-                    settings.ListGridColumnSettings[i].Predicate = header.Predicate;
-                    settings.ListGridColumnSettings[i].SortDirection = header.IsSorted;
+                    if (header != null)
+                    {
+                        settings.ListGridColumnSettings[i].FilterValue = header.FilterValue;
+                        settings.ListGridColumnSettings[i].IsUsed = header.IsUsed;
+                        settings.ListGridColumnSettings[i].Predicate = header.Predicate;
+                        settings.ListGridColumnSettings[i].SortDirection = header.IsSorted;
+                    }
                 }
             }
         }
