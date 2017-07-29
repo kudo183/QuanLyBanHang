@@ -5,6 +5,8 @@ using huypq.SmtWpfClient.ViewModel;
 using System.Windows;
 using Client.View.Smt;
 using System.Windows.Controls;
+using SimpleDataGrid.ViewModel;
+using System.Collections.Generic;
 
 namespace Client
 {
@@ -125,16 +127,6 @@ namespace Client
             }
 
             var view = System.Activator.CreateInstance(viewType);
-            var gridView = (view as IBaseView).GridView;
-            SettingsWrapper.GridSettings settings;
-            if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(viewName, out settings) == true)
-            {
-                for (int i = 0; i < gridView.Columns.Count; i++)
-                {
-                    var columnSetting = settings.ListGridColumnSettings[i];
-                    gridView.Columns[i].Width = columnSetting.ColumnWidth;
-                }
-            }
 
             var w = new Window()
             {
@@ -142,29 +134,85 @@ namespace Client
                 WindowState = WindowState.Maximized,
                 Content = view
             };
+
+            w.Loaded += W_Loaded;
             w.Closed += W_Closed;
+
             w.Show();
+        }
+
+        private List<IBaseView> GetViews(Window w)
+        {
+            if (w.Content is IBaseView iBaseView)
+            {
+                return new List<IBaseView>() { iBaseView };
+            }
+
+            if (w.Content is BaseComplexView baseComplexView)
+            {
+                return baseComplexView.Views;
+            }
+
+            return new List<IBaseView>();
+        }
+
+        private void W_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var iBaseView in GetViews(sender as Window))
+            {
+                var gridView = iBaseView.GridView;
+                if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(iBaseView.ViewName, out SettingsWrapper.GridSettings settings) == true)
+                {
+                    for (int i = 0; i < gridView.Columns.Count; i++)
+                    {
+                        var columnSetting = settings.ListGridColumnSettings[i];
+                        gridView.Columns[i].Width = columnSetting.ColumnWidth;
+                        var header = gridView.Columns[i].Header as HeaderFilterBaseModel;
+
+                        var filterValue = settings.ListGridColumnSettings[i].FilterValue;
+                        if (filterValue != null)
+                        {
+                            //int is deserialized at long, so need ChangeType to correct type to prevent binding exception
+                            filterValue = System.Convert.ChangeType(filterValue, header.PropertyType);
+                        }
+
+                        header.DisableChangedAction(p =>
+                        {
+                            p.FilterValue = filterValue;
+                            p.IsUsed = settings.ListGridColumnSettings[i].IsUsed;
+                            p.Predicate = settings.ListGridColumnSettings[i].Predicate;
+                            p.IsSorted = settings.ListGridColumnSettings[i].SortDirection;
+                        });
+                    }
+                }
+            }
         }
 
         private void W_Closed(object sender, System.EventArgs e)
         {
-            var iBaseView = (sender as Window).Content as IBaseView;
-            var gridView = iBaseView.GridView;
-            var viewName = iBaseView.ViewName;
-            SettingsWrapper.GridSettings settings;
-            if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(viewName, out settings) == false)
+            foreach (var iBaseView in GetViews(sender as Window))
             {
-                settings = new SettingsWrapper.GridSettings();
+                var gridView = iBaseView.GridView;
+                var viewName = iBaseView.ViewName;
+                if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(viewName, out SettingsWrapper.GridSettings settings) == false)
+                {
+                    settings = new SettingsWrapper.GridSettings();
+                    for (int i = 0; i < gridView.Columns.Count; i++)
+                    {
+                        settings.ListGridColumnSettings.Add(new SettingsWrapper.GridColumnSettings());
+                    }
+                    SettingsWrapper.Instance.GridSettingsDictionary.Add(viewName, settings);
+                }
+
                 for (int i = 0; i < gridView.Columns.Count; i++)
                 {
-                    settings.ListGridColumnSettings.Add(new SettingsWrapper.GridColumnSettings());
+                    settings.ListGridColumnSettings[i].ColumnWidth = gridView.Columns[i].Width;
+                    var header = gridView.Columns[i].Header as HeaderFilterBaseModel;
+                    settings.ListGridColumnSettings[i].FilterValue = header.FilterValue;
+                    settings.ListGridColumnSettings[i].IsUsed = header.IsUsed;
+                    settings.ListGridColumnSettings[i].Predicate = header.Predicate;
+                    settings.ListGridColumnSettings[i].SortDirection = header.IsSorted;
                 }
-                SettingsWrapper.Instance.GridSettingsDictionary.Add(viewName, settings);
-            }
-
-            for (int i = 0; i < gridView.Columns.Count; i++)
-            {
-                settings.ListGridColumnSettings[i].ColumnWidth = gridView.Columns[i].Width;
             }
         }
     }
