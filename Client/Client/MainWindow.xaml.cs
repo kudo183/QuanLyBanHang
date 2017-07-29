@@ -37,7 +37,7 @@ namespace Client
 
         private void LoginViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            switch(e.PropertyName)
+            switch (e.PropertyName)
             {
                 case nameof(LoginViewModel.TenantName):
                     {
@@ -65,8 +65,13 @@ namespace Client
             ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
             {
 #if DEBUG
-                RootUri = "http://localhost:64406",
-                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AoAW9xUGy9ZFcoiW1dRgPuBmXIRdkeIyy4Mc60kE5-_2nAmHzcS1w9oIvTVi7k5DKwuS5zKEgf3qBJFtOvk24heIN0PcXBDpvxMf7GBcTEKkvv8zoiL9MBvArmHike0-mAC7ZCEIFhYVlCI3mU3o-Po",
+                //console app
+                //RootUri = "http://localhost:64406",
+                //Token = "CfDJ8J0Vem16TkFEi6NUK4o55AoAW9xUGy9ZFcoiW1dRgPuBmXIRdkeIyy4Mc60kE5-_2nAmHzcS1w9oIvTVi7k5DKwuS5zKEgf3qBJFtOvk24heIN0PcXBDpvxMf7GBcTEKkvv8zoiL9MBvArmHike0-mAC7ZCEIFhYVlCI3mU3o-Po",
+
+                //IIS
+                RootUri = "http://localhost",
+                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AqIEODDl3m6ghSor87FuJcPmx351Q90o_MOIMJgKVwO1oebGDK5mdlun5wMv5MWklGBOl6q7iSXcCQur53SLxHBVvi6FmdMMlVgqZCcUFwyoEKVF4lHdMvupUniH1yPz-CQgMwvAW16DDEx2wkeQgyv"
 #else
                 RootUri = SettingsWrapper.Instance.Server
 #endif
@@ -112,19 +117,55 @@ namespace Client
                 return;
             }
 
-            var viewType = System.Type.GetType("Client.View." + button.Tag);
+            var viewName = button.Tag.ToString();
+            var viewType = System.Type.GetType("Client.View." + viewName);
             if (viewType == null)
             {
-                viewType = System.Type.GetType("Client.View.Report." + button.Tag);
+                viewType = System.Type.GetType("Client.View.Report." + viewName);
+            }
+
+            var view = System.Activator.CreateInstance(viewType);
+            var gridView = (view as IBaseView).GridView;
+            SettingsWrapper.GridSettings settings;
+            if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(viewName, out settings) == true)
+            {
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    var columnSetting = settings.ListGridColumnSettings[i];
+                    gridView.Columns[i].Width = columnSetting.ColumnWidth;
+                }
             }
 
             var w = new Window()
             {
                 Title = button.Content.ToString(),
                 WindowState = WindowState.Maximized,
-                Content = System.Activator.CreateInstance(viewType)
+                Content = view
             };
+            w.Closed += W_Closed;
             w.Show();
+        }
+
+        private void W_Closed(object sender, System.EventArgs e)
+        {
+            var iBaseView = (sender as Window).Content as IBaseView;
+            var gridView = iBaseView.GridView;
+            var viewName = iBaseView.ViewName;
+            SettingsWrapper.GridSettings settings;
+            if (SettingsWrapper.Instance.GridSettingsDictionary.TryGetValue(viewName, out settings) == false)
+            {
+                settings = new SettingsWrapper.GridSettings();
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    settings.ListGridColumnSettings.Add(new SettingsWrapper.GridColumnSettings());
+                }
+                SettingsWrapper.Instance.GridSettingsDictionary.Add(viewName, settings);
+            }
+
+            for (int i = 0; i < gridView.Columns.Count; i++)
+            {
+                settings.ListGridColumnSettings[i].ColumnWidth = gridView.Columns[i].Width;
+            }
         }
     }
 }

@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using huypq.SmtWpfClient.Abstraction;
+using SimpleDataGrid.ViewModel;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace Client
 {
@@ -60,6 +64,11 @@ namespace Client
 
         public class Settings : INotifyPropertyChanged
         {
+            public Settings()
+            {
+                GridSettingsDictionary = new Dictionary<string, GridSettings>();
+            }
+
             private string _server = "http://luoithepvinhphat.com";
 
             public string Server
@@ -74,7 +83,6 @@ namespace Client
                     OnPropertyChanged();
                 }
             }
-
 
             private string _tenant;
 
@@ -136,6 +144,8 @@ namespace Client
                 }
             }
 
+            public Dictionary<string, GridSettings> GridSettingsDictionary { get; set; }
+
             public event PropertyChangedEventHandler PropertyChanged;
 
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -148,9 +158,30 @@ namespace Client
                 Server = settings.Server;
                 Tenant = settings.Tenant;
                 User = settings.User;
+                GridSettingsDictionary = settings.GridSettingsDictionary;
                 tDonHang_MaKhoHangDefault = settings.tDonHang_MaKhoHangDefault;
                 tDonHang_MaKhachHangDefault = settings.tDonHang_MaKhachHangDefault;
             }
+        }
+
+        public class GridSettings
+        {
+            public List<GridColumnSettings> ListGridColumnSettings { get; set; }
+
+            public GridSettings()
+            {
+                ListGridColumnSettings = new List<GridColumnSettings>();
+            }
+        }
+
+        public class GridColumnSettings
+        {
+            public DataGridLength ColumnWidth { get; set; }
+            //HeaderFilter
+            public object FilterValue { get; set; }
+            public bool IsUsed { get; set; }
+            public HeaderFilterBaseModel.SortDirection SortDirection { get; set; }
+            public string Predicate { get; set; }
         }
     }
 }
