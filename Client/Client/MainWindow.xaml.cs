@@ -41,7 +41,7 @@ namespace Client
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(MessageBox.Show("Close Main window will close all windows and app, are you sure ?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            if(MessageBox.Show("Close Main window will close all windows and app, are you sure you want to close ?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.No)
             {
                 e.Cancel = true;
             }
