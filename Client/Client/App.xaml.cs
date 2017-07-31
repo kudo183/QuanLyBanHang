@@ -32,6 +32,7 @@ namespace Client
                 DefaultValue = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentUICulture.Name)
             });
 
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
             StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
         }
 

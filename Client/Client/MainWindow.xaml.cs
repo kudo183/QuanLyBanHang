@@ -36,6 +36,15 @@ namespace Client
 #endif
 
             _loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged;
+            Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(MessageBox.Show("Close Main window will close all windows and app, are you sure ?", "Confirm", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void LoginViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
