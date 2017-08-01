@@ -3,9 +3,9 @@
   "ViewPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\View\\Gen",
   "ViewModelPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\ViewModel\\Gen",
   "TextPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\Text\\Gen",
-  "ControllerPath": "C:\\github\\QuanLyBanHang\\Server\\src\\Server\\Controllers\\Gen",
-  "DtoPath": "C:\\github\\QuanLyBanHang\\Shared\\src\\Shared\\Gen",
-  "EntityPath": "C:\\github\\QuanLyBanHang\\Server\\src\\Server\\Entities",
+  "ControllerPath": "C:\\github\\QuanLyBanHang\\Server\\Server\\Controllers\\Gen",
+  "DtoPath": "C:\\github\\QuanLyBanHang\\Shared\\Shared\\Gen",
+  "EntityPath": "C:\\github\\QuanLyBanHang\\Server\\Server\\Entities",
   "MasterDetailList": [
     {
       "ViewName": "DonHang",
@@ -2501,6 +2501,4479 @@
           "OrderBy": 0
         }
       ]
+    }
+  ],
+  "DbTableList": [
+    {
+      "TableName": "rBaiXe",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "DiaDiemBaiXe",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rBaiXe",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "DiaDiemBaiXe",
+          "NeedIsRequired": true,
+          "MaxLength": 300
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaBaiXe",
+          "ReferenceTableName": "rChanh"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rCanhBaoTonKho",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "TonCaoNhat",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TonThapNhat",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhoHang",
+          "FK_Name": "FK_rCanhBaoTonKho_rKhoHang",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_rCanhBaoTonKho_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rCanhBaoTonKho",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rChanh",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaBaiXe",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rBaiXe"
+        },
+        {
+          "ColumnName": "TenChanh",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaBaiXe",
+          "FK_Name": "FK_rChanh_rBaiXe",
+          "ForeignKeyTableName": "rBaiXe",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rChanh",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenChanh",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaChanh",
+          "ReferenceTableName": "rKhachHangChanh"
+        },
+        {
+          "PropertyName": "MaChanh",
+          "ReferenceTableName": "tDonHang"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rDiaDiem",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNuoc",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNuoc"
+        },
+        {
+          "ColumnName": "Tinh",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaNuoc",
+          "FK_Name": "FK_rDiaDiem_rNuoc",
+          "ForeignKeyTableName": "rNuoc",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rDiaDiem",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "Tinh",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaDiaDiem",
+          "ReferenceTableName": "rKhachHang"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rKhachHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaDiaDiem",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rDiaDiem"
+        },
+        {
+          "ColumnName": "TenKhachHang",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "KhachRieng",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaDiaDiem",
+          "FK_Name": "FK_rKhachHang_rDiaDiem",
+          "ForeignKeyTableName": "rDiaDiem",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rKhachHang",
+          "IndexType": 1
+        },
+        {
+          "PropertyName": "TenKhachHang",
+          "IX_Name": "idx_KhachHang_TenKhachHang",
+          "IndexType": 2
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenKhachHang",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "KhachRieng",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "rKhachHangChanh"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tCongNoKhachHang"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tDonHang"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tGiamTruKhachHang"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tNhanTienKhachHang"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tPhuThuKhachHang"
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "ReferenceTableName": "tToaHang"
+        }
+      ],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rKhachHangChanh",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaChanh",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rChanh"
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "LaMacDinh",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChanh",
+          "FK_Name": "FK_rKhachHangChanh_rChanh",
+          "ForeignKeyTableName": "rChanh",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_rKhachHangChanh_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rKhachHangChanh",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "LaMacDinh",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rKhoHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenKho",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TrangThai",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rKhoHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenKho",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TrangThai",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaKhoHang",
+          "ReferenceTableName": "rCanhBaoTonKho"
+        },
+        {
+          "PropertyName": "MaKhoHangNhap",
+          "ReferenceTableName": "tChuyenKho"
+        },
+        {
+          "PropertyName": "MaKhoHangXuat",
+          "ReferenceTableName": "tChuyenKho"
+        },
+        {
+          "PropertyName": "MaKhoHang",
+          "ReferenceTableName": "tDonHang"
+        },
+        {
+          "PropertyName": "MaKhoHang",
+          "ReferenceTableName": "tNhapHang"
+        },
+        {
+          "PropertyName": "MaKhoHang",
+          "ReferenceTableName": "tTonKho"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rLoaiChiPhi",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenLoaiChiPhi",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rLoaiChiPhi",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenLoaiChiPhi",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaLoaiChiPhi",
+          "ReferenceTableName": "tChiPhi"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rLoaiHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenLoai",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "HangNhaLam",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rProductType",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenLoai",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "HangNhaLam",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaLoai",
+          "ReferenceTableName": "tMatHang"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rLoaiNguyenLieu",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenLoai",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rLoaiNguyenLieu",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenLoai",
+          "NeedIsRequired": true,
+          "MaxLength": 100
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaLoaiNguyenLieu",
+          "ReferenceTableName": "rNguyenLieu"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rMatHangNguyenLieu",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "MaNguyenLieu",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNguyenLieu"
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaNguyenLieu",
+          "FK_Name": "FK_rMatHangNguyenLieu_rNguyenLieu",
+          "ForeignKeyTableName": "rNguyenLieu",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_rMatHangNguyenLieu_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rMatHangNguyenLieu",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rNuoc",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenNuoc",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rNuoc",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenNuoc",
+          "NeedIsRequired": true,
+          "MaxLength": 100
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaNuoc",
+          "ReferenceTableName": "rDiaDiem"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rNguyenLieu",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaLoaiNguyenLieu",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rLoaiNguyenLieu"
+        },
+        {
+          "ColumnName": "DuongKinh",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaLoaiNguyenLieu",
+          "FK_Name": "FK_rNguyenLieu_rLoaiNguyenLieu",
+          "ForeignKeyTableName": "rLoaiNguyenLieu",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_rNguyenLieu",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaNguyenLieu",
+          "ReferenceTableName": "rMatHangNguyenLieu"
+        },
+        {
+          "PropertyName": "MaNguyenLieu",
+          "ReferenceTableName": "tNhapNguyenLieu"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rNhaCungCap",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenNhaCungCap",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_NhaCungCap",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenNhaCungCap",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaNhaCungCap",
+          "ReferenceTableName": "tNhapHang"
+        },
+        {
+          "PropertyName": "MaNhaCungCap",
+          "ReferenceTableName": "tNhapNguyenLieu"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rNhanVien",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaPhuongTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rPhuongTien"
+        },
+        {
+          "ColumnName": "TenNhanVien",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaPhuongTien",
+          "FK_Name": "FK_rNhanVienGiaoHang_rPhuongTien",
+          "ForeignKeyTableName": "rPhuongTien",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_NhanVienGiaoHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenNhanVien",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaNhanVienGiaoHang",
+          "ReferenceTableName": "tChiPhi"
+        },
+        {
+          "PropertyName": "MaNhanVienGiaoHang",
+          "ReferenceTableName": "tChuyenHang"
+        },
+        {
+          "PropertyName": "MaNhanVien",
+          "ReferenceTableName": "tChuyenKho"
+        },
+        {
+          "PropertyName": "MaNhanVien",
+          "ReferenceTableName": "tNhapHang"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "rPhuongTien",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenPhuongTien",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_LoaiPhuongTien",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenPhuongTien",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaPhuongTien",
+          "ReferenceTableName": "rNhanVien"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "SmtDeletedItem",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "DeletedID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TableID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateDate",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtDeletedItems",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "CreateDate",
+          "Value": "(getutcdate())"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "CreateDate",
+          "TypeName": "datetime2(7)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 0,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "SmtTable",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TableName",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtTables",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TableName",
+          "NeedIsRequired": true,
+          "MaxLength": 50
+        }
+      ],
+      "DefaultValues": [],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 0,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "SmtTenant",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateDate",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Email",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "PasswordHash",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantName",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TokenValidTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "IsConfirmed",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "IsLocked",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtTenant",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "Email",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        },
+        {
+          "PropertyName": "PasswordHash",
+          "NeedIsRequired": true,
+          "MaxLength": 128
+        },
+        {
+          "PropertyName": "TenantName",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "IsConfirmed",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "IsLocked",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "CreateDate",
+          "TypeName": "datetime2(7)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "TenantID",
+          "ReferenceTableName": "SmtUser"
+        },
+        {
+          "PropertyName": "TenantID",
+          "ReferenceTableName": "SmtUserClaim"
+        }
+      ],
+      "ReferenceLevel": 0,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "SmtUser",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateDate",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Email",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "PasswordHash",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "UserName",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "SmtTenant"
+        },
+        {
+          "ColumnName": "TokenValidTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "IsConfirmed",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "IsLocked",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "TenantID",
+          "FK_Name": "FK_SmtUser_SmtTenant",
+          "ForeignKeyTableName": "SmtTenant",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtUser",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "Email",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        },
+        {
+          "PropertyName": "PasswordHash",
+          "NeedIsRequired": true,
+          "MaxLength": 128
+        },
+        {
+          "PropertyName": "UserName",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "IsConfirmed",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "IsLocked",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "CreateDate",
+          "TypeName": "datetime2(7)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "UserID",
+          "ReferenceTableName": "SmtUserClaim"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "SmtUserClaim",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "UserID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "SmtUser"
+        },
+        {
+          "ColumnName": "Claim",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "SmtTenant"
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "TenantID",
+          "FK_Name": "FK_SmtUserClaim_SmtTenant",
+          "ForeignKeyTableName": "SmtTenant",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "UserID",
+          "FK_Name": "FK_SmtUserClaim_SmtUserClaim",
+          "ForeignKeyTableName": "SmtUser",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtUserClaim",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "Claim",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tCongNoKhachHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tCongNoKhachHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tCongNoKhachHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiPhi",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNhanVienGiaoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhanVien"
+        },
+        {
+          "ColumnName": "MaLoaiChiPhi",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rLoaiChiPhi"
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaLoaiChiPhi",
+          "FK_Name": "FK_tChiPhiNhanVienGiaoHang_rLoaiChiPhi",
+          "ForeignKeyTableName": "rLoaiChiPhi",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaNhanVienGiaoHang",
+          "FK_Name": "FK_tChiPhiNhanVienGiaoHang_rNhanVienGiaoHang",
+          "ForeignKeyTableName": "rNhanVien",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_ChiPhiNhanVienGiaoHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiTietChuyenHangDonHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaChuyenHangDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tChuyenHangDonHang"
+        },
+        {
+          "ColumnName": "MaChiTietDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tChiTietDonHang"
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoLuongTheoDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChiTietDonHang",
+          "FK_Name": "FK_tChiTietChuyenHangDonHang_tChiTietDonHang",
+          "ForeignKeyTableName": "tChiTietDonHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaChuyenHangDonHang",
+          "FK_Name": "FK_tChiTietChuyenHangDonHang_tChuyenHangDonHang",
+          "ForeignKeyTableName": "tChuyenHangDonHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChiTietChuyenHangDonHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "SoLuongTheoDonHang",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 5,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiTietChuyenKho",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaChuyenKho",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tChuyenKho"
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChuyenKho",
+          "FK_Name": "FK_tChiTietChuyenKho_tChuyenKho",
+          "ForeignKeyTableName": "tChuyenKho",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_tChiTietChuyenKho_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChiTietChuyenKho",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiTietDonHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tDonHang"
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Xong",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaDonHang",
+          "FK_Name": "FK_tChiTietDonHang_tDonHang",
+          "ForeignKeyTableName": "tDonHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_tChiTietDonHang_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChiTietDonHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "Xong",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaChiTietDonHang",
+          "ReferenceTableName": "tChiTietChuyenHangDonHang"
+        },
+        {
+          "PropertyName": "MaChiTietDonHang",
+          "ReferenceTableName": "tChiTietToaHang"
+        }
+      ],
+      "ReferenceLevel": 4,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiTietNhapHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNhapHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tNhapHang"
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaNhapHang",
+          "FK_Name": "FK_tChiTietNhapHang_tNhapHang",
+          "ForeignKeyTableName": "tNhapHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_tNhapMatHang_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_NhapMatHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChiTietToaHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaToaHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tToaHang"
+        },
+        {
+          "ColumnName": "MaChiTietDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tChiTietDonHang"
+        },
+        {
+          "ColumnName": "GiaTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChiTietDonHang",
+          "FK_Name": "FK_tChiTietToaHang_tChiTietDonHang",
+          "ForeignKeyTableName": "tChiTietDonHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaToaHang",
+          "FK_Name": "FK_tChiTietToaHang_tToaHang",
+          "ForeignKeyTableName": "tToaHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChiTietToaHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 5,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChuyenHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNhanVienGiaoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhanVien"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Gio",
+          "DataType": "System.TimeSpan?",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TongDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TongSoLuongTheoDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TongSoLuongThucTe",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaNhanVienGiaoHang",
+          "FK_Name": "FK_tChuyenHang_rNhanVienGiaoHang",
+          "ForeignKeyTableName": "rNhanVien",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_ChuyenHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "Gio",
+          "Value": "(getdate())"
+        },
+        {
+          "PropertyName": "TongDonHang",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TongSoLuongTheoDonHang",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TongSoLuongThucTe",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaChuyenHang",
+          "ReferenceTableName": "tChuyenHangDonHang"
+        }
+      ],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChuyenHangDonHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaChuyenHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tChuyenHang"
+        },
+        {
+          "ColumnName": "MaDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tDonHang"
+        },
+        {
+          "ColumnName": "TongSoLuongTheoDonHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TongSoLuongThucTe",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChuyenHang",
+          "FK_Name": "FK_tChuyenHangDonHang_tChuyenHang",
+          "ForeignKeyTableName": "tChuyenHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaDonHang",
+          "FK_Name": "FK_tChuyenHangDonHang_tDonHang",
+          "ForeignKeyTableName": "tDonHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChuyenHangDonHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TongSoLuongTheoDonHang",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TongSoLuongThucTe",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaChuyenHangDonHang",
+          "ReferenceTableName": "tChiTietChuyenHangDonHang"
+        }
+      ],
+      "ReferenceLevel": 4,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tChuyenKho",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNhanVien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhanVien"
+        },
+        {
+          "ColumnName": "MaKhoHangXuat",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "MaKhoHangNhap",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhoHangNhap",
+          "FK_Name": "FK_tChuyenKho_rKhoHangNhap",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaKhoHangXuat",
+          "FK_Name": "FK_tChuyenKho_rKhoHangXuat",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaNhanVien",
+          "FK_Name": "FK_tChuyenKho_rNhanVien",
+          "ForeignKeyTableName": "rNhanVien",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tChuyenKho",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaChuyenKho",
+          "ReferenceTableName": "tChiTietChuyenKho"
+        }
+      ],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tDonHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "MaChanh",
+          "DataType": "int?",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rChanh"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Xong",
+          "DataType": "bool",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "TongSoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaChanh",
+          "FK_Name": "FK_tDonHang_rChanh",
+          "ForeignKeyTableName": "rChanh",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tDonHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaKhoHang",
+          "FK_Name": "FK_tDonHang_rKhoHang",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_DonHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "Xong",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "MaKhoHang",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "TongSoLuong",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaDonHang",
+          "ReferenceTableName": "tChiTietDonHang"
+        },
+        {
+          "PropertyName": "MaDonHang",
+          "ReferenceTableName": "tChuyenHangDonHang"
+        }
+      ],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tGiamTruKhachHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tGiamTruKhachHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tGiamTruKhachHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "GhiChu",
+          "NeedIsRequired": true,
+          "MaxLength": 300
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tMatHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaLoai",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rLoaiHang"
+        },
+        {
+          "ColumnName": "TenMatHang",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoKy",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoMet",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenMatHangDayDu",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenMatHangIn",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaLoai",
+          "FK_Name": "FK_tMatHang_rLoaiHang",
+          "ForeignKeyTableName": "rLoaiHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_Product",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "TenMatHang",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        },
+        {
+          "PropertyName": "TenMatHangDayDu",
+          "NeedIsRequired": true,
+          "MaxLength": 200
+        },
+        {
+          "PropertyName": "TenMatHangIn",
+          "NeedIsRequired": true,
+          "MaxLength": 50
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "SoKy",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "SoMet",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "TenMatHangDayDu",
+          "Value": "('')"
+        },
+        {
+          "PropertyName": "TenMatHangIn",
+          "Value": "('')"
+        },
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "rCanhBaoTonKho"
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "rMatHangNguyenLieu"
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "tChiTietChuyenKho"
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "tChiTietDonHang"
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "tChiTietNhapHang"
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "ReferenceTableName": "tTonKho"
+        }
+      ],
+      "ReferenceLevel": 1,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tNhanTienKhachHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tNhanTienKhachHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tNhanTienKhachHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tNhapHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNhanVien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhanVien"
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "MaNhaCungCap",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhaCungCap"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhoHang",
+          "FK_Name": "FK_tNhapHang_rKhoHang",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaNhaCungCap",
+          "FK_Name": "FK_tNhapHang_rNhaCungCap",
+          "ForeignKeyTableName": "rNhaCungCap",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaNhanVien",
+          "FK_Name": "FK_tNhapHang_rNhanVien",
+          "ForeignKeyTableName": "rNhanVien",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tNhapHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaNhapHang",
+          "ReferenceTableName": "tChiTietNhapHang"
+        }
+      ],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tNhapNguyenLieu",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaNguyenLieu",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNguyenLieu"
+        },
+        {
+          "ColumnName": "MaNhaCungCap",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rNhaCungCap"
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaNguyenLieu",
+          "FK_Name": "FK_tNhapNguyenLieu_rNguyenLieu",
+          "ForeignKeyTableName": "rNguyenLieu",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaNhaCungCap",
+          "FK_Name": "FK_tNhapNguyenLieu_rNhaCungCap",
+          "ForeignKeyTableName": "rNhaCungCap",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_NhapNguyenLieu",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tPhuThuKhachHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoTien",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "GhiChu",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tPhuThuKhachHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tPhuThuKhachHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "GhiChu",
+          "NeedIsRequired": true,
+          "MaxLength": 300
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tToaHang",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhachHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhachHang"
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhachHang",
+          "FK_Name": "FK_tToaHang_rKhachHang",
+          "ForeignKeyTableName": "rKhachHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tToaHang",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [
+        {
+          "PropertyName": "MaToaHang",
+          "ReferenceTableName": "tChiTietToaHang"
+        }
+      ],
+      "ReferenceLevel": 3,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "tTonKho",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MaKhoHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "rKhoHang"
+        },
+        {
+          "ColumnName": "MaMatHang",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": true,
+          "IsIdentity": false,
+          "ForeignKeyTableName": "tMatHang"
+        },
+        {
+          "ColumnName": "Ngay",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoLuong",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "SoLuongCu",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [
+        {
+          "PropertyName": "MaKhoHang",
+          "FK_Name": "FK_tTonKho_rKhoHang",
+          "ForeignKeyTableName": "rKhoHang",
+          "DeleteAction": 0
+        },
+        {
+          "PropertyName": "MaMatHang",
+          "FK_Name": "FK_tTonKho_tMatHang",
+          "ForeignKeyTableName": "tMatHang",
+          "DeleteAction": 0
+        }
+      ],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_tTonKho",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "Ngay",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 2,
+      "IsSelected": true,
+      "IsExpanded": false
+    },
+    {
+      "TableName": "ThamSoNgay",
+      "Columns": [
+        {
+          "ColumnName": "Ma",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "Ten",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "GiaTri",
+          "DataType": "System.DateTime",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "Ma",
+          "IX_Name": "PK_ThamSoNgay",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "Ten",
+          "NeedIsRequired": true,
+          "MaxLength": 50
+        }
+      ],
+      "DefaultValues": [
+        {
+          "PropertyName": "TenantID",
+          "Value": "((1))"
+        },
+        {
+          "PropertyName": "CreateTime",
+          "Value": "((0))"
+        },
+        {
+          "PropertyName": "LastUpdateTime",
+          "Value": "((0))"
+        }
+      ],
+      "HasColumnTypes": [
+        {
+          "PropertyName": "GiaTri",
+          "TypeName": "date(0)"
+        }
+      ],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 0,
+      "IsSelected": true,
+      "IsExpanded": false
     }
   ]
 }
