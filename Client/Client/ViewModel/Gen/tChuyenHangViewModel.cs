@@ -48,6 +48,7 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChuyenHang_CreateTime, nameof(tChuyenHangDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChuyenHang_LastUpdateTime, nameof(tChuyenHangDto.LastUpdateTime), typeof(long));
 
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
 
             InitFilterPartial();
 

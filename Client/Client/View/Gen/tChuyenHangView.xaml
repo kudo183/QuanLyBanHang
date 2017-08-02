@@ -12,8 +12,8 @@
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Header="Gio" Binding="{Binding Gio, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridDateColumn Header="Ngay" SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="Gio" SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False" Binding="{Binding Gio, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaNhanVienGiaoHang"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"

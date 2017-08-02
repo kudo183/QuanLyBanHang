@@ -40,6 +40,7 @@ namespace Client.ViewModel
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_CreateTime, nameof(tToaHangDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_LastUpdateTime, nameof(tToaHangDto.LastUpdateTime), typeof(long));
 
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
 
             InitFilterPartial();
 

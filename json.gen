@@ -996,10 +996,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "SoTien",
@@ -1082,7 +1082,7 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
           "OrderBy": 2
@@ -1508,16 +1508,16 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "Gio",
           "DataGridColumnType": "DataGridTextColumnExt",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 2,
           "OrderBy": 0
@@ -1698,10 +1698,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "TenantID",
@@ -1766,10 +1766,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "Xong",
@@ -1777,7 +1777,7 @@
           "IsReadOnly": true,
           "IsTabStop": false,
           "Width": 0,
-          "Order": 5,
+          "Order": 6,
           "OrderBy": 0
         },
         {
@@ -1795,7 +1795,7 @@
           "IsReadOnly": true,
           "IsTabStop": false,
           "Width": 0,
-          "Order": 6,
+          "Order": 5,
           "OrderBy": 0
         },
         {
@@ -1845,17 +1845,17 @@
           "IsReadOnly": false,
           "IsTabStop": true,
           "Width": 0,
-          "Order": 1,
+          "Order": 2,
           "OrderBy": 0
         },
         {
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
-          "Order": 2,
-          "OrderBy": 0
+          "Order": 1,
+          "OrderBy": 2
         },
         {
           "ColumnName": "SoTien",
@@ -2024,10 +2024,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "SoTien",
@@ -2110,10 +2110,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "TenantID",
@@ -2160,10 +2160,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "MaNguyenLieu",
@@ -2246,10 +2246,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "SoTien",
@@ -2314,10 +2314,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "MaKhachHang",
@@ -2391,10 +2391,10 @@
           "ColumnName": "Ngay",
           "DataGridColumnType": "DataGridDateColumn",
           "IsReadOnly": false,
-          "IsTabStop": true,
+          "IsTabStop": false,
           "Width": 0,
           "Order": 1,
-          "OrderBy": 0
+          "OrderBy": 2
         },
         {
           "ColumnName": "SoLuong",

@@ -12,7 +12,7 @@
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridDateColumn Header="Ngay" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridDateColumn Header="Ngay" SimpleDataGrid:DataGridColumnAttachedProperty.IsTabStop="False" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaLoaiChiPhi"
                 SelectedValuePath="ID"
                 DisplayMemberPath="DisplayText"
