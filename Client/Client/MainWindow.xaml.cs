@@ -28,6 +28,7 @@ namespace Client
             _loginViewModel = loginView.DataContext as LoginViewModel;
 
 #if DEBUG
+            Logger.Instance.LogLevel = Logger.LogLevelEnum.Debug;
             _loginViewModel.IsLoggedIn = true;
             _loginViewModel.IsTenant = true;
 #else
