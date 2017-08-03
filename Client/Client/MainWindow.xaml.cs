@@ -18,6 +18,7 @@ namespace Client
     {
         IDataService _dataService;
         LoginViewModel _loginViewModel;
+        List<Window> _windowList = new List<Window>();
 
         public MainWindow()
         {
@@ -38,13 +39,25 @@ namespace Client
 
             _loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged;
             Closing += MainWindow_Closing;
+            Closed += MainWindow_Closed;
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(MessageBox.Show("Close Main window will close all windows and app, are you sure you want to close ?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            if (_windowList.Count > 0)
             {
-                e.Cancel = true;
+                if (MessageBox.Show("Close Main window will close all windows and app, are you sure you want to close ?", "Confirm", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void MainWindow_Closed(object sender, System.EventArgs e)
+        {
+            foreach (var w in _windowList)
+            {
+                w.Close();
             }
         }
 
@@ -100,7 +113,10 @@ namespace Client
 
         private void ChangePasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            var w = new ChangePasswordWindow();
+            var w = new ChangePasswordWindow()
+            {
+                Owner = this
+            };
             w.ShowDialog();
         }
 
@@ -108,9 +124,10 @@ namespace Client
         {
             var w = new Window()
             {
-                Content = new ManageUserView()
+                Content = new ManageUserView(),
+                Owner = this
             };
-            w.Show();
+            w.ShowDialog();
         }
 
         private void AllViewButton_Click(object sender, RoutedEventArgs e)
@@ -143,7 +160,10 @@ namespace Client
             };
 
             w.Loaded += W_Loaded;
+            w.Closing += W_Closing;
             w.Closed += W_Closed;
+
+            _windowList.Add(w);
 
             w.Show();
         }
@@ -195,6 +215,11 @@ namespace Client
                     }
                 }
             }
+        }
+
+        private void W_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _windowList.Remove(sender as Window);
         }
 
         private void W_Closed(object sender, System.EventArgs e)
