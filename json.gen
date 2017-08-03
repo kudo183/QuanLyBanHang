@@ -4683,12 +4683,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 3,
       "IsSelected": true,
@@ -4806,12 +4801,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 2,
       "IsSelected": true,
@@ -5492,8 +5482,8 @@
       ],
       "HasColumnTypes": [
         {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
+          "PropertyName": "Gio",
+          "TypeName": "time(0)"
         }
       ],
       "ReferencesToThisTable": [
@@ -5739,12 +5729,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [
         {
           "PropertyName": "MaChuyenKho",
@@ -5893,12 +5878,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [
         {
           "PropertyName": "MaDonHang",
@@ -6017,12 +5997,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 3,
       "IsSelected": true,
@@ -6295,12 +6270,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 3,
       "IsSelected": true,
@@ -6416,12 +6386,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [
         {
           "PropertyName": "MaNhapHang",
@@ -6536,12 +6501,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 2,
       "IsSelected": true,
@@ -6651,12 +6611,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 3,
       "IsSelected": true,
@@ -6744,12 +6699,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [
         {
           "PropertyName": "MaToaHang",
@@ -6872,12 +6822,7 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "Ngay",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 2,
       "IsSelected": true,
@@ -6964,17 +6909,12 @@
           "Value": "((0))"
         }
       ],
-      "HasColumnTypes": [
-        {
-          "PropertyName": "GiaTri",
-          "TypeName": "date(0)"
-        }
-      ],
+      "HasColumnTypes": [],
       "ReferencesToThisTable": [],
       "ReferenceLevel": 0,
       "IsSelected": true,
       "IsExpanded": false
     }
   ],
-  "ConnectTime": "2017-08-02T01:39:06.0486659Z"
+  "ConnectTime": "2017-08-03T03:52:28.2683268Z"
 }

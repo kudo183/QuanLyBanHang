@@ -419,7 +419,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tCongNoKhachHangMaKhachHangNavigation)
@@ -439,7 +438,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaLoaiChiPhiNavigation)
                     .WithMany(p => p.tChiPhiMaLoaiChiPhiNavigation)
@@ -602,7 +600,7 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
+                entity.Property(e => e.Gio).HasColumnType("time(0)");
 
                 entity.HasOne(d => d.MaNhanVienGiaoHangNavigation)
                     .WithMany(p => p.tChuyenHangMaNhanVienGiaoHangNavigation)
@@ -651,7 +649,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhoHangNhapNavigation)
                     .WithMany(p => p.tChuyenKhoMaKhoHangNhapNavigation)
@@ -689,7 +686,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaChanhNavigation)
                     .WithMany(p => p.tDonHangMaChanhNavigation)
@@ -721,7 +717,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
                 entity.Property(e => e.GhiChu)
                     .IsRequired()
                     .HasMaxLength(300);
@@ -780,7 +775,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tNhanTienKhachHangMaKhachHangNavigation)
@@ -800,7 +794,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
                     .WithMany(p => p.tNhapHangMaKhoHangNavigation)
@@ -832,7 +825,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaNguyenLieuNavigation)
                     .WithMany(p => p.tNhapNguyenLieuMaNguyenLieuNavigation)
@@ -858,7 +850,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
                 entity.Property(e => e.GhiChu)
                     .IsRequired()
                     .HasMaxLength(300);
@@ -881,7 +872,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tToaHangMaKhachHangNavigation)
@@ -901,7 +891,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ngay).HasColumnType("date(0)");
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
                     .WithMany(p => p.tTonKhoMaKhoHangNavigation)
@@ -927,7 +916,6 @@ namespace Server.Entities
 
                 entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.GiaTri).HasColumnType("date(0)");
                 entity.Property(e => e.Ten)
                     .IsRequired()
                     .HasMaxLength(50);
