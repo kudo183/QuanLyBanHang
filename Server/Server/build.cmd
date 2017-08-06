@@ -8,7 +8,7 @@ rem mapping IIS site "Default Web Site" to publish output folder.
 %systemroot%\system32\inetsrv\appcmd stop site "Default Web Site"
 
 rem if only run gulp #publish, the command will break (not continue run dotnet build ...)
-cmd /c gulp #publish
+cmd /c gulp build
 
 dotnet build -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
 
