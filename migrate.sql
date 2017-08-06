@@ -295,3 +295,6 @@ BEGIN
 	delete from tTonKho where Ngay < @MinDate;
 	delete from tCongNoKhachHang where Ngay < @MinDate;
 END
+
+GO
+EXEC [dbo].[InitData]
