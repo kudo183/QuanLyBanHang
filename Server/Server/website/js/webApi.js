@@ -16,63 +16,34 @@ window.app.webApi = (function (logger) {
                 return postParams(apiUrl("smt", "userlogin"), params);
             }
         },
-        getData: getData,
-        _cache: {}
+        get: get,
+        getAll: getAll,
+        getUpdate: getUpdate
     };
     return webApi;
 
     //function apiUrl(controller, action) { return "/" + controller + "/" + action; }
     function apiUrl(controller, action) { return window.rootUri + controller + "/" + action; }
-
-    function getApiUrl(controller) { return apiUrl(controller, "get"); }
-
-    function getData(controller, json) {
-        var url = getApiUrl(controller);
+    
+    function get(controller, json) {
+        var url = apiUrl(controller, "get");
         json = json || {};
         var jsonString = JSON.stringify(json);
+        return postJson(url, jsonString);
+    }
 
-        var deferred = new $.Deferred();
+    function getAll(controller, json) {
+        var url = apiUrl(controller, "getAll");
+        json = json || {};
+        var jsonString = JSON.stringify(json);
+        return postJson(url, jsonString);
+    }
 
-        var cacheKey = controller + '_' + jsonString;
-        logger("webApi cacheKey: " + cacheKey);
-
-        var cacheData = webApi._cache[cacheKey];
-        var versionNumber = 0;
-        var serverStartTime = 0;
-        if (cacheData !== undefined) {
-            versionNumber = cacheData.versionNumber;
-            serverStartTime = cacheData.serverStartTime;
-            if (jsonString.length < 3) {
-                jsonString = "{\"versionNumber\":" + versionNumber + ",\"serverStartTime\":" + serverStartTime + "}";
-            } else {
-                jsonString = "{\"versionNumber\":" + versionNumber + ",\"serverStartTime\":" + serverStartTime + "," + jsonString.substr(1);
-            }
-        }
-
-        postJson(url, jsonString)
-            .done(function (data, textStatus, jqXHR) {
-                if (versionNumber === data.versionNumber && serverStartTime === data.serverStartTime) {
-                    logger("INFO", "webApi cache hit " + controller + "   " + versionNumber);
-
-                    deferred.resolve(JSON.parse(cacheData.jsonStringData), cacheData.textStatus, cacheData.jqXHR);
-                } else {
-                    logger("INFO", "webApi cache miss " + controller + "   " + data.versionNumber);
-                    webApi._cache[cacheKey] = {
-                        serverStartTime: data.serverStartTime,
-                        versionNumber: data.versionNumber,
-                        jsonStringData: JSON.stringify(data),
-                        textStatus: textStatus,
-                        jqXHR: jqXHR
-                    };
-
-                    deferred.resolve(data, textStatus, jqXHR);
-                }
-            })
-            .fail(function (error) {
-                deferred.reject(error);
-            });
-
-        return deferred;
+    function getUpdate(controller, json) {
+        var url = apiUrl(controller, "getUpdate");
+        json = json || {};
+        var jsonString = JSON.stringify(json);
+        return postJson(url, jsonString);
     }
 
     function postJson(url, jsonString) {

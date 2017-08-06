@@ -12,22 +12,43 @@ window.app.referenceDataManager = (function (webApi, logger) {
         _cache: {}
     };
 
+    referenceDataManager.getCache = function (name, filter) {
+        var cache = referenceDataManager._cache[name];
+        if (cache === undefined) {
+            cache = {
+                data: ko.observableArray(),
+                isLoaded: false
+            };
+            referenceDataManager._cache[name] = cache;
+        }
+        return cache;
+    }
+
     referenceDataManager.get = function (name, filter) {
+        return referenceDataManager.getCache(name, filter).data;
+    }
+
+    referenceDataManager.loadOrUpdate = function (name, filter) {
         var deferred = new $.Deferred();
 
-        var cacheData = referenceDataManager._cache[name];
-        if (cacheData !== undefined) {
+        var cache = referenceDataManager.getCache(name, filter);
+        if (cache.isLoaded === true) {
             logger("INFO", "referenceDataManager cache hit: " + name);
-            deferred.resolve(cacheData.data, cacheData.textStatus, cacheData.jqXHR);
+            webApi.getUpdate(name, filter)
+                .done(function (data, textStatus, jqXHR) {
+                    logger("INFO", "getUpdate done: update data");
+                    //TODO: update cache.data
+                    deferred.resolve(data, textStatus, jqXHR);
+                })
+                .fail(function (error) {
+                    deferred.reject(error);
+                });
         } else {
-            webApi.getData(name, filter)
+            webApi.getAll(name, filter)
                 .done(function (data, textStatus, jqXHR) {
                     logger("INFO", "referenceDataManager cache miss: " + name);
-                    referenceDataManager._cache[name] = {
-                        data: data,
-                        textStatus: textStatus,
-                        jqXHR: jqXHR
-                    };
+                    cache.isLoaded = true;
+                    cache.data(data.items);
                     deferred.resolve(data, textStatus, jqXHR);
                 })
                 .fail(function (error) {

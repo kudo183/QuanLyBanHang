@@ -1,4 +1,4 @@
-﻿window.app.viewModel.tonKhoViewModel = (function () {
+﻿window.app.viewModel.tonKhoViewModel = (function (referenceDataManager) {
     var viewModel = huypq.control.dataGrid.createViewModel(
         window.app.dataProvider.tonKhoDataProvider,
         {
@@ -36,6 +36,7 @@
         itemsSourceName: "khoHangs",
         itemText: "tenKho",
         itemValue: "ma",
+        itemsSource: referenceDataManager.get("rkhoHang"),
         filterValue: ko.observable(f.tk),
         whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
     };
@@ -53,6 +54,7 @@
         itemsSourceName: "loaiHangs",
         itemText: "tenLoai",
         itemValue: "ma",
+        itemsSource: referenceDataManager.get("rloaiHang"),
         filterValue: ko.observable(f.ml),
         whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
     };
@@ -69,4 +71,4 @@
     };
 
     return viewModel;
-})();
+})(window.app.referenceDataManager);

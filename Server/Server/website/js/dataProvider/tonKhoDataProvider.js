@@ -1,6 +1,7 @@
 ﻿window.app.dataProvider.tonKhoDataProvider = (function (webApi, referenceDataManager) {
     var dataProvider = {
         _items: [],
+        _needLoadReferenceData: true,
         getItemsAjax: getItemsAjax,
     };
 
@@ -8,70 +9,121 @@
 
     function getItemsAjax(filter, done, fail) {
         filter.orderOptions = [{ propertyPath: "MaMatHangNavigation.TenMatHangDayDu", isAscending: true }];
-        filter.pageIndex = 0;
+        filter.pageIndex = 1;
+        filter.pageSize = 30;
 
-        $.when(
-            webApi.getData("ttonKho", filter),
-            referenceDataManager.get("rloaiHang", { orderOptions: [{ propertyPath: "TenLoai", isAscending: true }] }),
-            referenceDataManager.get("tmatHang"),
-            referenceDataManager.get("rkhoHang", { orderOptions: [{ propertyPath: "TenKho", isAscending: true }] }),
-            referenceDataManager.get("rcanhBaoTonKho")
-        ).done(function (tonKhos, loaiHangs, matHangs, khoHangs, canhBaoTonKhos) {
-            var canhBaoTonKho = {};
-            var data = canhBaoTonKhos[0].items;
-            for (var i = 0; i < data.length; i++) {
-                canhBaoTonKho[data[i].maKhoHang] = canhBaoTonKho[data[i].maKhoHang] || {};
+        if (dataProvider._needLoadReferenceData === true) {
+            dataProvider._needLoadReferenceData = false;
+            $.when(
+                webApi.get("ttonKho", filter),
+                referenceDataManager.loadOrUpdate("rloaiHang"),
+                referenceDataManager.loadOrUpdate("tmatHang"),
+                referenceDataManager.loadOrUpdate("rkhoHang"),
+                referenceDataManager.loadOrUpdate("rcanhBaoTonKho")
+            ).done(function (tonKhos) {
+                done(processResponseData(
+                    tonKhos[0],
+                    referenceDataManager.get("rloaiHang"),
+                    referenceDataManager.get("tmatHang"),
+                    referenceDataManager.get("rkhoHang"),
+                    referenceDataManager.get("rcanhBaoTonKho"))
+                );
+            }).fail(fail);
+        } else {
+            webApi.get("ttonKho", filter)
+                .done(function (tonKhos) {
+                    done(processResponseData(
+                        tonKhos,
+                        referenceDataManager.get("rloaiHang"),
+                        referenceDataManager.get("tmatHang"),
+                        referenceDataManager.get("rkhoHang"),
+                        referenceDataManager.get("rcanhBaoTonKho"))
+                    );
+                })
+                .fail(fail)
+        }
+    }
 
-                canhBaoTonKho[data[i].maKhoHang][data[i].maMatHang] = {
-                    tonCaoNhat: data[i].tonCaoNhat,
-                    tonThapNhat: data[i].tonThapNhat,
-                };
-            }
+    function processResponseData(tonKhos, loaiHangItems, matHangItems, khoHangItems, canhBaoTonKhoItems) {        
+        var canhBaoTonKho = {};
+        var data = canhBaoTonKhoItems();
+        for (var i = 0; i < data.length; i++) {
+            canhBaoTonKho[data[i].maKhoHang] = canhBaoTonKho[data[i].maKhoHang] || {};
 
-            var matHang = {};
-            var dataMatHang = matHangs[0].items;
-            for (var i = 0; i < dataMatHang.length; i++) {
-                matHang[dataMatHang[i].ma] = dataMatHang[i].tenMatHangDayDu;
-            }
-
-            var result = {
-                items: [],
-                totalItemCount: tonKhos[0].TotalItemCount,
-                pageIndex: tonKhos[0].PageIndex,
-                pageCount: tonKhos[0].PageCount
+            canhBaoTonKho[data[i].maKhoHang][data[i].maMatHang] = {
+                tonCaoNhat: data[i].tonCaoNhat,
+                tonThapNhat: data[i].tonThapNhat,
             };
-            var tonKhoItems = tonKhos[0].items;
-            for (var i = 0; i < tonKhoItems.length; i++) {
-                var item = tonKhoItems[i];
-                var css = "";
+        }
 
-                if (canhBaoTonKho[item.maKhoHang] !== undefined
-                    && canhBaoTonKho[item.maKhoHang][item.maMatHang] !== undefined) {
+        var matHang = {};
+        var data = matHangItems();
+        for (var i = 0; i < data.length; i++) {
+            matHang[data[i].ma] = data[i].tenMatHangDayDu;
+        }
 
-                    var range = canhBaoTonKho[item.maKhoHang][item.maMatHang];
-                    var soLuong = item.soLuong;
+        var result = {
+            items: [],
+            totalItemCount: tonKhos.TotalItemCount,
+            pageIndex: tonKhos.PageIndex,
+            pageCount: tonKhos.PageCount
+        };
+        var tonKhoItems = tonKhos.items;
+        for (var i = 0; i < tonKhoItems.length; i++) {
+            var item = tonKhoItems[i];
+            var css = "";
 
-                    if (soLuong == 0 && range.tonThapNhat == 0)
-                        continue;
+            if (canhBaoTonKho[item.maKhoHang] !== undefined
+                && canhBaoTonKho[item.maKhoHang][item.maMatHang] !== undefined) {
 
-                    if (soLuong < range.tonThapNhat) {
-                        css = "warningLower";
-                    } else if (soLuong > range.tonCaoNhat) {
-                        css = "warningUpper";
-                    }
+                var range = canhBaoTonKho[item.maKhoHang][item.maMatHang];
+                var soLuong = item.soLuong;
+
+                if (soLuong == 0 && range.tonThapNhat == 0)
+                    continue;
+
+                if (soLuong < range.tonThapNhat) {
+                    css = "warningLower";
+                } else if (soLuong > range.tonCaoNhat) {
+                    css = "warningUpper";
                 }
-
-                result.items.push({
-                    tenMatHang: ko.observable(matHang[item.maMatHang]),
-                    soLuong: ko.observable(item.soLuong),
-                    css: ko.observable(css)
-                });
             }
 
-            result.comboBoxItemsSource = {};
-            result.comboBoxItemsSource.loaiHangs = loaiHangs[0].items;
-            result.comboBoxItemsSource.khoHangs = khoHangs[0].items;
-            done(result);
-        }).fail(fail);
+            result.items.push({
+                tenMatHang: ko.observable(matHang[item.maMatHang]),
+                soLuong: ko.observable(item.soLuong),
+                css: ko.observable(css)
+            });
+        }
+        
+        loaiHangItems.sort(function (a, b) {
+            var nameA = a.tenLoai.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.tenLoai.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            // names must be equal
+            return 0;
+        });
+        
+        khoHangItems.sort(function (a, b) {
+            var nameA = a.tenKho.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.tenKho.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+
+            // names must be equal
+            return 0;
+        });
+        
+        return result;
     }
 })(window.app.webApi, window.app.referenceDataManager);
