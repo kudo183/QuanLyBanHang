@@ -24,6 +24,7 @@ paths.imageDest = paths.release + "images";
 
 //specify js files path, order is important
 paths.js = [
+    paths.webroot + "lib/huypq.arrayUtils.js",
     paths.webroot + "lib/huypq.dateTimeUtils.js",
     paths.webroot + "lib/huypq.control.utilsDOM.js",
     paths.webroot + "lib/headerMenu/huypq.control.headerMenu.js",

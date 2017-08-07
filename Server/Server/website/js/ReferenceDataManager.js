@@ -12,6 +12,27 @@ window.app.referenceDataManager = (function (webApi, logger) {
         _cache: {}
     };
 
+    referenceDataManager._cache["rloaiHang"] = {
+        data: ko.observableArray(),
+        isLoaded: false,
+        sortProperty: "tenLoai",
+        isAscending: true
+    };
+
+    referenceDataManager._cache["tmatHang"] = {
+        data: ko.observableArray(),
+        isLoaded: false,
+        sortProperty: "tenMatHang",
+        isAscending: true
+    };
+
+    referenceDataManager._cache["rkhoHang"] = {
+        data: ko.observableArray(),
+        isLoaded: false,
+        sortProperty: "tenKho",
+        isAscending: true
+    };
+
     referenceDataManager.getCache = function (name, filter) {
         var cache = referenceDataManager._cache[name];
         if (cache === undefined) {
@@ -49,6 +70,9 @@ window.app.referenceDataManager = (function (webApi, logger) {
                     logger("INFO", "referenceDataManager cache miss: " + name);
                     cache.isLoaded = true;
                     cache.data(data.items);
+                    if (cache.sortProperty !== undefined) {
+                        huypq.arrayUtils.sort(cache.data, cache.sortProperty, cache.isAscending);
+                    }
                     deferred.resolve(data, textStatus, jqXHR);
                 })
                 .fail(function (error) {

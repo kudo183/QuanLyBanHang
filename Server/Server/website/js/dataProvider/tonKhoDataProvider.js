@@ -96,34 +96,6 @@
             });
         }
         
-        loaiHangItems.sort(function (a, b) {
-            var nameA = a.tenLoai.toUpperCase(); // ignore upper and lowercase
-            var nameB = b.tenLoai.toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
-
-            // names must be equal
-            return 0;
-        });
-        
-        khoHangItems.sort(function (a, b) {
-            var nameA = a.tenKho.toUpperCase(); // ignore upper and lowercase
-            var nameB = b.tenKho.toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
-
-            // names must be equal
-            return 0;
-        });
-        
         return result;
     }
 })(window.app.webApi, window.app.referenceDataManager);
