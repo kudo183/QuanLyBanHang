@@ -18,7 +18,8 @@ window.app.webApi = (function (logger) {
         },
         get: get,
         getAll: getAll,
-        getUpdate: getUpdate
+        getUpdate: getUpdate,
+        save: save
     };
     return webApi;
 
@@ -43,6 +44,12 @@ window.app.webApi = (function (logger) {
         var url = apiUrl(controller, "getUpdate");
         json = json || {};
         var jsonString = JSON.stringify(json);
+        return postJson(url, jsonString);
+    }
+
+    function save(controller, changes) {
+        var url = apiUrl(controller, "save");
+        var jsonString = JSON.stringify(changes);
         return postJson(url, jsonString);
     }
 

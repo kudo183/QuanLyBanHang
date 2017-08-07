@@ -11,10 +11,11 @@ window.app.referenceDataManager = (function (webApi, logger) {
     var referenceDataManager = {
         _cache: {}
     };
-
+    var keyProperty = "ma";
     referenceDataManager._cache["rloaiHang"] = {
         data: ko.observableArray(),
         isLoaded: false,
+        keyProperty: keyProperty,
         sortProperty: "tenLoai",
         isAscending: true
     };
@@ -22,6 +23,7 @@ window.app.referenceDataManager = (function (webApi, logger) {
     referenceDataManager._cache["tmatHang"] = {
         data: ko.observableArray(),
         isLoaded: false,
+        keyProperty: keyProperty,
         sortProperty: "tenMatHang",
         isAscending: true
     };
@@ -29,11 +31,12 @@ window.app.referenceDataManager = (function (webApi, logger) {
     referenceDataManager._cache["rkhoHang"] = {
         data: ko.observableArray(),
         isLoaded: false,
+        keyProperty: keyProperty,
         sortProperty: "tenKho",
         isAscending: true
     };
 
-    referenceDataManager.getCache = function (name, filter) {
+    referenceDataManager.getCache = function (name) {
         var cache = referenceDataManager._cache[name];
         if (cache === undefined) {
             cache = {
@@ -45,30 +48,59 @@ window.app.referenceDataManager = (function (webApi, logger) {
         return cache;
     }
 
-    referenceDataManager.get = function (name, filter) {
-        return referenceDataManager.getCache(name, filter).data;
+    referenceDataManager.get = function (name) {
+        return referenceDataManager.getCache(name).data;
     }
 
-    referenceDataManager.loadOrUpdate = function (name, filter) {
+    referenceDataManager.loadOrUpdate = function (name) {
         var deferred = new $.Deferred();
 
-        var cache = referenceDataManager.getCache(name, filter);
+        var cache = referenceDataManager.getCache(name);
         if (cache.isLoaded === true) {
             logger("INFO", "referenceDataManager cache hit: " + name);
+            var filter = {
+                whereOptions: [{
+                    $type: "huypq.QueryBuilder.WhereExpression+WhereOptionLong, huypq.QueryBuilder",
+                    predicate: ">",
+                    propertyPath: "LastUpdateTime",
+                    value: cache.lastUpdateTime
+                }]
+            };
             webApi.getUpdate(name, filter)
                 .done(function (data, textStatus, jqXHR) {
                     logger("INFO", "getUpdate done: update data");
-                    //TODO: update cache.data
+                    cache.lastUpdateTime = data.lastUpdateTime;
+                    for (var i = 0; i < data.items.length; i++) {
+                        var item = data.items[i];
+                        if (item.state === 1) {//Add
+                            cache.data.push(item);
+                        } else if (item.state === 2) {//Delete
+                            for (var j = 0; j < cache.data.length; j++) {
+                                if (cache.data[j][cache.keyProperty] === item[cache.keyProperty]){
+                                    cache.data.splice(j, 1);
+                                    break;
+                                }
+                            }
+                        } else if (item.state === 3) {//Update
+                            for (var j = 0; j < cache.data.length; j++) {
+                                if (cache.data[j][cache.keyProperty] === item[cache.keyProperty]) {
+                                    //TODO: update item
+                                    break;
+                                }
+                            }
+                        }
+                    }
                     deferred.resolve(data, textStatus, jqXHR);
                 })
                 .fail(function (error) {
                     deferred.reject(error);
                 });
         } else {
-            webApi.getAll(name, filter)
+            webApi.getAll(name)
                 .done(function (data, textStatus, jqXHR) {
                     logger("INFO", "referenceDataManager cache miss: " + name);
                     cache.isLoaded = true;
+                    cache.lastUpdateTime = data.lastUpdateTime;
                     cache.data(data.items);
                     if (cache.sortProperty !== undefined) {
                         huypq.arrayUtils.sort(cache.data, cache.sortProperty, cache.isAscending);

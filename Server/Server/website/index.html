@@ -5,19 +5,14 @@
     <meta charset="utf-8" />
     <title>Debug</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/app.css" />
-    <link rel="stylesheet" type="text/css" href="css/loginView.css" />
-    <link rel="stylesheet" type="text/css" href="css/tonKhoView.css" />
-    <link rel="stylesheet" type="text/css" href="lib/headerMenu/huypq.control.headerMenu.css" />
-    <link rel="stylesheet" type="text/css" href="lib/combobox/huypq.ko.binding.combobox.css" />
-    <link rel="stylesheet" type="text/css" href="lib/datagrid/huypq.control.datagrid.css" />
+    <link rel="stylesheet" type="text/css" href="site.debug.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-debug.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.js"></script>
 </head>
 <body>
     <script>
-        window.rootUri = "http://localhost:5000/";
+        window.rootUri = "http://localhost:64406/";
         window.params = (function () {
             var result = {};
             window.location.search.substring(1).split("&").forEach(function (p) {
@@ -31,22 +26,6 @@
 
         window.huypq_DEBUG = false;
     </script>
-    <script type='text/javascript' src='lib/huypq.dateTimeUtils.js'></script>
-    <script type='text/javascript' src='lib/huypq.control.utilsDOM.js'></script>
-    <script type='text/javascript' src='lib/headerMenu/huypq.control.headerMenu.js'></script>
-    <script type='text/javascript' src='lib/datepicker/huypq.ko.binding.datepicker.js'></script>
-    <script type='text/javascript' src='lib/combobox/huypq.ko.binding.combobox.js'></script>
-    <script type='text/javascript' src='lib/datagrid/huypq.control.datagrid.js'></script>
-    <script type='text/javascript' src='js/defineNamespace.js'></script>
-    <script type='text/javascript' src='js/webApi.js'></script>
-    <script type='text/javascript' src='js/referenceDataManager.js'></script>
-    <script type='text/javascript' src='js/dataProvider/tonKhoDataProvider.js'></script>
-    <script type='text/javascript' src='js/viewModel/loginViewModel.js'></script>
-    <script type='text/javascript' src='js/viewModel/tonKhoViewModel.js'></script>
-    <script type='text/javascript' src='js/viewManager.js'></script>
-    <script type='text/javascript' src='js/view/mainView.js'></script>
-    <script type='text/javascript' src='js/view/loginView.js'></script>
-    <script type='text/javascript' src='js/view/tonKhoView.js'></script>
-    <script type='text/javascript' src='js/app.js'></script>
+    <script src='site.debug.js'></script>
 </body>
 </html>

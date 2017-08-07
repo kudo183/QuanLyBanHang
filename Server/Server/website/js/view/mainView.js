@@ -18,6 +18,7 @@
         var headerMenuViewModel = {
             items: [
                 { text: "Ton kho", value: "tonKhoView", id: "" },
+                { text: "Don hang", value: "donHangView", id: "" },
             ],
             selectedItemText: ko.observable(),
             selectedItemValue: ko.observable(),

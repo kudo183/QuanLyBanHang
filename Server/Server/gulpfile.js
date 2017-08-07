@@ -18,10 +18,6 @@ var paths = {
     publish: "../PublishOutput/wwwroot"
 };
 
-paths.minJsDest = paths.release + "site.min.js";
-paths.minCssDest = paths.release + "site.min.css";
-paths.imageDest = paths.release + "images";
-
 //specify js files path, order is important
 paths.js = [
     paths.webroot + "lib/huypq.arrayUtils.js",
@@ -35,12 +31,15 @@ paths.js = [
     paths.webroot + "js/webApi.js",
     paths.webroot + "js/referenceDataManager.js",
     paths.webroot + "js/dataProvider/tonKhoDataProvider.js",
+    paths.webroot + "js/dataProvider/donHangDataProvider.js",
     paths.webroot + "js/viewModel/loginViewModel.js",
     paths.webroot + "js/viewModel/tonKhoViewModel.js",
+    paths.webroot + "js/viewModel/donHangViewModel.js",
     paths.webroot + "js/viewManager.js",
     paths.webroot + "js/view/mainView.js",
     paths.webroot + "js/view/loginView.js",
     paths.webroot + "js/view/tonKhoView.js",
+    paths.webroot + "js/view/donHangView.js",
     paths.webroot + "js/app.js"
 ];
 
@@ -58,32 +57,23 @@ paths.image = [
     paths.webroot + "css/images/*.*"
 ];
 
-gulp.task("clean:js", function (cb) {
-    rimraf(paths.minJsDest, cb);
-});
-
-gulp.task("clean:css", function (cb) {
-    rimraf(paths.minCssDest, cb);
-});
+//release
+paths.minJsDest = paths.release + "site.min.js";
+paths.minCssDest = paths.release + "site.min.css";
+paths.imageDest = paths.release + "images";
 
 gulp.task("clean:image", function (cb) {
     rimraf(paths.imageDest, cb);
 });
 
-gulp.task("min:js", ["clean:js"], function () {
+gulp.task("min:js", function () {
     return gulp.src(paths.js)
       .pipe(concat(paths.minJsDest))
       .pipe(uglify())
       .pipe(gulp.dest("."));
 });
 
-gulp.task("concat:js", ["clean:js"], function () {
-    return gulp.src(paths.js)
-        .pipe(concat(paths.minJsDest))
-        .pipe(gulp.dest("."));
-});
-
-gulp.task("min:css", ["clean:css"], function () {
+gulp.task("min:css", function () {
     return gulp.src(paths.css)
       .pipe(concat(paths.minCssDest))
       .pipe(cssmin())
@@ -100,15 +90,35 @@ gulp.task("copy:wwwroot-build", ["build"], function () {
         .pipe(gulp.dest(paths.publish));
 });
 
-gulp.task("copy:wwwroot-debug", ["debug"], function () {
-    return gulp.src(paths.release + "**")
-        .pipe(gulp.dest(paths.publish));
-});
-
-gulp.task("build", ["clean:js", "clean:css", "clean:image", "min:js", "min:css", "copy:image"]);
-
-gulp.task("debug", ["clean:js", "clean:css", "clean:image", "concat:js", "min:css", "copy:image"]);
+gulp.task("build", ["clean:image", "min:js", "min:css", "copy:image"]);
 
 gulp.task("#publish", ["build", "copy:wwwroot-build"]);
 
-gulp.task("#debug", ["debug", "copy:wwwroot-debug"]);
+
+//debug
+paths.jsDebugDest = paths.webroot + "site.debug.js";
+paths.cssDebugDest = paths.webroot + "site.debug.css";
+paths.imageDebugDest = paths.webroot + "images";
+
+gulp.task("clean-debug:image", function (cb) {
+    rimraf(paths.imageDebugDest, cb);
+});
+
+gulp.task("debug:js", function () {
+    return gulp.src(paths.js)
+        .pipe(concat(paths.jsDebugDest))
+        .pipe(gulp.dest("."));
+});
+
+gulp.task("debug:css", function () {
+    return gulp.src(paths.css)
+        .pipe(concat(paths.cssDebugDest))
+        .pipe(gulp.dest("."));
+});
+
+gulp.task("copy-debug:image", ["clean-debug:image"], function () {
+    return gulp.src(paths.image)
+        .pipe(gulp.dest(paths.imageDebugDest));
+});
+
+gulp.task("#debug", ["clean-debug:image", "debug:js", "debug:css", "copy-debug:image"]);
