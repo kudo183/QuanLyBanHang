@@ -94,7 +94,12 @@ gulp.task("copy:image", ["clean:image"], function () {
       .pipe(gulp.dest(paths.imageDest));
 });
 
-gulp.task("copy:wwwroot", ["build"], function () {
+gulp.task("copy:wwwroot-build", ["build"], function () {
+    return gulp.src(paths.release + "**")
+        .pipe(gulp.dest(paths.publish));
+});
+
+gulp.task("copy:wwwroot-debug", ["debug"], function () {
     return gulp.src(paths.release + "**")
         .pipe(gulp.dest(paths.publish));
 });
@@ -103,6 +108,6 @@ gulp.task("build", ["clean:js", "clean:css", "clean:image", "min:js", "min:css",
 
 gulp.task("debug", ["clean:js", "clean:css", "clean:image", "concat:js", "min:css", "copy:image"]);
 
-gulp.task("#publish", ["build", "copy:wwwroot"]);
+gulp.task("#publish", ["build", "copy:wwwroot-build"]);
 
-gulp.task("#debug", ["debug", "copy:wwwroot"]);
+gulp.task("#debug", ["debug", "copy:wwwroot-debug"]);
