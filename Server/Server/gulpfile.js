@@ -76,6 +76,12 @@ gulp.task("min:js", ["clean:js"], function () {
       .pipe(gulp.dest("."));
 });
 
+gulp.task("concat:js", ["clean:js"], function () {
+    return gulp.src(paths.js)
+        .pipe(concat(paths.minJsDest))
+        .pipe(gulp.dest("."));
+});
+
 gulp.task("min:css", ["clean:css"], function () {
     return gulp.src(paths.css)
       .pipe(concat(paths.minCssDest))
@@ -95,4 +101,8 @@ gulp.task("copy:wwwroot", ["build"], function () {
 
 gulp.task("build", ["clean:js", "clean:css", "clean:image", "min:js", "min:css", "copy:image"]);
 
+gulp.task("debug", ["clean:js", "clean:css", "clean:image", "concat:js", "min:css", "copy:image"]);
+
 gulp.task("#publish", ["build", "copy:wwwroot"]);
+
+gulp.task("#debug", ["debug", "copy:wwwroot"]);
