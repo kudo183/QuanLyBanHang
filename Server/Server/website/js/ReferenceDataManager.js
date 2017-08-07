@@ -36,6 +36,14 @@ window.app.referenceDataManager = (function (webApi, logger) {
         isAscending: true
     };
 
+    referenceDataManager._cache["rkhachHang"] = {
+        data: ko.observableArray(),
+        isLoaded: false,
+        keyProperty: keyProperty,
+        sortProperty: "tenKhachHang",
+        isAscending: true
+    };
+
     referenceDataManager.getCache = function (name) {
         var cache = referenceDataManager._cache[name];
         if (cache === undefined) {
