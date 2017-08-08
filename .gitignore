@@ -254,3 +254,6 @@ PublishOutput
 /Server/Server/wwwroot/images/refresh.png
 /Server/Server/wwwroot/site.min.css
 /Server/Server/wwwroot/site.min.js
+/Server/Server/website/site.debug.css
+/Server/Server/website/site.debug.js
+/Server/Server/website/images/refresh.png
