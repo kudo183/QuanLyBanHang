@@ -21,45 +21,33 @@
                 referenceDataManager.loadOrUpdate("rkhoHang"),
                 referenceDataManager.loadOrUpdate("rcanhBaoTonKho")
             ).done(function (tonKhos) {
-                done(processResponseData(
-                    tonKhos[0],
-                    referenceDataManager.get("rloaiHang"),
-                    referenceDataManager.get("tmatHang"),
-                    referenceDataManager.get("rkhoHang"),
-                    referenceDataManager.get("rcanhBaoTonKho"))
-                );
+                done(processResponseData(tonKhos[0]));
             }).fail(fail);
         } else {
             webApi.get("ttonKho", filter)
                 .done(function (tonKhos) {
-                    done(processResponseData(
-                        tonKhos,
-                        referenceDataManager.get("rloaiHang"),
-                        referenceDataManager.get("tmatHang"),
-                        referenceDataManager.get("rkhoHang"),
-                        referenceDataManager.get("rcanhBaoTonKho"))
-                    );
+                    done(processResponseData(tonKhos));
                 })
                 .fail(fail)
         }
     }
 
-    function processResponseData(tonKhos, loaiHangItems, matHangItems, khoHangItems, canhBaoTonKhoItems) {        
-        var canhBaoTonKho = {};
-        var data = canhBaoTonKhoItems();
+    function processResponseData(tonKhos) {
+        var canhBaoTonKhos = {};
+        var data = referenceDataManager.get("rcanhBaoTonKho")();
         for (var i = 0; i < data.length; i++) {
-            canhBaoTonKho[data[i].maKhoHang] = canhBaoTonKho[data[i].maKhoHang] || {};
+            canhBaoTonKhos[data[i].maKhoHang] = canhBaoTonKhos[data[i].maKhoHang] || {};
 
-            canhBaoTonKho[data[i].maKhoHang][data[i].maMatHang] = {
+            canhBaoTonKhos[data[i].maKhoHang][data[i].maMatHang] = {
                 tonCaoNhat: data[i].tonCaoNhat,
                 tonThapNhat: data[i].tonThapNhat,
             };
         }
 
-        var matHang = {};
-        var data = matHangItems();
+        var matHangs = {};
+        var data = referenceDataManager.get("tmatHang")();
         for (var i = 0; i < data.length; i++) {
-            matHang[data[i].ma] = data[i].tenMatHangDayDu;
+            matHangs[data[i].ma] = data[i].tenMatHangDayDu;
         }
 
         var result = {
@@ -73,10 +61,10 @@
             var item = tonKhoItems[i];
             var css = "";
 
-            if (canhBaoTonKho[item.maKhoHang] !== undefined
-                && canhBaoTonKho[item.maKhoHang][item.maMatHang] !== undefined) {
+            if (canhBaoTonKhos[item.maKhoHang] !== undefined
+                && canhBaoTonKhos[item.maKhoHang][item.maMatHang] !== undefined) {
 
-                var range = canhBaoTonKho[item.maKhoHang][item.maMatHang];
+                var range = canhBaoTonKhos[item.maKhoHang][item.maMatHang];
                 var soLuong = item.soLuong;
 
                 if (soLuong == 0 && range.tonThapNhat == 0)
@@ -90,12 +78,12 @@
             }
 
             result.items.push({
-                tenMatHang: ko.observable(matHang[item.maMatHang]),
+                tenMatHang: ko.observable(matHangs[item.maMatHang]),
                 soLuong: ko.observable(item.soLuong),
                 css: ko.observable(css)
             });
         }
-        
+
         return result;
     }
 })(window.app.webApi, window.app.referenceDataManager);
