@@ -1,5 +1,22 @@
 ﻿window.app.viewModel.donHangViewModel = (function (referenceDataManager) {
-    var viewModel = huypq.control.dataGrid.createViewModel(window.app.dataProvider.donHangDataProvider);
+    
+    var viewModel = huypq.control.dataGrid.createViewModel(window.app.dataProvider.create({
+        keyProperty: "ma",
+        controller: "tdonhang",
+        itemProperties: [
+            { name: "ma", type: "int" },
+            { name: "ngay", type: "date" },
+            { name: "maKhachHang", type: "int" },
+            { name: "maKhoHang", type: "int" },
+            { name: "tenantID", type: "int" },
+            { name: "state", type: "int" }
+        ],
+        itemsSources: [
+            { name: "maKhachHangItemsSource", controller: "rkhachhang" },
+            { name: "maKhoHangItemsSource", controller: "rkhohang" }
+        ],
+    }, window.app.webApi, referenceDataManager));
+
     viewModel.addColumn({
         headerText: "Mã",
         type: "span",
@@ -9,6 +26,7 @@
         filterValue: ko.observable(),
         whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
     });
+
     viewModel.addColumn({
         headerText: "Ngày",
         type: "date",

@@ -30,16 +30,11 @@ paths.js = [
     paths.webroot + "js/defineNamespace.js",
     paths.webroot + "js/webApi.js",
     paths.webroot + "js/referenceDataManager.js",
-    paths.webroot + "js/dataProvider/tonKhoDataProvider.js",
-    paths.webroot + "js/dataProvider/donHangDataProvider.js",
-    paths.webroot + "js/viewModel/loginViewModel.js",
-    paths.webroot + "js/viewModel/tonKhoViewModel.js",
-    paths.webroot + "js/viewModel/donHangViewModel.js",
+    paths.webroot + "js/dataProvider.js",
+    paths.webroot + "js/dataProvider/*.js",
+    paths.webroot + "js/viewModel/*.js",
     paths.webroot + "js/viewManager.js",
-    paths.webroot + "js/view/mainView.js",
-    paths.webroot + "js/view/loginView.js",
-    paths.webroot + "js/view/tonKhoView.js",
-    paths.webroot + "js/view/donHangView.js",
+    paths.webroot + "js/view/*.js",
     paths.webroot + "js/app.js"
 ];
 

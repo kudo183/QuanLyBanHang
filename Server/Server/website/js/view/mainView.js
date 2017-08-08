@@ -19,6 +19,7 @@
             items: [
                 { text: "Ton kho", value: "tonKhoView", id: "" },
                 { text: "Don hang", value: "donHangView", id: "" },
+                { text: "CTDH", value: "chiTietDonHangView", id: "" }
             ],
             selectedItemText: ko.observable(),
             selectedItemValue: ko.observable(),
