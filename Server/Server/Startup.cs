@@ -24,15 +24,19 @@ namespace Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
+                loggerFactory.AddProvider(new Logger.LoggerProvider((category, logLevel) => logLevel >= LogLevel.Trace, true));
+
                 app.UseFileServer(new FileServerOptions()
                 {
                     FileProvider = new PhysicalFileProvider(
                         Path.Combine(Directory.GetCurrentDirectory(), @"website"))
                 });
+            }
+            else
+            {
+                loggerFactory.AddProvider(new Logger.LoggerProvider((category, logLevel) => logLevel >= LogLevel.Information, true));
             }
 
             SmtSettings.Instance.DefaultOrderOption = new huypq.QueryBuilder.OrderByExpression.OrderOption()
