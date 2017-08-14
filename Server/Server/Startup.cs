@@ -1,4 +1,5 @@
-﻿using huypq.SmtMiddleware;
+﻿using huypq.Logging;
+using huypq.SmtMiddleware;
 using huypq.SmtMiddleware.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,11 @@ namespace Server
         {
             if (env.IsDevelopment())
             {
-                loggerFactory.AddProvider(new Logger.LoggerProvider((category, logLevel) => logLevel >= LogLevel.Trace, true));
+                loggerFactory.AddProvider(new LoggerProvider(
+                    (category, logLevel) => logLevel >= LogLevel.Trace,
+                    true,
+                    new LoggerProcessor()
+                ));
 
                 app.UseFileServer(new FileServerOptions()
                 {
@@ -36,7 +41,11 @@ namespace Server
             }
             else
             {
-                loggerFactory.AddProvider(new Logger.LoggerProvider((category, logLevel) => logLevel >= LogLevel.Information, true));
+                loggerFactory.AddProvider(new LoggerProvider(
+                    (category, logLevel) => logLevel >= LogLevel.Information,
+                    true,
+                    new LoggerBatchingProcessor(1000, 1024, 1024, @"C:\logs", 31, 20 * 1024 * 1024)
+                ));
             }
 
             SmtSettings.Instance.DefaultOrderOption = new huypq.QueryBuilder.OrderByExpression.OrderOption()
