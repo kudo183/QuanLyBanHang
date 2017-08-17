@@ -2,6 +2,7 @@
 using huypq.QueryBuilder;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
+using huypq.wpf.Utils;
 using Shared;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
