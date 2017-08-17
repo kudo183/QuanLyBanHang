@@ -6,8 +6,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using huypq.SmtWpfClient.Abstraction;
-using huypq.SmtWpfClient;
 using Shared.Report;
+using huypq.wpf.Utils;
 
 namespace Client.View.Report
 {

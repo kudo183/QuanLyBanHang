@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using huypq.wpf.Utils;
 
 namespace Client
 {

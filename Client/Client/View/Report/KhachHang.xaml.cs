@@ -1,6 +1,7 @@
 ﻿using Client.ViewModel.Report;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
+using huypq.wpf.Utils;
 using Shared;
 using Shared.Report;
 using System;
