@@ -88,6 +88,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rBaiXe>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rBaiXe");
 
@@ -104,6 +106,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rCanhBaoTonKho>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rCanhBaoTonKho");
 
@@ -129,6 +133,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rChanh>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rChanh");
 
@@ -151,6 +157,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rDiaDiem>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rDiaDiem");
 
@@ -173,6 +181,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rKhachHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhachHang");
 
@@ -201,6 +211,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rKhachHangChanh>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhachHangChanh");
 
@@ -228,6 +240,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rKhoHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhoHang");
 
@@ -246,6 +260,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rLoaiChiPhi>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rLoaiChiPhi");
 
@@ -262,6 +278,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rLoaiHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rProductType");
 
@@ -280,6 +298,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rLoaiNguyenLieu>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rLoaiNguyenLieu");
 
@@ -296,6 +316,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rMatHangNguyenLieu>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rMatHangNguyenLieu");
 
@@ -321,6 +343,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rNuoc>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rNuoc");
 
@@ -337,6 +361,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rNguyenLieu>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_rNguyenLieu");
 
@@ -356,6 +382,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rNhaCungCap>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_NhaCungCap");
 
@@ -372,6 +400,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rNhanVien>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_NhanVienGiaoHang");
 
@@ -394,6 +424,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<rPhuongTien>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_LoaiPhuongTien");
 
@@ -410,6 +442,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tCongNoKhachHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tCongNoKhachHang");
 
@@ -429,6 +463,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiPhi>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_ChiPhiNhanVienGiaoHang");
 
@@ -454,6 +490,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiTietChuyenHangDonHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
@@ -481,6 +519,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiTietChuyenKho>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietChuyenKho");
 
@@ -506,6 +546,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiTietDonHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietDonHang");
 
@@ -533,6 +575,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiTietNhapHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_NhapMatHang");
 
@@ -558,6 +602,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChiTietToaHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietToaHang");
 
@@ -583,6 +629,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChuyenHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_ChuyenHang");
 
@@ -611,6 +659,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChuyenHangDonHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChuyenHangDonHang");
 
@@ -640,6 +690,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tChuyenKho>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tChuyenKho");
 
@@ -671,6 +723,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tDonHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_DonHang");
 
@@ -708,6 +762,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tGiamTruKhachHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tGiamTruKhachHang");
 
@@ -730,6 +786,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tMatHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_Product");
 
@@ -766,6 +824,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tNhanTienKhachHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tNhanTienKhachHang");
 
@@ -785,6 +845,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tNhapHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tNhapHang");
 
@@ -816,6 +878,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tNhapNguyenLieu>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_NhapNguyenLieu");
 
@@ -841,6 +905,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tPhuThuKhachHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tPhuThuKhachHang");
 
@@ -863,6 +929,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tToaHang>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tToaHang");
 
@@ -882,6 +950,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<tTonKho>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_tTonKho");
 
@@ -907,6 +977,8 @@ namespace Server.Entities
             });
             modelBuilder.Entity<ThamSoNgay>(entity =>
             {
+                entity.Property(p => p.ID).HasColumnName("Ma");
+
                 entity.HasKey(e => e.Ma)
                     .HasName("PK_ThamSoNgay");
 
