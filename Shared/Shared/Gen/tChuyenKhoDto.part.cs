@@ -2,6 +2,7 @@
 {
     public partial class tChuyenKhoDto : huypq.SmtShared.IDisplayText
     {
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(50)]
         public int TongSoLuong { get; set; }
 
