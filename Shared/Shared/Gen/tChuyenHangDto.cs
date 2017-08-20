@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Shared
 {
+    [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptIn)]
     [ProtoBuf.ProtoContract]
     public partial class tChuyenHangDto : IDto, INotifyPropertyChanged
     {
@@ -40,27 +41,38 @@ namespace Shared
         long _CreateTime = DCreateTime;
         long _LastUpdateTime = DLastUpdateTime;
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(3)]
         public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(4)]
         public System.TimeSpan? Gio { get { return _Gio; } set { _Gio = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(5)]
         public int TongDonHang { get { return _TongDonHang; } set { _TongDonHang = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(6)]
         public int TongSoLuongTheoDonHang { get { return _TongSoLuongTheoDonHang; } set { _TongSoLuongTheoDonHang = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(7)]
         public int TongSoLuongThucTe { get { return _TongSoLuongThucTe; } set { _TongSoLuongThucTe = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(8)]
         public int TenantID { get { return _TenantID; } set { _TenantID = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(9)]
         public long CreateTime { get { return _CreateTime; } set { _CreateTime = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(10)]
         public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
 
@@ -117,10 +129,8 @@ namespace Shared
 
         object _MaNhanVienGiaoHangDataSource;
 
-        [Newtonsoft.Json.JsonIgnore]
         public object MaNhanVienGiaoHangDataSource { get { return _MaNhanVienGiaoHangDataSource; } set { _MaNhanVienGiaoHangDataSource = value; OnPropertyChanged(); } }
 
-        [Newtonsoft.Json.JsonIgnore]
         public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;

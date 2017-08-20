@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Shared
 {
+    [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptIn)]
     [ProtoBuf.ProtoContract]
     public partial class rNuocDto : IDto, INotifyPropertyChanged
     {
@@ -25,17 +26,23 @@ namespace Shared
         long _CreateTime = DCreateTime;
         long _LastUpdateTime = DLastUpdateTime;
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public string TenNuoc { get { return _TenNuoc; } set { _TenNuoc = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(3)]
         public int TenantID { get { return _TenantID; } set { _TenantID = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(4)]
         public long CreateTime { get { return _CreateTime; } set { _CreateTime = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(5)]
         public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
 
@@ -76,7 +83,6 @@ namespace Shared
 
 
 
-        [Newtonsoft.Json.JsonIgnore]
         public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;

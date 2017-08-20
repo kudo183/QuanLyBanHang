@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Shared
 {
+    [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptIn)]
     [ProtoBuf.ProtoContract]
     public partial class tDonHangDto : IDto, INotifyPropertyChanged
     {
@@ -40,27 +41,38 @@ namespace Shared
         long _CreateTime = DCreateTime;
         long _LastUpdateTime = DLastUpdateTime;
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaKhachHang { get { return _MaKhachHang; } set { _MaKhachHang = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(3)]
         public int? MaChanh { get { return _MaChanh; } set { _MaChanh = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(4)]
         public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(5)]
         public bool Xong { get { return _Xong; } set { _Xong = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(6)]
         public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(7)]
         public int TongSoLuong { get { return _TongSoLuong; } set { _TongSoLuong = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(8)]
         public int TenantID { get { return _TenantID; } set { _TenantID = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(9)]
         public long CreateTime { get { return _CreateTime; } set { _CreateTime = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(10)]
         public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
 
+        [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
 
@@ -121,14 +133,10 @@ namespace Shared
         object _MaChanhDataSource;
         object _MaKhoHangDataSource;
 
-        [Newtonsoft.Json.JsonIgnore]
         public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
-        [Newtonsoft.Json.JsonIgnore]
         public object MaChanhDataSource { get { return _MaChanhDataSource; } set { _MaChanhDataSource = value; OnPropertyChanged(); } }
-        [Newtonsoft.Json.JsonIgnore]
         public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
 
-        [Newtonsoft.Json.JsonIgnore]
         public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
