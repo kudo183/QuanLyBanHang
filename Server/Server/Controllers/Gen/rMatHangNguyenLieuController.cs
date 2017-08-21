@@ -13,13 +13,13 @@ namespace Server.Controllers
         public override rMatHangNguyenLieuDto ConvertToDto(rMatHangNguyenLieu entity)
         {
             var dto = new rMatHangNguyenLieuDto()
-			{
-				ID = entity.ID,
-				MaMatHang = entity.MaMatHang,
-				MaNguyenLieu = entity.MaNguyenLieu,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaMatHang = entity.MaMatHang,
+                MaNguyenLieu = entity.MaNguyenLieu,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -31,20 +31,20 @@ namespace Server.Controllers
         {
             var entity = new rMatHangNguyenLieu()
             {
-				ID = dto.ID,
-				MaMatHang = dto.MaMatHang,
-				MaNguyenLieu = dto.MaNguyenLieu,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaMatHang = dto.MaMatHang,
+                MaNguyenLieu = dto.MaNguyenLieu,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rMatHangNguyenLieuController);
         }

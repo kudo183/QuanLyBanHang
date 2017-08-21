@@ -13,13 +13,13 @@ namespace Server.Controllers
         public override rLoaiHangDto ConvertToDto(rLoaiHang entity)
         {
             var dto = new rLoaiHangDto()
-			{
-				ID = entity.ID,
-				TenLoai = entity.TenLoai,
-				HangNhaLam = entity.HangNhaLam,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                TenLoai = entity.TenLoai,
+                HangNhaLam = entity.HangNhaLam,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -31,20 +31,20 @@ namespace Server.Controllers
         {
             var entity = new rLoaiHang()
             {
-				ID = dto.ID,
-				TenLoai = dto.TenLoai,
-				HangNhaLam = dto.HangNhaLam,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                TenLoai = dto.TenLoai,
+                HangNhaLam = dto.HangNhaLam,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rLoaiHangController);
         }

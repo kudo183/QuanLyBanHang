@@ -13,14 +13,14 @@ namespace Server.Controllers
         public override rKhachHangDto ConvertToDto(rKhachHang entity)
         {
             var dto = new rKhachHangDto()
-			{
-				ID = entity.ID,
-				MaDiaDiem = entity.MaDiaDiem,
-				TenKhachHang = entity.TenKhachHang,
-				KhachRieng = entity.KhachRieng,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaDiaDiem = entity.MaDiaDiem,
+                TenKhachHang = entity.TenKhachHang,
+                KhachRieng = entity.KhachRieng,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -32,21 +32,21 @@ namespace Server.Controllers
         {
             var entity = new rKhachHang()
             {
-				ID = dto.ID,
-				MaDiaDiem = dto.MaDiaDiem,
-				TenKhachHang = dto.TenKhachHang,
-				KhachRieng = dto.KhachRieng,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaDiaDiem = dto.MaDiaDiem,
+                TenKhachHang = dto.TenKhachHang,
+                KhachRieng = dto.KhachRieng,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rKhachHangController);
         }

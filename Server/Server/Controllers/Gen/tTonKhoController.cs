@@ -13,16 +13,16 @@ namespace Server.Controllers
         public override tTonKhoDto ConvertToDto(tTonKho entity)
         {
             var dto = new tTonKhoDto()
-			{
-				ID = entity.ID,
-				MaKhoHang = entity.MaKhoHang,
-				MaMatHang = entity.MaMatHang,
-				Ngay = entity.Ngay,
-				SoLuong = entity.SoLuong,
-				SoLuongCu = entity.SoLuongCu,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaKhoHang = entity.MaKhoHang,
+                MaMatHang = entity.MaMatHang,
+                Ngay = entity.Ngay,
+                SoLuong = entity.SoLuong,
+                SoLuongCu = entity.SoLuongCu,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -34,23 +34,23 @@ namespace Server.Controllers
         {
             var entity = new tTonKho()
             {
-				ID = dto.ID,
-				MaKhoHang = dto.MaKhoHang,
-				MaMatHang = dto.MaMatHang,
-				Ngay = dto.Ngay,
-				SoLuong = dto.SoLuong,
-				SoLuongCu = dto.SoLuongCu,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaKhoHang = dto.MaKhoHang,
+                MaMatHang = dto.MaMatHang,
+                Ngay = dto.Ngay,
+                SoLuong = dto.SoLuong,
+                SoLuongCu = dto.SoLuongCu,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tTonKhoController);
         }

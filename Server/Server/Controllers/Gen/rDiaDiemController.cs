@@ -13,13 +13,13 @@ namespace Server.Controllers
         public override rDiaDiemDto ConvertToDto(rDiaDiem entity)
         {
             var dto = new rDiaDiemDto()
-			{
-				ID = entity.ID,
-				MaNuoc = entity.MaNuoc,
-				Tinh = entity.Tinh,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaNuoc = entity.MaNuoc,
+                Tinh = entity.Tinh,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -31,20 +31,20 @@ namespace Server.Controllers
         {
             var entity = new rDiaDiem()
             {
-				ID = dto.ID,
-				MaNuoc = dto.MaNuoc,
-				Tinh = dto.Tinh,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaNuoc = dto.MaNuoc,
+                Tinh = dto.Tinh,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rDiaDiemController);
         }

@@ -13,12 +13,12 @@ namespace Server.Controllers
         public override rNuocDto ConvertToDto(rNuoc entity)
         {
             var dto = new rNuocDto()
-			{
-				ID = entity.ID,
-				TenNuoc = entity.TenNuoc,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                TenNuoc = entity.TenNuoc,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -30,19 +30,19 @@ namespace Server.Controllers
         {
             var entity = new rNuoc()
             {
-				ID = dto.ID,
-				TenNuoc = dto.TenNuoc,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                TenNuoc = dto.TenNuoc,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rNuocController);
         }

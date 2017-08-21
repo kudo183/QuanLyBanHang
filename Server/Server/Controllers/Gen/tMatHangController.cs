@@ -13,17 +13,17 @@ namespace Server.Controllers
         public override tMatHangDto ConvertToDto(tMatHang entity)
         {
             var dto = new tMatHangDto()
-			{
-				ID = entity.ID,
-				MaLoai = entity.MaLoai,
-				TenMatHang = entity.TenMatHang,
-				SoKy = entity.SoKy,
-				SoMet = entity.SoMet,
-				TenMatHangDayDu = entity.TenMatHangDayDu,
-				TenMatHangIn = entity.TenMatHangIn,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaLoai = entity.MaLoai,
+                TenMatHang = entity.TenMatHang,
+                SoKy = entity.SoKy,
+                SoMet = entity.SoMet,
+                TenMatHangDayDu = entity.TenMatHangDayDu,
+                TenMatHangIn = entity.TenMatHangIn,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -35,24 +35,24 @@ namespace Server.Controllers
         {
             var entity = new tMatHang()
             {
-				ID = dto.ID,
-				MaLoai = dto.MaLoai,
-				TenMatHang = dto.TenMatHang,
-				SoKy = dto.SoKy,
-				SoMet = dto.SoMet,
-				TenMatHangDayDu = dto.TenMatHangDayDu,
-				TenMatHangIn = dto.TenMatHangIn,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaLoai = dto.MaLoai,
+                TenMatHang = dto.TenMatHang,
+                SoKy = dto.SoKy,
+                SoMet = dto.SoMet,
+                TenMatHangDayDu = dto.TenMatHangDayDu,
+                TenMatHangIn = dto.TenMatHangIn,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tMatHangController);
         }

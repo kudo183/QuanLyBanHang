@@ -13,12 +13,12 @@ namespace Server.Controllers
         public override rNhaCungCapDto ConvertToDto(rNhaCungCap entity)
         {
             var dto = new rNhaCungCapDto()
-			{
-				ID = entity.ID,
-				TenNhaCungCap = entity.TenNhaCungCap,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                TenNhaCungCap = entity.TenNhaCungCap,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -30,19 +30,19 @@ namespace Server.Controllers
         {
             var entity = new rNhaCungCap()
             {
-				ID = dto.ID,
-				TenNhaCungCap = dto.TenNhaCungCap,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                TenNhaCungCap = dto.TenNhaCungCap,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rNhaCungCapController);
         }

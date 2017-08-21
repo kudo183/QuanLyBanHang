@@ -13,17 +13,17 @@ namespace Server.Controllers
         public override tChuyenHangDto ConvertToDto(tChuyenHang entity)
         {
             var dto = new tChuyenHangDto()
-			{
-				ID = entity.ID,
-				MaNhanVienGiaoHang = entity.MaNhanVienGiaoHang,
-				Ngay = entity.Ngay,
-				Gio = entity.Gio,
-				TongDonHang = entity.TongDonHang,
-				TongSoLuongTheoDonHang = entity.TongSoLuongTheoDonHang,
-				TongSoLuongThucTe = entity.TongSoLuongThucTe,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaNhanVienGiaoHang = entity.MaNhanVienGiaoHang,
+                Ngay = entity.Ngay,
+                Gio = entity.Gio,
+                TongDonHang = entity.TongDonHang,
+                TongSoLuongTheoDonHang = entity.TongSoLuongTheoDonHang,
+                TongSoLuongThucTe = entity.TongSoLuongThucTe,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -35,24 +35,24 @@ namespace Server.Controllers
         {
             var entity = new tChuyenHang()
             {
-				ID = dto.ID,
-				MaNhanVienGiaoHang = dto.MaNhanVienGiaoHang,
-				Ngay = dto.Ngay,
-				Gio = dto.Gio,
-				TongDonHang = dto.TongDonHang,
-				TongSoLuongTheoDonHang = dto.TongSoLuongTheoDonHang,
-				TongSoLuongThucTe = dto.TongSoLuongThucTe,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaNhanVienGiaoHang = dto.MaNhanVienGiaoHang,
+                Ngay = dto.Ngay,
+                Gio = dto.Gio,
+                TongDonHang = dto.TongDonHang,
+                TongSoLuongTheoDonHang = dto.TongSoLuongTheoDonHang,
+                TongSoLuongThucTe = dto.TongSoLuongThucTe,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tChuyenHangController);
         }

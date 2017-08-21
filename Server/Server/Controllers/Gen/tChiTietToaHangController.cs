@@ -13,14 +13,14 @@ namespace Server.Controllers
         public override tChiTietToaHangDto ConvertToDto(tChiTietToaHang entity)
         {
             var dto = new tChiTietToaHangDto()
-			{
-				ID = entity.ID,
-				MaToaHang = entity.MaToaHang,
-				MaChiTietDonHang = entity.MaChiTietDonHang,
-				GiaTien = entity.GiaTien,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaToaHang = entity.MaToaHang,
+                MaChiTietDonHang = entity.MaChiTietDonHang,
+                GiaTien = entity.GiaTien,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -32,21 +32,21 @@ namespace Server.Controllers
         {
             var entity = new tChiTietToaHang()
             {
-				ID = dto.ID,
-				MaToaHang = dto.MaToaHang,
-				MaChiTietDonHang = dto.MaChiTietDonHang,
-				GiaTien = dto.GiaTien,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaToaHang = dto.MaToaHang,
+                MaChiTietDonHang = dto.MaChiTietDonHang,
+                GiaTien = dto.GiaTien,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tChiTietToaHangController);
         }

@@ -13,12 +13,12 @@ namespace Server.Controllers
         public override rPhuongTienDto ConvertToDto(rPhuongTien entity)
         {
             var dto = new rPhuongTienDto()
-			{
-				ID = entity.ID,
-				TenPhuongTien = entity.TenPhuongTien,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                TenPhuongTien = entity.TenPhuongTien,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -30,19 +30,19 @@ namespace Server.Controllers
         {
             var entity = new rPhuongTien()
             {
-				ID = dto.ID,
-				TenPhuongTien = dto.TenPhuongTien,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                TenPhuongTien = dto.TenPhuongTien,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rPhuongTienController);
         }

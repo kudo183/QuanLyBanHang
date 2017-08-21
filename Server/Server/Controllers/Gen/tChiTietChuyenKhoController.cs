@@ -13,14 +13,14 @@ namespace Server.Controllers
         public override tChiTietChuyenKhoDto ConvertToDto(tChiTietChuyenKho entity)
         {
             var dto = new tChiTietChuyenKhoDto()
-			{
-				ID = entity.ID,
-				MaChuyenKho = entity.MaChuyenKho,
-				MaMatHang = entity.MaMatHang,
-				SoLuong = entity.SoLuong,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaChuyenKho = entity.MaChuyenKho,
+                MaMatHang = entity.MaMatHang,
+                SoLuong = entity.SoLuong,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -32,21 +32,21 @@ namespace Server.Controllers
         {
             var entity = new tChiTietChuyenKho()
             {
-				ID = dto.ID,
-				MaChuyenKho = dto.MaChuyenKho,
-				MaMatHang = dto.MaMatHang,
-				SoLuong = dto.SoLuong,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaChuyenKho = dto.MaChuyenKho,
+                MaMatHang = dto.MaMatHang,
+                SoLuong = dto.SoLuong,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tChiTietChuyenKhoController);
         }

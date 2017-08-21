@@ -13,15 +13,15 @@ namespace Server.Controllers
         public override tChiTietChuyenHangDonHangDto ConvertToDto(tChiTietChuyenHangDonHang entity)
         {
             var dto = new tChiTietChuyenHangDonHangDto()
-			{
-				ID = entity.ID,
-				MaChuyenHangDonHang = entity.MaChuyenHangDonHang,
-				MaChiTietDonHang = entity.MaChiTietDonHang,
-				SoLuong = entity.SoLuong,
-				SoLuongTheoDonHang = entity.SoLuongTheoDonHang,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaChuyenHangDonHang = entity.MaChuyenHangDonHang,
+                MaChiTietDonHang = entity.MaChiTietDonHang,
+                SoLuong = entity.SoLuong,
+                SoLuongTheoDonHang = entity.SoLuongTheoDonHang,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -33,22 +33,22 @@ namespace Server.Controllers
         {
             var entity = new tChiTietChuyenHangDonHang()
             {
-				ID = dto.ID,
-				MaChuyenHangDonHang = dto.MaChuyenHangDonHang,
-				MaChiTietDonHang = dto.MaChiTietDonHang,
-				SoLuong = dto.SoLuong,
-				SoLuongTheoDonHang = dto.SoLuongTheoDonHang,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaChuyenHangDonHang = dto.MaChuyenHangDonHang,
+                MaChiTietDonHang = dto.MaChiTietDonHang,
+                SoLuong = dto.SoLuong,
+                SoLuongTheoDonHang = dto.SoLuongTheoDonHang,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tChiTietChuyenHangDonHangController);
         }

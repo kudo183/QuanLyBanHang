@@ -13,13 +13,13 @@ namespace Server.Controllers
         public override ThamSoNgayDto ConvertToDto(ThamSoNgay entity)
         {
             var dto = new ThamSoNgayDto()
-			{
-				ID = entity.ID,
-				Ten = entity.Ten,
-				GiaTri = entity.GiaTri,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                Ten = entity.Ten,
+                GiaTri = entity.GiaTri,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -31,20 +31,20 @@ namespace Server.Controllers
         {
             var entity = new ThamSoNgay()
             {
-				ID = dto.ID,
-				Ten = dto.Ten,
-				GiaTri = dto.GiaTri,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                Ten = dto.Ten,
+                GiaTri = dto.GiaTri,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(ThamSoNgayController);
         }

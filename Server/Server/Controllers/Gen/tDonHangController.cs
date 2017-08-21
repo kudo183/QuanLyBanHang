@@ -13,17 +13,17 @@ namespace Server.Controllers
         public override tDonHangDto ConvertToDto(tDonHang entity)
         {
             var dto = new tDonHangDto()
-			{
-				ID = entity.ID,
-				MaKhachHang = entity.MaKhachHang,
-				MaChanh = entity.MaChanh,
-				Ngay = entity.Ngay,
-				Xong = entity.Xong,
-				MaKhoHang = entity.MaKhoHang,
-				TongSoLuong = entity.TongSoLuong,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                MaKhachHang = entity.MaKhachHang,
+                MaChanh = entity.MaChanh,
+                Ngay = entity.Ngay,
+                Xong = entity.Xong,
+                MaKhoHang = entity.MaKhoHang,
+                TongSoLuong = entity.TongSoLuong,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -35,24 +35,24 @@ namespace Server.Controllers
         {
             var entity = new tDonHang()
             {
-				ID = dto.ID,
-				MaKhachHang = dto.MaKhachHang,
-				MaChanh = dto.MaChanh,
-				Ngay = dto.Ngay,
-				Xong = dto.Xong,
-				MaKhoHang = dto.MaKhoHang,
-				TongSoLuong = dto.TongSoLuong,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                MaKhachHang = dto.MaKhachHang,
+                MaChanh = dto.MaChanh,
+                Ngay = dto.Ngay,
+                Xong = dto.Xong,
+                MaKhoHang = dto.MaKhoHang,
+                TongSoLuong = dto.TongSoLuong,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(tDonHangController);
         }

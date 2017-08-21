@@ -13,12 +13,12 @@ namespace Server.Controllers
         public override rLoaiChiPhiDto ConvertToDto(rLoaiChiPhi entity)
         {
             var dto = new rLoaiChiPhiDto()
-			{
-				ID = entity.ID,
-				TenLoaiChiPhi = entity.TenLoaiChiPhi,
-				TenantID = entity.TenantID,
-				CreateTime = entity.CreateTime,
-				LastUpdateTime = entity.LastUpdateTime
+            {
+                ID = entity.ID,
+                TenLoaiChiPhi = entity.TenLoaiChiPhi,
+                TenantID = entity.TenantID,
+                CreateTime = entity.CreateTime,
+                LastUpdateTime = entity.LastUpdateTime
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -30,19 +30,19 @@ namespace Server.Controllers
         {
             var entity = new rLoaiChiPhi()
             {
-				ID = dto.ID,
-				TenLoaiChiPhi = dto.TenLoaiChiPhi,
-				TenantID = dto.TenantID,
-				CreateTime = dto.CreateTime,
-				LastUpdateTime = dto.LastUpdateTime
-			};
+                ID = dto.ID,
+                TenLoaiChiPhi = dto.TenLoaiChiPhi,
+                TenantID = dto.TenantID,
+                CreateTime = dto.CreateTime,
+                LastUpdateTime = dto.LastUpdateTime
+            };
 
             ConvertToEntityPartial(ref entity, dto);
 
             return entity;
         }
-		
-		public override string GetControllerName()
+
+        public override string GetControllerName()
         {
             return nameof(rLoaiChiPhiController);
         }
