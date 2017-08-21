@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(rKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(rKhachHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaDiaDiemFilter;
         HeaderFilterBaseModel _TenKhachHangFilter;
         HeaderFilterBaseModel _KhachRiengFilter;
@@ -24,7 +24,7 @@ namespace Client.ViewModel
 
         public rKhachHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.rKhachHang_Ma, nameof(rKhachHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rKhachHang_ID, nameof(rKhachHangDto.ID), typeof(int));
             _MaDiaDiemFilter = new HeaderComboBoxFilterModel(
                 TextManager.rKhachHang_MaDiaDiem, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(rKhachHangDto.MaDiaDiem),
@@ -46,7 +46,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaDiaDiemFilter);
             AddHeaderFilter(_TenKhachHangFilter);
             AddHeaderFilter(_KhachRiengFilter);
@@ -71,9 +71,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(rKhachHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaDiaDiemFilter.FilterValue != null)
             {

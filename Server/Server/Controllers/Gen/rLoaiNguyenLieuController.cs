@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rLoaiNguyenLieuDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenLoai = entity.TenLoai,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rLoaiNguyenLieu()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenLoai = dto.TenLoai,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

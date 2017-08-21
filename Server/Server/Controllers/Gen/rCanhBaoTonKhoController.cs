@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rCanhBaoTonKhoDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaMatHang = entity.MaMatHang,
 				MaKhoHang = entity.MaKhoHang,
 				TonCaoNhat = entity.TonCaoNhat,
@@ -33,7 +33,7 @@ namespace Server.Controllers
         {
             var entity = new rCanhBaoTonKho()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaMatHang = dto.MaMatHang,
 				MaKhoHang = dto.MaKhoHang,
 				TonCaoNhat = dto.TonCaoNhat,

@@ -90,7 +90,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rBaiXe");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -108,7 +108,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rCanhBaoTonKho");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -135,7 +135,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rChanh");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -159,7 +159,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rDiaDiem");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -183,7 +183,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhachHang");
 
                 entity.HasIndex(e => e.TenKhachHang)
@@ -213,7 +213,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhachHangChanh");
 
                 entity.Property(e => e.LaMacDinh).HasDefaultValueSql("(0)");
@@ -242,7 +242,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhoHang");
 
                 entity.Property(e => e.TrangThai).HasDefaultValueSql("(1)");
@@ -262,7 +262,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rLoaiChiPhi");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -280,7 +280,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rProductType");
 
                 entity.Property(e => e.HangNhaLam).HasDefaultValueSql("(0)");
@@ -300,7 +300,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rLoaiNguyenLieu");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -318,7 +318,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rMatHangNguyenLieu");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -345,7 +345,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rNuoc");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -363,7 +363,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rNguyenLieu");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -384,7 +384,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhaCungCap");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -402,7 +402,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhanVienGiaoHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -426,7 +426,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_LoaiPhuongTien");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -444,7 +444,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tCongNoKhachHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -465,7 +465,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ChiPhiNhanVienGiaoHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -492,7 +492,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
                 entity.Property(e => e.SoLuongTheoDonHang).HasDefaultValueSql("(0)");
@@ -521,7 +521,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietChuyenKho");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -548,7 +548,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietDonHang");
 
                 entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
@@ -577,7 +577,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhapMatHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -604,7 +604,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietToaHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -631,7 +631,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ChuyenHang");
 
                 entity.Property(e => e.Gio).HasDefaultValueSql("getdate()");
@@ -661,7 +661,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChuyenHangDonHang");
 
                 entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
@@ -692,7 +692,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChuyenKho");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -725,7 +725,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_DonHang");
 
                 entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
@@ -764,7 +764,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tGiamTruKhachHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -788,7 +788,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_Product");
 
                 entity.Property(e => e.SoKy).HasDefaultValueSql("(0)");
@@ -826,7 +826,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tNhanTienKhachHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -847,7 +847,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tNhapHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -880,7 +880,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhapNguyenLieu");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -907,7 +907,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tPhuThuKhachHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -931,7 +931,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tToaHang");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -952,7 +952,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tTonKho");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
@@ -979,7 +979,7 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ThamSoNgay");
 
                 entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");

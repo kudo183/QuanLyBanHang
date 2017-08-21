@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tChiTietNhapHangDto dto);
         partial void ProcessNewAddedDtoPartial(tChiTietNhapHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNhapHangFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _SoLuongFilter;
@@ -24,7 +24,7 @@ namespace Client.ViewModel
 
         public tChiTietNhapHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietNhapHang_Ma, nameof(tChiTietNhapHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChiTietNhapHang_ID, nameof(tChiTietNhapHangDto.ID), typeof(int));
             _MaNhapHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietNhapHang_MaNhapHang, nameof(tChiTietNhapHangDto.MaNhapHang), typeof(int), new View.tNhapHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.tChiTietNhapHang_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -46,7 +46,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaNhapHangFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_SoLuongFilter);
@@ -71,9 +71,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tChiTietNhapHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNhapHangFilter.FilterValue != null)
             {

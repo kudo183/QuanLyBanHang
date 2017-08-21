@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tChuyenHangDonHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaChuyenHang;
         public static int DMaDonHang;
         public static int DTongSoLuongTheoDonHang;
@@ -17,7 +17,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaChuyenHang;
         int oMaDonHang;
         int oTongSoLuongTheoDonHang;
@@ -26,7 +26,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaChuyenHang = DMaChuyenHang;
         int _MaDonHang = DMaDonHang;
         int _TongSoLuongTheoDonHang = DTongSoLuongTheoDonHang;
@@ -37,7 +37,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaChuyenHang { get { return _MaChuyenHang; } set { _MaChuyenHang = value; OnPropertyChanged(); } }
@@ -66,7 +66,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaChuyenHang = MaChuyenHang;
             oMaDonHang = MaDonHang;
             oTongSoLuongTheoDonHang = TongSoLuongTheoDonHang;
@@ -84,7 +84,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaChuyenHang = dto.MaChuyenHang;
             MaDonHang = dto.MaDonHang;
             TongSoLuongTheoDonHang = dto.TongSoLuongTheoDonHang;
@@ -97,7 +97,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaChuyenHang != MaChuyenHang) ||
             (oMaDonHang != MaDonHang) ||
             (oTongSoLuongTheoDonHang != TongSoLuongTheoDonHang) ||
@@ -111,8 +111,6 @@ namespace Shared
         public tDonHangDto MaDonHangNavigation { get; set; }
 
 
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

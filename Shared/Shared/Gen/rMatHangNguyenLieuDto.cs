@@ -8,21 +8,21 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rMatHangNguyenLieuDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaMatHang;
         public static int DMaNguyenLieu;
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaMatHang;
         int oMaNguyenLieu;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaMatHang = DMaMatHang;
         int _MaNguyenLieu = DMaNguyenLieu;
         int _TenantID = DTenantID;
@@ -31,7 +31,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
@@ -54,7 +54,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaMatHang = MaMatHang;
             oMaNguyenLieu = MaNguyenLieu;
             oTenantID = TenantID;
@@ -70,7 +70,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaMatHang = dto.MaMatHang;
             MaNguyenLieu = dto.MaNguyenLieu;
             TenantID = dto.TenantID;
@@ -81,7 +81,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaMatHang != MaMatHang) ||
             (oMaNguyenLieu != MaNguyenLieu) ||
             (oTenantID != TenantID) ||
@@ -97,8 +97,6 @@ namespace Shared
 
         public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { _MaMatHangDataSource = value; OnPropertyChanged(); } }
         public object MaNguyenLieuDataSource { get { return _MaNguyenLieuDataSource; } set { _MaNguyenLieuDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

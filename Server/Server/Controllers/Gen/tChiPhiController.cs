@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new tChiPhiDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaNhanVienGiaoHang = entity.MaNhanVienGiaoHang,
 				MaLoaiChiPhi = entity.MaLoaiChiPhi,
 				SoTien = entity.SoTien,
@@ -34,7 +34,7 @@ namespace Server.Controllers
         {
             var entity = new tChiPhi()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaNhanVienGiaoHang = dto.MaNhanVienGiaoHang,
 				MaLoaiChiPhi = dto.MaLoaiChiPhi,
 				SoTien = dto.SoTien,

@@ -33,10 +33,10 @@ namespace Client.ViewModel
 
         protected override void AfterLoad()
         {
-            chuyenHangDonHangs = DataService.GetByListInt<tChuyenHangDonHangDto>(nameof(tChuyenHangDonHangDto.Ma), Entities.Select(p => p.MaChuyenHangDonHang).ToList()).ToDictionary(p => p.ID);
-            chuyenHangs = DataService.GetByListInt<tChuyenHangDto>(nameof(tChuyenHangDto.Ma), chuyenHangDonHangs.Select(p => p.Value.MaChuyenHang).ToList()).ToDictionary(p => p.ID);
-            chiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto>(nameof(tChiTietDonHangDto.Ma), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
-            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(tDonHangDto.Ma), chuyenHangDonHangs.Select(p => p.Value.MaDonHang).Union(chiTietDonHangs.Select(p => p.Value.MaDonHang)).ToList()).ToDictionary(p => p.ID);
+            chuyenHangDonHangs = DataService.GetByListInt<tChuyenHangDonHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaChuyenHangDonHang).ToList()).ToDictionary(p => p.ID);
+            chuyenHangs = DataService.GetByListInt<tChuyenHangDto>(nameof(IDto.ID), chuyenHangDonHangs.Select(p => p.Value.MaChuyenHang).ToList()).ToDictionary(p => p.ID);
+            chiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
+            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(IDto.ID), chuyenHangDonHangs.Select(p => p.Value.MaDonHang).Union(chiTietDonHangs.Select(p => p.Value.MaDonHang)).ToList()).ToDictionary(p => p.ID);
 
             foreach (var item in chuyenHangDonHangs)
             {

@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new ThamSoNgayDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				Ten = entity.Ten,
 				GiaTri = entity.GiaTri,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new ThamSoNgay()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				Ten = dto.Ten,
 				GiaTri = dto.GiaTri,
 				TenantID = dto.TenantID,

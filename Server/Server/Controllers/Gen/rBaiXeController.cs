@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rBaiXeDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				DiaDiemBaiXe = entity.DiaDiemBaiXe,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rBaiXe()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				DiaDiemBaiXe = dto.DiaDiemBaiXe,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

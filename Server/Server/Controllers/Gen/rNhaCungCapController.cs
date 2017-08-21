@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rNhaCungCapDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenNhaCungCap = entity.TenNhaCungCap,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rNhaCungCap()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenNhaCungCap = dto.TenNhaCungCap,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

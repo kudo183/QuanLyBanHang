@@ -1,4 +1,5 @@
-﻿using huypq.SmtWpfClient;
+﻿using huypq.SmtShared;
+using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Client.ViewModel
 
         protected override void AfterLoad()
         {
-            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(tDonHangDto.Ma), Entities.Select(p => p.MaDonHang).ToList()).ToDictionary(p => p.ID);
+            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList()).ToDictionary(p => p.ID);
 
             foreach (var dto in Entities)
             {

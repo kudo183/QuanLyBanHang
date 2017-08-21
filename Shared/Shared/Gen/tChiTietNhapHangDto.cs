@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tChiTietNhapHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaNhapHang;
         public static int DMaMatHang;
         public static int DSoLuong;
@@ -16,7 +16,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaNhapHang;
         int oMaMatHang;
         int oSoLuong;
@@ -24,7 +24,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaNhapHang = DMaNhapHang;
         int _MaMatHang = DMaMatHang;
         int _SoLuong = DSoLuong;
@@ -34,7 +34,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaNhapHang { get { return _MaNhapHang; } set { _MaNhapHang = value; OnPropertyChanged(); } }
@@ -60,7 +60,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaNhapHang = MaNhapHang;
             oMaMatHang = MaMatHang;
             oSoLuong = SoLuong;
@@ -77,7 +77,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaNhapHang = dto.MaNhapHang;
             MaMatHang = dto.MaMatHang;
             SoLuong = dto.SoLuong;
@@ -89,7 +89,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaNhapHang != MaNhapHang) ||
             (oMaMatHang != MaMatHang) ||
             (oSoLuong != SoLuong) ||
@@ -104,8 +104,6 @@ namespace Shared
         object _MaMatHangDataSource;
 
         public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { _MaMatHangDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

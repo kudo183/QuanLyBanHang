@@ -8,21 +8,21 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tToaHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static System.DateTime DNgay;
         public static int DMaKhachHang;
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         System.DateTime oNgay;
         int oMaKhachHang;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         System.DateTime _Ngay = DNgay;
         int _MaKhachHang = DMaKhachHang;
         int _TenantID = DTenantID;
@@ -31,7 +31,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
@@ -54,7 +54,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oNgay = Ngay;
             oMaKhachHang = MaKhachHang;
             oTenantID = TenantID;
@@ -70,7 +70,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             Ngay = dto.Ngay;
             MaKhachHang = dto.MaKhachHang;
             TenantID = dto.TenantID;
@@ -81,7 +81,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oNgay != Ngay) ||
             (oMaKhachHang != MaKhachHang) ||
             (oTenantID != TenantID) ||
@@ -94,8 +94,6 @@ namespace Shared
         object _MaKhachHangDataSource;
 
         public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

@@ -8,21 +8,21 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rDiaDiemDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaNuoc;
         public static string DTinh;
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaNuoc;
         string oTinh;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaNuoc = DMaNuoc;
         string _Tinh = DTinh;
         int _TenantID = DTenantID;
@@ -31,7 +31,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaNuoc { get { return _MaNuoc; } set { _MaNuoc = value; OnPropertyChanged(); } }
@@ -54,7 +54,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaNuoc = MaNuoc;
             oTinh = Tinh;
             oTenantID = TenantID;
@@ -70,7 +70,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaNuoc = dto.MaNuoc;
             Tinh = dto.Tinh;
             TenantID = dto.TenantID;
@@ -81,7 +81,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaNuoc != MaNuoc) ||
             (oTinh != Tinh) ||
             (oTenantID != TenantID) ||
@@ -94,8 +94,6 @@ namespace Shared
         object _MaNuocDataSource;
 
         public object MaNuocDataSource { get { return _MaNuocDataSource; } set { _MaNuocDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tChiTietToaHangDto dto);
         partial void ProcessNewAddedDtoPartial(tChiTietToaHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaToaHangFilter;
         HeaderFilterBaseModel _MaChiTietDonHangFilter;
         HeaderFilterBaseModel _GiaTienFilter;
@@ -24,7 +24,7 @@ namespace Client.ViewModel
 
         public tChiTietToaHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_Ma, nameof(tChiTietToaHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_ID, nameof(tChiTietToaHangDto.ID), typeof(int));
             _MaToaHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietToaHang_MaToaHang, nameof(tChiTietToaHangDto.MaToaHang), typeof(int), new View.tToaHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietToaHang_MaChiTietDonHang, nameof(tChiTietToaHangDto.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _GiaTienFilter = new HeaderTextFilterModel(TextManager.tChiTietToaHang_GiaTien, nameof(tChiTietToaHangDto.GiaTien), typeof(int));
@@ -35,7 +35,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaToaHangFilter);
             AddHeaderFilter(_MaChiTietDonHangFilter);
             AddHeaderFilter(_GiaTienFilter);
@@ -58,9 +58,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tChiTietToaHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaToaHangFilter.FilterValue != null)
             {

@@ -48,11 +48,11 @@ namespace Server
                 ));
             }
 
-            SmtSettings.Instance.DefaultOrderOption = new huypq.QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = "Ma",
-                IsAscending = true
-            };
+            //SmtSettings.Instance.DefaultOrderOption = new huypq.QueryBuilder.OrderByExpression.OrderOption()
+            //{
+            //    PropertyPath = "Ma",
+            //    IsAscending = true
+            //};
             //app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod());
             app.UseSmt<SqlDbContext, SmtTenant, SmtUser, SmtUserClaim>("Server");
         }

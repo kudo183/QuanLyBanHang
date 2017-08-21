@@ -15,15 +15,12 @@ namespace Server.Entities
             tTonKhoMaKhoHangNavigation = new HashSet<tTonKho>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public string TenKho { get; set; }
         public bool TrangThai { get; set; }
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
 		
 		public ICollection<rCanhBaoTonKho> rCanhBaoTonKhoMaKhoHangNavigation { get; set; }

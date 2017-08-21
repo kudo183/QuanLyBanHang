@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tChiTietToaHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaToaHang;
         public static int DMaChiTietDonHang;
         public static int DGiaTien;
@@ -16,7 +16,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaToaHang;
         int oMaChiTietDonHang;
         int oGiaTien;
@@ -24,7 +24,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaToaHang = DMaToaHang;
         int _MaChiTietDonHang = DMaChiTietDonHang;
         int _GiaTien = DGiaTien;
@@ -34,7 +34,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaToaHang { get { return _MaToaHang; } set { _MaToaHang = value; OnPropertyChanged(); } }
@@ -60,7 +60,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaToaHang = MaToaHang;
             oMaChiTietDonHang = MaChiTietDonHang;
             oGiaTien = GiaTien;
@@ -77,7 +77,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaToaHang = dto.MaToaHang;
             MaChiTietDonHang = dto.MaChiTietDonHang;
             GiaTien = dto.GiaTien;
@@ -89,7 +89,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaToaHang != MaToaHang) ||
             (oMaChiTietDonHang != MaChiTietDonHang) ||
             (oGiaTien != GiaTien) ||
@@ -102,8 +102,6 @@ namespace Shared
         public tChiTietDonHangDto MaChiTietDonHangNavigation { get; set; }
 
 
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

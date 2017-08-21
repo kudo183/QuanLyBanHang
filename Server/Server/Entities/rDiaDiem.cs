@@ -10,15 +10,12 @@ namespace Server.Entities
             rKhachHangMaDiaDiemNavigation = new HashSet<rKhachHang>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaNuoc { get; set; }
         public string Tinh { get; set; }
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public rNuoc MaNuocNavigation { get; set; }
 		

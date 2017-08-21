@@ -8,21 +8,21 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rNguyenLieuDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaLoaiNguyenLieu;
         public static int DDuongKinh;
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaLoaiNguyenLieu;
         int oDuongKinh;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaLoaiNguyenLieu = DMaLoaiNguyenLieu;
         int _DuongKinh = DDuongKinh;
         int _TenantID = DTenantID;
@@ -31,7 +31,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaLoaiNguyenLieu { get { return _MaLoaiNguyenLieu; } set { _MaLoaiNguyenLieu = value; OnPropertyChanged(); } }
@@ -54,7 +54,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaLoaiNguyenLieu = MaLoaiNguyenLieu;
             oDuongKinh = DuongKinh;
             oTenantID = TenantID;
@@ -70,7 +70,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaLoaiNguyenLieu = dto.MaLoaiNguyenLieu;
             DuongKinh = dto.DuongKinh;
             TenantID = dto.TenantID;
@@ -81,7 +81,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaLoaiNguyenLieu != MaLoaiNguyenLieu) ||
             (oDuongKinh != DuongKinh) ||
             (oTenantID != TenantID) ||
@@ -94,8 +94,6 @@ namespace Shared
         object _MaLoaiNguyenLieuDataSource;
 
         public object MaLoaiNguyenLieuDataSource { get { return _MaLoaiNguyenLieuDataSource; } set { _MaLoaiNguyenLieuDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

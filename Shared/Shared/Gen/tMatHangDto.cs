@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tMatHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaLoai;
         public static string DTenMatHang;
         public static int DSoKy;
@@ -19,7 +19,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaLoai;
         string oTenMatHang;
         int oSoKy;
@@ -30,7 +30,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaLoai = DMaLoai;
         string _TenMatHang = DTenMatHang;
         int _SoKy = DSoKy;
@@ -43,7 +43,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
@@ -78,7 +78,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaLoai = MaLoai;
             oTenMatHang = TenMatHang;
             oSoKy = SoKy;
@@ -98,7 +98,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaLoai = dto.MaLoai;
             TenMatHang = dto.TenMatHang;
             SoKy = dto.SoKy;
@@ -113,7 +113,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaLoai != MaLoai) ||
             (oTenMatHang != TenMatHang) ||
             (oSoKy != SoKy) ||
@@ -130,8 +130,6 @@ namespace Shared
         object _MaLoaiDataSource;
 
         public object MaLoaiDataSource { get { return _MaLoaiDataSource; } set { _MaLoaiDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rLoaiHangDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenLoai = entity.TenLoai,
 				HangNhaLam = entity.HangNhaLam,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new rLoaiHang()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenLoai = dto.TenLoai,
 				HangNhaLam = dto.HangNhaLam,
 				TenantID = dto.TenantID,

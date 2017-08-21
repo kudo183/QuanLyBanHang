@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rNguyenLieuDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaLoaiNguyenLieu = entity.MaLoaiNguyenLieu,
 				DuongKinh = entity.DuongKinh,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new rNguyenLieu()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaLoaiNguyenLieu = dto.MaLoaiNguyenLieu,
 				DuongKinh = dto.DuongKinh,
 				TenantID = dto.TenantID,

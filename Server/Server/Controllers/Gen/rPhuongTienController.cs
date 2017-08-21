@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rPhuongTienDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenPhuongTien = entity.TenPhuongTien,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rPhuongTien()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenPhuongTien = dto.TenPhuongTien,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

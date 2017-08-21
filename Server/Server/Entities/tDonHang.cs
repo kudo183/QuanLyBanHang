@@ -11,7 +11,7 @@ namespace Server.Entities
             tChuyenHangDonHangMaDonHangNavigation = new HashSet<tChuyenHangDonHang>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaKhachHang { get; set; }
         public int? MaChanh { get; set; }
         public System.DateTime Ngay { get; set; }
@@ -21,9 +21,6 @@ namespace Server.Entities
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public rKhachHang MaKhachHangNavigation { get; set; }
         public rChanh MaChanhNavigation { get; set; }

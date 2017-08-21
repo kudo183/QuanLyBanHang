@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tNhapNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(tNhapNguyenLieuDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _MaNguyenLieuFilter;
         HeaderFilterBaseModel _MaNhaCungCapFilter;
@@ -25,7 +25,7 @@ namespace Client.ViewModel
 
         public tNhapNguyenLieuViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tNhapNguyenLieu_Ma, nameof(tNhapNguyenLieuDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tNhapNguyenLieu_ID, nameof(tNhapNguyenLieuDto.ID), typeof(int));
             _NgayFilter = new HeaderDateFilterModel(TextManager.tNhapNguyenLieu_Ngay, nameof(tNhapNguyenLieuDto.Ngay), typeof(System.DateTime));
             _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.tNhapNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -60,7 +60,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_MaNguyenLieuFilter);
             AddHeaderFilter(_MaNhaCungCapFilter);
@@ -88,9 +88,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tNhapNguyenLieuDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_NgayFilter.FilterValue != null)
             {

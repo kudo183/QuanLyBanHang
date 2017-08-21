@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(rLoaiHangDto dto);
         partial void ProcessNewAddedDtoPartial(rLoaiHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenLoaiFilter;
         HeaderFilterBaseModel _HangNhaLamFilter;
         HeaderFilterBaseModel _TenantIDFilter;
@@ -23,7 +23,7 @@ namespace Client.ViewModel
 
         public rLoaiHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_Ma, nameof(rLoaiHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_ID, nameof(rLoaiHangDto.ID), typeof(int));
             _TenLoaiFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenLoai, nameof(rLoaiHangDto.TenLoai), typeof(string));
             _HangNhaLamFilter = new HeaderCheckFilterModel(TextManager.rLoaiHang_HangNhaLam, nameof(rLoaiHangDto.HangNhaLam), typeof(bool));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenantID, nameof(rLoaiHangDto.TenantID), typeof(int));
@@ -33,7 +33,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenLoaiFilter);
             AddHeaderFilter(_HangNhaLamFilter);
             AddHeaderFilter(_TenantIDFilter);
@@ -55,9 +55,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(rLoaiHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenLoaiFilter.FilterValue != null)
             {

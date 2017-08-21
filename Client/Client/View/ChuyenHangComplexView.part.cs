@@ -39,15 +39,15 @@ namespace Client.View
                     var chiTietDonHangsChuaXong = viewModel.DataService.Get<tChiTietDonHangDto>(qe).Items;
 
                     var ctchdh = viewModel.DataService.GetByListInt<tChiTietChuyenHangDonHangDto>(
-                        nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), chiTietDonHangsChuaXong.Select(p => p.Ma).ToList());
+                        nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), chiTietDonHangsChuaXong.Select(p => p.ID).ToList());
 
                     foreach (var ctdh in chiTietDonHangsChuaXong)
                     {
-                        var soLuongConLai = ctdh.SoLuong - ctchdh.Where(p => p.MaChiTietDonHang == ctdh.Ma).Sum(p => p.SoLuong);
+                        var soLuongConLai = ctdh.SoLuong - ctchdh.Where(p => p.MaChiTietDonHang == ctdh.ID).Sum(p => p.SoLuong);
                         var ct = new tChiTietChuyenHangDonHangDto
                         {
-                            MaChiTietDonHang = ctdh.Ma,
-                            MaChuyenHangDonHang = chdh.Ma,
+                            MaChiTietDonHang = ctdh.ID,
+                            MaChuyenHangDonHang = chdh.ID,
                             SoLuong = soLuongConLai
                         };
 

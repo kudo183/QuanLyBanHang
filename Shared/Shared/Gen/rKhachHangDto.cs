@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rKhachHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaDiaDiem;
         public static string DTenKhachHang;
         public static bool DKhachRieng;
@@ -16,7 +16,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaDiaDiem;
         string oTenKhachHang;
         bool oKhachRieng;
@@ -24,7 +24,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaDiaDiem = DMaDiaDiem;
         string _TenKhachHang = DTenKhachHang;
         bool _KhachRieng = DKhachRieng;
@@ -34,7 +34,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaDiaDiem { get { return _MaDiaDiem; } set { _MaDiaDiem = value; OnPropertyChanged(); } }
@@ -60,7 +60,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaDiaDiem = MaDiaDiem;
             oTenKhachHang = TenKhachHang;
             oKhachRieng = KhachRieng;
@@ -77,7 +77,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaDiaDiem = dto.MaDiaDiem;
             TenKhachHang = dto.TenKhachHang;
             KhachRieng = dto.KhachRieng;
@@ -89,7 +89,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaDiaDiem != MaDiaDiem) ||
             (oTenKhachHang != TenKhachHang) ||
             (oKhachRieng != KhachRieng) ||
@@ -103,8 +103,6 @@ namespace Shared
         object _MaDiaDiemDataSource;
 
         public object MaDiaDiemDataSource { get { return _MaDiaDiemDataSource; } set { _MaDiaDiemDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

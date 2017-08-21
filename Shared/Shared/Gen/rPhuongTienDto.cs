@@ -8,19 +8,19 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class rPhuongTienDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static string DTenPhuongTien;
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         string oTenPhuongTien;
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         string _TenPhuongTien = DTenPhuongTien;
         int _TenantID = DTenantID;
         long _CreateTime = DCreateTime;
@@ -28,7 +28,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public string TenPhuongTien { get { return _TenPhuongTien; } set { _TenPhuongTien = value; OnPropertyChanged(); } }
@@ -48,7 +48,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oTenPhuongTien = TenPhuongTien;
             oTenantID = TenantID;
             oCreateTime = CreateTime;
@@ -63,7 +63,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             TenPhuongTien = dto.TenPhuongTien;
             TenantID = dto.TenantID;
             CreateTime = dto.CreateTime;
@@ -73,7 +73,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oTenPhuongTien != TenPhuongTien) ||
             (oTenantID != TenantID) ||
             (oCreateTime != CreateTime) ||
@@ -82,8 +82,6 @@ namespace Shared
 
 
 
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

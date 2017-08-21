@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rNuocDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenNuoc = entity.TenNuoc,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rNuoc()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenNuoc = dto.TenNuoc,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

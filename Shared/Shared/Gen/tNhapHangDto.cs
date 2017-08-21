@@ -8,7 +8,7 @@ namespace Shared
     [ProtoBuf.ProtoContract]
     public partial class tNhapHangDto : IDto, INotifyPropertyChanged
     {
-        public static int DMa;
+        public static int DID;
         public static int DMaNhanVien;
         public static int DMaKhoHang;
         public static int DMaNhaCungCap;
@@ -17,7 +17,7 @@ namespace Shared
         public static long DCreateTime;
         public static long DLastUpdateTime;
 
-        int oMa;
+        int oID;
         int oMaNhanVien;
         int oMaKhoHang;
         int oMaNhaCungCap;
@@ -26,7 +26,7 @@ namespace Shared
         long oCreateTime;
         long oLastUpdateTime;
 
-        int _Ma = DMa;
+        int _ID = DID;
         int _MaNhanVien = DMaNhanVien;
         int _MaKhoHang = DMaKhoHang;
         int _MaNhaCungCap = DMaNhaCungCap;
@@ -37,7 +37,7 @@ namespace Shared
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
         public int MaNhanVien { get { return _MaNhanVien; } set { _MaNhanVien = value; OnPropertyChanged(); } }
@@ -66,7 +66,7 @@ namespace Shared
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oID = ID;
             oMaNhanVien = MaNhanVien;
             oMaKhoHang = MaKhoHang;
             oMaNhaCungCap = MaNhaCungCap;
@@ -84,7 +84,7 @@ namespace Shared
                 return;
             }
 
-            Ma = dto.Ma;
+            ID = dto.ID;
             MaNhanVien = dto.MaNhanVien;
             MaKhoHang = dto.MaKhoHang;
             MaNhaCungCap = dto.MaNhaCungCap;
@@ -97,7 +97,7 @@ namespace Shared
         public bool HasChange()
         {
             return
-            (oMa != Ma) ||
+            (oID != ID) ||
             (oMaNhanVien != MaNhanVien) ||
             (oMaKhoHang != MaKhoHang) ||
             (oMaNhaCungCap != MaNhaCungCap) ||
@@ -118,8 +118,6 @@ namespace Shared
         public object MaNhanVienDataSource { get { return _MaNhanVienDataSource; } set { _MaNhanVienDataSource = value; OnPropertyChanged(); } }
         public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
         public object MaNhaCungCapDataSource { get { return _MaNhaCungCapDataSource; } set { _MaNhaCungCapDataSource = value; OnPropertyChanged(); } }
-
-        public int ID { get { return Ma; } set { Ma = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string name = null)

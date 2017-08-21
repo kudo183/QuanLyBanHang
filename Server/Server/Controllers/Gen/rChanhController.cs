@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rChanhDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaBaiXe = entity.MaBaiXe,
 				TenChanh = entity.TenChanh,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new rChanh()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaBaiXe = dto.MaBaiXe,
 				TenChanh = dto.TenChanh,
 				TenantID = dto.TenantID,

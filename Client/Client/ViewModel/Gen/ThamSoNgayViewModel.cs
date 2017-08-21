@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(ThamSoNgayDto dto);
         partial void ProcessNewAddedDtoPartial(ThamSoNgayDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenFilter;
         HeaderFilterBaseModel _GiaTriFilter;
         HeaderFilterBaseModel _TenantIDFilter;
@@ -23,7 +23,7 @@ namespace Client.ViewModel
 
         public ThamSoNgayViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ma, nameof(ThamSoNgayDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_ID, nameof(ThamSoNgayDto.ID), typeof(int));
             _TenFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ten, nameof(ThamSoNgayDto.Ten), typeof(string));
             _GiaTriFilter = new HeaderDateFilterModel(TextManager.ThamSoNgay_GiaTri, nameof(ThamSoNgayDto.GiaTri), typeof(System.DateTime));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_TenantID, nameof(ThamSoNgayDto.TenantID), typeof(int));
@@ -33,7 +33,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenFilter);
             AddHeaderFilter(_GiaTriFilter);
             AddHeaderFilter(_TenantIDFilter);
@@ -55,9 +55,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(ThamSoNgayDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenFilter.FilterValue != null)
             {

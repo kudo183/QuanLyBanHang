@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new tMatHangDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaLoai = entity.MaLoai,
 				TenMatHang = entity.TenMatHang,
 				SoKy = entity.SoKy,
@@ -35,7 +35,7 @@ namespace Server.Controllers
         {
             var entity = new tMatHang()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaLoai = dto.MaLoai,
 				TenMatHang = dto.TenMatHang,
 				SoKy = dto.SoKy,

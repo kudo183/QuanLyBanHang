@@ -10,7 +10,7 @@ namespace Server.Entities
             tChiTietChuyenKhoMaChuyenKhoNavigation = new HashSet<tChiTietChuyenKho>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaNhanVien { get; set; }
         public int MaKhoHangXuat { get; set; }
         public int MaKhoHangNhap { get; set; }
@@ -18,9 +18,6 @@ namespace Server.Entities
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public rNhanVien MaNhanVienNavigation { get; set; }
         public rKhoHang MaKhoHangXuatNavigation { get; set; }

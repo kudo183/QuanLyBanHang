@@ -13,15 +13,12 @@ namespace Server.Entities
             tNhapHangMaNhanVienNavigation = new HashSet<tNhapHang>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaPhuongTien { get; set; }
         public string TenNhanVien { get; set; }
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public rPhuongTien MaPhuongTienNavigation { get; set; }
 		

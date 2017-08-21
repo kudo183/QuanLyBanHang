@@ -1,4 +1,5 @@
-﻿using huypq.SmtWpfClient;
+﻿using huypq.SmtShared;
+using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace Client.ViewModel
 
         protected override void AfterLoad()
         {
-            toaHangs = DataService.GetByListInt<tToaHangDto>(nameof(tToaHangDto.Ma), Entities.Select(p => p.MaToaHang).ToList()).ToDictionary(p => p.ID);
-            chiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto>(nameof(tChiTietDonHangDto.Ma), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
-            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(tDonHangDto.Ma), chiTietDonHangs.Select(p => p.Value.MaDonHang).ToList()).ToDictionary(p => p.ID);
+            toaHangs = DataService.GetByListInt<tToaHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaToaHang).ToList()).ToDictionary(p => p.ID);
+            chiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
+            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(IDto.ID), chiTietDonHangs.Select(p => p.Value.MaDonHang).ToList()).ToDictionary(p => p.ID);
 
             foreach (var item in chiTietDonHangs)
             {

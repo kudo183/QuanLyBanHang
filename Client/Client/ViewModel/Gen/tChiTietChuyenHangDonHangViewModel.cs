@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tChiTietChuyenHangDonHangDto dto);
         partial void ProcessNewAddedDtoPartial(tChiTietChuyenHangDonHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChuyenHangDonHangFilter;
         HeaderFilterBaseModel _MaChiTietDonHangFilter;
         HeaderFilterBaseModel _SoLuongFilter;
@@ -25,7 +25,7 @@ namespace Client.ViewModel
 
         public tChiTietChuyenHangDonHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_Ma, nameof(tChiTietChuyenHangDonHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_ID, nameof(tChiTietChuyenHangDonHangDto.ID), typeof(int));
             _MaChuyenHangDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChuyenHangDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang), typeof(int), new View.tChuyenHangDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChiTietDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuong, nameof(tChiTietChuyenHangDonHangDto.SoLuong), typeof(int));
@@ -37,7 +37,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaChuyenHangDonHangFilter);
             AddHeaderFilter(_MaChiTietDonHangFilter);
             AddHeaderFilter(_SoLuongFilter);
@@ -61,9 +61,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tChiTietChuyenHangDonHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChuyenHangDonHangFilter.FilterValue != null)
             {

@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(rNuocDto dto);
         partial void ProcessNewAddedDtoPartial(rNuocDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenNuocFilter;
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
@@ -22,7 +22,7 @@ namespace Client.ViewModel
 
         public rNuocViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.rNuoc_Ma, nameof(rNuocDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rNuoc_ID, nameof(rNuocDto.ID), typeof(int));
             _TenNuocFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenNuoc, nameof(rNuocDto.TenNuoc), typeof(string));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenantID, nameof(rNuocDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNuoc_CreateTime, nameof(rNuocDto.CreateTime), typeof(long));
@@ -31,7 +31,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenNuocFilter);
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
@@ -52,9 +52,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(rNuocDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenNuocFilter.FilterValue != null)
             {

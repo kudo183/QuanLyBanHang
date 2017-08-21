@@ -9,16 +9,13 @@ namespace Server.Entities
         {
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaNhapHang { get; set; }
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public tNhapHang MaNhapHangNavigation { get; set; }
         public tMatHang MaMatHangNavigation { get; set; }

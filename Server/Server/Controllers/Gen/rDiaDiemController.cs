@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rDiaDiemDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaNuoc = entity.MaNuoc,
 				Tinh = entity.Tinh,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new rDiaDiem()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaNuoc = dto.MaNuoc,
 				Tinh = dto.Tinh,
 				TenantID = dto.TenantID,

@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rKhoHangDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenKho = entity.TenKho,
 				TrangThai = entity.TrangThai,
 				TenantID = entity.TenantID,
@@ -31,7 +31,7 @@ namespace Server.Controllers
         {
             var entity = new rKhoHang()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenKho = dto.TenKho,
 				TrangThai = dto.TrangThai,
 				TenantID = dto.TenantID,

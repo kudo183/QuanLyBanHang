@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(rNhaCungCapDto dto);
         partial void ProcessNewAddedDtoPartial(rNhaCungCapDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenNhaCungCapFilter;
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
@@ -22,7 +22,7 @@ namespace Client.ViewModel
 
         public rNhaCungCapViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_Ma, nameof(rNhaCungCapDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_ID, nameof(rNhaCungCapDto.ID), typeof(int));
             _TenNhaCungCapFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_TenNhaCungCap, nameof(rNhaCungCapDto.TenNhaCungCap), typeof(string));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_TenantID, nameof(rNhaCungCapDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNhaCungCap_CreateTime, nameof(rNhaCungCapDto.CreateTime), typeof(long));
@@ -31,7 +31,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenNhaCungCapFilter);
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
@@ -52,9 +52,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(rNhaCungCapDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenNhaCungCapFilter.FilterValue != null)
             {

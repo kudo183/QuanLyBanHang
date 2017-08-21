@@ -15,7 +15,7 @@ namespace Server.Entities
             tTonKhoMaMatHangNavigation = new HashSet<tTonKho>();
         }
 
-        public int Ma { get; set; }
+        public int ID { get; set; }
         public int MaLoai { get; set; }
         public string TenMatHang { get; set; }
         public int SoKy { get; set; }
@@ -25,9 +25,6 @@ namespace Server.Entities
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
-
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public int ID { get { return Ma; } set { Ma = value;} }
 
         public rLoaiHang MaLoaiNavigation { get; set; }
 		

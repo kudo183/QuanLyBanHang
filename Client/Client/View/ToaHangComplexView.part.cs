@@ -45,8 +45,8 @@ namespace Client.View
                     {
                         var ct = new tChiTietToaHangDto
                         {
-                            MaToaHang = th.Ma,
-                            MaChiTietDonHang = ctdh.Ma,
+                            MaToaHang = th.ID,
+                            MaChiTietDonHang = ctdh.ID,
                             GiaTien = 0
                         };
 

@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new tChuyenKhoDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaNhanVien = entity.MaNhanVien,
 				MaKhoHangXuat = entity.MaKhoHangXuat,
 				MaKhoHangNhap = entity.MaKhoHangNhap,
@@ -33,7 +33,7 @@ namespace Server.Controllers
         {
             var entity = new tChuyenKho()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaNhanVien = dto.MaNhanVien,
 				MaKhoHangXuat = dto.MaKhoHangXuat,
 				MaKhoHangNhap = dto.MaKhoHangNhap,

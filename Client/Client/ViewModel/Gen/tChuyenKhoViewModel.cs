@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tChuyenKhoDto dto);
         partial void ProcessNewAddedDtoPartial(tChuyenKhoDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNhanVienFilter;
         HeaderFilterBaseModel _MaKhoHangXuatFilter;
         HeaderFilterBaseModel _MaKhoHangNhapFilter;
@@ -25,7 +25,7 @@ namespace Client.ViewModel
 
         public tChuyenKhoViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tChuyenKho_Ma, nameof(tChuyenKhoDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChuyenKho_ID, nameof(tChuyenKhoDto.ID), typeof(int));
             _MaNhanVienFilter = new HeaderComboBoxFilterModel(
                 TextManager.tChuyenKho_MaNhanVien, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(tChuyenKhoDto.MaNhanVien),
@@ -71,7 +71,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaNhanVienFilter);
             AddHeaderFilter(_MaKhoHangXuatFilter);
             AddHeaderFilter(_MaKhoHangNhapFilter);
@@ -101,9 +101,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tChuyenKhoDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNhanVienFilter.FilterValue != null)
             {

@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rLoaiChiPhiDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				TenLoaiChiPhi = entity.TenLoaiChiPhi,
 				TenantID = entity.TenantID,
 				CreateTime = entity.CreateTime,
@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var entity = new rLoaiChiPhi()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				TenLoaiChiPhi = dto.TenLoaiChiPhi,
 				TenantID = dto.TenantID,
 				CreateTime = dto.CreateTime,

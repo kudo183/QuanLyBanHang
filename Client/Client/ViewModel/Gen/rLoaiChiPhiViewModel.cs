@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(rLoaiChiPhiDto dto);
         partial void ProcessNewAddedDtoPartial(rLoaiChiPhiDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenLoaiChiPhiFilter;
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
@@ -22,7 +22,7 @@ namespace Client.ViewModel
 
         public rLoaiChiPhiViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.rLoaiChiPhi_Ma, nameof(rLoaiChiPhiDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rLoaiChiPhi_ID, nameof(rLoaiChiPhiDto.ID), typeof(int));
             _TenLoaiChiPhiFilter = new HeaderTextFilterModel(TextManager.rLoaiChiPhi_TenLoaiChiPhi, nameof(rLoaiChiPhiDto.TenLoaiChiPhi), typeof(string));
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.rLoaiChiPhi_TenantID, nameof(rLoaiChiPhiDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rLoaiChiPhi_CreateTime, nameof(rLoaiChiPhiDto.CreateTime), typeof(long));
@@ -31,7 +31,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenLoaiChiPhiFilter);
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
@@ -52,9 +52,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(rLoaiChiPhiDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenLoaiChiPhiFilter.FilterValue != null)
             {

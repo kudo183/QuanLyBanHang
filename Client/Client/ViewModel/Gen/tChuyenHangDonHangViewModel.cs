@@ -14,7 +14,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(tChuyenHangDonHangDto dto);
         partial void ProcessNewAddedDtoPartial(tChuyenHangDonHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChuyenHangFilter;
         HeaderFilterBaseModel _MaDonHangFilter;
         HeaderFilterBaseModel _TongSoLuongTheoDonHangFilter;
@@ -25,7 +25,7 @@ namespace Client.ViewModel
 
         public tChuyenHangDonHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_Ma, nameof(tChuyenHangDonHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_ID, nameof(tChuyenHangDonHangDto.ID), typeof(int));
             _MaChuyenHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChuyenHangDonHang_MaChuyenHang, nameof(tChuyenHangDonHangDto.MaChuyenHang), typeof(int), new View.tChuyenHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _MaDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChuyenHangDonHang_MaDonHang, nameof(tChuyenHangDonHangDto.MaDonHang), typeof(int), new View.tDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
             _TongSoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.tChuyenHangDonHang_TongSoLuongTheoDonHang, nameof(tChuyenHangDonHangDto.TongSoLuongTheoDonHang), typeof(int));
@@ -37,7 +37,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaChuyenHangFilter);
             AddHeaderFilter(_MaDonHangFilter);
             AddHeaderFilter(_TongSoLuongTheoDonHangFilter);
@@ -61,9 +61,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(tChuyenHangDonHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChuyenHangFilter.FilterValue != null)
             {

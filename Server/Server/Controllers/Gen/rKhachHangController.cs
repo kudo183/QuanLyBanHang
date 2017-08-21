@@ -14,7 +14,7 @@ namespace Server.Controllers
         {
             var dto = new rKhachHangDto()
 			{
-				Ma = entity.Ma,
+				ID = entity.ID,
 				MaDiaDiem = entity.MaDiaDiem,
 				TenKhachHang = entity.TenKhachHang,
 				KhachRieng = entity.KhachRieng,
@@ -32,7 +32,7 @@ namespace Server.Controllers
         {
             var entity = new rKhachHang()
             {
-				Ma = dto.Ma,
+				ID = dto.ID,
 				MaDiaDiem = dto.MaDiaDiem,
 				TenKhachHang = dto.TenKhachHang,
 				KhachRieng = dto.KhachRieng,
