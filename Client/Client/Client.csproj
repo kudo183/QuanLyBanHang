@@ -84,6 +84,7 @@
     <Compile Include="ViewModel\Report\HangNgayViewModel.cs" />
     <Compile Include="ViewModel\Report\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\Report\XuatViewModel.cs" />
+    <Compile Include="ViewModel\rKhachHangChanhViewModel.part.cs" />
     <Compile Include="ViewModel\tDonHangViewModel.part.cs" />
     <Compile Include="View\ChuyenHangComplexView.part.cs" />
     <Compile Include="View\Report\ChiPhi.xaml.cs">
