@@ -11,7 +11,7 @@ window.app.referenceDataManager = (function (webApi, logger) {
     var referenceDataManager = {
         _cache: {}
     };
-    var keyProperty = "ma";
+    var keyProperty = "id";
     referenceDataManager._cache["rloaiHang"] = {
         data: ko.observableArray(),
         isLoaded: false,

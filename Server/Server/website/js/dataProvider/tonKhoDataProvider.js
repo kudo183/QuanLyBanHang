@@ -47,7 +47,7 @@
         var matHangs = {};
         var data = referenceDataManager.get("tmatHang")();
         for (var i = 0; i < data.length; i++) {
-            matHangs[data[i].ma] = data[i].tenMatHangDayDu;
+            matHangs[data[i].id] = data[i].tenMatHangDayDu;
         }
 
         var result = {

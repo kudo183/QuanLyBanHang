@@ -35,7 +35,7 @@
         propertyPath: "MaKhoHang",
         itemsSourceName: "khoHangs",
         itemText: "tenKho",
-        itemValue: "ma",
+        itemValue: "id",
         itemsSource: referenceDataManager.get("rkhoHang"),
         filterValue: ko.observable(f.tk),
         whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"
@@ -53,7 +53,7 @@
         propertyPath: "MaMatHangNavigation.MaLoai",
         itemsSourceName: "loaiHangs",
         itemText: "tenLoai",
-        itemValue: "ma",
+        itemValue: "id",
         itemsSource: referenceDataManager.get("rloaiHang"),
         filterValue: ko.observable(f.ml),
         whereType: "huypq.QueryBuilder.WhereExpression+WhereOptionInt, huypq.QueryBuilder"

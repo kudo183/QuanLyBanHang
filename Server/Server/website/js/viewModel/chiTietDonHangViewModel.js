@@ -3,10 +3,10 @@
     //var viewModel = huypq.control.dataGrid.createViewModel(window.app.dataProvider.chiTietDonHangDataProvider);
 
     var viewModel = huypq.control.dataGrid.createViewModel(window.app.dataProvider.create({
-        keyProperty: "ma",
+        keyProperty: "id",
         controller: "tchitietdonhang",
         itemProperties: [
-            { name: "ma", type: "int" },
+            { name: "id", type: "int" },
             { name: "maDonHang", type: "int" },
             { name: "maMatHang", type: "int" },
             { name: "soLuong", type: "int" },
@@ -22,7 +22,7 @@
     viewModel.addColumn({
         headerText: "Mã",
         type: "span",
-        cellValueProperty: "ma",
+        cellValueProperty: "id",
         readOnly: true,
         order: 0,
         filterValue: ko.observable(),
@@ -45,7 +45,7 @@
         cellValueProperty: "maMatHang",
         itemsSourceName: "maMatHangItemsSource",
         itemText: "tenMatHang",
-        itemValue: "ma",
+        itemValue: "id",
         readOnly: false,
         order: 0,
         filterValue: ko.observable(),

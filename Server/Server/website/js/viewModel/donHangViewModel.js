@@ -1,10 +1,10 @@
 ﻿window.app.viewModel.donHangViewModel = (function (referenceDataManager) {
     
     var viewModel = huypq.control.dataGrid.createViewModel(window.app.dataProvider.create({
-        keyProperty: "ma",
+        keyProperty: "id",
         controller: "tdonhang",
         itemProperties: [
-            { name: "ma", type: "int" },
+            { name: "id", type: "int" },
             { name: "ngay", type: "date" },
             { name: "maKhachHang", type: "int" },
             { name: "maKhoHang", type: "int" },
@@ -20,7 +20,7 @@
     viewModel.addColumn({
         headerText: "Mã",
         type: "span",
-        cellValueProperty: "ma",
+        cellValueProperty: "id",
         readOnly: true,
         order: 0,
         filterValue: ko.observable(),
@@ -43,7 +43,7 @@
         cellValueProperty: "maKhachHang",
         itemsSourceName: "maKhachHangItemsSource",
         itemText: "tenKhachHang",
-        itemValue: "ma",
+        itemValue: "id",
         readOnly: false,
         order: 0,
         filterValue: ko.observable(),
@@ -57,7 +57,7 @@
         cellValueProperty: "maKhoHang",
         itemsSourceName: "maKhoHangItemsSource",
         itemText: "tenKho",
-        itemValue: "ma",
+        itemValue: "id",
         readOnly: false,
         order: 0,
         filterValue: ko.observable(),
