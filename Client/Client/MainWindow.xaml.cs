@@ -105,6 +105,11 @@ namespace Client
             });
 
             _dataService = ServiceLocator.Get<IDataService>();
+
+            ReferenceDataManager<Shared.rChanhDto>.Instance.Init((chanh) =>
+            {
+                chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+            });
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
