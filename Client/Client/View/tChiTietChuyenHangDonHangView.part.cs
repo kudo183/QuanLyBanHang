@@ -31,7 +31,6 @@ namespace Client.View
                 return;
             }
 
-            Logger.Instance.Info("selected MaChuyenHangDonHangNavigation changed: UpdateDonHangForeignKeyPicker", Logger.Categories.UI);
             UpdateChiTietDonHangForeignKeyPicker();
 
             selectedDto.PropertyChanged -= SelectedDto_PropertyChanged;
@@ -42,7 +41,6 @@ namespace Client.View
         {
             if (e.PropertyName == nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang))
             {
-                Logger.Instance.Info("MaChuyenHangDonHang changed: UpdateDonHangForeignKeyPicker", Logger.Categories.UI);
                 UpdateChiTietDonHangForeignKeyPicker();
             }
         }

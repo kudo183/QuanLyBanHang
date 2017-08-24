@@ -190,6 +190,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.Logging\huypq.Logging.Framework\huypq.Logging.Framework.csproj">
+      <Project>{F4ABC0F4-C860-44A4-8BF7-58BE106E17E4}</Project>
+      <Name>huypq.Logging.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj">
       <Project>{c3b36888-e0f1-4e30-8549-50d20dd636c5}</Project>
       <Name>huypq.QueryBuilder.Framework</Name>

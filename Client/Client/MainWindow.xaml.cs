@@ -9,6 +9,8 @@ using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using huypq.wpf.Utils;
+using Microsoft.Extensions.Logging;
+using huypq.Logging;
 
 namespace Client
 {
@@ -30,7 +32,6 @@ namespace Client
             _loginViewModel = loginView.DataContext as LoginViewModel;
 
 #if DEBUG
-            Logger.Instance.LogLevel = Logger.LogLevelEnum.Debug;
             _loginViewModel.IsLoggedIn = true;
             _loginViewModel.IsTenant = true;
 #else
@@ -81,8 +82,13 @@ namespace Client
 
         private void Init()
         {
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var type = assembly.GetTypes();
+            ServiceLocator.AddTypeMapping(typeof(ILoggerProvider), typeof(LoggerProviderWithOptions), true, new LoggerProviderWithOptions.Options()
+            {
+                Filter = (category, logLevel) => logLevel >= LogLevel.Information,
+                IsIncludeScope = true,
+                Processor = new LoggerBatchingProcessor(1000, 1024, 1024, @"logs", 31, 20 * 1024 * 1024)
+            });
+
             ServiceLocator.AddTypeMapping(typeof(IViewModelFactory), typeof(ViewModelFactory), true, new ViewModelFactory.Options()
             {
                 ViewModelNamespace = "Client.ViewModel",
