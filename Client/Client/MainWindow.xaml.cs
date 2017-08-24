@@ -22,6 +22,7 @@ namespace Client
         IDataService _dataService;
         LoginViewModel _loginViewModel;
         List<Window> _windowList = new List<Window>();
+        bool _isShuttingDown = false;
 
         public MainWindow()
         {
@@ -57,6 +58,7 @@ namespace Client
 
         private void MainWindow_Closed(object sender, System.EventArgs e)
         {
+            _isShuttingDown = true;
             foreach (var w in _windowList)
             {
                 w.Close();
@@ -231,6 +233,11 @@ namespace Client
 
         private void W_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (_isShuttingDown == true)
+            {
+                return;
+            }
+
             _windowList.Remove(sender as Window);
         }
 
