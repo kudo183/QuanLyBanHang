@@ -7,7 +7,6 @@ using Client.View.Smt;
 using System.Windows.Controls;
 using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
-using System.Linq;
 using huypq.wpf.Utils;
 using Microsoft.Extensions.Logging;
 using huypq.Logging;
@@ -32,13 +31,14 @@ namespace Client
 
             _loginViewModel = loginView.DataContext as LoginViewModel;
 
-#if DEBUG
-            _loginViewModel.IsLoggedIn = true;
-            _loginViewModel.IsTenant = true;
-#else
-            _loginViewModel.Email = SettingsWrapper.Instance.User;
             _loginViewModel.TenantName = SettingsWrapper.Instance.Tenant;
-#endif
+            _loginViewModel.Email = SettingsWrapper.Instance.User;
+
+            if (_dataService.IsLoggedIn() == true)
+            {
+                _loginViewModel.IsLoggedIn = true;
+                _loginViewModel.IsTenant = SettingsWrapper.Instance.IsTenant;
+            }
 
             _loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged;
             Closing += MainWindow_Closing;
@@ -54,6 +54,9 @@ namespace Client
                     e.Cancel = true;
                 }
             }
+
+            SettingsWrapper.Instance.Token = _dataService.GetBase64ProtectedToken();
+            SettingsWrapper.Instance.IsTenant = _dataService.IsTenant();
         }
 
         private void MainWindow_Closed(object sender, System.EventArgs e)
@@ -99,17 +102,9 @@ namespace Client
 
             ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
             {
-#if DEBUG
-                //console app
-                //RootUri = "http://localhost:64406",
-                //Token = "CfDJ8J0Vem16TkFEi6NUK4o55AoAW9xUGy9ZFcoiW1dRgPuBmXIRdkeIyy4Mc60kE5-_2nAmHzcS1w9oIvTVi7k5DKwuS5zKEgf3qBJFtOvk24heIN0PcXBDpvxMf7GBcTEKkvv8zoiL9MBvArmHike0-mAC7ZCEIFhYVlCI3mU3o-Po",
-
-                //IIS
-                RootUri = "http://localhost",
-                Token = "CfDJ8J0Vem16TkFEi6NUK4o55AqIEODDl3m6ghSor87FuJcPmx351Q90o_MOIMJgKVwO1oebGDK5mdlun5wMv5MWklGBOl6q7iSXcCQur53SLxHBVvi6FmdMMlVgqZCcUFwyoEKVF4lHdMvupUniH1yPz-CQgMwvAW16DDEx2wkeQgyv"
-#else
+                Token = SettingsWrapper.Instance.Token,
+                IsTenant = SettingsWrapper.Instance.IsTenant,
                 RootUri = SettingsWrapper.Instance.Server
-#endif
             });
 
             _dataService = ServiceLocator.Get<IDataService>();

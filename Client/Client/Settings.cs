@@ -1,5 +1,4 @@
-﻿using huypq.SmtWpfClient.Abstraction;
-using SimpleDataGrid.ViewModel;
+﻿using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -69,7 +68,7 @@ namespace Client
                 GridSettingsDictionary = new Dictionary<string, GridSettings>();
             }
 
-            private string _server = "http://luoithepvinhphat.com";
+            private string _server = "https://luoithepvinhphat.com";
 
             public string Server
             {
@@ -80,6 +79,36 @@ namespace Client
                         return;
 
                     _server = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private string _token;
+
+            public string Token
+            {
+                get { return _token; }
+                set
+                {
+                    if (_token == value)
+                        return;
+
+                    _token = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _isTenant;
+
+            public bool IsTenant
+            {
+                get { return _isTenant; }
+                set
+                {
+                    if (_isTenant == value)
+                        return;
+
+                    _isTenant = value;
                     OnPropertyChanged();
                 }
             }
@@ -157,6 +186,8 @@ namespace Client
             {
                 Server = settings.Server;
                 Tenant = settings.Tenant;
+                Token = settings.Token;
+                IsTenant = settings.IsTenant;
                 User = settings.User;
                 GridSettingsDictionary = settings.GridSettingsDictionary;
                 tDonHang_MaKhoHangDefault = settings.tDonHang_MaKhoHangDefault;
