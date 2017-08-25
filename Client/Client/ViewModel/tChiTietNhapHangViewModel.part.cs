@@ -16,7 +16,6 @@ namespace Client.ViewModel
         {
             ReferenceDataManager<rKhoHangDto>.Instance.LoadOrUpdate();
             ReferenceDataManager<rNhaCungCapDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<tMatHangDto>.Instance.LoadOrUpdate();
         }
 
         protected override void BeforeLoad()
