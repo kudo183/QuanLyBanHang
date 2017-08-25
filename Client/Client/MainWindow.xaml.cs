@@ -144,6 +144,41 @@ namespace Client
             w.ShowDialog();
         }
 
+        Window logViewer;
+        private void LogViewerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (logViewer == null)
+            {
+                logViewer = new Window()
+                {
+                    Title = "Log Viewer",
+                    WindowState = WindowState.Maximized,
+                    Content = new LogViewer.LogViewerControl()
+                };
+                logViewer.Closing += LogViewer_Closing;
+                logViewer.Closed += LogViewer_Closed;
+                logViewer.Show();
+                _windowList.Add(logViewer);
+            }
+            else
+            {
+                logViewer.WindowState = WindowState.Maximized;
+                logViewer.Activate();
+            }
+        }
+
+        private void LogViewer_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            logViewer.Closing -= LogViewer_Closing;
+            RemoveFromWindowList(sender as Window);
+        }
+
+        private void LogViewer_Closed(object sender, System.EventArgs e)
+        {
+            logViewer.Closed -= LogViewer_Closed;
+            logViewer = null;
+        }
+
         private void AllViewButton_Click(object sender, RoutedEventArgs e)
         {
             allViewPopup.IsOpen = !allViewPopup.IsOpen;
@@ -233,12 +268,7 @@ namespace Client
 
         private void W_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (_isShuttingDown == true)
-            {
-                return;
-            }
-
-            _windowList.Remove(sender as Window);
+            RemoveFromWindowList(sender as Window);
         }
 
         private void W_Closed(object sender, System.EventArgs e)
@@ -270,6 +300,16 @@ namespace Client
                     }
                 }
             }
+        }
+
+        private void RemoveFromWindowList(Window w)
+        {
+            if (_isShuttingDown == true)
+            {
+                return;
+            }
+
+            _windowList.Remove(w);
         }
     }
 }

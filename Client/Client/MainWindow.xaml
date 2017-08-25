@@ -23,6 +23,7 @@
             <Button Content="Logout" Click="LogoutButton_Click"/>
             <Button Content="Change Password" Click="ChangePasswordButton_Click"/>
             <Button Content="ManageUser" Click="ManageUserButton_Click" Visibility="{Binding IsTenant, Converter={StaticResource BoolToVis}}"/>
+            <Button Content="Log Viewer" x:Name="logViewerButton" Click="LogViewerButton_Click"/>
             <Button Content="All View" x:Name="allViewButton" Click="AllViewButton_Click"/>
             <Popup x:Name="allViewPopup" Placement="Bottom" PlacementTarget="{Binding ElementName=allViewButton}" StaysOpen="False">
                 <Popup.Child>

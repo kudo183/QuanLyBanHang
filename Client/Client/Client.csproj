@@ -194,6 +194,10 @@
       <Project>{F4ABC0F4-C860-44A4-8BF7-58BE106E17E4}</Project>
       <Name>huypq.Logging.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.Logging\LogViewer\LogViewer.csproj">
+      <Project>{a8b31da2-0fa6-4c8b-8203-ee27fd5e4ca0}</Project>
+      <Name>LogViewer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj">
       <Project>{c3b36888-e0f1-4e30-8549-50d20dd636c5}</Project>
       <Name>huypq.QueryBuilder.Framework</Name>
