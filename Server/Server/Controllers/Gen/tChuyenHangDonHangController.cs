@@ -36,8 +36,8 @@ namespace Server.Controllers
                 ID = dto.ID,
                 MaChuyenHang = dto.MaChuyenHang,
                 MaDonHang = dto.MaDonHang,
-                TongSoLuongTheoDonHang = dto.TongSoLuongTheoDonHang,
-                TongSoLuongThucTe = dto.TongSoLuongThucTe,
+                //TongSoLuongTheoDonHang = dto.TongSoLuongTheoDonHang,
+                //TongSoLuongThucTe = dto.TongSoLuongThucTe,
                 TenantID = dto.TenantID,
                 CreateTime = dto.CreateTime,
                 LastUpdateTime = dto.LastUpdateTime

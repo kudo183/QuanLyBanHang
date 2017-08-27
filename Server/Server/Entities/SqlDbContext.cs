@@ -8,7 +8,7 @@ namespace Server.Entities
 {
     public partial class SqlDbContext : DbContext, IDbContext<SmtTenant, SmtUser, SmtUserClaim>
     {
-	    public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+            public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
         {
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -16,16 +16,18 @@ namespace Server.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			modelBuilder.Entity<SmtTable>(entity =>
+            modelBuilder.Entity<SmtTable>(entity =>
             {
                 entity.HasKey(e => e.ID)
                     .HasName("PK_SmtTable");
             });
+
             modelBuilder.Entity<SmtDeletedItem>(entity =>
             {
                 entity.HasKey(e => e.ID)
                     .HasName("PK_SmtDeletedItem");
             });
+
             modelBuilder.Entity<SmtTenant>(entity =>
             {
                 entity.HasKey(e => e.ID)
@@ -42,6 +44,7 @@ namespace Server.Entities
                     .HasMaxLength(256);
 
             });
+
             modelBuilder.Entity<SmtUser>(entity =>
             {
                 entity.HasKey(e => e.ID)
@@ -64,6 +67,7 @@ namespace Server.Entities
                     .HasConstraintName("FK_SmtUser_SmtTenant");
 
             });
+
             modelBuilder.Entity<SmtUserClaim>(entity =>
             {
                 entity.HasKey(e => e.ID)
@@ -86,37 +90,37 @@ namespace Server.Entities
                     .HasConstraintName("FK_SmtUserClaim_SmtUserClaim");
 
             });
+
             modelBuilder.Entity<rBaiXe>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rBaiXe");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.DiaDiemBaiXe)
+                entity.Property(p => p.DiaDiemBaiXe)
                     .IsRequired()
                     .HasMaxLength(300);
-
             });
+
             modelBuilder.Entity<rCanhBaoTonKho>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rCanhBaoTonKho");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
                     .WithMany(p => p.rCanhBaoTonKhoMaKhoHangNavigation)
@@ -129,22 +133,22 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rCanhBaoTonKho_tMatHang");
-
             });
+
             modelBuilder.Entity<rChanh>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rChanh");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenChanh)
+                entity.Property(p => p.TenChanh)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -153,22 +157,22 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaBaiXe)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rChanh_rBaiXe");
-
             });
+
             modelBuilder.Entity<rDiaDiem>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rDiaDiem");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Tinh)
+                entity.Property(p => p.Tinh)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -177,28 +181,28 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaNuoc)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rDiaDiem_rNuoc");
-
             });
+
             modelBuilder.Entity<rKhachHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rKhachHang");
 
-                entity.HasIndex(e => e.TenKhachHang)
+                entity.HasIndex(p => p.TenKhachHang)
                     .HasName("idx_KhachHang_TenKhachHang")
                     .IsUnique();
 
-                entity.Property(e => e.KhachRieng).HasDefaultValueSql("(0)");
+                entity.Property(p => p.KhachRieng).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenKhachHang)
+                entity.Property(p => p.TenKhachHang)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -207,23 +211,22 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaDiaDiem)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rKhachHang_rDiaDiem");
-
             });
+
             modelBuilder.Entity<rKhachHangChanh>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rKhachHangChanh");
 
-                entity.Property(e => e.LaMacDinh).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LaMacDinh).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChanhNavigation)
                     .WithMany(p => p.rKhachHangChanhMaChanhNavigation)
@@ -236,97 +239,96 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rKhachHangChanh_rKhachHang");
-
             });
+
             modelBuilder.Entity<rKhoHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rKhoHang");
 
-                entity.Property(e => e.TrangThai).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TrangThai).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenKho)
+                entity.Property(p => p.TenKho)
                     .IsRequired()
                     .HasMaxLength(200);
-
             });
+
             modelBuilder.Entity<rLoaiChiPhi>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rLoaiChiPhi");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenLoaiChiPhi)
+                entity.Property(p => p.TenLoaiChiPhi)
                     .IsRequired()
                     .HasMaxLength(200);
-
             });
+
             modelBuilder.Entity<rLoaiHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rProductType");
 
-                entity.Property(e => e.HangNhaLam).HasDefaultValueSql("(0)");
+                entity.Property(p => p.HangNhaLam).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenLoai)
+                entity.Property(p => p.TenLoai)
                     .IsRequired()
                     .HasMaxLength(200);
-
             });
+
             modelBuilder.Entity<rLoaiNguyenLieu>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rLoaiNguyenLieu");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenLoai)
+                entity.Property(p => p.TenLoai)
                     .IsRequired()
                     .HasMaxLength(100);
-
             });
+
             modelBuilder.Entity<rMatHangNguyenLieu>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rMatHangNguyenLieu");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaNguyenLieuNavigation)
                     .WithMany(p => p.rMatHangNguyenLieuMaNguyenLieuNavigation)
@@ -339,79 +341,78 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rMatHangNguyenLieu_tMatHang");
-
             });
+
             modelBuilder.Entity<rNuoc>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rNuoc");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenNuoc)
+                entity.Property(p => p.TenNuoc)
                     .IsRequired()
                     .HasMaxLength(100);
-
             });
+
             modelBuilder.Entity<rNguyenLieu>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_rNguyenLieu");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaLoaiNguyenLieuNavigation)
                     .WithMany(p => p.rNguyenLieuMaLoaiNguyenLieuNavigation)
                     .HasForeignKey(d => d.MaLoaiNguyenLieu)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rNguyenLieu_rLoaiNguyenLieu");
-
             });
+
             modelBuilder.Entity<rNhaCungCap>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_NhaCungCap");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenNhaCungCap)
+                entity.Property(p => p.TenNhaCungCap)
                     .IsRequired()
                     .HasMaxLength(200);
-
             });
+
             modelBuilder.Entity<rNhanVien>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_NhanVienGiaoHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenNhanVien)
+                entity.Property(p => p.TenNhanVien)
                     .IsRequired()
                     .HasMaxLength(200);
 
@@ -420,60 +421,58 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaPhuongTien)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_rNhanVienGiaoHang_rPhuongTien");
-
             });
+
             modelBuilder.Entity<rPhuongTien>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_LoaiPhuongTien");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenPhuongTien)
+                entity.Property(p => p.TenPhuongTien)
                     .IsRequired()
                     .HasMaxLength(200);
-
             });
+
             modelBuilder.Entity<tCongNoKhachHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tCongNoKhachHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tCongNoKhachHangMaKhachHangNavigation)
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tCongNoKhachHang_rKhachHang");
-
             });
+
             modelBuilder.Entity<tChiPhi>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_ChiPhiNhanVienGiaoHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaLoaiChiPhiNavigation)
                     .WithMany(p => p.tChiPhiMaLoaiChiPhiNavigation)
@@ -486,23 +485,24 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaNhanVienGiaoHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChiPhiNhanVienGiaoHang_rNhanVienGiaoHang");
-
             });
+
             modelBuilder.Entity<tChiTietChuyenHangDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.SoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
-                entity.Property(e => e.SoLuongTheoDonHang).HasDefaultValueSql("(0)");
+                entity.Property(p => p.SoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChiTietDonHangNavigation)
                     .WithMany(p => p.tChiTietChuyenHangDonHangMaChiTietDonHangNavigation)
@@ -515,21 +515,20 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaChuyenHangDonHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChiTietChuyenHangDonHang_tChuyenHangDonHang");
-
             });
+
             modelBuilder.Entity<tChiTietChuyenKho>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietChuyenKho");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChuyenKhoNavigation)
                     .WithMany(p => p.tChiTietChuyenKhoMaChuyenKhoNavigation)
@@ -542,23 +541,24 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChiTietChuyenKho_tMatHang");
-
             });
+
             modelBuilder.Entity<tChiTietDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.Xong).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietDonHang");
 
-                entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
+                entity.Property(p => p.Xong).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaDonHangNavigation)
                     .WithMany(p => p.tChiTietDonHangMaDonHangNavigation)
@@ -571,21 +571,20 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChiTietDonHang_tMatHang");
-
             });
+
             modelBuilder.Entity<tChiTietNhapHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_NhapMatHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaNhapHangNavigation)
                     .WithMany(p => p.tChiTietNhapHangMaNhapHangNavigation)
@@ -598,21 +597,20 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tNhapMatHang_tMatHang");
-
             });
+
             modelBuilder.Entity<tChiTietToaHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietToaHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChiTietDonHangNavigation)
                     .WithMany(p => p.tChiTietToaHangMaChiTietDonHangNavigation)
@@ -625,55 +623,63 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaToaHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChiTietToaHang_tToaHang");
-
             });
+
             modelBuilder.Entity<tChuyenHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.TongDonHang).ValueGeneratedOnAddOrUpdate();
+
+                entity.Property(p => p.TongSoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
+
+                entity.Property(p => p.TongSoLuongThucTe).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_ChuyenHang");
 
-                entity.Property(e => e.Gio).HasDefaultValueSql("getdate()");
+                entity.Property(p => p.Gio).HasDefaultValueSql("getdate()");
 
-                entity.Property(e => e.TongDonHang).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongSoLuongThucTe).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Gio).HasColumnType("time(0)");
-
+                entity.Property(p => p.Gio).HasColumnType("time(0)");
                 entity.HasOne(d => d.MaNhanVienGiaoHangNavigation)
                     .WithMany(p => p.tChuyenHangMaNhanVienGiaoHangNavigation)
                     .HasForeignKey(d => d.MaNhanVienGiaoHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChuyenHang_rNhanVienGiaoHang");
-
             });
+
             modelBuilder.Entity<tChuyenHangDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.TongSoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
+
+                entity.Property(p => p.TongSoLuongThucTe).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChuyenHangDonHang");
 
-                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongSoLuongThucTe).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChuyenHangNavigation)
                     .WithMany(p => p.tChuyenHangDonHangMaChuyenHangNavigation)
@@ -686,21 +692,20 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaDonHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChuyenHangDonHang_tDonHang");
-
             });
+
             modelBuilder.Entity<tChuyenKho>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tChuyenKho");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhoHangNhapNavigation)
                     .WithMany(p => p.tChuyenKhoMaKhoHangNhapNavigation)
@@ -719,27 +724,30 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaNhanVien)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tChuyenKho_rNhanVien");
-
             });
+
             modelBuilder.Entity<tDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.Xong).ValueGeneratedOnAddOrUpdate();
+
+                entity.Property(p => p.TongSoLuong).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_DonHang");
 
-                entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
+                entity.Property(p => p.Xong).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.MaKhoHang).HasDefaultValueSql("(1)");
+                entity.Property(p => p.MaKhoHang).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.TongSoLuong).HasDefaultValueSql("(0)");
+                entity.Property(p => p.TongSoLuong).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaChanhNavigation)
                     .WithMany(p => p.tDonHangMaChanhNavigation)
@@ -758,22 +766,22 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaKhoHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tDonHang_rKhoHang");
-
             });
+
             modelBuilder.Entity<tGiamTruKhachHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tGiamTruKhachHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.GhiChu)
+                entity.Property(p => p.GhiChu)
                     .IsRequired()
                     .HasMaxLength(300);
 
@@ -782,36 +790,38 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tGiamTruKhachHang_rKhachHang");
-
             });
+
             modelBuilder.Entity<tMatHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_Product");
 
-                entity.Property(e => e.SoKy).HasDefaultValueSql("(0)");
+                entity.Property(p => p.SoKy).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.SoMet).HasDefaultValueSql("(0)");
+                entity.Property(p => p.SoMet).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenMatHangDayDu).HasDefaultValueSql("''");
+                entity.Property(p => p.TenMatHangDayDu).HasDefaultValueSql("''");
 
-                entity.Property(e => e.TenMatHangIn).HasDefaultValueSql("''");
+                entity.Property(p => p.TenMatHangIn).HasDefaultValueSql("''");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TenMatHang)
+                entity.Property(p => p.TenMatHang)
                     .IsRequired()
                     .HasMaxLength(200);
-                entity.Property(e => e.TenMatHangDayDu)
+
+                entity.Property(p => p.TenMatHangDayDu)
                     .IsRequired()
                     .HasMaxLength(200);
-                entity.Property(e => e.TenMatHangIn)
+
+                entity.Property(p => p.TenMatHangIn)
                     .IsRequired()
                     .HasMaxLength(50);
 
@@ -820,42 +830,40 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaLoai)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tMatHang_rLoaiHang");
-
             });
+
             modelBuilder.Entity<tNhanTienKhachHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tNhanTienKhachHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tNhanTienKhachHangMaKhachHangNavigation)
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tNhanTienKhachHang_rKhachHang");
-
             });
+
             modelBuilder.Entity<tNhapHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tNhapHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
                     .WithMany(p => p.tNhapHangMaKhoHangNavigation)
@@ -874,21 +882,20 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaNhanVien)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tNhapHang_rNhanVien");
-
             });
+
             modelBuilder.Entity<tNhapNguyenLieu>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_NhapNguyenLieu");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaNguyenLieuNavigation)
                     .WithMany(p => p.tNhapNguyenLieuMaNguyenLieuNavigation)
@@ -901,22 +908,22 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaNhaCungCap)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tNhapNguyenLieu_rNhaCungCap");
-
             });
+
             modelBuilder.Entity<tPhuThuKhachHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tPhuThuKhachHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.GhiChu)
+                entity.Property(p => p.GhiChu)
                     .IsRequired()
                     .HasMaxLength(300);
 
@@ -925,42 +932,42 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tPhuThuKhachHang_rKhachHang");
-
             });
+
             modelBuilder.Entity<tToaHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tToaHang");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
                     .WithMany(p => p.tToaHangMaKhachHangNavigation)
                     .HasForeignKey(d => d.MaKhachHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tToaHang_rKhachHang");
-
             });
+
             modelBuilder.Entity<tTonKho>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.Property(p => p.SoLuongCu).ValueGeneratedOnAddOrUpdate();
+
+                entity.HasKey(p => p.ID)
                     .HasName("PK_tTonKho");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
-
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
                     .WithMany(p => p.tTonKhoMaKhoHangNavigation)
@@ -973,31 +980,34 @@ namespace Server.Entities
                     .HasForeignKey(d => d.MaMatHang)
                     .OnDelete(DeleteBehavior.Restrict)
                     .HasConstraintName("FK_tTonKho_tMatHang");
-
             });
+
             modelBuilder.Entity<ThamSoNgay>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.HasKey(e => e.ID)
+                entity.HasKey(p => p.ID)
                     .HasName("PK_ThamSoNgay");
 
-                entity.Property(e => e.TenantID).HasDefaultValueSql("(1)");
+                entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.CreateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.LastUpdateTime).HasDefaultValueSql("(0)");
+                entity.Property(p => p.LastUpdateTime).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Ten)
+                entity.Property(p => p.Ten)
                     .IsRequired()
                     .HasMaxLength(50);
-
             });
+
+            OnModelCreatingPartial(modelBuilder);
         }
-		
-		public DbSet<SmtTable> SmtTable { get; set; }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<SmtTable> SmtTable { get; set; }
         public DbSet<SmtDeletedItem> SmtDeletedItem { get; set; }
-		public DbSet<SmtTenant> SmtTenant { get; set; }
+        public DbSet<SmtTenant> SmtTenant { get; set; }
         public DbSet<SmtUser> SmtUser { get; set; }
         public DbSet<SmtUserClaim> SmtUserClaim { get; set; }
         public DbSet<rBaiXe> rBaiXe { get; set; }

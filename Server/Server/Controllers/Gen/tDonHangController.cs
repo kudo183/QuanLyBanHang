@@ -39,9 +39,9 @@ namespace Server.Controllers
                 MaKhachHang = dto.MaKhachHang,
                 MaChanh = dto.MaChanh,
                 Ngay = dto.Ngay,
-                Xong = dto.Xong,
+                //Xong = dto.Xong,
                 MaKhoHang = dto.MaKhoHang,
-                TongSoLuong = dto.TongSoLuong,
+                //TongSoLuong = dto.TongSoLuong,
                 TenantID = dto.TenantID,
                 CreateTime = dto.CreateTime,
                 LastUpdateTime = dto.LastUpdateTime

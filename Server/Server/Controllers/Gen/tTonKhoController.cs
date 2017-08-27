@@ -39,7 +39,7 @@ namespace Server.Controllers
                 MaMatHang = dto.MaMatHang,
                 Ngay = dto.Ngay,
                 SoLuong = dto.SoLuong,
-                SoLuongCu = dto.SoLuongCu,
+                //SoLuongCu = dto.SoLuongCu,
                 TenantID = dto.TenantID,
                 CreateTime = dto.CreateTime,
                 LastUpdateTime = dto.LastUpdateTime
