@@ -491,8 +491,6 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.Property(p => p.SoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
-
                 entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
@@ -546,8 +544,6 @@ namespace Server.Entities
             modelBuilder.Entity<tChiTietDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
-
-                entity.Property(p => p.Xong).ValueGeneratedOnAddOrUpdate();
 
                 entity.HasKey(p => p.ID)
                     .HasName("PK_tChiTietDonHang");
@@ -629,12 +625,6 @@ namespace Server.Entities
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
 
-                entity.Property(p => p.TongDonHang).ValueGeneratedOnAddOrUpdate();
-
-                entity.Property(p => p.TongSoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
-
-                entity.Property(p => p.TongSoLuongThucTe).ValueGeneratedOnAddOrUpdate();
-
                 entity.HasKey(p => p.ID)
                     .HasName("PK_ChuyenHang");
 
@@ -663,10 +653,6 @@ namespace Server.Entities
             modelBuilder.Entity<tChuyenHangDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
-
-                entity.Property(p => p.TongSoLuongTheoDonHang).ValueGeneratedOnAddOrUpdate();
-
-                entity.Property(p => p.TongSoLuongThucTe).ValueGeneratedOnAddOrUpdate();
 
                 entity.HasKey(p => p.ID)
                     .HasName("PK_tChuyenHangDonHang");
@@ -729,10 +715,6 @@ namespace Server.Entities
             modelBuilder.Entity<tDonHang>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
-
-                entity.Property(p => p.Xong).ValueGeneratedOnAddOrUpdate();
-
-                entity.Property(p => p.TongSoLuong).ValueGeneratedOnAddOrUpdate();
 
                 entity.HasKey(p => p.ID)
                     .HasName("PK_DonHang");
@@ -957,8 +939,6 @@ namespace Server.Entities
             modelBuilder.Entity<tTonKho>(entity =>
             {
                 entity.Property(p => p.ID).HasColumnName("Ma");
-
-                entity.Property(p => p.SoLuongCu).ValueGeneratedOnAddOrUpdate();
 
                 entity.HasKey(p => p.ID)
                     .HasName("PK_tTonKho");

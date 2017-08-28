@@ -54,5 +54,11 @@ namespace Server.Controllers
         {
             return nameof(tTonKhoController);
         }
+
+        protected override void UpdateEntity(SqlDbContext context, tTonKho entity)
+        {
+            var entry = context.tTonKho.Update(entity);
+            entry.Property(p => p.SoLuongCu).IsModified = false;
+        }
     }
 }

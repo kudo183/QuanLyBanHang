@@ -56,5 +56,12 @@ namespace Server.Controllers
         {
             return nameof(tDonHangController);
         }
+
+        protected override void UpdateEntity(SqlDbContext context, tDonHang entity)
+        {
+            var entry = context.tDonHang.Update(entity);
+            entry.Property(p => p.Xong).IsModified = false;
+            entry.Property(p => p.TongSoLuong).IsModified = false;
+        }
     }
 }

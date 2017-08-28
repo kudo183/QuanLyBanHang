@@ -52,5 +52,12 @@ namespace Server.Controllers
         {
             return nameof(tChuyenHangDonHangController);
         }
+
+        protected override void UpdateEntity(SqlDbContext context, tChuyenHangDonHang entity)
+        {
+            var entry = context.tChuyenHangDonHang.Update(entity);
+            entry.Property(p => p.TongSoLuongTheoDonHang).IsModified = false;
+            entry.Property(p => p.TongSoLuongThucTe).IsModified = false;
+        }
     }
 }
