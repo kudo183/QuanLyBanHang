@@ -17,6 +17,7 @@ window.app.webApi = (function (logger) {
             }
         },
         get: get,
+        getByID: getByID,
         getAll: getAll,
         getUpdate: getUpdate,
         save: save
@@ -31,6 +32,11 @@ window.app.webApi = (function (logger) {
         json = json || {};
         var jsonString = JSON.stringify(json);
         return postJson(url, jsonString);
+    }
+
+    function getByID(controller, id) {
+        var url = apiUrl(controller, "getbyid");
+        return postParams(url, {id:id});
     }
 
     function getAll(controller, json) {
