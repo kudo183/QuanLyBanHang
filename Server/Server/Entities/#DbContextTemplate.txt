@@ -28,6 +28,12 @@ namespace Server.Entities
                     .HasName("PK_SmtDeletedItem");
             });
 
+            modelBuilder.Entity<SmtFile>(entity =>
+            {
+                entity.HasKey(e => e.ID)
+                    .HasName("PK_SmtFile");
+            });
+
             modelBuilder.Entity<SmtTenant>(entity =>
             {
                 entity.HasKey(e => e.ID)
