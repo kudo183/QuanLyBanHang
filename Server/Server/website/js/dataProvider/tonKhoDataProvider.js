@@ -10,7 +10,7 @@
     function getItemsAjax(filter, done, fail) {
         filter.orderOptions = [{ propertyPath: "MaMatHangNavigation.TenMatHangDayDu", isAscending: true }];
         filter.pageIndex = 1;
-        filter.pageSize = 30;
+        filter.pageSize = 100;
 
         if (dataProvider._needLoadReferenceData === true) {
             dataProvider._needLoadReferenceData = false;
