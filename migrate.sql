@@ -140,6 +140,28 @@ CREATE TABLE [dbo].[SmtUserClaim](
 ) ON [PRIMARY]
 
 GO
+/****** Object:  Table [dbo].[SmtFile]    Script Date: 06/09/2017 10:41:09 SA ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[SmtFile](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[TenantID] [int] NOT NULL,
+	[FileName] [nvarchar](256) NOT NULL,
+	[FileSize] [bigint] NOT NULL,
+	[MimeType] [varchar](20) NOT NULL,
+	[CreateTime] [bigint] NOT NULL,
+	[LastUpdateTime] [bigint] NOT NULL,
+ CONSTRAINT [PK_SmtFile] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
 ALTER TABLE [dbo].[SmtDeletedItem] ADD  CONSTRAINT [DF_SmtDeletedItems_CreateDate]  DEFAULT (getutcdate()) FOR [CreateDate]
 GO
 ALTER TABLE [dbo].[SmtTenant] ADD  CONSTRAINT [DF_SmtTenant_LastUpdateTime]  DEFAULT ((0)) FOR [LastUpdateTime]
