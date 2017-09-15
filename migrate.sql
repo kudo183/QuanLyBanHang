@@ -152,7 +152,7 @@ CREATE TABLE [dbo].[SmtFile](
 	[TenantID] [int] NOT NULL,
 	[FileName] [nvarchar](256) NOT NULL,
 	[FileSize] [bigint] NOT NULL,
-	[MimeType] [varchar](20) NOT NULL,
+	[MimeType] [varchar](128) NOT NULL,
 	[CreateTime] [bigint] NOT NULL,
 	[LastUpdateTime] [bigint] NOT NULL,
  CONSTRAINT [PK_SmtFile] PRIMARY KEY CLUSTERED 
