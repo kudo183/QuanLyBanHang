@@ -1976,7 +1976,7 @@
           "IsReadOnly": true,
           "IsTabStop": false,
           "Width": 0,
-          "Order": 7,
+          "Order": 8,
           "OrderBy": 0
         },
         {
@@ -1985,7 +1985,7 @@
           "IsReadOnly": true,
           "IsTabStop": false,
           "Width": 0,
-          "Order": 8,
+          "Order": 9,
           "OrderBy": 0
         },
         {
@@ -1994,7 +1994,16 @@
           "IsReadOnly": true,
           "IsTabStop": false,
           "Width": 0,
-          "Order": 9,
+          "Order": 10,
+          "OrderBy": 0
+        },
+        {
+          "ColumnName": "MaHinhAnh",
+          "DataGridColumnType": "DataGridRightAlignTextColumn",
+          "IsReadOnly": false,
+          "IsTabStop": true,
+          "Width": 0,
+          "Order": 7,
           "OrderBy": 0
         }
       ]
@@ -4163,6 +4172,93 @@
       "IsExpanded": false
     },
     {
+      "TableName": "SmtFile",
+      "Columns": [
+        {
+          "ColumnName": "ID",
+          "DataType": "int",
+          "IsPrimaryKey": true,
+          "IsForeignKey": false,
+          "IsIdentity": true,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "TenantID",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "FileName",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "FileSize",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "MimeType",
+          "DataType": "string",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "CreateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
+          "ColumnName": "LastUpdateTime",
+          "DataType": "long",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        }
+      ],
+      "ForeignKeys": [],
+      "Indexes": [
+        {
+          "PropertyName": "ID",
+          "IX_Name": "PK_SmtFile",
+          "IndexType": 1
+        }
+      ],
+      "RequiredMaxLengths": [
+        {
+          "PropertyName": "FileName",
+          "NeedIsRequired": true,
+          "MaxLength": 256
+        },
+        {
+          "PropertyName": "MimeType",
+          "NeedIsRequired": true,
+          "MaxLength": 128
+        }
+      ],
+      "DefaultValues": [],
+      "HasColumnTypes": [],
+      "ReferencesToThisTable": [],
+      "ReferenceLevel": 0,
+      "IsSelected": false,
+      "IsExpanded": false
+    },
+    {
       "TableName": "SmtTable",
       "Columns": [
         {
@@ -6063,6 +6159,14 @@
           "ForeignKeyTableName": null
         },
         {
+          "ColumnName": "MaHinhAnh",
+          "DataType": "int",
+          "IsPrimaryKey": false,
+          "IsForeignKey": false,
+          "IsIdentity": false,
+          "ForeignKeyTableName": null
+        },
+        {
           "ColumnName": "TenantID",
           "DataType": "int",
           "IsPrimaryKey": false,
@@ -6135,6 +6239,10 @@
         {
           "PropertyName": "TenMatHangIn",
           "Value": "('')"
+        },
+        {
+          "PropertyName": "MaHinhAnh",
+          "Value": "((0))"
         },
         {
           "PropertyName": "TenantID",
@@ -6916,5 +7024,5 @@
       "IsExpanded": false
     }
   ],
-  "ConnectTime": "2017-08-03T03:52:28.2683268Z"
+  "ConnectTime": "2017-09-15T11:30:19.2614033Z"
 }
