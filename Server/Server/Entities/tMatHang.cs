@@ -25,6 +25,7 @@ namespace Server.Entities
         public int TenantID { get; set; }
         public long CreateTime { get; set; }
         public long LastUpdateTime { get; set; }
+        public int MaHinhAnh { get; set; }
 
         public rLoaiHang MaLoaiNavigation { get; set; }
 		

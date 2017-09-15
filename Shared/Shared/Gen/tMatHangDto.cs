@@ -18,6 +18,7 @@ namespace Shared
         public static int DTenantID;
         public static long DCreateTime;
         public static long DLastUpdateTime;
+        public static int DMaHinhAnh;
 
         int oID;
         int oMaLoai;
@@ -29,6 +30,7 @@ namespace Shared
         int oTenantID;
         long oCreateTime;
         long oLastUpdateTime;
+        int oMaHinhAnh;
 
         int _ID = DID;
         int _MaLoai = DMaLoai;
@@ -40,6 +42,7 @@ namespace Shared
         int _TenantID = DTenantID;
         long _CreateTime = DCreateTime;
         long _LastUpdateTime = DLastUpdateTime;
+        int _MaHinhAnh = DMaHinhAnh;
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
@@ -71,6 +74,9 @@ namespace Shared
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(10)]
         public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
+        [Newtonsoft.Json.JsonProperty]
+        [ProtoBuf.ProtoMember(11)]
+        public int MaHinhAnh { get { return _MaHinhAnh; } set { _MaHinhAnh = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
@@ -88,6 +94,7 @@ namespace Shared
             oTenantID = TenantID;
             oCreateTime = CreateTime;
             oLastUpdateTime = LastUpdateTime;
+            oMaHinhAnh = MaHinhAnh;
         }
 
         public void Update(object obj)
@@ -108,6 +115,7 @@ namespace Shared
             TenantID = dto.TenantID;
             CreateTime = dto.CreateTime;
             LastUpdateTime = dto.LastUpdateTime;
+            MaHinhAnh = dto.MaHinhAnh;
         }
 
         public bool HasChange()
@@ -122,7 +130,8 @@ namespace Shared
             (oTenMatHangIn != TenMatHangIn) ||
             (oTenantID != TenantID) ||
             (oCreateTime != CreateTime) ||
-            (oLastUpdateTime != LastUpdateTime) ;
+            (oLastUpdateTime != LastUpdateTime) ||
+            (oMaHinhAnh != MaHinhAnh) ;
         }
 
         public rLoaiHangDto MaLoaiNavigation { get; set; }

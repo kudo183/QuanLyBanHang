@@ -22,6 +22,7 @@
             <SimpleDataGrid:DataGridTextColumnExt Header="TenMatHangIn" Binding="{Binding TenMatHangIn, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoKy" Binding="{Binding SoKy, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}"/>
             <SimpleDataGrid:DataGridRightAlignTextColumn Header="SoMet" Binding="{Binding SoMet, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}"/>
+            <SimpleDataGrid:DataGridRightAlignTextColumn Header="MaHinhAnh" Binding="{Binding MaHinhAnh, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:N0\}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="CreateTime" IsReadOnly="True" Binding="{Binding CreateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="LastUpdateTime" IsReadOnly="True" Binding="{Binding LastUpdateTime, UpdateSourceTrigger=PropertyChanged, Converter={x:Static converter:LongToDateTimeStringConverter.Instance}}"/>
         </SimpleDataGrid:EditableGridView.Columns>

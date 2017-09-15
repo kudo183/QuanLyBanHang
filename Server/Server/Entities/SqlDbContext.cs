@@ -795,6 +795,8 @@ namespace Server.Entities
 
                 entity.Property(p => p.TenMatHangIn).HasDefaultValueSql("''");
 
+                entity.Property(p => p.MaHinhAnh).HasDefaultValueSql("(0)");
+
                 entity.Property(p => p.TenantID).HasDefaultValueSql("(1)");
 
                 entity.Property(p => p.CreateTime).HasDefaultValueSql("(0)");

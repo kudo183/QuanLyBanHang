@@ -24,6 +24,7 @@ namespace Client.ViewModel
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
         HeaderFilterBaseModel _LastUpdateTimeFilter;
+        HeaderFilterBaseModel _MaHinhAnhFilter;
 
         public tMatHangViewModel() : base()
         {
@@ -48,6 +49,7 @@ namespace Client.ViewModel
             _TenantIDFilter = new HeaderTextFilterModel(TextManager.tMatHang_TenantID, nameof(tMatHangDto.TenantID), typeof(int));
             _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tMatHang_CreateTime, nameof(tMatHangDto.CreateTime), typeof(long));
             _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tMatHang_LastUpdateTime, nameof(tMatHangDto.LastUpdateTime), typeof(long));
+            _MaHinhAnhFilter = new HeaderTextFilterModel(TextManager.tMatHang_MaHinhAnh, nameof(tMatHangDto.MaHinhAnh), typeof(int));
 
 
             InitFilterPartial();
@@ -62,6 +64,7 @@ namespace Client.ViewModel
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
             AddHeaderFilter(_LastUpdateTimeFilter);
+            AddHeaderFilter(_MaHinhAnhFilter);
         }
 
         public override void LoadReferenceData()
@@ -119,6 +122,10 @@ namespace Client.ViewModel
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
                 dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+            }
+            if (_MaHinhAnhFilter.FilterValue != null)
+            {
+                dto.MaHinhAnh = (int)_MaHinhAnhFilter.FilterValue;
             }
 
             ProcessNewAddedDtoPartial(dto);

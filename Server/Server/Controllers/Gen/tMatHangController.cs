@@ -23,7 +23,8 @@ namespace Server.Controllers
                 TenMatHangIn = entity.TenMatHangIn,
                 TenantID = entity.TenantID,
                 CreateTime = entity.CreateTime,
-                LastUpdateTime = entity.LastUpdateTime
+                LastUpdateTime = entity.LastUpdateTime,
+                MaHinhAnh = entity.MaHinhAnh
             };
 
             ConvertToDtoPartial(ref dto, entity);
@@ -44,7 +45,8 @@ namespace Server.Controllers
                 TenMatHangIn = dto.TenMatHangIn,
                 TenantID = dto.TenantID,
                 CreateTime = dto.CreateTime,
-                LastUpdateTime = dto.LastUpdateTime
+                LastUpdateTime = dto.LastUpdateTime,
+                MaHinhAnh = dto.MaHinhAnh
             };
 
             ConvertToEntityPartial(ref entity, dto);

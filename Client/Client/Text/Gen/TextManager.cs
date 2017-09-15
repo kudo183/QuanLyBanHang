@@ -244,6 +244,7 @@ namespace Client
         public static string tMatHang_TenantID { get { return GetText(); } }
         public static string tMatHang_CreateTime { get { return GetText(); } }
         public static string tMatHang_LastUpdateTime { get { return GetText(); } }
+        public static string tMatHang_MaHinhAnh { get { return GetText(); } }
         public static string tNhanTienKhachHang_ID { get { return GetText(); } }
         public static string tNhanTienKhachHang_MaKhachHang { get { return GetText(); } }
         public static string tNhanTienKhachHang_Ngay { get { return GetText(); } }
@@ -510,6 +511,7 @@ namespace Client
             _dic.Add("tMatHang_TenantID", "TenantID");
             _dic.Add("tMatHang_CreateTime", "CreateTime");
             _dic.Add("tMatHang_LastUpdateTime", "LastUpdateTime");
+            _dic.Add("tMatHang_MaHinhAnh", "MaHinhAnh");
             _dic.Add("tNhanTienKhachHang_ID", "ID");
             _dic.Add("tNhanTienKhachHang_MaKhachHang", "MaKhachHang");
             _dic.Add("tNhanTienKhachHang_Ngay", "Ngay");
