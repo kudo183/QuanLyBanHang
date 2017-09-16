@@ -119,6 +119,7 @@
     <Build Include="dbo\Stored Procedures\ReportDailyByKhachHangMatHang.sql" />
     <Build Include="dbo\Stored Procedures\InitData.sql" />
     <Build Include="dbo\Stored Procedures\clean_database.sql" />
+    <Build Include="dbo\Tables\SmtFile.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
