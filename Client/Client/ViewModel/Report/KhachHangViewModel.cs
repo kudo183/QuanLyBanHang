@@ -1,4 +1,5 @@
-﻿using huypq.wpf.controls;
+﻿using Client.DataModel;
+using huypq.wpf.controls;
 using Shared;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ namespace Client.ViewModel.Report
     {
         public DateRangePickerViewModel DateRangePickerViewModel { get; set; }
 
-        public List<rKhachHangDto> KhachHangs { get; set; }
+        public List<rKhachHangDataModel> KhachHangs { get; set; }
 
         private int khachHangIndex;
 

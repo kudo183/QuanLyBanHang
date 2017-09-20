@@ -4,15 +4,16 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
 
 namespace Client.ViewModel
 {
-    public partial class rMatHangNguyenLieuViewModel : BaseViewModel<rMatHangNguyenLieuDto>
+    public partial class rMatHangNguyenLieuViewModel : BaseViewModel<rMatHangNguyenLieuDto, rMatHangNguyenLieuDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rMatHangNguyenLieuDto dto);
-        partial void ProcessNewAddedDtoPartial(rMatHangNguyenLieuDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rMatHangNguyenLieuDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rMatHangNguyenLieuDataModel dataModel);
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
@@ -23,34 +24,34 @@ namespace Client.ViewModel
 
         public rMatHangNguyenLieuViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_ID, nameof(rMatHangNguyenLieuDto.ID), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_ID, nameof(rMatHangNguyenLieuDataModel.ID), typeof(int));
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.rMatHangNguyenLieu_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rMatHangNguyenLieuDto.MaMatHang),
+                nameof(rMatHangNguyenLieuDataModel.MaMatHang),
                 typeof(int),
-                nameof(tMatHangDto.DisplayText),
-                nameof(tMatHangDto.ID))
+                nameof(tMatHangDataModel.DisplayText),
+                nameof(tMatHangDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaMatHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.tMatHangView(), "tMatHang", ReferenceDataManager<tMatHangDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<tMatHangDto>.Instance.Get()
+                    new View.tMatHangView(), "tMatHang", ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.Get()
             };
             _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.rMatHangNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rMatHangNguyenLieuDto.MaNguyenLieu),
+                nameof(rMatHangNguyenLieuDataModel.MaNguyenLieu),
                 typeof(int),
-                nameof(rNguyenLieuDto.DisplayText),
-                nameof(rNguyenLieuDto.ID))
+                nameof(rNguyenLieuDataModel.DisplayText),
+                nameof(rNguyenLieuDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rNguyenLieuView(), "rNguyenLieu", ReferenceDataManager<rNguyenLieuDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rNguyenLieuDto>.Instance.Get()
+                    new View.rNguyenLieuView(), "rNguyenLieu", ReferenceDataManager<rNguyenLieuDto, rNguyenLieuDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rNguyenLieuDto, rNguyenLieuDataModel>.Instance.Get()
             };
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_TenantID, nameof(rMatHangNguyenLieuDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_CreateTime, nameof(rMatHangNguyenLieuDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_LastUpdateTime, nameof(rMatHangNguyenLieuDto.LastUpdateTime), typeof(long));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_TenantID, nameof(rMatHangNguyenLieuDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_CreateTime, nameof(rMatHangNguyenLieuDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rMatHangNguyenLieu_LastUpdateTime, nameof(rMatHangNguyenLieuDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -65,49 +66,49 @@ namespace Client.ViewModel
 
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<tMatHangDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rNguyenLieuDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rNguyenLieuDto, rNguyenLieuDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rMatHangNguyenLieuDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rMatHangNguyenLieuDataModel dataModel)
         {
-            dto.MaMatHangDataSource = ReferenceDataManager<tMatHangDto>.Instance.Get();
-            dto.MaNguyenLieuDataSource = ReferenceDataManager<rNguyenLieuDto>.Instance.Get();
+            dataModel.MaMatHangDataSource = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.Get();
+            dataModel.MaNguyenLieuDataSource = ReferenceDataManager<rNguyenLieuDto, rNguyenLieuDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rMatHangNguyenLieuDto dto)
+        protected override void ProcessNewAddedDataModel(rMatHangNguyenLieuDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaMatHangFilter.FilterValue != null)
             {
-                dto.MaMatHang = (int)_MaMatHangFilter.FilterValue;
+                dataModel.MaMatHang = (int)_MaMatHangFilter.FilterValue;
             }
             if (_MaNguyenLieuFilter.FilterValue != null)
             {
-                dto.MaNguyenLieu = (int)_MaNguyenLieuFilter.FilterValue;
+                dataModel.MaNguyenLieu = (int)_MaNguyenLieuFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

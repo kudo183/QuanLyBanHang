@@ -4,15 +4,16 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
 
 namespace Client.ViewModel
 {
-    public partial class rNguyenLieuViewModel : BaseViewModel<rNguyenLieuDto>
+    public partial class rNguyenLieuViewModel : BaseViewModel<rNguyenLieuDto, rNguyenLieuDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rNguyenLieuDto dto);
-        partial void ProcessNewAddedDtoPartial(rNguyenLieuDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rNguyenLieuDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rNguyenLieuDataModel dataModel);
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaLoaiNguyenLieuFilter;
@@ -23,23 +24,23 @@ namespace Client.ViewModel
 
         public rNguyenLieuViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_ID, nameof(rNguyenLieuDto.ID), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_ID, nameof(rNguyenLieuDataModel.ID), typeof(int));
             _MaLoaiNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.rNguyenLieu_MaLoaiNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rNguyenLieuDto.MaLoaiNguyenLieu),
+                nameof(rNguyenLieuDataModel.MaLoaiNguyenLieu),
                 typeof(int),
-                nameof(rLoaiNguyenLieuDto.DisplayText),
-                nameof(rLoaiNguyenLieuDto.ID))
+                nameof(rLoaiNguyenLieuDataModel.DisplayText),
+                nameof(rLoaiNguyenLieuDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaLoaiNguyenLieuAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rLoaiNguyenLieuView(), "rLoaiNguyenLieu", ReferenceDataManager<rLoaiNguyenLieuDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rLoaiNguyenLieuDto>.Instance.Get()
+                    new View.rLoaiNguyenLieuView(), "rLoaiNguyenLieu", ReferenceDataManager<rLoaiNguyenLieuDto, rLoaiNguyenLieuDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rLoaiNguyenLieuDto, rLoaiNguyenLieuDataModel>.Instance.Get()
             };
-            _DuongKinhFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_DuongKinh, nameof(rNguyenLieuDto.DuongKinh), typeof(int));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_TenantID, nameof(rNguyenLieuDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_CreateTime, nameof(rNguyenLieuDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_LastUpdateTime, nameof(rNguyenLieuDto.LastUpdateTime), typeof(long));
+            _DuongKinhFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_DuongKinh, nameof(rNguyenLieuDataModel.DuongKinh), typeof(int));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_TenantID, nameof(rNguyenLieuDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_CreateTime, nameof(rNguyenLieuDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rNguyenLieu_LastUpdateTime, nameof(rNguyenLieuDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -54,47 +55,47 @@ namespace Client.ViewModel
 
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<rLoaiNguyenLieuDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rLoaiNguyenLieuDto, rLoaiNguyenLieuDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rNguyenLieuDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rNguyenLieuDataModel dataModel)
         {
-            dto.MaLoaiNguyenLieuDataSource = ReferenceDataManager<rLoaiNguyenLieuDto>.Instance.Get();
+            dataModel.MaLoaiNguyenLieuDataSource = ReferenceDataManager<rLoaiNguyenLieuDto, rLoaiNguyenLieuDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rNguyenLieuDto dto)
+        protected override void ProcessNewAddedDataModel(rNguyenLieuDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaLoaiNguyenLieuFilter.FilterValue != null)
             {
-                dto.MaLoaiNguyenLieu = (int)_MaLoaiNguyenLieuFilter.FilterValue;
+                dataModel.MaLoaiNguyenLieu = (int)_MaLoaiNguyenLieuFilter.FilterValue;
             }
             if (_DuongKinhFilter.FilterValue != null)
             {
-                dto.DuongKinh = (int)_DuongKinhFilter.FilterValue;
+                dataModel.DuongKinh = (int)_DuongKinhFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

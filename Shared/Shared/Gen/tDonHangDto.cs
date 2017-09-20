@@ -1,149 +1,44 @@
 ﻿using huypq.SmtShared;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Shared
 {
     [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptIn)]
     [ProtoBuf.ProtoContract]
-    public partial class tDonHangDto : IDto, INotifyPropertyChanged
+    public partial class tDonHangDto : IDto
     {
-        public static int DID;
-        public static int DMaKhachHang;
-        public static int? DMaChanh;
-        public static System.DateTime DNgay;
-        public static bool DXong;
-        public static int DMaKhoHang;
-        public static int DTongSoLuong;
-        public static int DTenantID;
-        public static long DCreateTime;
-        public static long DLastUpdateTime;
-
-        int oID;
-        int oMaKhachHang;
-        int? oMaChanh;
-        System.DateTime oNgay;
-        bool oXong;
-        int oMaKhoHang;
-        int oTongSoLuong;
-        int oTenantID;
-        long oCreateTime;
-        long oLastUpdateTime;
-
-        int _ID = DID;
-        int _MaKhachHang = DMaKhachHang;
-        int? _MaChanh = DMaChanh;
-        System.DateTime _Ngay = DNgay;
-        bool _Xong = DXong;
-        int _MaKhoHang = DMaKhoHang;
-        int _TongSoLuong = DTongSoLuong;
-        int _TenantID = DTenantID;
-        long _CreateTime = DCreateTime;
-        long _LastUpdateTime = DLastUpdateTime;
-
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int ID { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
-        public int MaKhachHang { get { return _MaKhachHang; } set { _MaKhachHang = value; OnPropertyChanged(); } }
+        public int MaKhachHang { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(3)]
-        public int? MaChanh { get { return _MaChanh; } set { _MaChanh = value; OnPropertyChanged(); } }
+        public int? MaChanh { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(4)]
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
+        public System.DateTime Ngay { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(5)]
-        public bool Xong { get { return _Xong; } set { _Xong = value; OnPropertyChanged(); } }
+        public bool Xong { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(6)]
-        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
+        public int MaKhoHang { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(7)]
-        public int TongSoLuong { get { return _TongSoLuong; } set { _TongSoLuong = value; OnPropertyChanged(); } }
+        public int TongSoLuong { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(8)]
-        public int TenantID { get { return _TenantID; } set { _TenantID = value; OnPropertyChanged(); } }
+        public int TenantID { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(9)]
-        public long CreateTime { get { return _CreateTime; } set { _CreateTime = value; OnPropertyChanged(); } }
+        public long CreateTime { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(10)]
-        public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
+        public long LastUpdateTime { get; set;}
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-
-        public void SetCurrentValueAsOriginalValue()
-        {
-            oID = ID;
-            oMaKhachHang = MaKhachHang;
-            oMaChanh = MaChanh;
-            oNgay = Ngay;
-            oXong = Xong;
-            oMaKhoHang = MaKhoHang;
-            oTongSoLuong = TongSoLuong;
-            oTenantID = TenantID;
-            oCreateTime = CreateTime;
-            oLastUpdateTime = LastUpdateTime;
-        }
-
-        public void Update(object obj)
-        {
-            var dto = obj as tDonHangDto;
-            if (dto == null)
-            {
-                return;
-            }
-
-            ID = dto.ID;
-            MaKhachHang = dto.MaKhachHang;
-            MaChanh = dto.MaChanh;
-            Ngay = dto.Ngay;
-            Xong = dto.Xong;
-            MaKhoHang = dto.MaKhoHang;
-            TongSoLuong = dto.TongSoLuong;
-            TenantID = dto.TenantID;
-            CreateTime = dto.CreateTime;
-            LastUpdateTime = dto.LastUpdateTime;
-        }
-
-        public bool HasChange()
-        {
-            return
-            (oID != ID) ||
-            (oMaKhachHang != MaKhachHang) ||
-            (oMaChanh != MaChanh) ||
-            (oNgay != Ngay) ||
-            (oXong != Xong) ||
-            (oMaKhoHang != MaKhoHang) ||
-            (oTongSoLuong != TongSoLuong) ||
-            (oTenantID != TenantID) ||
-            (oCreateTime != CreateTime) ||
-            (oLastUpdateTime != LastUpdateTime) ;
-        }
-
-        public rKhachHangDto MaKhachHangNavigation { get; set; }
-        public rChanhDto MaChanhNavigation { get; set; }
-        public rKhoHangDto MaKhoHangNavigation { get; set; }
-
-        object _MaKhachHangDataSource;
-        object _MaChanhDataSource;
-        object _MaKhoHangDataSource;
-
-        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
-        public object MaChanhDataSource { get { return _MaChanhDataSource; } set { _MaChanhDataSource = value; OnPropertyChanged(); } }
-        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public virtual void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            RaiseDependentPropertyChanged(name);
-        }
-
-        partial void RaiseDependentPropertyChanged(string basePropertyName);
     }
 }

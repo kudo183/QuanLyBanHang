@@ -1,4 +1,5 @@
-﻿using huypq.SmtShared;
+﻿using Client.DataModel;
+using huypq.SmtShared;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
@@ -8,14 +9,14 @@ using System.Text;
 
 namespace Client.ViewModel
 {
-    public partial class tChiTietDonHangViewModel : BaseViewModel<tChiTietDonHangDto>
+    public partial class tChiTietDonHangViewModel : BaseViewModel<tChiTietDonHangDto, tChiTietDonHangDataModel>
     {
-        Dictionary<int, tDonHangDto> donHangs;
+        Dictionary<int, tDonHangDataModel> donHangs;
 
         partial void LoadReferenceDataPartial()
         {
-            ReferenceDataManager<rKhoHangDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate();
         }
 
         protected override void BeforeLoad()
@@ -28,14 +29,14 @@ namespace Client.ViewModel
 
         protected override void AfterLoad()
         {
-            donHangs = DataService.GetByListInt<tDonHangDto>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList()).ToDictionary(p => p.ID);
+            donHangs = DataService.GetByListInt<tDonHangDto, tDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList()).ToDictionary(p => p.ID);
 
             foreach (var dto in Entities)
             {
                 dto.MaDonHangNavigation = donHangs[dto.MaDonHang];
-                dto.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dto.MaDonHangNavigation.MaKhoHang);
-                dto.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(dto.MaDonHangNavigation.MaKhachHang);
-                dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(dto.MaMatHang);
+                dto.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhoHang);
+                dto.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhachHang);
+                dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(dto.MaMatHang);
                 dto.PropertyChanged += Item_PropertyChanged;
             }
 
@@ -44,7 +45,7 @@ namespace Client.ViewModel
             sb.Append(", ");
             foreach (var item in Entities)
             {
-                item.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(item.MaMatHang);
+                item.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(item.MaMatHang);
                 if (item.MaMatHangNavigation == null)
                     continue;
 
@@ -66,7 +67,7 @@ namespace Client.ViewModel
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            var dto = sender as tChiTietDonHangDto;
+            var dto = sender as tChiTietDonHangDataModel;
             switch (e.PropertyName)
             {
                 case nameof(tChiTietDonHangDto.MaDonHang):
@@ -77,7 +78,7 @@ namespace Client.ViewModel
             }
         }
 
-        partial void ProcessNewAddedDtoPartial(tChiTietDonHangDto dto)
+        partial void ProcessNewAddedDataModelPartial(tChiTietDonHangDataModel dto)
         {
             if (dto.MaDonHang != 0 && dto.MaDonHangNavigation == null)
             {
@@ -86,14 +87,14 @@ namespace Client.ViewModel
             dto.PropertyChanged += Item_PropertyChanged;
         }
 
-        private tDonHangDto FindtDonHangDto(int maDonHang)
+        private tDonHangDataModel FindtDonHangDto(int maDonHang)
         {
-            tDonHangDto dh;
+            tDonHangDataModel dh;
             if (donHangs.TryGetValue(maDonHang, out dh) == false)
             {
-                dh = DataService.GetByID<tDonHangDto>(maDonHang);
-                dh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto>.Instance.GetByID(dh.MaKhoHang);
-                dh.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(dh.MaKhachHang);
+                dh = DataService.GetByID<tDonHangDto,tDonHangDataModel >(maDonHang);
+                dh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dh.MaKhoHang);
+                dh.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dh.MaKhachHang);
                 donHangs.Add(maDonHang, dh);
             }
 

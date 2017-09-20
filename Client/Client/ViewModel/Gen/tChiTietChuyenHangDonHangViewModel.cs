@@ -4,15 +4,16 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
 
 namespace Client.ViewModel
 {
-    public partial class tChiTietChuyenHangDonHangViewModel : BaseViewModel<tChiTietChuyenHangDonHangDto>
+    public partial class tChiTietChuyenHangDonHangViewModel : BaseViewModel<tChiTietChuyenHangDonHangDto, tChiTietChuyenHangDonHangDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(tChiTietChuyenHangDonHangDto dto);
-        partial void ProcessNewAddedDtoPartial(tChiTietChuyenHangDonHangDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(tChiTietChuyenHangDonHangDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(tChiTietChuyenHangDonHangDataModel dataModel);
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChuyenHangDonHangFilter;
@@ -25,14 +26,14 @@ namespace Client.ViewModel
 
         public tChiTietChuyenHangDonHangViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_ID, nameof(tChiTietChuyenHangDonHangDto.ID), typeof(int));
-            _MaChuyenHangDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChuyenHangDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChuyenHangDonHang), typeof(int), new View.tChuyenHangDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
-            _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChiTietDonHang, nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
-            _SoLuongFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuong, nameof(tChiTietChuyenHangDonHangDto.SoLuong), typeof(int));
-            _SoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuongTheoDonHang, nameof(tChiTietChuyenHangDonHangDto.SoLuongTheoDonHang), typeof(int));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_TenantID, nameof(tChiTietChuyenHangDonHangDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_CreateTime, nameof(tChiTietChuyenHangDonHangDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_LastUpdateTime, nameof(tChiTietChuyenHangDonHangDto.LastUpdateTime), typeof(long));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_ID, nameof(tChiTietChuyenHangDonHangDataModel.ID), typeof(int));
+            _MaChuyenHangDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChuyenHangDonHang, nameof(tChiTietChuyenHangDonHangDataModel.MaChuyenHangDonHang), typeof(int), new View.tChuyenHangDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
+            _MaChiTietDonHangFilter = new HeaderForeignKeyFilterModel(TextManager.tChiTietChuyenHangDonHang_MaChiTietDonHang, nameof(tChiTietChuyenHangDonHangDataModel.MaChiTietDonHang), typeof(int), new View.tChiTietDonHangView() { KeepSelectionType = DataGridExt.KeepSelection.KeepSelectedValue });
+            _SoLuongFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuong, nameof(tChiTietChuyenHangDonHangDataModel.SoLuong), typeof(int));
+            _SoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_SoLuongTheoDonHang, nameof(tChiTietChuyenHangDonHangDataModel.SoLuongTheoDonHang), typeof(int));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_TenantID, nameof(tChiTietChuyenHangDonHangDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_CreateTime, nameof(tChiTietChuyenHangDonHangDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChiTietChuyenHangDonHang_LastUpdateTime, nameof(tChiTietChuyenHangDonHangDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -53,49 +54,49 @@ namespace Client.ViewModel
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(tChiTietChuyenHangDonHangDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(tChiTietChuyenHangDonHangDataModel dataModel)
         {
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(tChiTietChuyenHangDonHangDto dto)
+        protected override void ProcessNewAddedDataModel(tChiTietChuyenHangDonHangDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChuyenHangDonHangFilter.FilterValue != null)
             {
-                dto.MaChuyenHangDonHang = (int)_MaChuyenHangDonHangFilter.FilterValue;
+                dataModel.MaChuyenHangDonHang = (int)_MaChuyenHangDonHangFilter.FilterValue;
             }
             if (_MaChiTietDonHangFilter.FilterValue != null)
             {
-                dto.MaChiTietDonHang = (int)_MaChiTietDonHangFilter.FilterValue;
+                dataModel.MaChiTietDonHang = (int)_MaChiTietDonHangFilter.FilterValue;
             }
             if (_SoLuongFilter.FilterValue != null)
             {
-                dto.SoLuong = (int)_SoLuongFilter.FilterValue;
+                dataModel.SoLuong = (int)_SoLuongFilter.FilterValue;
             }
             if (_SoLuongTheoDonHangFilter.FilterValue != null)
             {
-                dto.SoLuongTheoDonHang = (int)_SoLuongTheoDonHangFilter.FilterValue;
+                dataModel.SoLuongTheoDonHang = (int)_SoLuongTheoDonHangFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

@@ -6,6 +6,7 @@
   "ControllerPath": "C:\\github\\QuanLyBanHang\\Server\\Server\\Controllers\\Gen",
   "DtoPath": "C:\\github\\QuanLyBanHang\\Shared\\Shared\\Gen",
   "EntityPath": "C:\\github\\QuanLyBanHang\\Server\\Server\\Entities",
+  "DataModelPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\DataModel\\Gen",
   "MasterDetailList": [
     {
       "ViewName": "DonHang",

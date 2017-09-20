@@ -109,11 +109,11 @@ namespace Client
 
             _dataService = ServiceLocator.Get<IDataService>();
 
-            ReferenceDataManager<Shared.rChanhDto>.Instance.Init((chanh) =>
+            ReferenceDataManager<Shared.rChanhDto, DataModel.rChanhDataModel>.Instance.Init((chanh) =>
             {
                 if (chanh.MaBaiXeNavigation == null || chanh.MaBaiXeNavigation.ID != chanh.MaBaiXe)
                 {
-                    chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+                    chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto, DataModel.rBaiXeDataModel>.Instance.GetByID(chanh.MaBaiXe);
                 }
             });
         }

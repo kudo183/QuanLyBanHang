@@ -4,15 +4,16 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
 
 namespace Client.ViewModel
 {
-    public partial class ThamSoNgayViewModel : BaseViewModel<ThamSoNgayDto>
+    public partial class ThamSoNgayViewModel : BaseViewModel<ThamSoNgayDto, ThamSoNgayDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(ThamSoNgayDto dto);
-        partial void ProcessNewAddedDtoPartial(ThamSoNgayDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(ThamSoNgayDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(ThamSoNgayDataModel dataModel);
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenFilter;
@@ -23,12 +24,12 @@ namespace Client.ViewModel
 
         public ThamSoNgayViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_ID, nameof(ThamSoNgayDto.ID), typeof(int));
-            _TenFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ten, nameof(ThamSoNgayDto.Ten), typeof(string));
-            _GiaTriFilter = new HeaderDateFilterModel(TextManager.ThamSoNgay_GiaTri, nameof(ThamSoNgayDto.GiaTri), typeof(System.DateTime));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_TenantID, nameof(ThamSoNgayDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_CreateTime, nameof(ThamSoNgayDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_LastUpdateTime, nameof(ThamSoNgayDto.LastUpdateTime), typeof(long));
+            _IDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_ID, nameof(ThamSoNgayDataModel.ID), typeof(int));
+            _TenFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ten, nameof(ThamSoNgayDataModel.Ten), typeof(string));
+            _GiaTriFilter = new HeaderDateFilterModel(TextManager.ThamSoNgay_GiaTri, nameof(ThamSoNgayDataModel.GiaTri), typeof(System.DateTime));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_TenantID, nameof(ThamSoNgayDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_CreateTime, nameof(ThamSoNgayDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_LastUpdateTime, nameof(ThamSoNgayDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -47,41 +48,41 @@ namespace Client.ViewModel
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(ThamSoNgayDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(ThamSoNgayDataModel dataModel)
         {
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(ThamSoNgayDto dto)
+        protected override void ProcessNewAddedDataModel(ThamSoNgayDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenFilter.FilterValue != null)
             {
-                dto.Ten = (string)_TenFilter.FilterValue;
+                dataModel.Ten = (string)_TenFilter.FilterValue;
             }
             if (_GiaTriFilter.FilterValue != null)
             {
-                dto.GiaTri = (System.DateTime)_GiaTriFilter.FilterValue;
+                dataModel.GiaTri = (System.DateTime)_GiaTriFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

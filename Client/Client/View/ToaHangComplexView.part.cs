@@ -4,6 +4,7 @@ using huypq.QueryBuilder;
 using Shared;
 using System;
 using System.Linq;
+using Client.DataModel;
 
 namespace Client.View
 {
@@ -28,22 +29,22 @@ namespace Client.View
             {
                 var view = nextView as tChiTietToaHangView;
                 var viewModel = view.DataContext as tChiTietToaHangViewModel;
-                var th = viewModel.ParentItem as tToaHangDto;
+                var th = viewModel.ParentItem as tToaHangDataModel;
                 if (th != null && viewModel.Entities.Any(p => p.ID != 0) == false)
                 {
                     viewModel.Entities.Clear();
                     var qe = new QueryExpression();
-                    var path = nameof(tChiTietDonHangDto.MaDonHangNavigation) + "." + nameof(tDonHangDto.MaKhachHang);
+                    var path = nameof(tChiTietDonHangDataModel.MaDonHangNavigation) + "." + nameof(tDonHangDataModel.MaKhachHang);
                     qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
                         WhereExpression.Equal, path, th.MaKhachHang);
-                    path = nameof(tChiTietDonHangDto.MaDonHangNavigation) + "." + nameof(tDonHangDto.Ngay);
+                    path = nameof(tChiTietDonHangDataModel.MaDonHangNavigation) + "." + nameof(tDonHangDataModel.Ngay);
                     qe.AddWhereOption<WhereExpression.WhereOptionDate, DateTime>(
                         WhereExpression.Equal, path, th.Ngay);
-                    var ctdhs = viewModel.DataService.Get<tChiTietDonHangDto>(qe).Items;
+                    var ctdhs = viewModel.DataService.Get<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe).Items;
 
                     foreach (var ctdh in ctdhs)
                     {
-                        var ct = new tChiTietToaHangDto
+                        var ct = new tChiTietToaHangDataModel
                         {
                             MaToaHang = th.ID,
                             MaChiTietDonHang = ctdh.ID,

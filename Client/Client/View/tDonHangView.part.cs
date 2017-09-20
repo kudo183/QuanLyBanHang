@@ -1,11 +1,12 @@
-﻿using Client.ViewModel;
+﻿using Client.DataModel;
+using Client.ViewModel;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Windows.Controls;
 
 namespace Client.View
 {
-    public partial class tDonHangView : BaseView<tDonHangDto>
+    public partial class tDonHangView : BaseView<tDonHangDto, tDonHangDataModel>
     {
         partial void InitUIPartial()
         {

@@ -1,9 +1,10 @@
-﻿using huypq.SmtWpfClient.Abstraction;
+﻿using Client.DataModel;
+using huypq.SmtWpfClient.Abstraction;
 using Shared;
 
 namespace Client.View
 {
-    public partial class tChiTietToaHangView : BaseView<tChiTietToaHangDto>
+    public partial class tChiTietToaHangView : BaseView<tChiTietToaHangDto, tChiTietToaHangDataModel>
     {
         partial void InitUIPartial()
         {
@@ -14,7 +15,7 @@ namespace Client.View
                 Header = TextManager.tToaHang_ThanhTien,
                 Binding = new System.Windows.Data.Binding()
                 {
-                    Path = new System.Windows.PropertyPath(nameof(tChiTietToaHangDto.ThanhTien)),
+                    Path = new System.Windows.PropertyPath(nameof(tChiTietToaHangDataModel.ThanhTien)),
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };

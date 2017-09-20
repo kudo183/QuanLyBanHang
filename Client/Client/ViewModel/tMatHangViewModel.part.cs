@@ -1,10 +1,11 @@
-﻿using huypq.SmtShared.Constant;
+﻿using Client.DataModel;
+using huypq.SmtShared.Constant;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 
 namespace Client.ViewModel
 {
-    public partial class tMatHangViewModel : BaseViewModel<tMatHangDto>
+    public partial class tMatHangViewModel : BaseViewModel<tMatHangDto, tMatHangDataModel>
     {
         const string ImageFileController = "SmtImageFile";
 

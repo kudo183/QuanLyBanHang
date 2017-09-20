@@ -1,10 +1,11 @@
-﻿using huypq.SmtWpfClient.Abstraction;
+﻿using Client.DataModel;
+using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class tChiPhiViewModel : BaseViewModel<tChiPhiDto>
+    public partial class tChiPhiViewModel : BaseViewModel<tChiPhiDto, tChiPhiDataModel>
     {
         protected override void AfterLoad()
         {

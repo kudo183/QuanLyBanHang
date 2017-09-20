@@ -42,12 +42,12 @@ namespace Client
             {
                 case nameof(Settings.tDonHang_MaKhoHangDefault):
                     {
-                        Shared.tDonHangDto.DMaKhoHang = Instance.tDonHang_MaKhoHangDefault;
+                        DataModel.tDonHangDataModel.DMaKhoHang = Instance.tDonHang_MaKhoHangDefault;
                     }
                     break;
                 case nameof(Settings.tDonHang_MaKhachHangDefault):
                     {
-                        Shared.tDonHangDto.DMaKhachHang = Instance.tDonHang_MaKhachHangDefault;
+                        DataModel.tDonHangDataModel.DMaKhachHang = Instance.tDonHang_MaKhachHangDefault;
                     }
                     break;
             }
