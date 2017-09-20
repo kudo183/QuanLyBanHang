@@ -111,7 +111,10 @@ namespace Client
 
             ReferenceDataManager<Shared.rChanhDto>.Instance.Init((chanh) =>
             {
-                chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+                if (chanh.MaBaiXeNavigation == null || chanh.MaBaiXeNavigation.ID != chanh.MaBaiXe)
+                {
+                    chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+                }
             });
         }
 
