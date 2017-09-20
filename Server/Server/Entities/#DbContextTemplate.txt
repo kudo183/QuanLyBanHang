@@ -8,7 +8,7 @@ namespace Server.Entities
 {
     public partial class SqlDbContext : DbContext, IDbContext<SmtTenant, SmtUser, SmtUserClaim>
     {
-            public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
         {
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
