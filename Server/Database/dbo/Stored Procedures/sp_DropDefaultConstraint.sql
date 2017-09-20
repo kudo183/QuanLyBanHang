@@ -7,7 +7,7 @@ set nocount on
    
 declare @constraintName varchar(128)
 set @constraintName = (
-    select top 1 dc.NAME
+    select top 1 dc.name
     from sys.default_constraints dc
     JOIN sys.columns c
         ON c.default_object_id = dc.object_id
