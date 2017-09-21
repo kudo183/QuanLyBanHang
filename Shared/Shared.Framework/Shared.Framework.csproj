@@ -46,131 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\Gen\rBaiXeDto.cs">
-      <Link>Gen\rBaiXeDto.cs</Link>
+    <Compile Include="..\Shared\Gen\*.cs">
+      <Link>Gen\%(Filename)</Link>
     </Compile>
-    <Compile Include="..\Shared\Gen\rCanhBaoTonKhoDto.cs">
-      <Link>Gen\rCanhBaoTonKhoDto.cs</Link>
+    <Compile Include="..\Shared\Report\*.cs">
+      <Link>Report\%(Filename)</Link>
     </Compile>
-    <Compile Include="..\Shared\Gen\rChanhDto.cs">
-      <Link>Gen\rChanhDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rDiaDiemDto.cs">
-      <Link>Gen\rDiaDiemDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rKhachHangChanhDto.cs">
-      <Link>Gen\rKhachHangChanhDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rKhachHangDto.cs">
-      <Link>Gen\rKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rKhoHangDto.cs">
-      <Link>Gen\rKhoHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rLoaiChiPhiDto.cs">
-      <Link>Gen\rLoaiChiPhiDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rLoaiHangDto.cs">
-      <Link>Gen\rLoaiHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rLoaiNguyenLieuDto.cs">
-      <Link>Gen\rLoaiNguyenLieuDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rMatHangNguyenLieuDto.cs">
-      <Link>Gen\rMatHangNguyenLieuDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rNguyenLieuDto.cs">
-      <Link>Gen\rNguyenLieuDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rNhaCungCapDto.cs">
-      <Link>Gen\rNhaCungCapDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rNhanVienDto.cs">
-      <Link>Gen\rNhanVienDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rNuocDto.cs">
-      <Link>Gen\rNuocDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\rPhuongTienDto.cs">
-      <Link>Gen\rPhuongTienDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiPhiDto.cs">
-      <Link>Gen\tChiPhiDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiTietChuyenHangDonHangDto.cs">
-      <Link>Gen\tChiTietChuyenHangDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiTietChuyenKhoDto.cs">
-      <Link>Gen\tChiTietChuyenKhoDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiTietDonHangDto.cs">
-      <Link>Gen\tChiTietDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiTietNhapHangDto.cs">
-      <Link>Gen\tChiTietNhapHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChiTietToaHangDto.cs">
-      <Link>Gen\tChiTietToaHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChuyenHangDonHangDto.cs">
-      <Link>Gen\tChuyenHangDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChuyenHangDto.cs">
-      <Link>Gen\tChuyenHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tChuyenKhoDto.cs">
-      <Link>Gen\tChuyenKhoDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tCongNoKhachHangDto.cs">
-      <Link>Gen\tCongNoKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tDonHangDto.cs">
-      <Link>Gen\tDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tGiamTruKhachHangDto.cs">
-      <Link>Gen\tGiamTruKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\ThamSoNgayDto.cs">
-      <Link>Gen\ThamSoNgayDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tMatHangDto.cs">
-      <Link>Gen\tMatHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tNhanTienKhachHangDto.cs">
-      <Link>Gen\tNhanTienKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tNhapHangDto.cs">
-      <Link>Gen\tNhapHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tNhapNguyenLieuDto.cs">
-      <Link>Gen\tNhapNguyenLieuDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tPhuThuKhachHangDto.cs">
-      <Link>Gen\tPhuThuKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tToaHangDto.cs">
-      <Link>Gen\tToaHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Gen\tTonKhoDto.cs">
-      <Link>Gen\tTonKhoDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Report\ReportChiPhiDto.cs">
-      <Link>Report\ReportChiPhiDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Report\ReportDailyDto.cs">
-      <Link>Report\ReportDailyDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Report\ReportKhachHangDto.cs">
-      <Link>Report\ReportKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Report\ReportXuatDto.cs">
-      <Link>Report\ReportXuatDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\SmtUserClaimDto.cs">
-      <Link>SmtUserClaimDto.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\SmtUserDto.cs">
-      <Link>SmtUserDto.cs</Link>
+    <Compile Include="..\Shared\*.cs">
+      <Link>%(Filename)</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
