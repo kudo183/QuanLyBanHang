@@ -69,6 +69,7 @@ namespace Client.DataModel
         public override tChiPhiDto ToDto()
         {
             var dto = new tChiPhiDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaNhanVienGiaoHang = MaNhanVienGiaoHang;
             dto.MaLoaiChiPhi = MaLoaiChiPhi;

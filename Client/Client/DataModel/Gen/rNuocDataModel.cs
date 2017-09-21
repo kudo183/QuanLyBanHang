@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rNuocDto ToDto()
         {
             var dto = new rNuocDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenNuoc = TenNuoc;
             dto.TenantID = TenantID;

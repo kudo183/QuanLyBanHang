@@ -1,4 +1,6 @@
-﻿namespace Client.DataModel
+﻿using Shared;
+
+namespace Client.DataModel
 {
     public partial class tToaHangDataModel
     {
@@ -27,6 +29,11 @@
                 }
                 return ID.ToString();
             }
+        }
+
+        partial void FromDtoPartial(tToaHangDto dto)
+        {
+            ThanhTien = dto.ThanhTien;
         }
     }
 }

@@ -48,6 +48,7 @@ namespace Client.DataModel
         public override rLoaiHangDto ToDto()
         {
             var dto = new rLoaiHangDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenLoai = TenLoai;
             dto.HangNhaLam = HangNhaLam;

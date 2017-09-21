@@ -48,6 +48,7 @@ namespace Client.DataModel
         public override rDiaDiemDto ToDto()
         {
             var dto = new rDiaDiemDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaNuoc = MaNuoc;
             dto.Tinh = Tinh;

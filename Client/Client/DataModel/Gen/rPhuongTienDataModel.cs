@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rPhuongTienDto ToDto()
         {
             var dto = new rPhuongTienDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenPhuongTien = TenPhuongTien;
             dto.TenantID = TenantID;

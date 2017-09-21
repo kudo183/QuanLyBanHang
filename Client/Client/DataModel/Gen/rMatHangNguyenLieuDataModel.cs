@@ -48,6 +48,7 @@ namespace Client.DataModel
         public override rMatHangNguyenLieuDto ToDto()
         {
             var dto = new rMatHangNguyenLieuDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaMatHang = MaMatHang;
             dto.MaNguyenLieu = MaNguyenLieu;

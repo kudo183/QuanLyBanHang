@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rNhaCungCapDto ToDto()
         {
             var dto = new rNhaCungCapDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenNhaCungCap = TenNhaCungCap;
             dto.TenantID = TenantID;

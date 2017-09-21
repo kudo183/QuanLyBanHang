@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rLoaiNguyenLieuDto ToDto()
         {
             var dto = new rLoaiNguyenLieuDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenLoai = TenLoai;
             dto.TenantID = TenantID;

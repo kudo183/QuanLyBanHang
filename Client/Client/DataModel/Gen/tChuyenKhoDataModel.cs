@@ -62,6 +62,7 @@ namespace Client.DataModel
         public override tChuyenKhoDto ToDto()
         {
             var dto = new tChuyenKhoDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaNhanVien = MaNhanVien;
             dto.MaKhoHangXuat = MaKhoHangXuat;

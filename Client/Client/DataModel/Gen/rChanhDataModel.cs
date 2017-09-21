@@ -48,6 +48,7 @@ namespace Client.DataModel
         public override rChanhDto ToDto()
         {
             var dto = new rChanhDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaBaiXe = MaBaiXe;
             dto.TenChanh = TenChanh;

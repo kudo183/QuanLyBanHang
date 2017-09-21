@@ -83,6 +83,7 @@ namespace Client.DataModel
         public override tMatHangDto ToDto()
         {
             var dto = new tMatHangDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaLoai = MaLoai;
             dto.TenMatHang = TenMatHang;

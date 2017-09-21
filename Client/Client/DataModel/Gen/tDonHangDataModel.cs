@@ -76,6 +76,7 @@ namespace Client.DataModel
         public override tDonHangDto ToDto()
         {
             var dto = new tDonHangDto();
+            dto.State = State;
             dto.ID = ID;
             dto.MaKhachHang = MaKhachHang;
             dto.MaChanh = MaChanh;

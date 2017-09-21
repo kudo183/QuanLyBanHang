@@ -48,6 +48,7 @@ namespace Client.DataModel
         public override ThamSoNgayDto ToDto()
         {
             var dto = new ThamSoNgayDto();
+            dto.State = State;
             dto.ID = ID;
             dto.Ten = Ten;
             dto.GiaTri = GiaTri;

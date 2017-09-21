@@ -1,4 +1,6 @@
-﻿namespace Client.DataModel
+﻿using Shared;
+
+namespace Client.DataModel
 {
     public partial class tChuyenKhoDataModel
     {
@@ -34,6 +36,11 @@
                 }
                 return ID.ToString();
             }
+        }
+
+        partial void FromDtoPartial(tChuyenKhoDto dto)
+        {
+            TongSoLuong = dto.TongSoLuong;
         }
     }
 }

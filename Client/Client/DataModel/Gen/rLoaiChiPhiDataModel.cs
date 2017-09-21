@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rLoaiChiPhiDto ToDto()
         {
             var dto = new rLoaiChiPhiDto();
+            dto.State = State;
             dto.ID = ID;
             dto.TenLoaiChiPhi = TenLoaiChiPhi;
             dto.TenantID = TenantID;

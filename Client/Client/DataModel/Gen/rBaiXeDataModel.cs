@@ -41,6 +41,7 @@ namespace Client.DataModel
         public override rBaiXeDto ToDto()
         {
             var dto = new rBaiXeDto();
+            dto.State = State;
             dto.ID = ID;
             dto.DiaDiemBaiXe = DiaDiemBaiXe;
             dto.TenantID = TenantID;
