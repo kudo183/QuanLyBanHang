@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using huypq.wpf.Utils;
 using Microsoft.Extensions.Logging;
 using huypq.Logging;
+using huypq.LogViewerControl;
 
 namespace Client
 {
@@ -151,7 +152,7 @@ namespace Client
                 {
                     Title = "Log Viewer",
                     WindowState = WindowState.Maximized,
-                    Content = new LogViewer.LogViewerControl()
+                    Content = new LogViewerControl()
                 };
                 logViewer.Closing += LogViewer_Closing;
                 logViewer.Closed += LogViewer_Closed;
