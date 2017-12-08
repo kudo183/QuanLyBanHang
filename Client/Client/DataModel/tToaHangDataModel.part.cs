@@ -1,4 +1,5 @@
 ﻿using Shared;
+using System.Collections.Generic;
 
 namespace Client.DataModel
 {
@@ -6,17 +7,16 @@ namespace Client.DataModel
     {
         public int ThanhTien { get; set; }
 
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            switch (basePropertyName)
+            SetDependentProperty(nameof(Ngay), new List<string>()
             {
-                case nameof(Ngay):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaKhachHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-            }
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(MaKhachHang), new List<string>()
+            {
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

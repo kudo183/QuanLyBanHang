@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rKhachHangChanhDto dto);
         partial void FromDtoPartial(rKhachHangChanhDto dto);
-		
+
         public static int DMaChanh;
         public static int DMaKhachHang;
         public static bool DLaMacDinh;
@@ -20,9 +20,9 @@ namespace Client.DataModel
         int _MaKhachHang = DMaKhachHang;
         bool _LaMacDinh = DLaMacDinh;
 
-        public int MaChanh { get { return _MaChanh; } set { _MaChanh = value; OnPropertyChanged(); } }
-        public int MaKhachHang { get { return _MaKhachHang; } set { _MaKhachHang = value; OnPropertyChanged(); } }
-        public bool LaMacDinh { get { return _LaMacDinh; } set { _LaMacDinh = value; OnPropertyChanged(); } }
+        public int MaChanh { get { return _MaChanh; } set { SetField(ref _MaChanh, value); } }
+        public int MaKhachHang { get { return _MaKhachHang; } set { SetField(ref _MaKhachHang, value); } }
+        public bool LaMacDinh { get { return _LaMacDinh; } set { SetField(ref _LaMacDinh, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -49,7 +49,7 @@ namespace Client.DataModel
             return
             (oMaChanh != MaChanh) ||
             (oMaKhachHang != MaKhachHang) ||
-            (oLaMacDinh != LaMacDinh) ;
+            (oLaMacDinh != LaMacDinh);
         }
 
         public override rKhachHangChanhDto ToDto()
@@ -88,7 +88,7 @@ namespace Client.DataModel
         object _MaChanhDataSource;
         object _MaKhachHangDataSource;
 
-        public object MaChanhDataSource { get { return _MaChanhDataSource; } set { _MaChanhDataSource = value; OnPropertyChanged(); } }
-        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
+        public object MaChanhDataSource { get { return _MaChanhDataSource; } set { SetField(ref _MaChanhDataSource, value); } }
+        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { SetField(ref _MaKhachHangDataSource, value); } }
     }
 }

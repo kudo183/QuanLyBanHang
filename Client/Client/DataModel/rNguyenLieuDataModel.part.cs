@@ -1,13 +1,15 @@
-﻿namespace Client.DataModel
+﻿using System.Collections.Generic;
+
+namespace Client.DataModel
 {
     public partial class rNguyenLieuDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            if (basePropertyName == nameof(DuongKinh))
+            SetDependentProperty(nameof(DuongKinh), new List<string>()
             {
-                OnPropertyChanged(nameof(DisplayText));
-            }
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

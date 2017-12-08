@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tTonKhoDto dto);
         partial void FromDtoPartial(tTonKhoDto dto);
-		
+
         public static int DMaKhoHang;
         public static int DMaMatHang;
         public static System.DateTime DNgay;
@@ -26,11 +26,11 @@ namespace Client.DataModel
         int _SoLuong = DSoLuong;
         int _SoLuongCu = DSoLuongCu;
 
-        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
-        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
-        public int SoLuong { get { return _SoLuong; } set { _SoLuong = value; OnPropertyChanged(); } }
-        public int SoLuongCu { get { return _SoLuongCu; } set { _SoLuongCu = value; OnPropertyChanged(); } }
+        public int MaKhoHang { get { return _MaKhoHang; } set { SetField(ref _MaKhoHang, value); } }
+        public int MaMatHang { get { return _MaMatHang; } set { SetField(ref _MaMatHang, value); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { SetField(ref _Ngay, value); } }
+        public int SoLuong { get { return _SoLuong; } set { SetField(ref _SoLuong, value); } }
+        public int SoLuongCu { get { return _SoLuongCu; } set { SetField(ref _SoLuongCu, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -63,7 +63,7 @@ namespace Client.DataModel
             (oMaMatHang != MaMatHang) ||
             (oNgay != Ngay) ||
             (oSoLuong != SoLuong) ||
-            (oSoLuongCu != SoLuongCu) ;
+            (oSoLuongCu != SoLuongCu);
         }
 
         public override tTonKhoDto ToDto()
@@ -106,7 +106,7 @@ namespace Client.DataModel
         object _MaKhoHangDataSource;
         object _MaMatHangDataSource;
 
-        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
-        public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { _MaMatHangDataSource = value; OnPropertyChanged(); } }
+        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { SetField(ref _MaKhoHangDataSource, value); } }
+        public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { SetField(ref _MaMatHangDataSource, value); } }
     }
 }

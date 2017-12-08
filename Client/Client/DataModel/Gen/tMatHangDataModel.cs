@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tMatHangDto dto);
         partial void FromDtoPartial(tMatHangDto dto);
-		
+
         public static int DMaLoai;
         public static string DTenMatHang;
         public static int DSoKy;
@@ -32,13 +32,13 @@ namespace Client.DataModel
         string _TenMatHangIn = DTenMatHangIn;
         int _MaHinhAnh = DMaHinhAnh;
 
-        public int MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
-        public string TenMatHang { get { return _TenMatHang; } set { _TenMatHang = value; OnPropertyChanged(); } }
-        public int SoKy { get { return _SoKy; } set { _SoKy = value; OnPropertyChanged(); } }
-        public int SoMet { get { return _SoMet; } set { _SoMet = value; OnPropertyChanged(); } }
-        public string TenMatHangDayDu { get { return _TenMatHangDayDu; } set { _TenMatHangDayDu = value; OnPropertyChanged(); } }
-        public string TenMatHangIn { get { return _TenMatHangIn; } set { _TenMatHangIn = value; OnPropertyChanged(); } }
-        public int MaHinhAnh { get { return _MaHinhAnh; } set { _MaHinhAnh = value; OnPropertyChanged(); } }
+        public int MaLoai { get { return _MaLoai; } set { SetField(ref _MaLoai, value); } }
+        public string TenMatHang { get { return _TenMatHang; } set { SetField(ref _TenMatHang, value); } }
+        public int SoKy { get { return _SoKy; } set { SetField(ref _SoKy, value); } }
+        public int SoMet { get { return _SoMet; } set { SetField(ref _SoMet, value); } }
+        public string TenMatHangDayDu { get { return _TenMatHangDayDu; } set { SetField(ref _TenMatHangDayDu, value); } }
+        public string TenMatHangIn { get { return _TenMatHangIn; } set { SetField(ref _TenMatHangIn, value); } }
+        public int MaHinhAnh { get { return _MaHinhAnh; } set { SetField(ref _MaHinhAnh, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -77,7 +77,7 @@ namespace Client.DataModel
             (oSoMet != SoMet) ||
             (oTenMatHangDayDu != TenMatHangDayDu) ||
             (oTenMatHangIn != TenMatHangIn) ||
-            (oMaHinhAnh != MaHinhAnh) ;
+            (oMaHinhAnh != MaHinhAnh);
         }
 
         public override tMatHangDto ToDto()
@@ -122,6 +122,6 @@ namespace Client.DataModel
 
         object _MaLoaiDataSource;
 
-        public object MaLoaiDataSource { get { return _MaLoaiDataSource; } set { _MaLoaiDataSource = value; OnPropertyChanged(); } }
+        public object MaLoaiDataSource { get { return _MaLoaiDataSource; } set { SetField(ref _MaLoaiDataSource, value); } }
     }
 }

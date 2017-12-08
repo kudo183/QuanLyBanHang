@@ -1,15 +1,16 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Client.DataModel
 {
     public partial class tMatHangDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            if (basePropertyName == nameof(TenMatHang))
+            SetDependentProperty(nameof(TenMatHang), new List<string>()
             {
-                OnPropertyChanged(nameof(DisplayText));
-            }
+                nameof(DisplayText)
+            });
         }
 
         private string hinhAnhFilePath;
@@ -19,11 +20,7 @@ namespace Client.DataModel
             get { return hinhAnhFilePath; }
             set
             {
-                if (hinhAnhFilePath == value)
-                    return;
-
-                hinhAnhFilePath = value;
-                OnPropertyChanged();
+                SetField(ref hinhAnhFilePath, value);
             }
         }
 
@@ -34,11 +31,7 @@ namespace Client.DataModel
             get { return hinhAnhImageStream; }
             set
             {
-                if (hinhAnhImageStream == value)
-                    return;
-
-                hinhAnhImageStream = value;
-                OnPropertyChanged();
+                SetField(ref hinhAnhImageStream, value);
             }
         }
 

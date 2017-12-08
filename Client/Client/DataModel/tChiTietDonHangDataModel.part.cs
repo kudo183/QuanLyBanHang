@@ -1,18 +1,19 @@
-﻿namespace Client.DataModel
+﻿using System.Collections.Generic;
+
+namespace Client.DataModel
 {
     public partial class tChiTietDonHangDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            switch (basePropertyName)
+            SetDependentProperty(nameof(MaDonHang), new List<string>()
             {
-                case nameof(MaDonHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaMatHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-            }
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(MaMatHang), new List<string>()
+            {
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

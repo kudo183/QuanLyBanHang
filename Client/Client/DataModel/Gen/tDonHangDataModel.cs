@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tDonHangDto dto);
         partial void FromDtoPartial(tDonHangDto dto);
-		
+
         public static int DMaKhachHang;
         public static int? DMaChanh;
         public static System.DateTime DNgay;
@@ -29,12 +29,12 @@ namespace Client.DataModel
         int _MaKhoHang = DMaKhoHang;
         int _TongSoLuong = DTongSoLuong;
 
-        public int MaKhachHang { get { return _MaKhachHang; } set { _MaKhachHang = value; OnPropertyChanged(); } }
-        public int? MaChanh { get { return _MaChanh; } set { _MaChanh = value; OnPropertyChanged(); } }
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
-        public bool Xong { get { return _Xong; } set { _Xong = value; OnPropertyChanged(); } }
-        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
-        public int TongSoLuong { get { return _TongSoLuong; } set { _TongSoLuong = value; OnPropertyChanged(); } }
+        public int MaKhachHang { get { return _MaKhachHang; } set { SetField(ref _MaKhachHang, value); } }
+        public int? MaChanh { get { return _MaChanh; } set { SetField(ref _MaChanh, value); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { SetField(ref _Ngay, value); } }
+        public bool Xong { get { return _Xong; } set { SetField(ref _Xong, value); } }
+        public int MaKhoHang { get { return _MaKhoHang; } set { SetField(ref _MaKhoHang, value); } }
+        public int TongSoLuong { get { return _TongSoLuong; } set { SetField(ref _TongSoLuong, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -70,7 +70,7 @@ namespace Client.DataModel
             (oNgay != Ngay) ||
             (oXong != Xong) ||
             (oMaKhoHang != MaKhoHang) ||
-            (oTongSoLuong != TongSoLuong) ;
+            (oTongSoLuong != TongSoLuong);
         }
 
         public override tDonHangDto ToDto()
@@ -117,8 +117,8 @@ namespace Client.DataModel
         object _MaChanhDataSource;
         object _MaKhoHangDataSource;
 
-        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
-        public object MaChanhDataSource { get { return _MaChanhDataSource; } set { _MaChanhDataSource = value; OnPropertyChanged(); } }
-        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
+        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { SetField(ref _MaKhachHangDataSource, value); } }
+        public object MaChanhDataSource { get { return _MaChanhDataSource; } set { SetField(ref _MaChanhDataSource, value); } }
+        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { SetField(ref _MaKhoHangDataSource, value); } }
     }
 }

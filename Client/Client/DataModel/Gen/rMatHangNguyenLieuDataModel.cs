@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rMatHangNguyenLieuDto dto);
         partial void FromDtoPartial(rMatHangNguyenLieuDto dto);
-		
+
         public static int DMaMatHang;
         public static int DMaNguyenLieu;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         int _MaMatHang = DMaMatHang;
         int _MaNguyenLieu = DMaNguyenLieu;
 
-        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
-        public int MaNguyenLieu { get { return _MaNguyenLieu; } set { _MaNguyenLieu = value; OnPropertyChanged(); } }
+        public int MaMatHang { get { return _MaMatHang; } set { SetField(ref _MaMatHang, value); } }
+        public int MaNguyenLieu { get { return _MaNguyenLieu; } set { SetField(ref _MaNguyenLieu, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oMaMatHang != MaMatHang) ||
-            (oMaNguyenLieu != MaNguyenLieu) ;
+            (oMaNguyenLieu != MaNguyenLieu);
         }
 
         public override rMatHangNguyenLieuDto ToDto()
@@ -79,7 +79,7 @@ namespace Client.DataModel
         object _MaMatHangDataSource;
         object _MaNguyenLieuDataSource;
 
-        public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { _MaMatHangDataSource = value; OnPropertyChanged(); } }
-        public object MaNguyenLieuDataSource { get { return _MaNguyenLieuDataSource; } set { _MaNguyenLieuDataSource = value; OnPropertyChanged(); } }
+        public object MaMatHangDataSource { get { return _MaMatHangDataSource; } set { SetField(ref _MaMatHangDataSource, value); } }
+        public object MaNguyenLieuDataSource { get { return _MaNguyenLieuDataSource; } set { SetField(ref _MaNguyenLieuDataSource, value); } }
     }
 }

@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tChuyenHangDto dto);
         partial void FromDtoPartial(tChuyenHangDto dto);
-		
+
         public static int DMaNhanVienGiaoHang;
         public static System.DateTime DNgay;
         public static System.TimeSpan? DGio;
@@ -29,12 +29,12 @@ namespace Client.DataModel
         int _TongSoLuongTheoDonHang = DTongSoLuongTheoDonHang;
         int _TongSoLuongThucTe = DTongSoLuongThucTe;
 
-        public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
-        public System.TimeSpan? Gio { get { return _Gio; } set { _Gio = value; OnPropertyChanged(); } }
-        public int TongDonHang { get { return _TongDonHang; } set { _TongDonHang = value; OnPropertyChanged(); } }
-        public int TongSoLuongTheoDonHang { get { return _TongSoLuongTheoDonHang; } set { _TongSoLuongTheoDonHang = value; OnPropertyChanged(); } }
-        public int TongSoLuongThucTe { get { return _TongSoLuongThucTe; } set { _TongSoLuongThucTe = value; OnPropertyChanged(); } }
+        public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { SetField(ref _MaNhanVienGiaoHang, value); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { SetField(ref _Ngay, value); } }
+        public System.TimeSpan? Gio { get { return _Gio; } set { SetField(ref _Gio, value); } }
+        public int TongDonHang { get { return _TongDonHang; } set { SetField(ref _TongDonHang, value); } }
+        public int TongSoLuongTheoDonHang { get { return _TongSoLuongTheoDonHang; } set { SetField(ref _TongSoLuongTheoDonHang, value); } }
+        public int TongSoLuongThucTe { get { return _TongSoLuongThucTe; } set { SetField(ref _TongSoLuongThucTe, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -70,7 +70,7 @@ namespace Client.DataModel
             (oGio != Gio) ||
             (oTongDonHang != TongDonHang) ||
             (oTongSoLuongTheoDonHang != TongSoLuongTheoDonHang) ||
-            (oTongSoLuongThucTe != TongSoLuongThucTe) ;
+            (oTongSoLuongThucTe != TongSoLuongThucTe);
         }
 
         public override tChuyenHangDto ToDto()
@@ -113,6 +113,6 @@ namespace Client.DataModel
 
         object _MaNhanVienGiaoHangDataSource;
 
-        public object MaNhanVienGiaoHangDataSource { get { return _MaNhanVienGiaoHangDataSource; } set { _MaNhanVienGiaoHangDataSource = value; OnPropertyChanged(); } }
+        public object MaNhanVienGiaoHangDataSource { get { return _MaNhanVienGiaoHangDataSource; } set { SetField(ref _MaNhanVienGiaoHangDataSource, value); } }
     }
 }

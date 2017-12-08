@@ -1,13 +1,15 @@
-﻿namespace Client.DataModel
+﻿using System.Collections.Generic;
+
+namespace Client.DataModel
 {
     public partial class rKhoHangDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            if (basePropertyName == nameof(TenKho))
+            SetDependentProperty(nameof(TenKho), new List<string>()
             {
-                OnPropertyChanged(nameof(DisplayText));
-            }
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

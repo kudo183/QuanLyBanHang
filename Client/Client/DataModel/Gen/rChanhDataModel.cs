@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rChanhDto dto);
         partial void FromDtoPartial(rChanhDto dto);
-		
+
         public static int DMaBaiXe;
         public static string DTenChanh;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         int _MaBaiXe = DMaBaiXe;
         string _TenChanh = DTenChanh;
 
-        public int MaBaiXe { get { return _MaBaiXe; } set { _MaBaiXe = value; OnPropertyChanged(); } }
-        public string TenChanh { get { return _TenChanh; } set { _TenChanh = value; OnPropertyChanged(); } }
+        public int MaBaiXe { get { return _MaBaiXe; } set { SetField(ref _MaBaiXe, value); } }
+        public string TenChanh { get { return _TenChanh; } set { SetField(ref _TenChanh, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oMaBaiXe != MaBaiXe) ||
-            (oTenChanh != TenChanh) ;
+            (oTenChanh != TenChanh);
         }
 
         public override rChanhDto ToDto()
@@ -77,6 +77,6 @@ namespace Client.DataModel
 
         object _MaBaiXeDataSource;
 
-        public object MaBaiXeDataSource { get { return _MaBaiXeDataSource; } set { _MaBaiXeDataSource = value; OnPropertyChanged(); } }
+        public object MaBaiXeDataSource { get { return _MaBaiXeDataSource; } set { SetField(ref _MaBaiXeDataSource, value); } }
     }
 }

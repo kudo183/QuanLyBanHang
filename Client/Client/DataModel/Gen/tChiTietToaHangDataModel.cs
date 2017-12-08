@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tChiTietToaHangDto dto);
         partial void FromDtoPartial(tChiTietToaHangDto dto);
-		
+
         public static int DMaToaHang;
         public static int DMaChiTietDonHang;
         public static int DGiaTien;
@@ -20,9 +20,9 @@ namespace Client.DataModel
         int _MaChiTietDonHang = DMaChiTietDonHang;
         int _GiaTien = DGiaTien;
 
-        public int MaToaHang { get { return _MaToaHang; } set { _MaToaHang = value; OnPropertyChanged(); } }
-        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
-        public int GiaTien { get { return _GiaTien; } set { _GiaTien = value; OnPropertyChanged(); } }
+        public int MaToaHang { get { return _MaToaHang; } set { SetField(ref _MaToaHang, value); } }
+        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { SetField(ref _MaChiTietDonHang, value); } }
+        public int GiaTien { get { return _GiaTien; } set { SetField(ref _GiaTien, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -49,7 +49,7 @@ namespace Client.DataModel
             return
             (oMaToaHang != MaToaHang) ||
             (oMaChiTietDonHang != MaChiTietDonHang) ||
-            (oGiaTien != GiaTien) ;
+            (oGiaTien != GiaTien);
         }
 
         public override tChiTietToaHangDto ToDto()

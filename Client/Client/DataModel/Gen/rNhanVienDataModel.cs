@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rNhanVienDto dto);
         partial void FromDtoPartial(rNhanVienDto dto);
-		
+
         public static int DMaPhuongTien;
         public static string DTenNhanVien;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         int _MaPhuongTien = DMaPhuongTien;
         string _TenNhanVien = DTenNhanVien;
 
-        public int MaPhuongTien { get { return _MaPhuongTien; } set { _MaPhuongTien = value; OnPropertyChanged(); } }
-        public string TenNhanVien { get { return _TenNhanVien; } set { _TenNhanVien = value; OnPropertyChanged(); } }
+        public int MaPhuongTien { get { return _MaPhuongTien; } set { SetField(ref _MaPhuongTien, value); } }
+        public string TenNhanVien { get { return _TenNhanVien; } set { SetField(ref _TenNhanVien, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oMaPhuongTien != MaPhuongTien) ||
-            (oTenNhanVien != TenNhanVien) ;
+            (oTenNhanVien != TenNhanVien);
         }
 
         public override rNhanVienDto ToDto()
@@ -77,6 +77,6 @@ namespace Client.DataModel
 
         object _MaPhuongTienDataSource;
 
-        public object MaPhuongTienDataSource { get { return _MaPhuongTienDataSource; } set { _MaPhuongTienDataSource = value; OnPropertyChanged(); } }
+        public object MaPhuongTienDataSource { get { return _MaPhuongTienDataSource; } set { SetField(ref _MaPhuongTienDataSource, value); } }
     }
 }

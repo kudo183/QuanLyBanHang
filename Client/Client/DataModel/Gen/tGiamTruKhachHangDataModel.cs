@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tGiamTruKhachHangDto dto);
         partial void FromDtoPartial(tGiamTruKhachHangDto dto);
-		
+
         public static int DMaKhachHang;
         public static System.DateTime DNgay;
         public static int DSoTien;
@@ -23,10 +23,10 @@ namespace Client.DataModel
         int _SoTien = DSoTien;
         string _GhiChu = DGhiChu;
 
-        public int MaKhachHang { get { return _MaKhachHang; } set { _MaKhachHang = value; OnPropertyChanged(); } }
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
-        public int SoTien { get { return _SoTien; } set { _SoTien = value; OnPropertyChanged(); } }
-        public string GhiChu { get { return _GhiChu; } set { _GhiChu = value; OnPropertyChanged(); } }
+        public int MaKhachHang { get { return _MaKhachHang; } set { SetField(ref _MaKhachHang, value); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { SetField(ref _Ngay, value); } }
+        public int SoTien { get { return _SoTien; } set { SetField(ref _SoTien, value); } }
+        public string GhiChu { get { return _GhiChu; } set { SetField(ref _GhiChu, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -56,7 +56,7 @@ namespace Client.DataModel
             (oMaKhachHang != MaKhachHang) ||
             (oNgay != Ngay) ||
             (oSoTien != SoTien) ||
-            (oGhiChu != GhiChu) ;
+            (oGhiChu != GhiChu);
         }
 
         public override tGiamTruKhachHangDto ToDto()
@@ -95,6 +95,6 @@ namespace Client.DataModel
 
         object _MaKhachHangDataSource;
 
-        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { _MaKhachHangDataSource = value; OnPropertyChanged(); } }
+        public object MaKhachHangDataSource { get { return _MaKhachHangDataSource; } set { SetField(ref _MaKhachHangDataSource, value); } }
     }
 }

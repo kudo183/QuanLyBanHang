@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rDiaDiemDto dto);
         partial void FromDtoPartial(rDiaDiemDto dto);
-		
+
         public static int DMaNuoc;
         public static string DTinh;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         int _MaNuoc = DMaNuoc;
         string _Tinh = DTinh;
 
-        public int MaNuoc { get { return _MaNuoc; } set { _MaNuoc = value; OnPropertyChanged(); } }
-        public string Tinh { get { return _Tinh; } set { _Tinh = value; OnPropertyChanged(); } }
+        public int MaNuoc { get { return _MaNuoc; } set { SetField(ref _MaNuoc, value); } }
+        public string Tinh { get { return _Tinh; } set { SetField(ref _Tinh, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oMaNuoc != MaNuoc) ||
-            (oTinh != Tinh) ;
+            (oTinh != Tinh);
         }
 
         public override rDiaDiemDto ToDto()
@@ -77,6 +77,6 @@ namespace Client.DataModel
 
         object _MaNuocDataSource;
 
-        public object MaNuocDataSource { get { return _MaNuocDataSource; } set { _MaNuocDataSource = value; OnPropertyChanged(); } }
+        public object MaNuocDataSource { get { return _MaNuocDataSource; } set { SetField(ref _MaNuocDataSource, value); } }
     }
 }

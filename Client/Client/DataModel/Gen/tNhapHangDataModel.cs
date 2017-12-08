@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tNhapHangDto dto);
         partial void FromDtoPartial(tNhapHangDto dto);
-		
+
         public static int DMaNhanVien;
         public static int DMaKhoHang;
         public static int DMaNhaCungCap;
@@ -23,10 +23,10 @@ namespace Client.DataModel
         int _MaNhaCungCap = DMaNhaCungCap;
         System.DateTime _Ngay = DNgay;
 
-        public int MaNhanVien { get { return _MaNhanVien; } set { _MaNhanVien = value; OnPropertyChanged(); } }
-        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
-        public int MaNhaCungCap { get { return _MaNhaCungCap; } set { _MaNhaCungCap = value; OnPropertyChanged(); } }
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
+        public int MaNhanVien { get { return _MaNhanVien; } set { SetField(ref _MaNhanVien, value); } }
+        public int MaKhoHang { get { return _MaKhoHang; } set { SetField(ref _MaKhoHang, value); } }
+        public int MaNhaCungCap { get { return _MaNhaCungCap; } set { SetField(ref _MaNhaCungCap, value); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { SetField(ref _Ngay, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -56,7 +56,7 @@ namespace Client.DataModel
             (oMaNhanVien != MaNhanVien) ||
             (oMaKhoHang != MaKhoHang) ||
             (oMaNhaCungCap != MaNhaCungCap) ||
-            (oNgay != Ngay) ;
+            (oNgay != Ngay);
         }
 
         public override tNhapHangDto ToDto()
@@ -99,8 +99,8 @@ namespace Client.DataModel
         object _MaKhoHangDataSource;
         object _MaNhaCungCapDataSource;
 
-        public object MaNhanVienDataSource { get { return _MaNhanVienDataSource; } set { _MaNhanVienDataSource = value; OnPropertyChanged(); } }
-        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { _MaKhoHangDataSource = value; OnPropertyChanged(); } }
-        public object MaNhaCungCapDataSource { get { return _MaNhaCungCapDataSource; } set { _MaNhaCungCapDataSource = value; OnPropertyChanged(); } }
+        public object MaNhanVienDataSource { get { return _MaNhanVienDataSource; } set { SetField(ref _MaNhanVienDataSource, value); } }
+        public object MaKhoHangDataSource { get { return _MaKhoHangDataSource; } set { SetField(ref _MaKhoHangDataSource, value); } }
+        public object MaNhaCungCapDataSource { get { return _MaNhaCungCapDataSource; } set { SetField(ref _MaNhaCungCapDataSource, value); } }
     }
 }

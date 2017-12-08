@@ -1,21 +1,23 @@
-﻿namespace Client.DataModel
+﻿using System.Collections.Generic;
+
+namespace Client.DataModel
 {
     public partial class tDonHangDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            switch (basePropertyName)
+            SetDependentProperty(nameof(Ngay), new List<string>()
             {
-                case nameof(Ngay):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaKhoHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaKhachHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-            }
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(MaKhoHang), new List<string>()
+            {
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(MaKhachHang), new List<string>()
+            {
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

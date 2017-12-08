@@ -1,18 +1,20 @@
-﻿namespace Client.DataModel
+﻿using System.Collections.Generic;
+
+namespace Client.DataModel
 {
     public partial class rChanhDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            switch (basePropertyName)
+            SetDependentProperty(nameof(TenChanh), new List<string>()
             {
-                case nameof(TenChanh):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaBaiXe):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-            }
+                nameof(DisplayText)
+            });
+
+            SetDependentProperty(nameof(MaBaiXe), new List<string>()
+            {
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tChiTietChuyenHangDonHangDto dto);
         partial void FromDtoPartial(tChiTietChuyenHangDonHangDto dto);
-		
+
         public static int DMaChuyenHangDonHang;
         public static int DMaChiTietDonHang;
         public static int DSoLuong;
@@ -23,10 +23,10 @@ namespace Client.DataModel
         int _SoLuong = DSoLuong;
         int _SoLuongTheoDonHang = DSoLuongTheoDonHang;
 
-        public int MaChuyenHangDonHang { get { return _MaChuyenHangDonHang; } set { _MaChuyenHangDonHang = value; OnPropertyChanged(); } }
-        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
-        public int SoLuong { get { return _SoLuong; } set { _SoLuong = value; OnPropertyChanged(); } }
-        public int SoLuongTheoDonHang { get { return _SoLuongTheoDonHang; } set { _SoLuongTheoDonHang = value; OnPropertyChanged(); } }
+        public int MaChuyenHangDonHang { get { return _MaChuyenHangDonHang; } set { SetField(ref _MaChuyenHangDonHang, value); } }
+        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { SetField(ref _MaChiTietDonHang, value); } }
+        public int SoLuong { get { return _SoLuong; } set { SetField(ref _SoLuong, value); } }
+        public int SoLuongTheoDonHang { get { return _SoLuongTheoDonHang; } set { SetField(ref _SoLuongTheoDonHang, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -56,7 +56,7 @@ namespace Client.DataModel
             (oMaChuyenHangDonHang != MaChuyenHangDonHang) ||
             (oMaChiTietDonHang != MaChiTietDonHang) ||
             (oSoLuong != SoLuong) ||
-            (oSoLuongTheoDonHang != SoLuongTheoDonHang) ;
+            (oSoLuongTheoDonHang != SoLuongTheoDonHang);
         }
 
         public override tChiTietChuyenHangDonHangDto ToDto()

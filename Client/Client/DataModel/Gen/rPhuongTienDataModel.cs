@@ -7,14 +7,14 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rPhuongTienDto dto);
         partial void FromDtoPartial(rPhuongTienDto dto);
-		
+
         public static string DTenPhuongTien;
 
         string oTenPhuongTien;
 
         string _TenPhuongTien = DTenPhuongTien;
 
-        public string TenPhuongTien { get { return _TenPhuongTien; } set { _TenPhuongTien = value; OnPropertyChanged(); } }
+        public string TenPhuongTien { get { return _TenPhuongTien; } set { SetField(ref _TenPhuongTien, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -35,7 +35,7 @@ namespace Client.DataModel
         public override bool HasChange()
         {
             return
-            (oTenPhuongTien != TenPhuongTien) ;
+            (oTenPhuongTien != TenPhuongTien);
         }
 
         public override rPhuongTienDto ToDto()

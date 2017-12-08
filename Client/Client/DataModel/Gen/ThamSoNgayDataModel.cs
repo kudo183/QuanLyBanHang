@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref ThamSoNgayDto dto);
         partial void FromDtoPartial(ThamSoNgayDto dto);
-		
+
         public static string DTen;
         public static System.DateTime DGiaTri;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         string _Ten = DTen;
         System.DateTime _GiaTri = DGiaTri;
 
-        public string Ten { get { return _Ten; } set { _Ten = value; OnPropertyChanged(); } }
-        public System.DateTime GiaTri { get { return _GiaTri; } set { _GiaTri = value; OnPropertyChanged(); } }
+        public string Ten { get { return _Ten; } set { SetField(ref _Ten, value); } }
+        public System.DateTime GiaTri { get { return _GiaTri; } set { SetField(ref _GiaTri, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oTen != Ten) ||
-            (oGiaTri != GiaTri) ;
+            (oGiaTri != GiaTri);
         }
 
         public override ThamSoNgayDto ToDto()

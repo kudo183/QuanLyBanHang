@@ -7,14 +7,14 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rLoaiChiPhiDto dto);
         partial void FromDtoPartial(rLoaiChiPhiDto dto);
-		
+
         public static string DTenLoaiChiPhi;
 
         string oTenLoaiChiPhi;
 
         string _TenLoaiChiPhi = DTenLoaiChiPhi;
 
-        public string TenLoaiChiPhi { get { return _TenLoaiChiPhi; } set { _TenLoaiChiPhi = value; OnPropertyChanged(); } }
+        public string TenLoaiChiPhi { get { return _TenLoaiChiPhi; } set { SetField(ref _TenLoaiChiPhi, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -35,7 +35,7 @@ namespace Client.DataModel
         public override bool HasChange()
         {
             return
-            (oTenLoaiChiPhi != TenLoaiChiPhi) ;
+            (oTenLoaiChiPhi != TenLoaiChiPhi);
         }
 
         public override rLoaiChiPhiDto ToDto()

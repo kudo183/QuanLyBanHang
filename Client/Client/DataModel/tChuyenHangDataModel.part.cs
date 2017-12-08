@@ -1,23 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Client.DataModel
 {
     public partial class tChuyenHangDataModel
     {
-        protected override void RaiseDependentPropertyChanged(string basePropertyName)
+        protected override void SetPropertiesDependency()
         {
-            switch (basePropertyName)
+            SetDependentProperty(nameof(Ngay), new List<string>()
             {
-                case nameof(Ngay):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(Gio):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-                case nameof(MaNhanVienGiaoHang):
-                    OnPropertyChanged(nameof(DisplayText));
-                    break;
-            }
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(Gio), new List<string>()
+            {
+                nameof(DisplayText)
+            });
+            SetDependentProperty(nameof(MaNhanVienGiaoHang), new List<string>()
+            {
+                nameof(DisplayText)
+            });
         }
 
         public override string DisplayText

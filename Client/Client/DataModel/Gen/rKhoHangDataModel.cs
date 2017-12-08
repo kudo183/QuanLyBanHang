@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rKhoHangDto dto);
         partial void FromDtoPartial(rKhoHangDto dto);
-		
+
         public static string DTenKho;
         public static bool DTrangThai;
 
@@ -17,8 +17,8 @@ namespace Client.DataModel
         string _TenKho = DTenKho;
         bool _TrangThai = DTrangThai;
 
-        public string TenKho { get { return _TenKho; } set { _TenKho = value; OnPropertyChanged(); } }
-        public bool TrangThai { get { return _TrangThai; } set { _TrangThai = value; OnPropertyChanged(); } }
+        public string TenKho { get { return _TenKho; } set { SetField(ref _TenKho, value); } }
+        public bool TrangThai { get { return _TrangThai; } set { SetField(ref _TrangThai, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -42,7 +42,7 @@ namespace Client.DataModel
         {
             return
             (oTenKho != TenKho) ||
-            (oTrangThai != TrangThai) ;
+            (oTrangThai != TrangThai);
         }
 
         public override rKhoHangDto ToDto()

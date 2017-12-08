@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rKhachHangDto dto);
         partial void FromDtoPartial(rKhachHangDto dto);
-		
+
         public static int DMaDiaDiem;
         public static string DTenKhachHang;
         public static bool DKhachRieng;
@@ -20,9 +20,9 @@ namespace Client.DataModel
         string _TenKhachHang = DTenKhachHang;
         bool _KhachRieng = DKhachRieng;
 
-        public int MaDiaDiem { get { return _MaDiaDiem; } set { _MaDiaDiem = value; OnPropertyChanged(); } }
-        public string TenKhachHang { get { return _TenKhachHang; } set { _TenKhachHang = value; OnPropertyChanged(); } }
-        public bool KhachRieng { get { return _KhachRieng; } set { _KhachRieng = value; OnPropertyChanged(); } }
+        public int MaDiaDiem { get { return _MaDiaDiem; } set { SetField(ref _MaDiaDiem, value); } }
+        public string TenKhachHang { get { return _TenKhachHang; } set { SetField(ref _TenKhachHang, value); } }
+        public bool KhachRieng { get { return _KhachRieng; } set { SetField(ref _KhachRieng, value); } }
 
         public override void SetCurrentValueAsOriginalValue()
         {
@@ -49,7 +49,7 @@ namespace Client.DataModel
             return
             (oMaDiaDiem != MaDiaDiem) ||
             (oTenKhachHang != TenKhachHang) ||
-            (oKhachRieng != KhachRieng) ;
+            (oKhachRieng != KhachRieng);
         }
 
         public override rKhachHangDto ToDto()
@@ -86,6 +86,6 @@ namespace Client.DataModel
 
         object _MaDiaDiemDataSource;
 
-        public object MaDiaDiemDataSource { get { return _MaDiaDiemDataSource; } set { _MaDiaDiemDataSource = value; OnPropertyChanged(); } }
+        public object MaDiaDiemDataSource { get { return _MaDiaDiemDataSource; } set { SetField(ref _MaDiaDiemDataSource, value); } }
     }
 }
