@@ -63,6 +63,7 @@ namespace Client.DataModel
 
         public override void FromDto(rLoaiHangDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             TenLoai = dto.TenLoai;
             HangNhaLam = dto.HangNhaLam;

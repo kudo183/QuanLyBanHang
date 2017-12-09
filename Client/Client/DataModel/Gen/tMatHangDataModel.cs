@@ -103,6 +103,7 @@ namespace Client.DataModel
 
         public override void FromDto(tMatHangDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             MaLoai = dto.MaLoai;
             TenMatHang = dto.TenMatHang;

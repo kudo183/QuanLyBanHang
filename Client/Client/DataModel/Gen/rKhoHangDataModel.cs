@@ -63,6 +63,7 @@ namespace Client.DataModel
 
         public override void FromDto(rKhoHangDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             TenKho = dto.TenKho;
             TrangThai = dto.TrangThai;

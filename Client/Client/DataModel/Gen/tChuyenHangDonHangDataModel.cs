@@ -79,6 +79,7 @@ namespace Client.DataModel
 
         public override void FromDto(tChuyenHangDonHangDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             MaChuyenHang = dto.MaChuyenHang;
             MaDonHang = dto.MaDonHang;

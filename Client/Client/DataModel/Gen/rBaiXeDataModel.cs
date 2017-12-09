@@ -55,6 +55,7 @@ namespace Client.DataModel
 
         public override void FromDto(rBaiXeDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             DiaDiemBaiXe = dto.DiaDiemBaiXe;
             TenantID = dto.TenantID;

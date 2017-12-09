@@ -79,6 +79,7 @@ namespace Client.DataModel
 
         public override void FromDto(tNhapNguyenLieuDto dto)
         {
+            State = dto.State;
             ID = dto.ID;
             Ngay = dto.Ngay;
             MaNguyenLieu = dto.MaNguyenLieu;
