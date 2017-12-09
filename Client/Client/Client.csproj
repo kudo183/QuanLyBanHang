@@ -116,6 +116,7 @@
     <Compile Include="ViewModel\tChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\tDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\tMatHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tTonKhoViewModel.part.cs" />
     <Compile Include="View\ChuyenHangComplexView.part.cs" />
     <Compile Include="View\Report\ChiPhi.xaml.cs">
       <DependentUpon>ChiPhi.xaml</DependentUpon>
@@ -138,6 +139,7 @@
     <Compile Include="View\tNhapHangView.part.cs" />
     <Compile Include="View\ToaHangComplexView.part.cs" />
     <Compile Include="View\tToaHangView.part.cs" />
+    <Compile Include="View\tTonKhoView.part.cs" />
     <Page Include="CustomControl\MessageBox2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
