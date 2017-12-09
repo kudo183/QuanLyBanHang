@@ -93,10 +93,15 @@ namespace Client.ViewModel
                     chanhs.Add(chanh);
                 }
             }
+
             dto.MaChanhDataSource = chanhs;
-            if (chanhs.Count > 0 && dto.MaChanh == null)
+
+            if (chanhs.Count > 0)
             {
-                dto.MaChanh = chanhs[0].ID;
+                if (dto.MaChanh == null || chanhs.Any(p => p.ID == dto.MaChanh) == false)
+                {
+                    dto.MaChanh = chanhs[0].ID;
+                }
             }
         }
 
