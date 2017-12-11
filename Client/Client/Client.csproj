@@ -71,19 +71,7 @@
     <Compile Include="CustomControl\MessageBox2.xaml.cs">
       <DependentUpon>MessageBox2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\rBaiXeDataModel.part.cs" />
     <Compile Include="DataModel\rChanhDataModel.part.cs" />
-    <Compile Include="DataModel\rDiaDiemDataModel.part.cs" />
-    <Compile Include="DataModel\rKhachHangDataModel.part.cs" />
-    <Compile Include="DataModel\rKhoHangDataModel.part.cs" />
-    <Compile Include="DataModel\rLoaiChiPhiDataModel.part.cs" />
-    <Compile Include="DataModel\rLoaiHangDataModel.part.cs" />
-    <Compile Include="DataModel\rLoaiNguyenLieuDataModel.part.cs" />
-    <Compile Include="DataModel\rNguyenLieuDataModel.part.cs" />
-    <Compile Include="DataModel\rNhaCungCapDataModel.part.cs" />
-    <Compile Include="DataModel\rNhanVienDataModel.part.cs" />
-    <Compile Include="DataModel\rNuocDataModel.part.cs" />
-    <Compile Include="DataModel\rPhuongTienDataModel.part.cs" />
     <Compile Include="DataModel\tChiTietDonHangDataModel.part.cs" />
     <Compile Include="DataModel\tChiTietToaHangDataModel.part.cs" />
     <Compile Include="DataModel\tChuyenHangDonHangDataModel.part.cs" />
