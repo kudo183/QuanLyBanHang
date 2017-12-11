@@ -13,7 +13,7 @@ namespace Client.DataModel
             {
                 nameof(DisplayText)
             });
-            SetDependentProperty(nameof(MaKhachHang), new List<string>()
+            SetDependentProperty(nameof(MaKhachHangNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });

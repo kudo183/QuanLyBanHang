@@ -129,9 +129,13 @@ namespace Client.DataModel
             }
         }
 
-        public rKhachHangDataModel MaKhachHangNavigation { get; set; }
-        public rChanhDataModel MaChanhNavigation { get; set; }
-        public rKhoHangDataModel MaKhoHangNavigation { get; set; }
+        rKhachHangDataModel _MaKhachHangNavigation;
+        rChanhDataModel _MaChanhNavigation;
+        rKhoHangDataModel _MaKhoHangNavigation;
+
+        public rKhachHangDataModel MaKhachHangNavigation { get { return _MaKhachHangNavigation; } set { SetField(ref _MaKhachHangNavigation, value); } }
+        public rChanhDataModel MaChanhNavigation { get { return _MaChanhNavigation; } set { SetField(ref _MaChanhNavigation, value); } }
+        public rKhoHangDataModel MaKhoHangNavigation { get { return _MaKhoHangNavigation; } set { SetField(ref _MaKhoHangNavigation, value); } }
 
         object _MaKhachHangDataSource;
         object _MaChanhDataSource;

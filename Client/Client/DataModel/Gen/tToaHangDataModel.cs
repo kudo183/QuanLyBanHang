@@ -93,7 +93,9 @@ namespace Client.DataModel
             }
         }
 
-        public rKhachHangDataModel MaKhachHangNavigation { get; set; }
+        rKhachHangDataModel _MaKhachHangNavigation;
+
+        public rKhachHangDataModel MaKhachHangNavigation { get { return _MaKhachHangNavigation; } set { SetField(ref _MaKhachHangNavigation, value); } }
 
         object _MaKhachHangDataSource;
 

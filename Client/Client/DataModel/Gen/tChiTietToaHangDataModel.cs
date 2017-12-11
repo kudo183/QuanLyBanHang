@@ -102,8 +102,11 @@ namespace Client.DataModel
             }
         }
 
-        public tToaHangDataModel MaToaHangNavigation { get; set; }
-        public tChiTietDonHangDataModel MaChiTietDonHangNavigation { get; set; }
+        tToaHangDataModel _MaToaHangNavigation;
+        tChiTietDonHangDataModel _MaChiTietDonHangNavigation;
+
+        public tToaHangDataModel MaToaHangNavigation { get { return _MaToaHangNavigation; } set { SetField(ref _MaToaHangNavigation, value); } }
+        public tChiTietDonHangDataModel MaChiTietDonHangNavigation { get { return _MaChiTietDonHangNavigation; } set { SetField(ref _MaChiTietDonHangNavigation, value); } }
 
 
     }

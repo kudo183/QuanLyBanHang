@@ -111,8 +111,11 @@ namespace Client.DataModel
             }
         }
 
-        public rNguyenLieuDataModel MaNguyenLieuNavigation { get; set; }
-        public rNhaCungCapDataModel MaNhaCungCapNavigation { get; set; }
+        rNguyenLieuDataModel _MaNguyenLieuNavigation;
+        rNhaCungCapDataModel _MaNhaCungCapNavigation;
+
+        public rNguyenLieuDataModel MaNguyenLieuNavigation { get { return _MaNguyenLieuNavigation; } set { SetField(ref _MaNguyenLieuNavigation, value); } }
+        public rNhaCungCapDataModel MaNhaCungCapNavigation { get { return _MaNhaCungCapNavigation; } set { SetField(ref _MaNhaCungCapNavigation, value); } }
 
         object _MaNguyenLieuDataSource;
         object _MaNhaCungCapDataSource;

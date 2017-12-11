@@ -120,8 +120,11 @@ namespace Client.DataModel
             }
         }
 
-        public rNhanVienDataModel MaNhanVienGiaoHangNavigation { get; set; }
-        public rLoaiChiPhiDataModel MaLoaiChiPhiNavigation { get; set; }
+        rNhanVienDataModel _MaNhanVienGiaoHangNavigation;
+        rLoaiChiPhiDataModel _MaLoaiChiPhiNavigation;
+
+        public rNhanVienDataModel MaNhanVienGiaoHangNavigation { get { return _MaNhanVienGiaoHangNavigation; } set { SetField(ref _MaNhanVienGiaoHangNavigation, value); } }
+        public rLoaiChiPhiDataModel MaLoaiChiPhiNavigation { get { return _MaLoaiChiPhiNavigation; } set { SetField(ref _MaLoaiChiPhiNavigation, value); } }
 
         object _MaNhanVienGiaoHangDataSource;
         object _MaLoaiChiPhiDataSource;

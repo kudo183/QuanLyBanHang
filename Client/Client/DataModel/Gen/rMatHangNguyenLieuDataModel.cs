@@ -93,8 +93,11 @@ namespace Client.DataModel
             }
         }
 
-        public tMatHangDataModel MaMatHangNavigation { get; set; }
-        public rNguyenLieuDataModel MaNguyenLieuNavigation { get; set; }
+        tMatHangDataModel _MaMatHangNavigation;
+        rNguyenLieuDataModel _MaNguyenLieuNavigation;
+
+        public tMatHangDataModel MaMatHangNavigation { get { return _MaMatHangNavigation; } set { SetField(ref _MaMatHangNavigation, value); } }
+        public rNguyenLieuDataModel MaNguyenLieuNavigation { get { return _MaNguyenLieuNavigation; } set { SetField(ref _MaNguyenLieuNavigation, value); } }
 
         object _MaMatHangDataSource;
         object _MaNguyenLieuDataSource;

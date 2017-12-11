@@ -94,7 +94,9 @@ namespace Client.DataModel
             }
         }
 
-        public rLoaiNguyenLieuDataModel MaLoaiNguyenLieuNavigation { get; set; }
+        rLoaiNguyenLieuDataModel _MaLoaiNguyenLieuNavigation;
+
+        public rLoaiNguyenLieuDataModel MaLoaiNguyenLieuNavigation { get { return _MaLoaiNguyenLieuNavigation; } set { SetField(ref _MaLoaiNguyenLieuNavigation, value); } }
 
         object _MaLoaiNguyenLieuDataSource;
 

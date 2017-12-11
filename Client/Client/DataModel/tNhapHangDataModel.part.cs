@@ -13,11 +13,11 @@ namespace Client.DataModel
             {
                 nameof(DisplayText)
             });
-            SetDependentProperty(nameof(MaKhoHang), new List<string>()
+            SetDependentProperty(nameof(MaKhoHangNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });
-            SetDependentProperty(nameof(MaNhaCungCap), new List<string>()
+            SetDependentProperty(nameof(MaNhaCungCapNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });

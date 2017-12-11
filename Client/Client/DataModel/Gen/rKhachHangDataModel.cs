@@ -103,7 +103,9 @@ namespace Client.DataModel
             }
         }
 
-        public rDiaDiemDataModel MaDiaDiemNavigation { get; set; }
+        rDiaDiemDataModel _MaDiaDiemNavigation;
+
+        public rDiaDiemDataModel MaDiaDiemNavigation { get { return _MaDiaDiemNavigation; } set { SetField(ref _MaDiaDiemNavigation, value); } }
 
         object _MaDiaDiemDataSource;
 

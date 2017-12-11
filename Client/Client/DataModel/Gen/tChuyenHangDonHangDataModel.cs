@@ -111,8 +111,11 @@ namespace Client.DataModel
             }
         }
 
-        public tChuyenHangDataModel MaChuyenHangNavigation { get; set; }
-        public tDonHangDataModel MaDonHangNavigation { get; set; }
+        tChuyenHangDataModel _MaChuyenHangNavigation;
+        tDonHangDataModel _MaDonHangNavigation;
+
+        public tChuyenHangDataModel MaChuyenHangNavigation { get { return _MaChuyenHangNavigation; } set { SetField(ref _MaChuyenHangNavigation, value); } }
+        public tDonHangDataModel MaDonHangNavigation { get { return _MaDonHangNavigation; } set { SetField(ref _MaDonHangNavigation, value); } }
 
 
     }

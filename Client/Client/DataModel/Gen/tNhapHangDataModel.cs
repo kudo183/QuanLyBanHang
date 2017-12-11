@@ -111,9 +111,13 @@ namespace Client.DataModel
             }
         }
 
-        public rNhanVienDataModel MaNhanVienNavigation { get; set; }
-        public rKhoHangDataModel MaKhoHangNavigation { get; set; }
-        public rNhaCungCapDataModel MaNhaCungCapNavigation { get; set; }
+        rNhanVienDataModel _MaNhanVienNavigation;
+        rKhoHangDataModel _MaKhoHangNavigation;
+        rNhaCungCapDataModel _MaNhaCungCapNavigation;
+
+        public rNhanVienDataModel MaNhanVienNavigation { get { return _MaNhanVienNavigation; } set { SetField(ref _MaNhanVienNavigation, value); } }
+        public rKhoHangDataModel MaKhoHangNavigation { get { return _MaKhoHangNavigation; } set { SetField(ref _MaKhoHangNavigation, value); } }
+        public rNhaCungCapDataModel MaNhaCungCapNavigation { get { return _MaNhaCungCapNavigation; } set { SetField(ref _MaNhaCungCapNavigation, value); } }
 
         object _MaNhanVienDataSource;
         object _MaKhoHangDataSource;

@@ -6,11 +6,11 @@ namespace Client.DataModel
     {
         partial void SetPropertiesDependencyPartial()
         {
-            SetDependentProperty(nameof(MaChuyenHang), new List<string>()
+            SetDependentProperty(nameof(MaChuyenHangNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });
-            SetDependentProperty(nameof(MaDonHang), new List<string>()
+            SetDependentProperty(nameof(MaDonHangNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });

@@ -120,8 +120,11 @@ namespace Client.DataModel
             }
         }
 
-        public rKhoHangDataModel MaKhoHangNavigation { get; set; }
-        public tMatHangDataModel MaMatHangNavigation { get; set; }
+        rKhoHangDataModel _MaKhoHangNavigation;
+        tMatHangDataModel _MaMatHangNavigation;
+
+        public rKhoHangDataModel MaKhoHangNavigation { get { return _MaKhoHangNavigation; } set { SetField(ref _MaKhoHangNavigation, value); } }
+        public tMatHangDataModel MaMatHangNavigation { get { return _MaMatHangNavigation; } set { SetField(ref _MaMatHangNavigation, value); } }
 
         object _MaKhoHangDataSource;
         object _MaMatHangDataSource;

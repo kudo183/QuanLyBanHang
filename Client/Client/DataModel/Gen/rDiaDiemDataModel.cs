@@ -94,7 +94,9 @@ namespace Client.DataModel
             }
         }
 
-        public rNuocDataModel MaNuocNavigation { get; set; }
+        rNuocDataModel _MaNuocNavigation;
+
+        public rNuocDataModel MaNuocNavigation { get { return _MaNuocNavigation; } set { SetField(ref _MaNuocNavigation, value); } }
 
         object _MaNuocDataSource;
 

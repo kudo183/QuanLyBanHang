@@ -139,7 +139,9 @@ namespace Client.DataModel
             }
         }
 
-        public rLoaiHangDataModel MaLoaiNavigation { get; set; }
+        rLoaiHangDataModel _MaLoaiNavigation;
+
+        public rLoaiHangDataModel MaLoaiNavigation { get { return _MaLoaiNavigation; } set { SetField(ref _MaLoaiNavigation, value); } }
 
         object _MaLoaiDataSource;
 

@@ -94,7 +94,9 @@ namespace Client.DataModel
             }
         }
 
-        public rPhuongTienDataModel MaPhuongTienNavigation { get; set; }
+        rPhuongTienDataModel _MaPhuongTienNavigation;
+
+        public rPhuongTienDataModel MaPhuongTienNavigation { get { return _MaPhuongTienNavigation; } set { SetField(ref _MaPhuongTienNavigation, value); } }
 
         object _MaPhuongTienDataSource;
 

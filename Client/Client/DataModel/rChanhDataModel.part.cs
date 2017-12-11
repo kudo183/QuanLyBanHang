@@ -11,7 +11,7 @@ namespace Client.DataModel
                 nameof(DisplayText)
             });
 
-            SetDependentProperty(nameof(MaBaiXe), new List<string>()
+            SetDependentProperty(nameof(MaBaiXeNavigation), new List<string>()
             {
                 nameof(DisplayText)
             });

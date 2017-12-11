@@ -93,7 +93,9 @@ namespace Client.DataModel
             }
         }
 
-        public rBaiXeDataModel MaBaiXeNavigation { get; set; }
+        rBaiXeDataModel _MaBaiXeNavigation;
+
+        public rBaiXeDataModel MaBaiXeNavigation { get { return _MaBaiXeNavigation; } set { SetField(ref _MaBaiXeNavigation, value); } }
 
         object _MaBaiXeDataSource;
 

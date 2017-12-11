@@ -129,7 +129,9 @@ namespace Client.DataModel
             }
         }
 
-        public rNhanVienDataModel MaNhanVienGiaoHangNavigation { get; set; }
+        rNhanVienDataModel _MaNhanVienGiaoHangNavigation;
+
+        public rNhanVienDataModel MaNhanVienGiaoHangNavigation { get { return _MaNhanVienGiaoHangNavigation; } set { SetField(ref _MaNhanVienGiaoHangNavigation, value); } }
 
         object _MaNhanVienGiaoHangDataSource;
 
