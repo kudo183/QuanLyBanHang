@@ -1,5 +1,6 @@
 ﻿using huypq.SmtWpfClient.Abstraction;
 using Shared;
+using System.Collections.Generic;
 
 namespace Client.DataModel
 {
@@ -7,6 +8,8 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref rDiaDiemDto dto);
         partial void FromDtoPartial(rDiaDiemDto dto);
+        partial void SetPropertiesDependencyPartial();
+        partial void DisplayTextPartial();
 
         public static int DMaNuoc;
         public static string DTinh;
@@ -72,6 +75,23 @@ namespace Client.DataModel
             LastUpdateTime = dto.LastUpdateTime;
 
             FromDtoPartial(dto);
+        }
+
+        protected override void SetPropertiesDependency()
+        {
+            SetDependentProperty(nameof(Tinh), new List<string>(){nameof(DisplayText)});
+            SetPropertiesDependencyPartial();
+        }
+
+        private string _displayText;
+        public override string DisplayText
+        {
+            get
+            {
+                _displayText = Tinh.ToString();
+                DisplayTextPartial();
+                return _displayText;
+            }
         }
 
         public rNuocDataModel MaNuocNavigation { get; set; }

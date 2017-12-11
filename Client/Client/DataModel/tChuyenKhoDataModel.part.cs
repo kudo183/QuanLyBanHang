@@ -7,7 +7,7 @@ namespace Client.DataModel
     {
         public int TongSoLuong { get; set; }
 
-        protected override void SetPropertiesDependency()
+        partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(Ngay), new List<string>()
             {
@@ -27,16 +27,12 @@ namespace Client.DataModel
             });
         }
 
-        public override string DisplayText
+        partial void DisplayTextPartial()
         {
-            get
+            if (MaKhoHangXuatNavigation != null && MaKhoHangNhapNavigation != null && MaNhanVienNavigation != null)
             {
-                if (MaKhoHangXuatNavigation != null && MaKhoHangNhapNavigation != null && MaNhanVienNavigation != null)
-                {
-                    return string.Format("{0}|{1}|{2}|{3}", Ngay.ToString("d"),
+                _displayText = string.Format("{0}|{1}|{2}|{3}", Ngay.ToString("d"),
                         MaKhoHangXuatNavigation.DisplayText, MaKhoHangNhapNavigation.DisplayText, MaNhanVienNavigation.DisplayText);
-                }
-                return ID.ToString();
             }
         }
 

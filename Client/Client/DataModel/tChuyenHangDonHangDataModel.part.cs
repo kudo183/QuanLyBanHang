@@ -4,7 +4,7 @@ namespace Client.DataModel
 {
     public partial class tChuyenHangDonHangDataModel
     {
-        protected override void SetPropertiesDependency()
+        partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(MaChuyenHang), new List<string>()
             {
@@ -16,16 +16,11 @@ namespace Client.DataModel
             });
         }
 
-        public override string DisplayText
+        partial void DisplayTextPartial()
         {
-            get
+            if (MaChuyenHangNavigation != null && MaDonHangNavigation != null)
             {
-                if (MaChuyenHangNavigation != null && MaDonHangNavigation != null)
-                {
-                    return string.Format("{0}|{1}", MaChuyenHangNavigation.DisplayText, MaDonHangNavigation.DisplayText);
-                }
-
-                return ID.ToString();
+                _displayText = string.Format("{0}|{1}", MaChuyenHangNavigation.DisplayText, MaDonHangNavigation.DisplayText);
             }
         }
     }

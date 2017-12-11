@@ -5,14 +5,6 @@ namespace Client.DataModel
 {
     public partial class tMatHangDataModel
     {
-        protected override void SetPropertiesDependency()
-        {
-            SetDependentProperty(nameof(TenMatHang), new List<string>()
-            {
-                nameof(DisplayText)
-            });
-        }
-
         private string hinhAnhFilePath;
 
         public string HinhAnhFilePath
@@ -33,11 +25,6 @@ namespace Client.DataModel
             {
                 SetField(ref hinhAnhImageStream, value);
             }
-        }
-
-        public override string DisplayText
-        {
-            get { return TenMatHang; }
         }
     }
 }

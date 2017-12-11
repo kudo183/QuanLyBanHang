@@ -4,7 +4,7 @@ namespace Client.DataModel
 {
     public partial class tChiTietDonHangDataModel
     {
-        protected override void SetPropertiesDependency()
+        partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(MaDonHang), new List<string>()
             {
@@ -16,16 +16,11 @@ namespace Client.DataModel
             });
         }
 
-        public override string DisplayText
+        partial void DisplayTextPartial()
         {
-            get
+            if (MaDonHangNavigation != null && MaMatHangNavigation != null)
             {
-                if (MaDonHangNavigation != null && MaMatHangNavigation != null)
-                {
-                    return string.Format("{0}|{1}", MaDonHangNavigation.DisplayText, MaMatHangNavigation.DisplayText);
-                }
-
-                return ID.ToString();
+                _displayText = string.Format("{0}|{1}", MaDonHangNavigation.DisplayText, MaMatHangNavigation.DisplayText);
             }
         }
     }

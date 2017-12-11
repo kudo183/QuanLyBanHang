@@ -1,5 +1,6 @@
 ﻿using huypq.SmtWpfClient.Abstraction;
 using Shared;
+using System.Collections.Generic;
 
 namespace Client.DataModel
 {
@@ -7,6 +8,8 @@ namespace Client.DataModel
     {
         partial void ToDtoPartial(ref tMatHangDto dto);
         partial void FromDtoPartial(tMatHangDto dto);
+        partial void SetPropertiesDependencyPartial();
+        partial void DisplayTextPartial();
 
         public static int DMaLoai;
         public static string DTenMatHang;
@@ -117,6 +120,23 @@ namespace Client.DataModel
             MaHinhAnh = dto.MaHinhAnh;
 
             FromDtoPartial(dto);
+        }
+
+        protected override void SetPropertiesDependency()
+        {
+            SetDependentProperty(nameof(TenMatHang), new List<string>(){nameof(DisplayText)});
+            SetPropertiesDependencyPartial();
+        }
+
+        private string _displayText;
+        public override string DisplayText
+        {
+            get
+            {
+                _displayText = TenMatHang.ToString();
+                DisplayTextPartial();
+                return _displayText;
+            }
         }
 
         public rLoaiHangDataModel MaLoaiNavigation { get; set; }

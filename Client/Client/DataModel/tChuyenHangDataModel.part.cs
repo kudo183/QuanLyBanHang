@@ -5,7 +5,7 @@ namespace Client.DataModel
 {
     public partial class tChuyenHangDataModel
     {
-        protected override void SetPropertiesDependency()
+        partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(Ngay), new List<string>()
             {
@@ -21,15 +21,11 @@ namespace Client.DataModel
             });
         }
 
-        public override string DisplayText
+        partial void DisplayTextPartial()
         {
-            get
+            if (MaNhanVienGiaoHangNavigation != null)
             {
-                if (MaNhanVienGiaoHangNavigation != null)
-                {
-                    return string.Format("{0}|{1:hh\\:mm}|{2}", Ngay.ToString("d"), Gio ?? new TimeSpan(0, 0, 0), MaNhanVienGiaoHangNavigation.DisplayText);
-                }
-                return ID.ToString();
+                _displayText = string.Format("{0}|{1:hh\\:mm}|{2}", Ngay.ToString("d"), Gio ?? new TimeSpan(0, 0, 0), MaNhanVienGiaoHangNavigation.DisplayText);
             }
         }
     }

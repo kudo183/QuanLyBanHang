@@ -4,7 +4,7 @@ namespace Client.DataModel
 {
     public partial class rChanhDataModel
     {
-        protected override void SetPropertiesDependency()
+        partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(TenChanh), new List<string>()
             {
@@ -17,15 +17,11 @@ namespace Client.DataModel
             });
         }
 
-        public override string DisplayText
+        partial void DisplayTextPartial()
         {
-            get
+            if (MaBaiXeNavigation != null)
             {
-                if (MaBaiXeNavigation != null)
-                {
-                    return string.Format("{0} - {1}", TenChanh, MaBaiXeNavigation.DiaDiemBaiXe);
-                }
-                return ID.ToString();
+                _displayText = string.Format("{0} - {1}", TenChanh, MaBaiXeNavigation.DiaDiemBaiXe);
             }
         }
     }

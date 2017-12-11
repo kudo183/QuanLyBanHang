@@ -48,6 +48,7 @@
   "TableSettingList": [
     {
       "TableName": "rBaiXe",
+      "DisplayTextColumn": "DiaDiemBaiXe",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -98,6 +99,7 @@
     },
     {
       "TableName": "rCanhBaoTonKho",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -175,6 +177,7 @@
     },
     {
       "TableName": "rChanh",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -234,6 +237,7 @@
     },
     {
       "TableName": "rDiaDiem",
+      "DisplayTextColumn": "Tinh",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -293,6 +297,7 @@
     },
     {
       "TableName": "rKhachHang",
+      "DisplayTextColumn": "TenKhachHang",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -361,6 +366,7 @@
     },
     {
       "TableName": "rKhachHangChanh",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -429,6 +435,7 @@
     },
     {
       "TableName": "rKhoHang",
+      "DisplayTextColumn": "TenKho",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -488,6 +495,7 @@
     },
     {
       "TableName": "rLoaiChiPhi",
+      "DisplayTextColumn": "TenLoaiChiPhi",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -538,6 +546,7 @@
     },
     {
       "TableName": "rLoaiHang",
+      "DisplayTextColumn": "TenLoai",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -597,6 +606,7 @@
     },
     {
       "TableName": "rLoaiNguyenLieu",
+      "DisplayTextColumn": "TenLoai",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -647,6 +657,7 @@
     },
     {
       "TableName": "rMatHangNguyenLieu",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -706,6 +717,7 @@
     },
     {
       "TableName": "rNuoc",
+      "DisplayTextColumn": "TenNuoc",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -756,6 +768,7 @@
     },
     {
       "TableName": "rNguyenLieu",
+      "DisplayTextColumn": "DuongKinh",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -815,6 +828,7 @@
     },
     {
       "TableName": "rNhaCungCap",
+      "DisplayTextColumn": "TenNhaCungCap",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -865,6 +879,7 @@
     },
     {
       "TableName": "rNhanVien",
+      "DisplayTextColumn": "TenNhanVien",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -924,6 +939,7 @@
     },
     {
       "TableName": "rPhuongTien",
+      "DisplayTextColumn": "TenPhuongTien",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -974,6 +990,7 @@
     },
     {
       "TableName": "tCongNoKhachHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1042,6 +1059,7 @@
     },
     {
       "TableName": "tChiPhi",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1128,6 +1146,7 @@
     },
     {
       "TableName": "tChiTietChuyenHangDonHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1205,6 +1224,7 @@
     },
     {
       "TableName": "tChiTietChuyenKho",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1273,6 +1293,7 @@
     },
     {
       "TableName": "tChiTietDonHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1350,6 +1371,7 @@
     },
     {
       "TableName": "tChiTietNhapHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1418,6 +1440,7 @@
     },
     {
       "TableName": "tChiTietToaHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1486,6 +1509,7 @@
     },
     {
       "TableName": "tChuyenHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1581,6 +1605,7 @@
     },
     {
       "TableName": "tChuyenHangDonHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1658,6 +1683,7 @@
     },
     {
       "TableName": "tChuyenKho",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1735,6 +1761,7 @@
     },
     {
       "TableName": "tDonHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1830,6 +1857,7 @@
     },
     {
       "TableName": "tGiamTruKhachHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -1907,6 +1935,7 @@
     },
     {
       "TableName": "tMatHang",
+      "DisplayTextColumn": "TenMatHang",
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2011,6 +2040,7 @@
     },
     {
       "TableName": "tNhanTienKhachHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2079,6 +2109,7 @@
     },
     {
       "TableName": "tNhapHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2156,6 +2187,7 @@
     },
     {
       "TableName": "tNhapNguyenLieu",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2233,6 +2265,7 @@
     },
     {
       "TableName": "tPhuThuKhachHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2310,6 +2343,7 @@
     },
     {
       "TableName": "tToaHang",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2369,6 +2403,7 @@
     },
     {
       "TableName": "tTonKho",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
@@ -2455,6 +2490,7 @@
     },
     {
       "TableName": "ThamSoNgay",
+      "DisplayTextColumn": null,
       "ColumnSettingList": [
         {
           "ColumnName": "Ma",
