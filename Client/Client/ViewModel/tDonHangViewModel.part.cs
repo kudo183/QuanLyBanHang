@@ -1,4 +1,5 @@
 ﻿using Client.DataModel;
+using Client.View;
 using CustomControl;
 using huypq.QueryBuilder;
 using huypq.SmtWpfClient;
@@ -23,6 +24,7 @@ namespace Client.ViewModel
             TonKhoCommand = new SimpleCommand(nameof(TonKhoCommand), () => TonKhoAction());
             PrintAllCommand = new SimpleCommand(nameof(PrintAllCommand), () => PrintAll());
             PrintRemainCommand = new SimpleCommand(nameof(PrintRemainCommand), () => PrintRemain());
+            GhiToaCommand = new SimpleCommand(nameof(GhiToaCommand), () => GhiToa());
 
             _MaChanhFilter = new HeaderComboBoxFilterModel(
                 TextManager.tDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -119,6 +121,7 @@ namespace Client.ViewModel
         public SimpleCommand TonKhoCommand { get; set; }
         public SimpleCommand PrintAllCommand { get; set; }
         public SimpleCommand PrintRemainCommand { get; set; }
+        public SimpleCommand GhiToaCommand { get; set; }
 
         private void TonKhoAction()
         {
@@ -239,6 +242,44 @@ namespace Client.ViewModel
             var tenKhachHang = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(donHang.MaKhachHang).TenKhachHang;
 
             Utils.PrintUtils.Print(tenKhachHang, content);
+        }
+
+        private void GhiToa()
+        {
+            var vToaHangComplex = new ToaHangComplexView();
+            
+            var vToaHang = vToaHangComplex.Views[0] as tToaHangView;
+            vToaHang.Loaded += VToaHang_Loaded;
+
+            var ngayFilter = vToaHang.GridView.FindHeaderFilter(nameof(tToaHangDataModel.Ngay));
+            ngayFilter.FilterValue = SelectedItem.Ngay;
+
+            vToaHangComplex.AllViewLoadedAction = () =>
+            {
+                var vmToaHang = vToaHang.ViewModel as tToaHangViewModel;
+                vmToaHang.SelectedValue = 0;
+            };
+
+            var w = new Window()
+            {
+                Title = "Toa Hang",
+                WindowState = WindowState.Maximized,
+                Content = vToaHangComplex
+            };
+
+            w.Show();
+        }
+        
+        private void VToaHang_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vToaHang = sender as tToaHangView;
+            vToaHang.Loaded -= VToaHang_Loaded;
+            
+            var vmToaHang = vToaHang.ViewModel as tToaHangViewModel;
+            vmToaHang.Entities.Add(new tToaHangDataModel()
+            {
+                MaKhachHang = SelectedItem.MaKhachHang
+            });
         }
     }
 }
