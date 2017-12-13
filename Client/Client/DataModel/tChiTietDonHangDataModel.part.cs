@@ -4,6 +4,9 @@ namespace Client.DataModel
 {
     public partial class tChiTietDonHangDataModel
     {
+        int? _TonKho;
+        public int? TonKho { get { return _TonKho; } set { SetField(ref _TonKho, value); } }
+
         partial void SetPropertiesDependencyPartial()
         {
             SetDependentProperty(nameof(MaDonHangNavigation), new List<string>()

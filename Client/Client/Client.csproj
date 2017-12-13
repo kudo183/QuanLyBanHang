@@ -119,6 +119,7 @@
       <DependentUpon>Xuat.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\tChiTietChuyenHangDonHangView.part.cs" />
+    <Compile Include="View\tChiTietDonHangView.part.cs" />
     <Compile Include="View\tChiTietToaHangView.part.cs" />
     <Compile Include="View\tChuyenHangDonHangView.part.cs" />
     <Compile Include="View\tChuyenKhoView.part.cs" />

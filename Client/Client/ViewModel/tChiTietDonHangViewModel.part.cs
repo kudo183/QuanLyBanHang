@@ -1,4 +1,5 @@
 ﻿using Client.DataModel;
+using huypq.QueryBuilder;
 using huypq.SmtShared;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
@@ -29,7 +30,12 @@ namespace Client.ViewModel
 
         protected override void AfterLoad()
         {
-            donHangs = DataService.GetByListInt<tDonHangDto, tDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList()).ToDictionary(p => p.ID);
+            var donHangList = DataService.GetByListInt<tDonHangDto, tDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList());
+            donHangs = donHangList.ToDictionary(p => p.ID);
+
+            var tongSoKg = 0;
+            var sb = new StringBuilder();
+            sb.Append(", ");
 
             foreach (var dto in Entities)
             {
@@ -37,32 +43,44 @@ namespace Client.ViewModel
                 dto.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhoHang);
                 dto.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhachHang);
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(dto.MaMatHang);
+
+                if (dto.MaMatHangNavigation != null)
+                {
+
+                    if (dto.MaMatHangNavigation.SoKy == 0)
+                    {
+                        sb.Append(dto.MaMatHangNavigation.TenMatHang);
+                        sb.Append(", ");
+                    }
+                    else
+                    {
+                        tongSoKg += dto.SoLuong * dto.MaMatHangNavigation.SoKy;
+                    }
+                }
                 dto.PropertyChanged += Item_PropertyChanged;
-            }
-
-            var tongSoKg = 0;
-            var sb = new StringBuilder();
-            sb.Append(", ");
-            foreach (var item in Entities)
-            {
-                item.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(item.MaMatHang);
-                if (item.MaMatHangNavigation == null)
-                    continue;
-
-                if (item.MaMatHangNavigation.SoKy == 0)
-                {
-                    sb.Append(item.MaMatHangNavigation.TenMatHang);
-                    sb.Append(", ");
-                }
-                else
-                {
-                    tongSoKg += item.SoLuong * item.MaMatHangNavigation.SoKy;
-                }
             }
 
             tongSoKg = tongSoKg / 10;
 
             Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg, sb.ToString(0, sb.Length - 2));
+
+            if (_MaDonHangFilter.IsUsed == true && _MaDonHangFilter.FilterValue != null && donHangList.Count == 1)
+            {
+                var qe = new QueryExpression();
+                qe.AddWhereOption<WhereExpression.WhereOptionIntList, List<int>>(
+                    WhereExpression.In, nameof(tTonKhoDataModel.MaMatHang), Entities.Select(p => p.MaMatHang).ToList());
+                qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                      WhereExpression.Equal, nameof(tTonKhoDataModel.MaKhoHang), donHangList[0].MaKhoHang);
+                qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
+                      WhereExpression.Equal, nameof(tTonKhoDataModel.Ngay), System.DateTime.Now);
+
+                var tonKhos = DataService.Get<tTonKhoDto, tTonKhoDataModel>(qe).Items.ToDictionary(p => p.MaMatHang);
+
+                foreach (var dto in Entities)
+                {
+                    dto.TonKho = tonKhos[dto.MaMatHang].SoLuong;
+                }
+            }
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -73,6 +91,21 @@ namespace Client.ViewModel
                 case nameof(tChiTietDonHangDto.MaDonHang):
                     {
                         dto.MaDonHangNavigation = FindtDonHangDto(dto.MaDonHang);
+                    }
+                    break;
+                case nameof(tChiTietDonHangDto.MaMatHang):
+                    {
+                        var qe = new QueryExpression();
+                        qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                            WhereExpression.Equal, nameof(tTonKhoDataModel.MaMatHang), dto.MaMatHang);
+                        qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                              WhereExpression.Equal, nameof(tTonKhoDataModel.MaKhoHang), dto.MaDonHangNavigation.MaKhoHang);
+                        qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
+                              WhereExpression.Equal, nameof(tTonKhoDataModel.Ngay), System.DateTime.Now);
+
+                        var tonKhos = DataService.Get<tTonKhoDto, tTonKhoDataModel>(qe).Items;
+
+                        dto.TonKho = tonKhos.Count == 1 ? tonKhos[0].SoLuong : 0;
                     }
                     break;
             }
@@ -92,7 +125,7 @@ namespace Client.ViewModel
             tDonHangDataModel dh;
             if (donHangs.TryGetValue(maDonHang, out dh) == false)
             {
-                dh = DataService.GetByID<tDonHangDto,tDonHangDataModel >(maDonHang);
+                dh = DataService.GetByID<tDonHangDto, tDonHangDataModel>(maDonHang);
                 dh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dh.MaKhoHang);
                 dh.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dh.MaKhachHang);
                 donHangs.Add(maDonHang, dh);
