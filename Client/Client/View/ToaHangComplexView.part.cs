@@ -40,15 +40,27 @@ namespace Client.View
                     path = nameof(tChiTietDonHangDataModel.MaDonHangNavigation) + "." + nameof(tDonHangDataModel.Ngay);
                     qe.AddWhereOption<WhereExpression.WhereOptionDate, DateTime>(
                         WhereExpression.Equal, path, th.Ngay);
-                    var ctdhs = viewModel.DataService.Get<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe).Items;
+                    var ctdhs = viewModel.DataService.GetAll<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe.WhereOptions).Items;
 
                     foreach (var ctdh in ctdhs)
                     {
+                        qe = new QueryExpression();
+                        path = nameof(tChiTietToaHangDataModel.MaChiTietDonHangNavigation) + "." + nameof(tChiTietDonHangDataModel.MaDonHangNavigation) + "." + nameof(tDonHangDataModel.MaKhachHang);
+                        qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                            WhereExpression.Equal, path, th.MaKhachHang);
+                        path = nameof(tChiTietToaHangDataModel.MaChiTietDonHangNavigation) + "." + nameof(tChiTietDonHangDataModel.MaMatHang);
+                        qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                            WhereExpression.Equal, path, ctdh.MaMatHang);
+                        qe.AddOrderByOption(nameof(tChiTietToaHangDataModel.MaChiTietDonHangNavigation) + "." + nameof(tChiTietDonHangDataModel.MaDonHangNavigation) + "." + nameof(tDonHangDataModel.Ngay), false);
+                        qe.PageSize = 1;
+
+                        var ctths = viewModel.DataService.Get<tChiTietToaHangDto, tChiTietToaHangDataModel>(qe).Items;
+
                         var ct = new tChiTietToaHangDataModel
                         {
                             MaToaHang = th.ID,
                             MaChiTietDonHang = ctdh.ID,
-                            GiaTien = 0
+                            GiaTien = ctths.Count == 1 ? ctths[0].GiaTien : 0
                         };
 
                         viewModel.Entities.Add(ct);
