@@ -46,7 +46,6 @@ namespace Client.ViewModel
 
                 if (dto.MaMatHangNavigation != null)
                 {
-
                     if (dto.MaMatHangNavigation.SoKy == 0)
                     {
                         sb.Append(dto.MaMatHangNavigation.TenMatHang);
@@ -78,7 +77,10 @@ namespace Client.ViewModel
 
                 foreach (var dto in Entities)
                 {
-                    dto.TonKho = tonKhos[dto.MaMatHang].SoLuong;
+                    if (tonKhos.TryGetValue(dto.MaMatHang, out tTonKhoDataModel tonKho) == true)
+                    {
+                        dto.TonKho = tonKho.SoLuong;
+                    }
                 }
             }
         }
@@ -105,7 +107,14 @@ namespace Client.ViewModel
 
                         var tonKhos = DataService.Get<tTonKhoDto, tTonKhoDataModel>(qe).Items;
 
-                        dto.TonKho = tonKhos.Count == 1 ? tonKhos[0].SoLuong : 0;
+                        if (tonKhos.Count == 1)
+                        {
+                            dto.TonKho = tonKhos[0].SoLuong;
+                        }
+                        else
+                        {
+                            dto.TonKho = null;
+                        }
                     }
                     break;
             }
