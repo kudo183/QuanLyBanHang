@@ -56,7 +56,6 @@ namespace Server.Controllers
         {
             return nameof(tDonHangController);
         }
-
         protected override void UpdateEntity(SqlDbContext context, tDonHang entity)
         {
             var entry = context.tDonHang.Update(entity);

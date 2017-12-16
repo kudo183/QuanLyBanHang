@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//user tepmlate tag <ModelBuilderConfigEFFull> to generate context class for EF Full, <ModelBuilderConfigEFCore> to generate context class for EF Core.
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using huypq.SmtMiddleware;
 using huypq.SmtMiddleware.Entities;

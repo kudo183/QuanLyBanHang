@@ -1,4 +1,6 @@
 {
+  "DBServer": ".",
+  "User": null,
   "DBName": "PhuDinh",
   "ViewPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\View\\Gen",
   "ViewModelPath": "C:\\github\\QuanLyBanHang\\Client\\Client\\ViewModel\\Gen",
@@ -4200,7 +4202,9 @@
       "HasColumnTypes": [
         {
           "PropertyName": "CreateDate",
-          "TypeName": "datetime2(7)"
+          "TypeName": "datetime2",
+          "NumericPrecision": 27,
+          "NumericScale": 7
         }
       ],
       "ReferencesToThisTable": [],
@@ -4463,7 +4467,9 @@
       "HasColumnTypes": [
         {
           "PropertyName": "CreateDate",
-          "TypeName": "datetime2(7)"
+          "TypeName": "datetime2",
+          "NumericPrecision": 27,
+          "NumericScale": 7
         }
       ],
       "ReferencesToThisTable": [
@@ -4621,7 +4627,9 @@
       "HasColumnTypes": [
         {
           "PropertyName": "CreateDate",
-          "TypeName": "datetime2(7)"
+          "TypeName": "datetime2",
+          "NumericPrecision": 27,
+          "NumericScale": 7
         }
       ],
       "ReferencesToThisTable": [
@@ -5616,7 +5624,9 @@
       "HasColumnTypes": [
         {
           "PropertyName": "Gio",
-          "TypeName": "time(0)"
+          "TypeName": "time",
+          "NumericPrecision": 8,
+          "NumericScale": 0
         }
       ],
       "ReferencesToThisTable": [
@@ -7061,5 +7071,5 @@
       "IsExpanded": false
     }
   ],
-  "ConnectTime": "2017-09-15T11:30:19.2614033Z"
+  "ConnectTime": "2017-12-16T02:39:49.4438285Z"
 }
