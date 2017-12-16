@@ -5,6 +5,9 @@ using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
@@ -14,6 +17,7 @@ namespace Client.ViewModel
         partial void LoadReferenceDataPartial();
         partial void ProcessDataModelBeforeAddToEntitiesPartial(tChiTietToaHangDataModel dataModel);
         partial void ProcessNewAddedDataModelPartial(tChiTietToaHangDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaToaHangFilter;
@@ -22,6 +26,8 @@ namespace Client.ViewModel
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
         HeaderFilterBaseModel _LastUpdateTimeFilter;
+        Dictionary<int, tToaHangDataModel> _MaToaHangs;
+        Dictionary<int, tChiTietDonHangDataModel> _MaChiTietDonHangs;
 
         public tChiTietToaHangViewModel() : base()
         {
@@ -43,6 +49,19 @@ namespace Client.ViewModel
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
             AddHeaderFilter(_LastUpdateTimeFilter);
+        }
+
+        protected override void AfterLoad()
+        {
+            _MaToaHangs = DataService.GetByListInt<tToaHangDto, tToaHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaToaHang).ToList()).ToDictionary(p => p.ID);
+            _MaChiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto, tChiTietDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
+            foreach (var dataModel in Entities)
+            {
+                dataModel.MaToaHangNavigation = _MaToaHangs[dataModel.MaToaHang];
+                dataModel.MaChiTietDonHangNavigation = _MaChiTietDonHangs[dataModel.MaChiTietDonHang];
+            }
+
+            AfterLoadPartial();
         }
 
         public override void LoadReferenceData()

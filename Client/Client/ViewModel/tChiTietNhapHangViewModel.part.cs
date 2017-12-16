@@ -11,8 +11,6 @@ namespace Client.ViewModel
 {
     public partial class tChiTietNhapHangViewModel : BaseViewModel<tChiTietNhapHangDto, tChiTietNhapHangDataModel>
     {
-        Dictionary<int, tNhapHangDataModel> nhapHangs;
-
         partial void LoadReferenceDataPartial()
         {
             ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.LoadOrUpdate();
@@ -27,17 +25,14 @@ namespace Client.ViewModel
             }
         }
 
-        protected override void AfterLoad()
+        partial void AfterLoadPartial()
         {
-            nhapHangs = DataService.GetByListInt<tNhapHangDto, tNhapHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaNhapHang).ToList()).ToDictionary(p => p.ID);
-
             var tongSoKg = 0;
             var sb = new StringBuilder();
             sb.Append(", ");
 
             foreach (var dto in Entities)
             {
-                dto.MaNhapHangNavigation = nhapHangs[dto.MaNhapHang];
                 dto.MaNhapHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaNhapHangNavigation.MaKhoHang);
                 dto.MaNhapHangNavigation.MaNhaCungCapNavigation = ReferenceDataManager<rNhaCungCapDto, rNhaCungCapDataModel>.Instance.GetByID(dto.MaNhapHangNavigation.MaNhaCungCap);
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(dto.MaMatHang);
@@ -83,12 +78,12 @@ namespace Client.ViewModel
         private tNhapHangDataModel FindtNhapHangDataModel(int maNhapHang)
         {
             tNhapHangDataModel nh;
-            if (nhapHangs.TryGetValue(maNhapHang, out nh) == false)
+            if (_MaNhapHangs.TryGetValue(maNhapHang, out nh) == false)
             {
                 nh = DataService.GetByID<tNhapHangDto, tNhapHangDataModel>(maNhapHang);
                 nh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(nh.MaKhoHang);
                 nh.MaNhaCungCapNavigation = ReferenceDataManager<rNhaCungCapDto, rNhaCungCapDataModel>.Instance.GetByID(nh.MaNhaCungCap);
-                nhapHangs.Add(maNhapHang, nh);
+                _MaNhapHangs.Add(maNhapHang, nh);
             }
 
             return nh;

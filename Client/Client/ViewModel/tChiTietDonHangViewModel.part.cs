@@ -12,8 +12,6 @@ namespace Client.ViewModel
 {
     public partial class tChiTietDonHangViewModel : BaseViewModel<tChiTietDonHangDto, tChiTietDonHangDataModel>
     {
-        Dictionary<int, tDonHangDataModel> donHangs;
-
         partial void LoadReferenceDataPartial()
         {
             ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.LoadOrUpdate();
@@ -28,18 +26,14 @@ namespace Client.ViewModel
             }
         }
 
-        protected override void AfterLoad()
+        partial void AfterLoadPartial()
         {
-            var donHangList = DataService.GetByListInt<tDonHangDto, tDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaDonHang).ToList());
-            donHangs = donHangList.ToDictionary(p => p.ID);
-
             var tongSoKg = 0;
             var sb = new StringBuilder();
             sb.Append(", ");
 
             foreach (var dto in Entities)
             {
-                dto.MaDonHangNavigation = donHangs[dto.MaDonHang];
                 dto.MaDonHangNavigation.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhoHang);
                 dto.MaDonHangNavigation.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dto.MaDonHangNavigation.MaKhachHang);
                 dto.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(dto.MaMatHang);
@@ -63,13 +57,13 @@ namespace Client.ViewModel
 
             Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg, sb.ToString(0, sb.Length - 2));
 
-            if (_MaDonHangFilter.IsUsed == true && _MaDonHangFilter.FilterValue != null && donHangList.Count == 1)
+            if (_MaDonHangFilter.IsUsed == true && _MaDonHangFilter.FilterValue != null && _MaDonHangs.Count == 1)
             {
                 var qe = new QueryExpression();
                 qe.AddWhereOption<WhereExpression.WhereOptionIntList, List<int>>(
                     WhereExpression.In, nameof(tTonKhoDataModel.MaMatHang), Entities.Select(p => p.MaMatHang).ToList());
                 qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                      WhereExpression.Equal, nameof(tTonKhoDataModel.MaKhoHang), donHangList[0].MaKhoHang);
+                      WhereExpression.Equal, nameof(tTonKhoDataModel.MaKhoHang), _MaDonHangs.Single().Value.MaKhoHang);
                 qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
                       WhereExpression.Equal, nameof(tTonKhoDataModel.Ngay), System.DateTime.Now);
 
@@ -132,12 +126,12 @@ namespace Client.ViewModel
         private tDonHangDataModel FindtDonHangDto(int maDonHang)
         {
             tDonHangDataModel dh;
-            if (donHangs.TryGetValue(maDonHang, out dh) == false)
+            if (_MaDonHangs.TryGetValue(maDonHang, out dh) == false)
             {
                 dh = DataService.GetByID<tDonHangDto, tDonHangDataModel>(maDonHang);
                 dh.MaKhoHangNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dh.MaKhoHang);
                 dh.MaKhachHangNavigation = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(dh.MaKhachHang);
-                donHangs.Add(maDonHang, dh);
+                _MaDonHangs.Add(maDonHang, dh);
             }
 
             return dh;

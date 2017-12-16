@@ -5,6 +5,9 @@ using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
@@ -14,6 +17,7 @@ namespace Client.ViewModel
         partial void LoadReferenceDataPartial();
         partial void ProcessDataModelBeforeAddToEntitiesPartial(tChiTietChuyenHangDonHangDataModel dataModel);
         partial void ProcessNewAddedDataModelPartial(tChiTietChuyenHangDonHangDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChuyenHangDonHangFilter;
@@ -23,6 +27,8 @@ namespace Client.ViewModel
         HeaderFilterBaseModel _TenantIDFilter;
         HeaderFilterBaseModel _CreateTimeFilter;
         HeaderFilterBaseModel _LastUpdateTimeFilter;
+        Dictionary<int, tChuyenHangDonHangDataModel> _MaChuyenHangDonHangs;
+        Dictionary<int, tChiTietDonHangDataModel> _MaChiTietDonHangs;
 
         public tChiTietChuyenHangDonHangViewModel() : base()
         {
@@ -46,6 +52,19 @@ namespace Client.ViewModel
             AddHeaderFilter(_TenantIDFilter);
             AddHeaderFilter(_CreateTimeFilter);
             AddHeaderFilter(_LastUpdateTimeFilter);
+        }
+
+        protected override void AfterLoad()
+        {
+            _MaChuyenHangDonHangs = DataService.GetByListInt<tChuyenHangDonHangDto, tChuyenHangDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaChuyenHangDonHang).ToList()).ToDictionary(p => p.ID);
+            _MaChiTietDonHangs = DataService.GetByListInt<tChiTietDonHangDto, tChiTietDonHangDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaChiTietDonHang).ToList()).ToDictionary(p => p.ID);
+            foreach (var dataModel in Entities)
+            {
+                dataModel.MaChuyenHangDonHangNavigation = _MaChuyenHangDonHangs[dataModel.MaChuyenHangDonHang];
+                dataModel.MaChiTietDonHangNavigation = _MaChiTietDonHangs[dataModel.MaChiTietDonHang];
+            }
+
+            AfterLoadPartial();
         }
 
         public override void LoadReferenceData()

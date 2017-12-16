@@ -11,8 +11,6 @@ namespace Client.ViewModel
 {
     public partial class tChiTietChuyenKhoViewModel : BaseViewModel<tChiTietChuyenKhoDto, tChiTietChuyenKhoDataModel>
     {
-        Dictionary<int, tChuyenKhoDataModel> chuyenKhos;
-
         partial void LoadReferenceDataPartial()
         {
             ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.LoadOrUpdate();
@@ -27,17 +25,14 @@ namespace Client.ViewModel
             }
         }
 
-        protected override void AfterLoad()
+        partial void AfterLoadPartial()
         {
-            chuyenKhos = DataService.GetByListInt<tChuyenKhoDto, tChuyenKhoDataModel>(nameof(IDto.ID), Entities.Select(p => p.MaChuyenKho).ToList()).ToDictionary(p => p.ID);
-
             var tongSoKg = 0;
             var sb = new StringBuilder();
             sb.Append(", ");
 
             foreach (var dto in Entities)
             {
-                dto.MaChuyenKhoNavigation = chuyenKhos[dto.MaChuyenKho];
                 dto.MaChuyenKhoNavigation.MaKhoHangXuatNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaChuyenKhoNavigation.MaKhoHangXuat);
                 dto.MaChuyenKhoNavigation.MaKhoHangNhapNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(dto.MaChuyenKhoNavigation.MaKhoHangNhap);
                 dto.MaChuyenKhoNavigation.MaNhanVienNavigation = ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.GetByID(dto.MaChuyenKhoNavigation.MaNhanVien);
@@ -84,13 +79,13 @@ namespace Client.ViewModel
         private tChuyenKhoDataModel FindtChuyenKhoDataModel(int maChuyenKho)
         {
             tChuyenKhoDataModel ck;
-            if (chuyenKhos.TryGetValue(maChuyenKho, out ck) == false)
+            if (_MaChuyenKhos.TryGetValue(maChuyenKho, out ck) == false)
             {
                 ck = DataService.GetByID<tChuyenKhoDto, tChuyenKhoDataModel>(maChuyenKho);
                 ck.MaKhoHangXuatNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(ck.MaKhoHangXuat);
                 ck.MaKhoHangNhapNavigation = ReferenceDataManager<rKhoHangDto, rKhoHangDataModel>.Instance.GetByID(ck.MaKhoHangNhap);
                 ck.MaNhanVienNavigation = ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.GetByID(ck.MaNhanVien);
-                chuyenKhos.Add(maChuyenKho, ck);
+                _MaChuyenKhos.Add(maChuyenKho, ck);
             }
 
             return ck;

@@ -9,7 +9,7 @@ namespace Client.ViewModel
     {
         const string ImageFileController = "SmtImageFile";
 
-        protected override void AfterLoad()
+        partial void AfterLoadPartial()
         {
             foreach (var item in Entities)
             {
