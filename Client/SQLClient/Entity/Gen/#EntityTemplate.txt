@@ -1,0 +1,19 @@
+using System.Collections.Generic;
+using huypq.SmtWpfClientSQL;
+
+namespace SQLClient.Entity
+{
+    public partial class <EntityName> : IEntity
+    {
+        public <EntityName>()
+        {
+            <InitEntityCollectionNavigationProperties>
+        }
+
+        <EntityProperties>
+
+        <EntityNavigationProperties>
+		
+		<EntityCollectionNavigationProperties>
+    }
+}

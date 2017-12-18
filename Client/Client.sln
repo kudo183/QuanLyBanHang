@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{75B5E7F0-4760-4C99-8E13-5CD7BF98DB0E}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "huypq.QueryBuilder.Framework", "..\..\huypq.dotnet.lib\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj", "{C3B36888-E0F1-4E30-8549-50D20DD636C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "huypq.LogViewerControl", "..\..\huypq.LogViewer\huypq.LogViewerControl\huypq.LogViewerControl.csproj", "{FCF7D1F6-8AA6-40AD-8E16-C079AA1EBE6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "huypq.SmtWpfClientSQL", "..\..\huypq.SmtWpfClient\huypq.SmtWpfClientSQL\huypq.SmtWpfClientSQL.csproj", "{CA39722F-A8EF-40DE-9B40-E2B99CA226AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLClient", "SQLClient\SQLClient.csproj", "{54830EDD-D7DA-4E35-B8DD-3C84B45BAD6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{FCF7D1F6-8AA6-40AD-8E16-C079AA1EBE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCF7D1F6-8AA6-40AD-8E16-C079AA1EBE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCF7D1F6-8AA6-40AD-8E16-C079AA1EBE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA39722F-A8EF-40DE-9B40-E2B99CA226AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA39722F-A8EF-40DE-9B40-E2B99CA226AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA39722F-A8EF-40DE-9B40-E2B99CA226AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA39722F-A8EF-40DE-9B40-E2B99CA226AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54830EDD-D7DA-4E35-B8DD-3C84B45BAD6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54830EDD-D7DA-4E35-B8DD-3C84B45BAD6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54830EDD-D7DA-4E35-B8DD-3C84B45BAD6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54830EDD-D7DA-4E35-B8DD-3C84B45BAD6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +97,7 @@ Global
 		{F4ABC0F4-C860-44A4-8BF7-58BE106E17E4} = {AE0BC739-15EF-42AA-9EA9-6D6490CCD5D8}
 		{C3B36888-E0F1-4E30-8549-50D20DD636C5} = {AE0BC739-15EF-42AA-9EA9-6D6490CCD5D8}
 		{FCF7D1F6-8AA6-40AD-8E16-C079AA1EBE6A} = {AE0BC739-15EF-42AA-9EA9-6D6490CCD5D8}
+		{CA39722F-A8EF-40DE-9B40-E2B99CA226AE} = {AE0BC739-15EF-42AA-9EA9-6D6490CCD5D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D3B07B0-766F-45A0-BBE6-ACBF5B5D1F5A}
