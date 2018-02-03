@@ -1,4 +1,5 @@
-﻿using Client.ViewModel.Report;
+﻿using Client.DataModel;
+using Client.ViewModel.Report;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
 using huypq.wpf.Utils;
@@ -29,8 +30,8 @@ namespace Client.View.Report
 
             vm = new KhachHangViewModel();
             vm.DateRangePickerViewModel = new huypq.wpf.controls.DateRangePickerViewModel();
-            ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate();
-            vm.KhachHangs = ReferenceDataManager<rKhachHangDto>.Instance.Get().ToList();
+            ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate();
+            vm.KhachHangs = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.Get().ToList();
             DataContext = vm;
         }
 

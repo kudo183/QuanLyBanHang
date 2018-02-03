@@ -15,6 +15,7 @@
         public static string tChiTietToaHang_ThanhTien { get { return GetText(); } }
         public static string tChuyenKho_TongSoLuong { get { return GetText(); } }
         public static string tNhapHang_TongSoLuong { get { return GetText(); } }
+        public static string tChiTietDonHang_TonKho { get { return GetText(); } }
 
         static partial void InitDefaultLanguageDataPartial()
         {
@@ -31,6 +32,7 @@
             _dic.Add(nameof(tChiTietToaHang_ThanhTien), "Thành Tiền");
             _dic.Add(nameof(tChuyenKho_TongSoLuong), "Tổng số lượng");
             _dic.Add(nameof(tNhapHang_TongSoLuong), "Tổng số lượng");
+            _dic.Add(nameof(tChiTietDonHang_TonKho), "Tồn kho");
         }
     }
 }

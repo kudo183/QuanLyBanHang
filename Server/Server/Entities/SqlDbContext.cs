@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//user tepmlate tag <ModelBuilderConfigEFFull> to generate context class for EF Full, <ModelBuilderConfigEFCore> to generate context class for EF Core.
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using huypq.SmtMiddleware;
 using huypq.SmtMiddleware.Entities;
@@ -8,7 +9,7 @@ namespace Server.Entities
 {
     public partial class SqlDbContext : DbContext, IDbContext<SmtTenant, SmtUser, SmtUserClaim>
     {
-            public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
         {
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

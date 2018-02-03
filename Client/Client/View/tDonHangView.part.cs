@@ -1,11 +1,12 @@
-﻿using Client.ViewModel;
+﻿using Client.DataModel;
+using Client.ViewModel;
 using huypq.SmtWpfClient.Abstraction;
 using Shared;
 using System.Windows.Controls;
 
 namespace Client.View
 {
-    public partial class tDonHangView : BaseView<tDonHangDto>
+    public partial class tDonHangView : BaseView<tDonHangDto, tDonHangDataModel>
     {
         partial void InitUIPartial()
         {
@@ -38,6 +39,16 @@ namespace Client.View
             };
             btnTonKho.SetBinding(Button.CommandProperty, nameof(tDonHangViewModel.TonKhoCommand));
             GridView.CustomMenuItems.Add(btnTonKho);
+
+            var btnGhiToa = new Button()
+            {
+                Content = "Ghi toa",
+                VerticalAlignment = System.Windows.VerticalAlignment.Top,
+                Width = 75,
+                Margin = new System.Windows.Thickness(5)
+            };
+            btnGhiToa.SetBinding(Button.CommandProperty, nameof(tDonHangViewModel.GhiToaCommand));
+            GridView.CustomMenuItems.Add(btnGhiToa);
         }
     }
 }

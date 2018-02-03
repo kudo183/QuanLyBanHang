@@ -1,95 +1,29 @@
 ﻿using huypq.SmtShared;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Shared
 {
     [Newtonsoft.Json.JsonObject(Newtonsoft.Json.MemberSerialization.OptIn)]
     [ProtoBuf.ProtoContract]
-    public partial class rLoaiChiPhiDto : IDto, INotifyPropertyChanged
+    public partial class rLoaiChiPhiDto : IDto
     {
-        public static int DID;
-        public static string DTenLoaiChiPhi;
-        public static int DTenantID;
-        public static long DCreateTime;
-        public static long DLastUpdateTime;
-
-        int oID;
-        string oTenLoaiChiPhi;
-        int oTenantID;
-        long oCreateTime;
-        long oLastUpdateTime;
-
-        int _ID = DID;
-        string _TenLoaiChiPhi = DTenLoaiChiPhi;
-        int _TenantID = DTenantID;
-        long _CreateTime = DCreateTime;
-        long _LastUpdateTime = DLastUpdateTime;
-
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(1)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int ID { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(2)]
-        public string TenLoaiChiPhi { get { return _TenLoaiChiPhi; } set { _TenLoaiChiPhi = value; OnPropertyChanged(); } }
+        public string TenLoaiChiPhi { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(3)]
-        public int TenantID { get { return _TenantID; } set { _TenantID = value; OnPropertyChanged(); } }
+        public int TenantID { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(4)]
-        public long CreateTime { get { return _CreateTime; } set { _CreateTime = value; OnPropertyChanged(); } }
+        public long CreateTime { get; set;}
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(5)]
-        public long LastUpdateTime { get { return _LastUpdateTime; } set { _LastUpdateTime = value; OnPropertyChanged(); } }
+        public long LastUpdateTime { get; set;}
 
         [Newtonsoft.Json.JsonProperty]
         [ProtoBuf.ProtoMember(100)]
         public int State { get; set; }
-
-        public void SetCurrentValueAsOriginalValue()
-        {
-            oID = ID;
-            oTenLoaiChiPhi = TenLoaiChiPhi;
-            oTenantID = TenantID;
-            oCreateTime = CreateTime;
-            oLastUpdateTime = LastUpdateTime;
-        }
-
-        public void Update(object obj)
-        {
-            var dto = obj as rLoaiChiPhiDto;
-            if (dto == null)
-            {
-                return;
-            }
-
-            ID = dto.ID;
-            TenLoaiChiPhi = dto.TenLoaiChiPhi;
-            TenantID = dto.TenantID;
-            CreateTime = dto.CreateTime;
-            LastUpdateTime = dto.LastUpdateTime;
-        }
-
-        public bool HasChange()
-        {
-            return
-            (oID != ID) ||
-            (oTenLoaiChiPhi != TenLoaiChiPhi) ||
-            (oTenantID != TenantID) ||
-            (oCreateTime != CreateTime) ||
-            (oLastUpdateTime != LastUpdateTime) ;
-        }
-
-
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public virtual void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            RaiseDependentPropertyChanged(name);
-        }
-
-        partial void RaiseDependentPropertyChanged(string basePropertyName);
     }
 }

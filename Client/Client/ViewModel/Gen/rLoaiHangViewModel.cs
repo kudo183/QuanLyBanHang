@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class rLoaiHangViewModel : BaseViewModel<rLoaiHangDto>
+    public partial class rLoaiHangViewModel : BaseViewModel<rLoaiHangDto, rLoaiHangDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rLoaiHangDto dto);
-        partial void ProcessNewAddedDtoPartial(rLoaiHangDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rLoaiHangDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rLoaiHangDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenLoaiFilter;
@@ -23,12 +28,12 @@ namespace Client.ViewModel
 
         public rLoaiHangViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_ID, nameof(rLoaiHangDto.ID), typeof(int));
-            _TenLoaiFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenLoai, nameof(rLoaiHangDto.TenLoai), typeof(string));
-            _HangNhaLamFilter = new HeaderCheckFilterModel(TextManager.rLoaiHang_HangNhaLam, nameof(rLoaiHangDto.HangNhaLam), typeof(bool));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenantID, nameof(rLoaiHangDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_CreateTime, nameof(rLoaiHangDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_LastUpdateTime, nameof(rLoaiHangDto.LastUpdateTime), typeof(long));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_ID, nameof(rLoaiHangDataModel.ID), typeof(int));
+            _TenLoaiFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenLoai, nameof(rLoaiHangDataModel.TenLoai), typeof(string));
+            _HangNhaLamFilter = new HeaderCheckFilterModel(TextManager.rLoaiHang_HangNhaLam, nameof(rLoaiHangDataModel.HangNhaLam), typeof(bool));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_TenantID, nameof(rLoaiHangDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_CreateTime, nameof(rLoaiHangDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rLoaiHang_LastUpdateTime, nameof(rLoaiHangDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -41,47 +46,53 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rLoaiHangDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rLoaiHangDataModel dataModel)
         {
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rLoaiHangDto dto)
+        protected override void ProcessNewAddedDataModel(rLoaiHangDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenLoaiFilter.FilterValue != null)
             {
-                dto.TenLoai = (string)_TenLoaiFilter.FilterValue;
+                dataModel.TenLoai = (string)_TenLoaiFilter.FilterValue;
             }
             if (_HangNhaLamFilter.FilterValue != null)
             {
-                dto.HangNhaLam = (bool)_HangNhaLamFilter.FilterValue;
+                dataModel.HangNhaLam = (bool)_HangNhaLamFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

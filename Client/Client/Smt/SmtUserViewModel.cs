@@ -3,7 +3,7 @@ using Shared;
 
 namespace Client.ViewModel
 {
-    public class SmtUserViewModel : SmtUserBaseViewModel<SmtUserDto>
+    public class SmtUserViewModel : SmtUserBaseViewModel<SmtUserDto, SmtUserDataModel<SmtUserDto>>
     {
     }
 }

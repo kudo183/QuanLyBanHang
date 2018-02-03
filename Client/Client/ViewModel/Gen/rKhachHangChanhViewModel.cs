@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class rKhachHangChanhViewModel : BaseViewModel<rKhachHangChanhDto>
+    public partial class rKhachHangChanhViewModel : BaseViewModel<rKhachHangChanhDto, rKhachHangChanhDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rKhachHangChanhDto dto);
-        partial void ProcessNewAddedDtoPartial(rKhachHangChanhDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rKhachHangChanhDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rKhachHangChanhDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChanhFilter;
@@ -24,35 +29,35 @@ namespace Client.ViewModel
 
         public rKhachHangChanhViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_ID, nameof(rKhachHangChanhDto.ID), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_ID, nameof(rKhachHangChanhDataModel.ID), typeof(int));
             _MaChanhFilter = new HeaderComboBoxFilterModel(
                 TextManager.rKhachHangChanh_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rKhachHangChanhDto.MaChanh),
+                nameof(rKhachHangChanhDataModel.MaChanh),
                 typeof(int),
-                nameof(rChanhDto.DisplayText),
-                nameof(rChanhDto.ID))
+                nameof(rChanhDataModel.DisplayText),
+                nameof(rChanhDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaChanhAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rChanhView(), "rChanh", ReferenceDataManager<rChanhDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rChanhDto>.Instance.Get()
+                    new View.rChanhView(), "rChanh", ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.Get()
             };
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.rKhachHangChanh_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rKhachHangChanhDto.MaKhachHang),
+                nameof(rKhachHangChanhDataModel.MaKhachHang),
                 typeof(int),
-                nameof(rKhachHangDto.DisplayText),
-                nameof(rKhachHangDto.ID))
+                nameof(rKhachHangDataModel.DisplayText),
+                nameof(rKhachHangDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaKhachHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rKhachHangView(), "rKhachHang", ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rKhachHangDto>.Instance.Get()
+                    new View.rKhachHangView(), "rKhachHang", ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.Get()
             };
-            _LaMacDinhFilter = new HeaderCheckFilterModel(TextManager.rKhachHangChanh_LaMacDinh, nameof(rKhachHangChanhDto.LaMacDinh), typeof(bool));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_TenantID, nameof(rKhachHangChanhDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_CreateTime, nameof(rKhachHangChanhDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_LastUpdateTime, nameof(rKhachHangChanhDto.LastUpdateTime), typeof(long));
+            _LaMacDinhFilter = new HeaderCheckFilterModel(TextManager.rKhachHangChanh_LaMacDinh, nameof(rKhachHangChanhDataModel.LaMacDinh), typeof(bool));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_TenantID, nameof(rKhachHangChanhDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_CreateTime, nameof(rKhachHangChanhDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rKhachHangChanh_LastUpdateTime, nameof(rKhachHangChanhDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -66,55 +71,61 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<rChanhDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rKhachHangChanhDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rKhachHangChanhDataModel dataModel)
         {
-            dto.MaChanhDataSource = ReferenceDataManager<rChanhDto>.Instance.Get();
-            dto.MaKhachHangDataSource = ReferenceDataManager<rKhachHangDto>.Instance.Get();
+            dataModel.MaChanhDataSource = ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.Get();
+            dataModel.MaKhachHangDataSource = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rKhachHangChanhDto dto)
+        protected override void ProcessNewAddedDataModel(rKhachHangChanhDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChanhFilter.FilterValue != null)
             {
-                dto.MaChanh = (int)_MaChanhFilter.FilterValue;
+                dataModel.MaChanh = (int)_MaChanhFilter.FilterValue;
             }
             if (_MaKhachHangFilter.FilterValue != null)
             {
-                dto.MaKhachHang = (int)_MaKhachHangFilter.FilterValue;
+                dataModel.MaKhachHang = (int)_MaKhachHangFilter.FilterValue;
             }
             if (_LaMacDinhFilter.FilterValue != null)
             {
-                dto.LaMacDinh = (bool)_LaMacDinhFilter.FilterValue;
+                dataModel.LaMacDinh = (bool)_LaMacDinhFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

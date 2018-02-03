@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class tToaHangViewModel : BaseViewModel<tToaHangDto>
+    public partial class tToaHangViewModel : BaseViewModel<tToaHangDto, tToaHangDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(tToaHangDto dto);
-        partial void ProcessNewAddedDtoPartial(tToaHangDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(tToaHangDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(tToaHangDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _NgayFilter;
@@ -23,23 +28,23 @@ namespace Client.ViewModel
 
         public tToaHangViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.tToaHang_ID, nameof(tToaHangDto.ID), typeof(int));
-            _NgayFilter = new HeaderDateFilterModel(TextManager.tToaHang_Ngay, nameof(tToaHangDto.Ngay), typeof(System.DateTime));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tToaHang_ID, nameof(tToaHangDataModel.ID), typeof(int));
+            _NgayFilter = new HeaderDateFilterModel(TextManager.tToaHang_Ngay, nameof(tToaHangDataModel.Ngay), typeof(System.DateTime));
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.tToaHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(tToaHangDto.MaKhachHang),
+                nameof(tToaHangDataModel.MaKhachHang),
                 typeof(int),
-                nameof(rKhachHangDto.DisplayText),
-                nameof(rKhachHangDto.ID))
+                nameof(rKhachHangDataModel.DisplayText),
+                nameof(rKhachHangDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaKhachHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rKhachHangView(), "rKhachHang", ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rKhachHangDto>.Instance.Get()
+                    new View.rKhachHangView(), "rKhachHang", ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.Get()
             };
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tToaHang_TenantID, nameof(tToaHangDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_CreateTime, nameof(tToaHangDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_LastUpdateTime, nameof(tToaHangDto.LastUpdateTime), typeof(long));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tToaHang_TenantID, nameof(tToaHangDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_CreateTime, nameof(tToaHangDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tToaHang_LastUpdateTime, nameof(tToaHangDataModel.LastUpdateTime), typeof(long));
 
             _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
 
@@ -53,49 +58,55 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<rKhachHangDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(tToaHangDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(tToaHangDataModel dataModel)
         {
-            dto.MaKhachHangDataSource = ReferenceDataManager<rKhachHangDto>.Instance.Get();
+            dataModel.MaKhachHangDataSource = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(tToaHangDto dto)
+        protected override void ProcessNewAddedDataModel(tToaHangDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_NgayFilter.FilterValue != null)
             {
-                dto.Ngay = (System.DateTime)_NgayFilter.FilterValue;
+                dataModel.Ngay = (System.DateTime)_NgayFilter.FilterValue;
             }
             if (_MaKhachHangFilter.FilterValue != null)
             {
-                dto.MaKhachHang = (int)_MaKhachHangFilter.FilterValue;
+                dataModel.MaKhachHang = (int)_MaKhachHangFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

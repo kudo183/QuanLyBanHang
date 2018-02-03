@@ -8,8 +8,7 @@ using System.Windows.Controls;
 using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using huypq.wpf.Utils;
-using Microsoft.Extensions.Logging;
-using huypq.Logging;
+using huypq.LogViewerControl;
 
 namespace Client
 {
@@ -18,16 +17,22 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        IDataService _dataService;
+        IDataService _dataService = ServiceLocator.Get<IDataService>();
         LoginViewModel _loginViewModel;
         List<Window> _windowList = new List<Window>();
         bool _isShuttingDown = false;
 
         public MainWindow()
         {
-            Init();
-
             InitializeComponent();
+            
+            ReferenceDataManager<Shared.rChanhDto, DataModel.rChanhDataModel>.Instance.Init((chanh) =>
+            {
+                if (chanh.MaBaiXeNavigation == null || chanh.MaBaiXeNavigation.ID != chanh.MaBaiXe)
+                {
+                    chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto, DataModel.rBaiXeDataModel>.Instance.GetByID(chanh.MaBaiXe);
+                }
+            });
 
             _loginViewModel = loginView.DataContext as LoginViewModel;
 
@@ -85,36 +90,6 @@ namespace Client
             }
         }
 
-        private void Init()
-        {
-            ServiceLocator.AddTypeMapping(typeof(ILoggerProvider), typeof(LoggerProviderWithOptions), true, new LoggerProviderWithOptions.Options()
-            {
-                Filter = (category, logLevel) => logLevel >= LogLevel.Information,
-                IsIncludeScope = true,
-                Processor = new LoggerBatchingProcessor(1000, 1024, 1024, @"logs", 31, 20 * 1024 * 1024)
-            });
-
-            ServiceLocator.AddTypeMapping(typeof(IViewModelFactory), typeof(ViewModelFactory), true, new ViewModelFactory.Options()
-            {
-                ViewModelNamespace = "Client.ViewModel",
-                ViewModelAssembly = System.Reflection.Assembly.GetExecutingAssembly()
-            });
-
-            ServiceLocator.AddTypeMapping(typeof(IDataService), typeof(ProtobufDataService), true, new ProtobufDataService.Options()
-            {
-                Token = SettingsWrapper.Instance.Token,
-                IsTenant = SettingsWrapper.Instance.IsTenant,
-                RootUri = SettingsWrapper.Instance.Server
-            });
-
-            _dataService = ServiceLocator.Get<IDataService>();
-
-            ReferenceDataManager<Shared.rChanhDto>.Instance.Init((chanh) =>
-            {
-                chanh.MaBaiXeNavigation = ReferenceDataManager<Shared.rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
-            });
-        }
-
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             (loginView.DataContext as LoginViewModel).Logout();
@@ -148,7 +123,7 @@ namespace Client
                 {
                     Title = "Log Viewer",
                     WindowState = WindowState.Maximized,
-                    Content = new LogViewer.LogViewerControl()
+                    Content = new LogViewerControl()
                 };
                 logViewer.Closing += LogViewer_Closing;
                 logViewer.Closed += LogViewer_Closed;

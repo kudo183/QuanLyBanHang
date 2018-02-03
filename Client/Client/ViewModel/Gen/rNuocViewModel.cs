@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class rNuocViewModel : BaseViewModel<rNuocDto>
+    public partial class rNuocViewModel : BaseViewModel<rNuocDto, rNuocDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rNuocDto dto);
-        partial void ProcessNewAddedDtoPartial(rNuocDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rNuocDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rNuocDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenNuocFilter;
@@ -22,11 +27,11 @@ namespace Client.ViewModel
 
         public rNuocViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rNuoc_ID, nameof(rNuocDto.ID), typeof(int));
-            _TenNuocFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenNuoc, nameof(rNuocDto.TenNuoc), typeof(string));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenantID, nameof(rNuocDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNuoc_CreateTime, nameof(rNuocDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rNuoc_LastUpdateTime, nameof(rNuocDto.LastUpdateTime), typeof(long));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rNuoc_ID, nameof(rNuocDataModel.ID), typeof(int));
+            _TenNuocFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenNuoc, nameof(rNuocDataModel.TenNuoc), typeof(string));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rNuoc_TenantID, nameof(rNuocDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rNuoc_CreateTime, nameof(rNuocDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rNuoc_LastUpdateTime, nameof(rNuocDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -38,43 +43,49 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rNuocDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rNuocDataModel dataModel)
         {
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rNuocDto dto)
+        protected override void ProcessNewAddedDataModel(rNuocDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenNuocFilter.FilterValue != null)
             {
-                dto.TenNuoc = (string)_TenNuocFilter.FilterValue;
+                dataModel.TenNuoc = (string)_TenNuocFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

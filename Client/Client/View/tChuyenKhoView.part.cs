@@ -1,9 +1,10 @@
-﻿using huypq.SmtWpfClient.Abstraction;
+﻿using Client.DataModel;
+using huypq.SmtWpfClient.Abstraction;
 using Shared;
 
 namespace Client.View
 {
-    public partial class tChuyenKhoView : BaseView<tChuyenKhoDto>
+    public partial class tChuyenKhoView : BaseView<tChuyenKhoDto, tChuyenKhoDataModel>
     {
         partial void InitUIPartial()
         {
@@ -14,7 +15,7 @@ namespace Client.View
                 Header = TextManager.tChuyenKho_TongSoLuong,
                 Binding = new System.Windows.Data.Binding()
                 {
-                    Path = new System.Windows.PropertyPath(nameof(tChuyenKhoDto.TongSoLuong)),
+                    Path = new System.Windows.PropertyPath(nameof(tChuyenKhoDataModel.TongSoLuong)),
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };

@@ -1,4 +1,6 @@
-﻿using CustomControl;
+﻿using Client.DataModel;
+using Client.View;
+using CustomControl;
 using huypq.QueryBuilder;
 using huypq.SmtWpfClient;
 using huypq.SmtWpfClient.Abstraction;
@@ -12,7 +14,7 @@ using System.Windows;
 
 namespace Client.ViewModel
 {
-    public partial class tDonHangViewModel : BaseViewModel<tDonHangDto>
+    public partial class tDonHangViewModel : BaseViewModel<tDonHangDto, tDonHangDataModel>
     {
         private string MsgSelectedItemIsNull = "please select tDonHang";
         private string MsgtChiTietDonHangsIsEmtpy = "tChiTietDonHangs Is Emtpy";
@@ -22,18 +24,19 @@ namespace Client.ViewModel
             TonKhoCommand = new SimpleCommand(nameof(TonKhoCommand), () => TonKhoAction());
             PrintAllCommand = new SimpleCommand(nameof(PrintAllCommand), () => PrintAll());
             PrintRemainCommand = new SimpleCommand(nameof(PrintRemainCommand), () => PrintRemain());
+            GhiToaCommand = new SimpleCommand(nameof(GhiToaCommand), () => GhiToa());
 
             _MaChanhFilter = new HeaderComboBoxFilterModel(
                 TextManager.tDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(tDonHangDto.MaChanh),
+                nameof(tDonHangDataModel.MaChanh),
                 typeof(int?),
-                nameof(rChanhDto.DisplayText),
-                nameof(rChanhDto.ID))
+                nameof(rChanhDataModel.DisplayText),
+                nameof(rChanhDataModel.ID))
             {
                 AddCommand = new SimpleCommand("ChanhAddCommand",
                     () => base.ProccessHeaderAddCommand(
                     new View.rKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)),
-                ItemSource = ReferenceDataManager<rChanhDto>.Instance.Get()
+                ItemSource = ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.Get()
             };
 
             _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
@@ -49,11 +52,11 @@ namespace Client.ViewModel
 
         partial void LoadReferenceDataPartial()
         {
-            ReferenceDataManager<rKhachHangChanhDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rBaiXeDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangChanhDto, rKhachHangChanhDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rBaiXeDto, rBaiXeDataModel>.Instance.LoadOrUpdate();
         }
 
-        partial void ProcessDtoBeforeAddToEntitiesPartial(tDonHangDto dto)
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(tDonHangDataModel dto)
         {
             UpdateChanhs(dto);
 
@@ -62,26 +65,26 @@ namespace Client.ViewModel
 
         void AfterKhachHangChanhDialog()
         {
-            ReferenceDataManager<rChanhDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rKhachHangChanhDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rKhachHangChanhDto, rKhachHangChanhDataModel>.Instance.LoadOrUpdate();
             foreach (var dto in Entities)
             {
                 UpdateChanhs(dto);
             }
         }
 
-        void UpdateChanhs(tDonHangDto dto)
+        void UpdateChanhs(tDonHangDataModel dto)
         {
-            var khachHangChanhs = ReferenceDataManager<rKhachHangChanhDto>.Instance.Get()
+            var khachHangChanhs = ReferenceDataManager<rKhachHangChanhDto, rKhachHangChanhDataModel>.Instance.Get()
                  .Where(p => p.MaKhachHang == dto.MaKhachHang);
 
-            var chanhs = new List<rChanhDto>();
+            var chanhs = new List<rChanhDataModel>();
             foreach (var item in khachHangChanhs)
             {
-                var chanh = ReferenceDataManager<rChanhDto>.Instance.GetByID(item.MaChanh);
+                var chanh = ReferenceDataManager<rChanhDto, rChanhDataModel>.Instance.GetByID(item.MaChanh);
                 if (chanh.MaBaiXeNavigation == null)
                 {
-                    chanh.MaBaiXeNavigation = ReferenceDataManager<rBaiXeDto>.Instance.GetByID(chanh.MaBaiXe);
+                    chanh.MaBaiXeNavigation = ReferenceDataManager<rBaiXeDto, rBaiXeDataModel>.Instance.GetByID(chanh.MaBaiXe);
                 }
                 if (item.LaMacDinh == true)
                 {
@@ -92,19 +95,24 @@ namespace Client.ViewModel
                     chanhs.Add(chanh);
                 }
             }
+
             dto.MaChanhDataSource = chanhs;
-            if (chanhs.Count > 0 && dto.MaChanh == null)
+
+            if (chanhs.Count > 0)
             {
-                dto.MaChanh = chanhs[0].ID;
+                if (dto.MaChanh == null || chanhs.Any(p => p.ID == dto.MaChanh) == false)
+                {
+                    dto.MaChanh = chanhs[0].ID;
+                }
             }
         }
 
         void Dto_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            var dto = sender as tDonHangDto;
+            var dto = sender as tDonHangDataModel;
             switch (e.PropertyName)
             {
-                case nameof(tDonHangDto.MaKhachHang):
+                case nameof(tDonHangDataModel.MaKhachHang):
                     UpdateChanhs(dto);
                     break;
             }
@@ -113,6 +121,7 @@ namespace Client.ViewModel
         public SimpleCommand TonKhoCommand { get; set; }
         public SimpleCommand PrintAllCommand { get; set; }
         public SimpleCommand PrintRemainCommand { get; set; }
+        public SimpleCommand GhiToaCommand { get; set; }
 
         private void TonKhoAction()
         {
@@ -127,9 +136,9 @@ namespace Client.ViewModel
             var donHang = SelectedItem;
             var qe = new QueryExpression();
             qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                WhereExpression.Equal, nameof(tChiTietDonHangDto.MaDonHang), donHang.ID);
+                WhereExpression.Equal, nameof(tChiTietDonHangDataModel.MaDonHang), donHang.ID);
 
-            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
+            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe).Items;
             if (tChiTietDonHangs.Count == 0)
             {
                 SysMsg = MsgtChiTietDonHangsIsEmtpy;
@@ -140,19 +149,19 @@ namespace Client.ViewModel
 
             qe = new QueryExpression();
             qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                WhereExpression.Equal, nameof(tTonKhoDto.MaKhoHang), donHang.MaKhoHang);
+                WhereExpression.Equal, nameof(tTonKhoDataModel.MaKhoHang), donHang.MaKhoHang);
             qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
-                WhereExpression.Equal, nameof(tTonKhoDto.Ngay), System.DateTime.Now.Date);
+                WhereExpression.Equal, nameof(tTonKhoDataModel.Ngay), System.DateTime.Now.Date);
             qe.AddWhereOption<WhereExpression.WhereOptionIntList, List<int>>(
-                WhereExpression.In, nameof(tTonKhoDto.MaMatHang), maMatHangs);
+                WhereExpression.In, nameof(tTonKhoDataModel.MaMatHang), maMatHangs);
 
-            var tTonKhoes = DataService.Get<tTonKhoDto>(qe).Items;
+            var tTonKhoes = DataService.Get<tTonKhoDto, tTonKhoDataModel>(qe).Items;
 
             foreach (var tTonKho in tTonKhoes)
             {
                 data.Add(new MessageBox2.MessageBox2Data
                 {
-                    Title = ReferenceDataManager<tMatHangDto>.Instance.GetByID(tTonKho.MaMatHang).TenMatHangDayDu,
+                    Title = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(tTonKho.MaMatHang).TenMatHangDayDu,
                     Content = tTonKho.SoLuong.ToString("N0")
                 });
             }
@@ -168,11 +177,11 @@ namespace Client.ViewModel
                 return;
             }
 
-            var donHang = SelectedItem as tDonHangDto;
+            var donHang = SelectedItem as tDonHangDataModel;
             var qe = new QueryExpression();
             qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                WhereExpression.Equal, nameof(tChiTietDonHangDto.MaDonHang), donHang.ID);
-            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
+                WhereExpression.Equal, nameof(tChiTietDonHangDataModel.MaDonHang), donHang.ID);
+            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe).Items;
 
             if (tChiTietDonHangs.Count == 0)
             {
@@ -184,11 +193,11 @@ namespace Client.ViewModel
 
             foreach (var ctdh in tChiTietDonHangs)
             {
-                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
+                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(ctdh.MaMatHang);
                 content.Add(string.Format("{0,3}  {1}", ctdh.SoLuong, ctdh.MaMatHangNavigation.TenMatHangIn));
             }
 
-            var tenKhachHang = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(donHang.MaKhachHang).TenKhachHang;
+            var tenKhachHang = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(donHang.MaKhachHang).TenKhachHang;
 
             Utils.PrintUtils.Print(tenKhachHang, content);
         }
@@ -201,14 +210,14 @@ namespace Client.ViewModel
                 return;
             }
 
-            var donHang = SelectedItem as tDonHangDto;
+            var donHang = SelectedItem as tDonHangDataModel;
 
             var qe = new QueryExpression();
             qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                WhereExpression.Equal, nameof(tChiTietDonHangDto.MaDonHang), donHang.ID);
+                WhereExpression.Equal, nameof(tChiTietDonHangDataModel.MaDonHang), donHang.ID);
             qe.AddWhereOption<WhereExpression.WhereOptionBool, bool>(
-                WhereExpression.Equal, nameof(tChiTietDonHangDto.Xong), false);
-            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto>(qe).Items;
+                WhereExpression.Equal, nameof(tChiTietDonHangDataModel.Xong), false);
+            var tChiTietDonHangs = DataService.Get<tChiTietDonHangDto, tChiTietDonHangDataModel>(qe).Items;
 
             if (tChiTietDonHangs.Count == 0)
             {
@@ -220,19 +229,57 @@ namespace Client.ViewModel
 
             var qe1 = new QueryExpression();
             qe1.AddWhereOption<WhereExpression.WhereOptionInt, int>(
-                WhereExpression.Equal, string.Format("{0}.{1}", nameof(tChiTietChuyenHangDonHangDto.MaChiTietDonHangNavigation), nameof(tChiTietDonHangDto.MaDonHang)), donHang.ID);
-            var tChiTietChuyenHangDonHangs = DataService.Get<tChiTietChuyenHangDonHangDto>(qe1).Items;
+                WhereExpression.Equal, string.Format("{0}.{1}", nameof(tChiTietChuyenHangDonHangDataModel.MaChiTietDonHangNavigation), nameof(tChiTietDonHangDataModel.MaDonHang)), donHang.ID);
+            var tChiTietChuyenHangDonHangs = DataService.Get<tChiTietChuyenHangDonHangDto, tChiTietChuyenHangDonHangDataModel>(qe1).Items;
 
             foreach (var ctdh in tChiTietDonHangs)
             {
                 var soLuong = tChiTietChuyenHangDonHangs.Where(p => p.MaChiTietDonHang == ctdh.ID).Sum(p => p.SoLuong);
-                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
+                ctdh.MaMatHangNavigation = ReferenceDataManager<tMatHangDto, tMatHangDataModel>.Instance.GetByID(ctdh.MaMatHang);
                 content.Add(string.Format("{0,3}  {1}", ctdh.SoLuong - soLuong, ctdh.MaMatHangNavigation.TenMatHangIn));
             }
 
-            var tenKhachHang = ReferenceDataManager<rKhachHangDto>.Instance.GetByID(donHang.MaKhachHang).TenKhachHang;
+            var tenKhachHang = ReferenceDataManager<rKhachHangDto, rKhachHangDataModel>.Instance.GetByID(donHang.MaKhachHang).TenKhachHang;
 
             Utils.PrintUtils.Print(tenKhachHang, content);
+        }
+
+        private void GhiToa()
+        {
+            var vToaHangComplex = new ToaHangComplexView();
+            
+            var vToaHang = vToaHangComplex.Views[0] as tToaHangView;
+            vToaHang.Loaded += VToaHang_Loaded;
+
+            var ngayFilter = vToaHang.GridView.FindHeaderFilter(nameof(tToaHangDataModel.Ngay));
+            ngayFilter.FilterValue = SelectedItem.Ngay;
+
+            vToaHangComplex.AllViewLoadedAction = () =>
+            {
+                var vmToaHang = vToaHang.ViewModel as tToaHangViewModel;
+                vmToaHang.SelectedValue = 0;
+            };
+
+            var w = new Window()
+            {
+                Title = "Toa Hang",
+                WindowState = WindowState.Maximized,
+                Content = vToaHangComplex
+            };
+
+            w.Show();
+        }
+        
+        private void VToaHang_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vToaHang = sender as tToaHangView;
+            vToaHang.Loaded -= VToaHang_Loaded;
+            
+            var vmToaHang = vToaHang.ViewModel as tToaHangViewModel;
+            vmToaHang.Entities.Add(new tToaHangDataModel()
+            {
+                MaKhachHang = SelectedItem.MaKhachHang
+            });
         }
     }
 }

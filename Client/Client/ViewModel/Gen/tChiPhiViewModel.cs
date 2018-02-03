@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class tChiPhiViewModel : BaseViewModel<tChiPhiDto>
+    public partial class tChiPhiViewModel : BaseViewModel<tChiPhiDto, tChiPhiDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(tChiPhiDto dto);
-        partial void ProcessNewAddedDtoPartial(tChiPhiDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(tChiPhiDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(tChiPhiDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
@@ -26,37 +31,37 @@ namespace Client.ViewModel
 
         public tChiPhiViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.tChiPhi_ID, nameof(tChiPhiDto.ID), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.tChiPhi_ID, nameof(tChiPhiDataModel.ID), typeof(int));
             _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.tChiPhi_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(tChiPhiDto.MaNhanVienGiaoHang),
+                nameof(tChiPhiDataModel.MaNhanVienGiaoHang),
                 typeof(int),
-                nameof(rNhanVienDto.DisplayText),
-                nameof(rNhanVienDto.ID))
+                nameof(rNhanVienDataModel.DisplayText),
+                nameof(rNhanVienDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rNhanVienView(), "rNhanVien", ReferenceDataManager<rNhanVienDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rNhanVienDto>.Instance.Get()
+                    new View.rNhanVienView(), "rNhanVien", ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.Get()
             };
             _MaLoaiChiPhiFilter = new HeaderComboBoxFilterModel(
                 TextManager.tChiPhi_MaLoaiChiPhi, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(tChiPhiDto.MaLoaiChiPhi),
+                nameof(tChiPhiDataModel.MaLoaiChiPhi),
                 typeof(int),
-                nameof(rLoaiChiPhiDto.DisplayText),
-                nameof(rLoaiChiPhiDto.ID))
+                nameof(rLoaiChiPhiDataModel.DisplayText),
+                nameof(rLoaiChiPhiDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaLoaiChiPhiAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rLoaiChiPhiView(), "rLoaiChiPhi", ReferenceDataManager<rLoaiChiPhiDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rLoaiChiPhiDto>.Instance.Get()
+                    new View.rLoaiChiPhiView(), "rLoaiChiPhi", ReferenceDataManager<rLoaiChiPhiDto, rLoaiChiPhiDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rLoaiChiPhiDto, rLoaiChiPhiDataModel>.Instance.Get()
             };
-            _SoTienFilter = new HeaderTextFilterModel(TextManager.tChiPhi_SoTien, nameof(tChiPhiDto.SoTien), typeof(int));
-            _NgayFilter = new HeaderDateFilterModel(TextManager.tChiPhi_Ngay, nameof(tChiPhiDto.Ngay), typeof(System.DateTime));
-            _GhiChuFilter = new HeaderTextFilterModel(TextManager.tChiPhi_GhiChu, nameof(tChiPhiDto.GhiChu), typeof(string));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiPhi_TenantID, nameof(tChiPhiDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_CreateTime, nameof(tChiPhiDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_LastUpdateTime, nameof(tChiPhiDto.LastUpdateTime), typeof(long));
+            _SoTienFilter = new HeaderTextFilterModel(TextManager.tChiPhi_SoTien, nameof(tChiPhiDataModel.SoTien), typeof(int));
+            _NgayFilter = new HeaderDateFilterModel(TextManager.tChiPhi_Ngay, nameof(tChiPhiDataModel.Ngay), typeof(System.DateTime));
+            _GhiChuFilter = new HeaderTextFilterModel(TextManager.tChiPhi_GhiChu, nameof(tChiPhiDataModel.GhiChu), typeof(string));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.tChiPhi_TenantID, nameof(tChiPhiDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_CreateTime, nameof(tChiPhiDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.tChiPhi_LastUpdateTime, nameof(tChiPhiDataModel.LastUpdateTime), typeof(long));
 
             _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
 
@@ -73,63 +78,69 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<rNhanVienDto>.Instance.LoadOrUpdate();
-            ReferenceDataManager<rLoaiChiPhiDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rLoaiChiPhiDto, rLoaiChiPhiDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(tChiPhiDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(tChiPhiDataModel dataModel)
         {
-            dto.MaNhanVienGiaoHangDataSource = ReferenceDataManager<rNhanVienDto>.Instance.Get();
-            dto.MaLoaiChiPhiDataSource = ReferenceDataManager<rLoaiChiPhiDto>.Instance.Get();
+            dataModel.MaNhanVienGiaoHangDataSource = ReferenceDataManager<rNhanVienDto, rNhanVienDataModel>.Instance.Get();
+            dataModel.MaLoaiChiPhiDataSource = ReferenceDataManager<rLoaiChiPhiDto, rLoaiChiPhiDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(tChiPhiDto dto)
+        protected override void ProcessNewAddedDataModel(tChiPhiDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNhanVienGiaoHangFilter.FilterValue != null)
             {
-                dto.MaNhanVienGiaoHang = (int)_MaNhanVienGiaoHangFilter.FilterValue;
+                dataModel.MaNhanVienGiaoHang = (int)_MaNhanVienGiaoHangFilter.FilterValue;
             }
             if (_MaLoaiChiPhiFilter.FilterValue != null)
             {
-                dto.MaLoaiChiPhi = (int)_MaLoaiChiPhiFilter.FilterValue;
+                dataModel.MaLoaiChiPhi = (int)_MaLoaiChiPhiFilter.FilterValue;
             }
             if (_SoTienFilter.FilterValue != null)
             {
-                dto.SoTien = (int)_SoTienFilter.FilterValue;
+                dataModel.SoTien = (int)_SoTienFilter.FilterValue;
             }
             if (_NgayFilter.FilterValue != null)
             {
-                dto.Ngay = (System.DateTime)_NgayFilter.FilterValue;
+                dataModel.Ngay = (System.DateTime)_NgayFilter.FilterValue;
             }
             if (_GhiChuFilter.FilterValue != null)
             {
-                dto.GhiChu = (string)_GhiChuFilter.FilterValue;
+                dataModel.GhiChu = (string)_GhiChuFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

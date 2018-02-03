@@ -4,15 +4,20 @@ using Shared;
 using huypq.wpf.Utils;
 using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
+using Client.DataModel;
+using System.Collections.Generic;
+using huypq.SmtShared;
+using System.Linq;
 
 namespace Client.ViewModel
 {
-    public partial class rDiaDiemViewModel : BaseViewModel<rDiaDiemDto>
+    public partial class rDiaDiemViewModel : BaseViewModel<rDiaDiemDto, rDiaDiemDataModel>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(rDiaDiemDto dto);
-        partial void ProcessNewAddedDtoPartial(rDiaDiemDto dto);
+        partial void ProcessDataModelBeforeAddToEntitiesPartial(rDiaDiemDataModel dataModel);
+        partial void ProcessNewAddedDataModelPartial(rDiaDiemDataModel dataModel);
+        partial void AfterLoadPartial();
 
         HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNuocFilter;
@@ -23,23 +28,23 @@ namespace Client.ViewModel
 
         public rDiaDiemViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_ID, nameof(rDiaDiemDto.ID), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_ID, nameof(rDiaDiemDataModel.ID), typeof(int));
             _MaNuocFilter = new HeaderComboBoxFilterModel(
                 TextManager.rDiaDiem_MaNuoc, HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(rDiaDiemDto.MaNuoc),
+                nameof(rDiaDiemDataModel.MaNuoc),
                 typeof(int),
-                nameof(rNuocDto.DisplayText),
-                nameof(rNuocDto.ID))
+                nameof(rNuocDataModel.DisplayText),
+                nameof(rNuocDataModel.ID))
             {
                 AddCommand = new SimpleCommand("MaNuocAddCommand",
                     () => base.ProccessHeaderAddCommand(
-                    new View.rNuocView(), "rNuoc", ReferenceDataManager<rNuocDto>.Instance.LoadOrUpdate)),
-                ItemSource = ReferenceDataManager<rNuocDto>.Instance.Get()
+                    new View.rNuocView(), "rNuoc", ReferenceDataManager<rNuocDto, rNuocDataModel>.Instance.LoadOrUpdate)),
+                ItemSource = ReferenceDataManager<rNuocDto, rNuocDataModel>.Instance.Get()
             };
-            _TinhFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_Tinh, nameof(rDiaDiemDto.Tinh), typeof(string));
-            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_TenantID, nameof(rDiaDiemDto.TenantID), typeof(int));
-            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_CreateTime, nameof(rDiaDiemDto.CreateTime), typeof(long));
-            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_LastUpdateTime, nameof(rDiaDiemDto.LastUpdateTime), typeof(long));
+            _TinhFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_Tinh, nameof(rDiaDiemDataModel.Tinh), typeof(string));
+            _TenantIDFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_TenantID, nameof(rDiaDiemDataModel.TenantID), typeof(int));
+            _CreateTimeFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_CreateTime, nameof(rDiaDiemDataModel.CreateTime), typeof(long));
+            _LastUpdateTimeFilter = new HeaderTextFilterModel(TextManager.rDiaDiem_LastUpdateTime, nameof(rDiaDiemDataModel.LastUpdateTime), typeof(long));
 
 
             InitFilterPartial();
@@ -52,49 +57,55 @@ namespace Client.ViewModel
             AddHeaderFilter(_LastUpdateTimeFilter);
         }
 
+        protected override void AfterLoad()
+        {
+
+            AfterLoadPartial();
+        }
+
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<rNuocDto>.Instance.LoadOrUpdate();
+            ReferenceDataManager<rNuocDto, rNuocDataModel>.Instance.LoadOrUpdate();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(rDiaDiemDto dto)
+        protected override void ProcessDataModelBeforeAddToEntities(rDiaDiemDataModel dataModel)
         {
-            dto.MaNuocDataSource = ReferenceDataManager<rNuocDto>.Instance.Get();
+            dataModel.MaNuocDataSource = ReferenceDataManager<rNuocDto, rNuocDataModel>.Instance.Get();
 
-            ProcessDtoBeforeAddToEntitiesPartial(dto);
+            ProcessDataModelBeforeAddToEntitiesPartial(dataModel);
         }
 
-        protected override void ProcessNewAddedDto(rDiaDiemDto dto)
+        protected override void ProcessNewAddedDataModel(rDiaDiemDataModel dataModel)
         {
             if (_IDFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dataModel.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNuocFilter.FilterValue != null)
             {
-                dto.MaNuoc = (int)_MaNuocFilter.FilterValue;
+                dataModel.MaNuoc = (int)_MaNuocFilter.FilterValue;
             }
             if (_TinhFilter.FilterValue != null)
             {
-                dto.Tinh = (string)_TinhFilter.FilterValue;
+                dataModel.Tinh = (string)_TinhFilter.FilterValue;
             }
             if (_TenantIDFilter.FilterValue != null)
             {
-                dto.TenantID = (int)_TenantIDFilter.FilterValue;
+                dataModel.TenantID = (int)_TenantIDFilter.FilterValue;
             }
             if (_CreateTimeFilter.FilterValue != null)
             {
-                dto.CreateTime = (long)_CreateTimeFilter.FilterValue;
+                dataModel.CreateTime = (long)_CreateTimeFilter.FilterValue;
             }
             if (_LastUpdateTimeFilter.FilterValue != null)
             {
-                dto.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
+                dataModel.LastUpdateTime = (long)_LastUpdateTimeFilter.FilterValue;
             }
 
-            ProcessNewAddedDtoPartial(dto);
-            ProcessDtoBeforeAddToEntities(dto);
+            ProcessNewAddedDataModelPartial(dataModel);
+            ProcessDataModelBeforeAddToEntities(dataModel);
         }
     }
 }

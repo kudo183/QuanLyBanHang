@@ -71,6 +71,16 @@
     <Compile Include="CustomControl\MessageBox2.xaml.cs">
       <DependentUpon>MessageBox2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\rChanhDataModel.part.cs" />
+    <Compile Include="DataModel\tChiTietDonHangDataModel.part.cs" />
+    <Compile Include="DataModel\tChiTietToaHangDataModel.part.cs" />
+    <Compile Include="DataModel\tChuyenHangDonHangDataModel.part.cs" />
+    <Compile Include="DataModel\tChuyenHangDataModel.part.cs" />
+    <Compile Include="DataModel\tChuyenKhoDataModel.part.cs" />
+    <Compile Include="DataModel\tDonHangDataModel.part.cs" />
+    <Compile Include="DataModel\tMatHangDataModel.part.cs" />
+    <Compile Include="DataModel\tNhapHangDataModel.part.cs" />
+    <Compile Include="DataModel\tToaHangDataModel.part.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Smt\ManageUserView.xaml.cs">
       <DependentUpon>ManageUserView.xaml</DependentUpon>
@@ -86,8 +96,15 @@
     <Compile Include="ViewModel\Report\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\Report\XuatViewModel.cs" />
     <Compile Include="ViewModel\tChiPhiViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietChuyenHangDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietChuyenKhoViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietNhapHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChiTietToaHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\tDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\tMatHangViewModel.part.cs" />
+    <Compile Include="ViewModel\tTonKhoViewModel.part.cs" />
     <Compile Include="View\ChuyenHangComplexView.part.cs" />
     <Compile Include="View\Report\ChiPhi.xaml.cs">
       <DependentUpon>ChiPhi.xaml</DependentUpon>
@@ -101,15 +118,17 @@
     <Compile Include="View\Report\Xuat.xaml.cs">
       <DependentUpon>Xuat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\tChuyenHangDonHangView.part.cs" />
     <Compile Include="View\tChiTietChuyenHangDonHangView.part.cs" />
-    <Compile Include="View\tDonHangView.part.cs" />
-    <Compile Include="View\tChuyenKhoView.part.cs" />
+    <Compile Include="View\tChiTietDonHangView.part.cs" />
     <Compile Include="View\tChiTietToaHangView.part.cs" />
+    <Compile Include="View\tChuyenHangDonHangView.part.cs" />
+    <Compile Include="View\tChuyenKhoView.part.cs" />
+    <Compile Include="View\tDonHangView.part.cs" />
     <Compile Include="View\tMatHangView.part.cs" />
-    <Compile Include="View\tToaHangView.part.cs" />
     <Compile Include="View\tNhapHangView.part.cs" />
     <Compile Include="View\ToaHangComplexView.part.cs" />
+    <Compile Include="View\tToaHangView.part.cs" />
+    <Compile Include="View\tTonKhoView.part.cs" />
     <Page Include="CustomControl\MessageBox2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,12 +149,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ViewModel\tChiTietChuyenHangDonHangViewModel.part.cs" />
-    <Compile Include="ViewModel\tChiTietToaHangViewModel.part.cs" />
-    <Compile Include="ViewModel\tChiTietChuyenKhoViewModel.part.cs" />
-    <Compile Include="ViewModel\tChiTietNhapHangViewModel.part.cs" />
-    <Compile Include="ViewModel\tChiTietDonHangViewModel.part.cs" />
-    <Compile Include="ViewModel\tChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="View\Gen\*.cs">
       <DependentUpon>%(Filename)</DependentUpon>
       <SubType>Code</SubType>
@@ -145,6 +158,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="ViewModel\Gen\*.cs" />
+    <Compile Include="DataModel\Gen\*.cs" />
     <Compile Include="Text\Gen\*.cs" />
     <Page Include="View\Report\ChiPhi.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,44 +206,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.Logging\huypq.Logging.Framework\huypq.Logging.Framework.csproj">
-      <Project>{F4ABC0F4-C860-44A4-8BF7-58BE106E17E4}</Project>
-      <Name>huypq.Logging.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.Logging\LogViewer\LogViewer.csproj">
-      <Project>{a8b31da2-0fa6-4c8b-8203-ee27fd5e4ca0}</Project>
-      <Name>LogViewer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj">
-      <Project>{c3b36888-e0f1-4e30-8549-50d20dd636c5}</Project>
-      <Name>huypq.QueryBuilder.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.wpf.Utils\huypq.wpf.Utils\huypq.wpf.Utils.csproj">
-      <Project>{B3180065-6E2E-4EC4-9D02-E8D43D93808A}</Project>
-      <Name>huypq.wpf.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\SimpleDataGrid.csproj">
-      <Project>{9cfa4fe9-01d0-4bd1-aa8a-bca4b4a60375}</Project>
-      <Name>SimpleDataGrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.SmtShared\huypq.SmtShared.Framework\huypq.SmtShared.Framework.csproj">
-      <Project>{dbb09141-9d0c-4867-9248-1fc2e8a5eec5}</Project>
-      <Name>huypq.SmtShared.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.SmtWpfClient\huypq.SmtWpfClient\huypq.SmtWpfClient.csproj">
-      <Project>{8e941c6e-74ca-4baa-af1d-9d98283db1d1}</Project>
-      <Name>huypq.SmtWpfClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\huypq.wpf.controls\huypq.wpf.controls\huypq.wpf.controls.csproj">
-      <Project>{2a2ba72b-c536-419c-8741-a09e21ed70c7}</Project>
-      <Name>huypq.wpf.controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Shared.Framework\Shared.Framework.csproj">
-      <Project>{ee12e158-369b-4e25-8a4b-99d0e8d8723c}</Project>
-      <Name>Shared.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Text\Gen\#TextManagerTemplate.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +231,47 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DataModel\Gen\#DataModelTemplate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.Logging\huypq.Logging.Framework\huypq.Logging.Framework.csproj">
+      <Project>{f4abc0f4-c860-44a4-8bf7-58be106e17e4}</Project>
+      <Name>huypq.Logging.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.QueryBuilder\huypq.QueryBuilder.Framework\huypq.QueryBuilder.Framework.csproj">
+      <Project>{c3b36888-e0f1-4e30-8549-50d20dd636c5}</Project>
+      <Name>huypq.QueryBuilder.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.dotnet.lib\huypq.wpf.Utils\huypq.wpf.Utils\huypq.wpf.Utils.csproj">
+      <Project>{b3180065-6e2e-4ec4-9d02-e8d43d93808a}</Project>
+      <Name>huypq.wpf.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.LogViewer\huypq.LogViewerControl\huypq.LogViewerControl.csproj">
+      <Project>{fcf7d1f6-8aa6-40ad-8e16-c079aa1ebe6a}</Project>
+      <Name>huypq.LogViewerControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\SimpleDataGrid.csproj">
+      <Project>{9cfa4fe9-01d0-4bd1-aa8a-bca4b4a60375}</Project>
+      <Name>SimpleDataGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.SmtShared\huypq.SmtShared.Framework\huypq.SmtShared.Framework.csproj">
+      <Project>{dbb09141-9d0c-4867-9248-1fc2e8a5eec5}</Project>
+      <Name>huypq.SmtShared.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.SmtWpfClient\huypq.SmtWpfClient\huypq.SmtWpfClient.csproj">
+      <Project>{8e941c6e-74ca-4baa-af1d-9d98283db1d1}</Project>
+      <Name>huypq.SmtWpfClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.wpf.controls\huypq.wpf.controls\huypq.wpf.controls.csproj">
+      <Project>{2a2ba72b-c536-419c-8741-a09e21ed70c7}</Project>
+      <Name>huypq.wpf.controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Shared.Framework\Shared.Framework.csproj">
+      <Project>{ee12e158-369b-4e25-8a4b-99d0e8d8723c}</Project>
+      <Name>Shared.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets" Condition="Exists('..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets') And '$(Configuration)' == 'Release'" />
