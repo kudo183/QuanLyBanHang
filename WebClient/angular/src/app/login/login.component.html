@@ -1,0 +1,70 @@
+<div class="panel" *ngIf="mode===ModeEnum.LOGIN">
+    <div class="header">Login</div>
+    <div class="body">
+        <div class="row">
+            <input ype="email" tabindex="1" class="form-control" placeholder="Email" [(ngModel)]="user">
+        </div>
+        <div class="row">
+            <input type="password" tabindex="2" class="form-control" placeholder="Password" [(ngModel)]="pass">
+        </div>
+        <div class="row center-text">
+            <a href="#" (click)="switchMode(ModeEnum.REQUEST_PASSWORD, $event)">Forgot your password ?</a>
+        </div>
+        <div class="row center-button">
+            <button class="btn-ok" (click)="loginOK()">OK</button>
+        </div>
+        <div class="row center-text">
+            Don't have an account ?
+            <a href="#" (click)="switchMode(ModeEnum.REGISTER, $event)">Register now</a>
+        </div>
+        <div class="row center-text msg">{{message}}</div>
+    </div>
+</div>
+<div class="panel" *ngIf="mode===ModeEnum.REGISTER">
+    <div class="header">Register</div>
+    <div class="body">
+        <div class="row">
+            <input ype="email" tabindex="1" class="form-control" placeholder="Email" [(ngModel)]="user">
+        </div>
+        <div class="row center-button">
+            <button class="btn-ok" (click)="registerOK()">OK</button>
+        </div>
+        <div class="row center-text">
+            Already have an account ?
+            <a href="#" (click)="switchMode(ModeEnum.LOGIN, $event)">Sign In</a>
+        </div>
+        <div class="row center-text msg">{{message}}</div>
+    </div>
+</div>
+<div class="panel" *ngIf="mode===ModeEnum.REQUEST_PASSWORD">
+    <div class="header">Request Password</div>
+    <div class="body">
+        <div class="row">
+            <input ype="email" tabindex="1" class="form-control" placeholder="Email" [(ngModel)]="user">
+        </div>
+        <div class="row center-button">
+            <button class="btn-ok" (click)="requestOK()">OK</button>
+        </div>
+        <div class="row center-text">
+            Don't have an account ?
+            <a href="#" (click)="switchMode(ModeEnum.REGISTER, $event)">SignUp</a>
+        </div>
+        <div class="row center-text msg">{{message}}</div>
+    </div>
+</div>
+<div class="panel" *ngIf="mode===ModeEnum.RESET_PASSWORD">
+    <div class="header">Set your Password</div>
+    <div class="body">
+        <div class="row center-text" [style.font-size.px]="20"><b>{{user}}</b></div>
+        <div class="row">
+            <input type="password" tabindex="2" class="form-control" placeholder="Password" [(ngModel)]="pass">
+        </div>
+        <div class="row">
+            <input type="password" tabindex="3" class="form-control" placeholder="Confirm Password" [(ngModel)]="confirmPass">
+        </div>
+        <div class="row center-button">
+            <button class="btn-ok" (click)="resetOK()">OK</button>
+        </div>
+        <div class="row center-text msg">{{message}}</div>
+    </div>
+</div>

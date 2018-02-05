@@ -1,0 +1,30 @@
+.panel {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.panel .filter {
+    height: 30px;    
+    display: flex;
+    flex-flow: row;
+}
+
+.panel .body {
+    height: calc(100% - 30px);
+    overflow: auto;
+}
+
+::ng-deep .body .h-simple-grid .cell {
+    line-height: normal !important;
+    padding: 5px !important;
+    font-size: 1.4em !important;
+}
+
+::ng-deep .body .h-simple-grid .row.warningHigh {
+    color: blue;
+}
+
+::ng-deep .body .h-simple-grid .row.warningLow {
+    color: red;
+}

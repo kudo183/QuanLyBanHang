@@ -1,0 +1,9 @@
+.readonly-vertical-center-text {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+.readonly-vertical-center-text div{
+    display: table-cell;
+    vertical-align: middle;
+}
