@@ -1,4 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, RoutesRecognized } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -10,11 +11,10 @@ import { HTopMenuItem } from './shared';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'app';
   menuItems = new Array<HTopMenuItem>();
   activeItem: HTopMenuItem;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router, private titleService: Title) {
     this.menuItems.push({
       link: '/',
       text: 'Ton Kho'
@@ -49,6 +49,8 @@ export class AppComponent implements AfterViewInit {
           const item = this.menuItems.find(p => p.link === ev.url);
 
           this.activeItem = item || this.menuItems[0];
+
+          this.titleService.setTitle(this.activeItem.text);
         }
       }
     });
