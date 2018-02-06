@@ -1,0 +1,17 @@
+<h-simple-grid [items]="entities" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="Chuyen Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="maDonHang" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="Don Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="So luong theo Don Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongThucTe" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="So thuc te" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+</h-simple-grid>

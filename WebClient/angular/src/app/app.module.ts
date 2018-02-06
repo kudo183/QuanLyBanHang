@@ -17,6 +17,10 @@ import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule } fro
 import { DonHangComplexComponent } from './don-hang-complex/don-hang-complex.component';
 import { DonHangComponent } from './don-hang/don-hang.component';
 import { ChiTietDonHangComponent } from './chi-tiet-don-hang/chi-tiet-don-hang.component';
+import { ChuyenHangComponent } from './chuyen-hang/chuyen-hang.component';
+import { ChuyenHangDonHangComponent } from './chuyen-hang-don-hang/chuyen-hang-don-hang.component';
+import { ChiTietChuyenHangDonHangComponent } from './chi-tiet-chuyen-hang-don-hang/chi-tiet-chuyen-hang-don-hang.component';
+import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-complex.component';
 // import { HSemanticDropDownModule, , HWindowModule, HDraggableModule } from './shared';
 
 @NgModule({
@@ -27,7 +31,11 @@ import { ChiTietDonHangComponent } from './chi-tiet-don-hang/chi-tiet-don-hang.c
     ChiPhiComponent,
     DonHangComplexComponent,
     DonHangComponent,
-    ChiTietDonHangComponent
+    ChiTietDonHangComponent,
+    ChuyenHangComponent,
+    ChuyenHangDonHangComponent,
+    ChiTietChuyenHangDonHangComponent,
+    ChuyenHangComplexComponent
   ],
   imports: [
     BrowserModule,
