@@ -14,6 +14,9 @@ import { TonKhoComponent } from './ton-kho/ton-kho.component';
 import { ChiPhiComponent } from './chi-phi/chi-phi.component';
 
 import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule } from './shared';
+import { DonHangComplexComponent } from './don-hang-complex/don-hang-complex.component';
+import { DonHangComponent } from './don-hang/don-hang.component';
+import { ChiTietDonHangComponent } from './chi-tiet-don-hang/chi-tiet-don-hang.component';
 // import { HSemanticDropDownModule, , HWindowModule, HDraggableModule } from './shared';
 
 @NgModule({
@@ -21,7 +24,10 @@ import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule } fro
     AppComponent,
     LoginComponent,
     TonKhoComponent,
-    ChiPhiComponent
+    ChiPhiComponent,
+    DonHangComplexComponent,
+    DonHangComponent,
+    ChiTietDonHangComponent
   ],
   imports: [
     BrowserModule,

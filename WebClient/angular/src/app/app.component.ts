@@ -24,6 +24,10 @@ export class AppComponent implements AfterViewInit {
       text: 'Chi Phi'
     });
     this.menuItems.push({
+      link: '/donhangcomplex',
+      text: 'Don Hang Complex'
+    });
+    this.menuItems.push({
       link: '/logout',
       text: '<i class="fa fa-sign-out" aria-hidden="true"></i>'
     });

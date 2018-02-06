@@ -1,0 +1,29 @@
+<h-simple-grid [items]="entities" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.DatePicker" cellValueProperty="ngay" [cellValueType]="DataTypeEnum.Date">
+        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhachHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhachHangSource"
+        itemTextPath="tenKhachHang" itemValuePath="id">
+        <h-header headerText="Khach Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox"
+            itemTextPath="tenKhachHang" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhoHangSource"
+        itemTextPath="tenKho" itemValuePath="id">
+        <h-header headerText="Kho Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox"
+            itemTextPath="tenKho" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maChanh" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maChanhSource"
+        itemTextPath="tenChanh" itemValuePath="id">
+        <h-header headerText="Chanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox"
+            itemTextPath="tenChanh" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuong" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="So luong" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="xong" [cellValueType]="DataTypeEnum.Bool">
+        <h-header headerText="Xong" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.CheckBox"></h-header>
+    </h-column>
+</h-simple-grid>
