@@ -3,7 +3,7 @@ import { HSimpleGridModule, HSimpleGridComponent, HSimpleGridSetting } from 'huy
 import { HDraggableModule } from 'huypq-angular-draggable';
 import { HComboBoxModule } from 'huypq-angular-combobox';
 import { HNumberModule } from 'huypq-angular-number';
-// import { HWindowModule } from 'huypq-angular-window';
+import { HWindowModule, HWindowComponent } from 'huypq-angular-window';
 // import { HSemanticDropDownModule } from 'huypq-angular-semantic-dropdown';
 
 export { HTopMenuModule, HTopMenuItem };
@@ -11,5 +11,5 @@ export { HSimpleGridModule, HSimpleGridSetting, HSimpleGridComponent };
 export { HDraggableModule };
 export { HComboBoxModule };
 export { HNumberModule };
-// export { HWindowModule };
+export { HWindowModule, HWindowComponent };
 // export { HSemanticDropDownModule };

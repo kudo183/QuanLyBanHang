@@ -43,6 +43,18 @@ export class DataService {
       catchError(this.handleError<PagingResult>('get', new PagingResult())));
   }
 
+  getIntList(controller: string, path: string, intList: Array<number>) {
+    const filter = new QueryExpression();
+    const we = new WhereOption();
+    we.$type = WhereOptionTypes.IntList;
+    we.predicate = 'IN';
+    we.propertyPath = path;
+    we.value = intList;
+    filter.whereOptions.push(we);
+
+    return this.get(controller, filter);
+  }
+
   getAll(controller: string): Observable<PagingResult> {
     return this.http.get<PagingResult>(this.getFullUri(controller, 'getall'), {
       headers: this.tokenHeader()
@@ -90,6 +102,7 @@ export class WhereOptionTypes {
   static Date = 'huypq.QueryBuilder.WhereExpression+WhereOptionDate, huypq.QueryBuilder';
   static String = 'huypq.QueryBuilder.WhereExpression+WhereOptionString, huypq.QueryBuilder';
   static Bool = 'huypq.QueryBuilder.WhereExpression+WhereOptionBool, huypq.QueryBuilder';
+  static IntList = 'huypq.QueryBuilder.WhereExpression+WhereOptionIntList, huypq.QueryBuilder';
 }
 
 export class WhereOption {

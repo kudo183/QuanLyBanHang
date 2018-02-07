@@ -2,10 +2,11 @@
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int">
+    <h-column [type]="EditorTypeEnum.CustomVerticalCenter" [template]="chuyenHangTemplate" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="Chuyen Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="maDonHang" [cellValueType]="DataTypeEnum.Int">
+    <h-column [type]="EditorTypeEnum.CustomVerticalCenter" [template]="donHangTemplate" [width]="260" cellValueProperty="maDonHang"
+        [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="Don Hang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int">
@@ -15,3 +16,31 @@
         <h-header headerText="So thuc te" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
 </h-simple-grid>
+
+<ng-template #donHangTemplate let-item let-columnSetting="columnSetting">
+    <div style="display: flex">
+        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.donHang.displayText}}</div>
+        <button style="width: 30px; border: 1px solid transparent; border-radius: 4px; background-color: #eaeaea; cursor: pointer"
+            (click)="showDonHang(item, columnSetting.cellValueProperty);">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+</ng-template>
+
+<h-window #windowDonHang [visible]="false">
+    <app-don-hang #donHang></app-don-hang>
+</h-window>
+
+<ng-template #chuyenHangTemplate let-item let-columnSetting="columnSetting">
+    <div style="display: flex">
+        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.chuyenHang.displayText}}</div>
+        <button style="width: 30px; border: 1px solid transparent; border-radius: 4px; background-color: #eaeaea; cursor: pointer"
+            (click)="showChuyenHang(item, columnSetting.cellValueProperty);">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+</ng-template>
+
+<h-window #windowChuyenHang [visible]="false">
+    <app-chuyen-hang #chuyenHang></app-chuyen-hang>
+</h-window>
