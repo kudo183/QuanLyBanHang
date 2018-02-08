@@ -1,9 +1,9 @@
-<h-simple-grid [items]="entities" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+<h-simple-grid [items]="entities" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)" [bottomBarTemplate]="bottomBar">
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.DatePicker" cellValueProperty="ngay" [cellValueType]="DataTypeEnum.Date">
-        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
+        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [order]="OrderTypeEnum.Dec" [filterType]="EditorTypeEnum.DatePicker"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhachHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhachHangSource"
         itemTextPath="tenKhachHang" itemValuePath="id">
@@ -26,4 +26,7 @@
     <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="xong" [cellValueType]="DataTypeEnum.Bool">
         <h-header headerText="Xong" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.CheckBox"></h-header>
     </h-column>
+    <ng-template #bottomBar>
+        <button (click)="print();"><i class="fa fa-print" aria-hidden="true"></i></button>
+    </ng-template>
 </h-simple-grid>

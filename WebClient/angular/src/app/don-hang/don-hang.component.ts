@@ -27,6 +27,7 @@ export class DonHangComponent implements OnInit {
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
+  OrderTypeEnum = HSimpleGridSetting.OrderTypeEnum;
 
   constructor(private dataService: DataService) {
     console.log('constructor: ');
