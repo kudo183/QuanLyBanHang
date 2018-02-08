@@ -27,7 +27,8 @@
     </div>
 </ng-template>
 
-<h-window #windowDonHang [visible]="false">
+<h-window #windowDonHang [visible]="false" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" (evOk)="selectDonHang(windowDonHang);"
+    [width]="500" [height]="200">
     <app-don-hang #donHang></app-don-hang>
 </h-window>
 
@@ -41,6 +42,7 @@
     </div>
 </ng-template>
 
-<h-window #windowChuyenHang [visible]="false">
+<h-window #windowChuyenHang [visible]="false" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" (evOk)="selectChuyenHang(windowChuyenHang);"
+    [width]="500" [height]="200">
     <app-chuyen-hang #chuyenHang></app-chuyen-hang>
 </h-window>

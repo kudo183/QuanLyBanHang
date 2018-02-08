@@ -36,6 +36,20 @@ export class ChuyenHangDonHangComponent implements OnInit {
 
   ngOnInit() {
     console.log('chuyen-hang-don-hang ngOnInit');
+
+    this.donHang.grid.evSelectedItemChanged.subscribe(item => {
+      this.refDataService.get('rkhohang').subscribe(khoHangs => {
+        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+          this.windowDonHang.title = this.getDonHangDisplayText(item, khoHangs, khachHangs);
+        });
+      });
+    });
+
+    this.chuyenHang.grid.evSelectedItemChanged.subscribe(item => {
+      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+        this.windowChuyenHang.title = this.getChuyenHangDisplayText(item, nhanViens);
+      });
+    });
   }
 
   onAddingItem(newItem) {
@@ -58,13 +72,10 @@ export class ChuyenHangDonHangComponent implements OnInit {
               this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(ch => {
                 chdh.items.forEach(p => {
                   p.donHang = dh.items.find(p1 => p1.id === p.maDonHang);
-                  const tenKhachHang = khachHangs.items.find(p2 => p2.id === p.donHang.maKhachHang).tenKhachHang;
-                  const tenKho = khoHangs.items.find(p2 => p2.id === p.donHang.maKhoHang).tenKho;
-                  p.donHang.displayText = p.maDonHang + '|' + tenKho + '|' + tenKhachHang;
+                  p.donHang.displayText = this.getDonHangDisplayText(p.donHang, khoHangs, khachHangs);
 
                   p.chuyenHang = ch.items.find(p1 => p1.id === p.maChuyenHang);
-                  const tenNhanVien = nhanViens.items.find(p2 => p2.id === p.chuyenHang.maNhanVienGiaoHang).tenNhanVien;
-                  p.chuyenHang.displayText = p.maChuyenHang + '|' + tenNhanVien;
+                  p.chuyenHang.displayText = this.getChuyenHangDisplayText(p.chuyenHang, nhanViens);
                 });
                 this.entities = chdh.items;
                 this.grid.settings.pagingSetting.pageCount = chdh.pageCount;
@@ -78,39 +89,66 @@ export class ChuyenHangDonHangComponent implements OnInit {
   }
 
   showDonHang(item, property) {
+    this.windowDonHang.data = {
+      item: item,
+      property: property
+    };
     if (item.donHang !== undefined) {
       this.windowDonHang.title = item.donHang.displayText;
     }
-    this.windowDonHang.evClose.subscribe(event => {
-      this.refDataService.get('rkhohang').subscribe(khoHangs => {
-        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-          item[property] = this.donHang.grid.selectedItem.id;
-          item.donHang = this.donHang.grid.selectedItem;
-          const tenKhachHang = khachHangs.items.find(p2 => p2.id === item.donHang.maKhachHang).tenKhachHang;
-          const tenKho = khoHangs.items.find(p2 => p2.id === item.donHang.maKhoHang).tenKho;
-          item.donHang.displayText = item.maDonHang + '|' + tenKho + '|' + tenKhachHang;
-        });
-      });
-    });
     this.windowDonHang.show();
   }
 
+  selectDonHang(window: HWindowComponent) {
+    if (this.donHang.grid.selectedItem === undefined) {
+      window.hide();
+      return;
+    }
+    const item = window.data.item;
+    const property = window.data.property;
+    this.refDataService.get('rkhohang').subscribe(khoHangs => {
+      this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+        item[property] = this.donHang.grid.selectedItem.id;
+        item.donHang = this.donHang.grid.selectedItem;
+        item.donHang.displayText = this.getDonHangDisplayText(item.donHang, khoHangs, khachHangs);
+        window.hide();
+      });
+    });
+  }
+
   showChuyenHang(item, property) {
+    this.windowChuyenHang.data = {
+      item: item,
+      property: property
+    };
     if (item.chuyenHang !== undefined) {
       this.windowChuyenHang.title = item.chuyenHang.displayText;
     }
-    this.windowChuyenHang.evClose.subscribe(event => {
-      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
-        item[property] = this.chuyenHang.grid.selectedItem.id;
-        item.chuyenHang = this.chuyenHang.grid.selectedItem;
-        const tenNhanVien = nhanViens.items.find(p2 => p2.id === item.chuyenHang.maNhanVienGiaoHang).tenNhanVien;
-        item.chuyenHang.displayText = item.maChuyenHang + '|' + tenNhanVien;
-      });
-    });
     this.windowChuyenHang.show();
   }
 
-  onFilterChanged(event) {
-    console.log('onFilterChanged');
+  selectChuyenHang(window: HWindowComponent) {
+    if (this.chuyenHang.grid.selectedItem === undefined) {
+      window.hide();
+      return;
+    }
+    const item = window.data.item;
+    const property = window.data.property;
+    this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+      item[property] = this.chuyenHang.grid.selectedItem.id;
+      item.chuyenHang = this.chuyenHang.grid.selectedItem;
+      item.chuyenHang.displayText = this.getChuyenHangDisplayText(item.chuyenHang, nhanViens);
+      window.hide();
+    });
+  }
+
+  getDonHangDisplayText(donHang, khoHangs, khachHangs) {
+    const tenKhachHang = khachHangs.items.find(p2 => p2.id === donHang.maKhachHang).tenKhachHang;
+    const tenKho = khoHangs.items.find(p2 => p2.id === donHang.maKhoHang).tenKho;
+    return donHang.id + '|' + tenKho + '|' + tenKhachHang;
+  }
+  getChuyenHangDisplayText(chuyenHang, rnhanViens) {
+    const tenNhanVien = rnhanViens.items.find(p2 => p2.id === chuyenHang.maNhanVienGiaoHang).tenNhanVien;
+    return chuyenHang.id + '|' + tenNhanVien;
   }
 }
