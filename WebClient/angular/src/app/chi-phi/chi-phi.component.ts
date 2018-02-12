@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
+import { ReferenceDataService } from '../reference-data.service';
 import { Converter } from '../converter';
 
 import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
@@ -25,26 +26,22 @@ export class ChiPhiComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
     console.log('constructor: ');
   }
 
   ngOnInit() {
     console.log('chi-phi ngOnInit');
-    this.dataService.getAll('rloaichiphi').subscribe(data => {
-      this.maLoaiChiPhiSource = data.items;
-      this.grid.settings.columnSettings[2].headerSetting.items = data.items;
-    });
-    this.dataService.getAll('rnhanvien').subscribe(data => {
-      this.maNhanVienGiaoHangSource = data.items;
-      this.grid.settings.columnSettings[3].headerSetting.items = data.items;
-    });
-  }
-
-  print() {
-    console.log('don-hang print');
-    this.entities.forEach(item => {
-      console.log(JSON.stringify(item));
+    this.grid.evAfterInit.subscribe(event => {
+      this.refDataService.get('rloaichiphi').subscribe(loaiChiPhis => {
+        this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+          this.maLoaiChiPhiSource = loaiChiPhis.items;
+          this.grid.setHeaderItems(2, loaiChiPhis.items);
+          this.maNhanVienGiaoHangSource = nhanViens.items;
+          this.grid.setHeaderItems(3, nhanViens.items);
+          this.onLoad(undefined);
+        });
+      });
     });
   }
 
@@ -73,9 +70,5 @@ export class ChiPhiComponent implements OnInit {
       this.grid.settings.pagingSetting.pageCount = data.pageCount;
       this.grid.settings.pagingSetting.rowCount = data.items.length;
     });
-  }
-
-  onFilterChanged(event) {
-    console.log('onFilterChanged');
   }
 }

@@ -50,6 +50,14 @@ export class ReferenceDataService {
       sortProperty: 'tenNhanVien',
       isAscending: true
     };
+
+    this.cache['rloaichiphi'] = {
+      data: [],
+      isLoaded: false,
+      keyProperty: keyProperty,
+      sortProperty: 'tenLoaiChiPhi',
+      isAscending: true
+    };
   }
 
   get(controller: string) {
