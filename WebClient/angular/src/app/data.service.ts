@@ -43,6 +43,17 @@ export class DataService {
       catchError(this.handleError<PagingResult>('get', new PagingResult())));
   }
 
+  getByID(controller: string, id: number) {
+    const body = new URLSearchParams();
+    body.set('id', '' + id);
+
+    return this.http.post<PagingResult>(this.getFullUri(controller, 'getbyid'), body.toString(), {
+      headers: this.tokenHeader().set('Content-Type', 'application/x-www-form-urlencoded')
+    }).pipe(
+      tap(result => this.log(result)),
+      catchError(this.handleError<PagingResult>('getbyid', new PagingResult())));
+  }
+
   getIntList(controller: string, path: string, intList: Array<number>) {
     const filter = new QueryExpression();
     const we = new WhereOption();

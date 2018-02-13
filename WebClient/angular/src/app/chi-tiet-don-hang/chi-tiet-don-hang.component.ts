@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -20,6 +20,7 @@ export class ChiTietDonHangComponent implements OnInit {
 
   @ViewChild('windowDonHang') windowDonHang: HWindowComponent;
   @ViewChild('donHang') donHang: DonHangComponent;
+  @Input() name = 'viewChiTietDonHang';
 
   maMatHangSource = [];
 
@@ -44,16 +45,11 @@ export class ChiTietDonHangComponent implements OnInit {
       });
     });
 
-    this.dataService.getAll('tmathang').subscribe(data => {
-      this.maMatHangSource = data.items;
-      this.grid.settings.columnSettings[2].headerSetting.items = data.items;
-    });
-  }
-
-  print() {
-    console.log('don-hang print');
-    this.entities.forEach(item => {
-      console.log(JSON.stringify(item));
+    this.grid.evAfterInit.subscribe(event => {
+      this.refDataService.get('tmathang').subscribe(matHangs => {
+        this.maMatHangSource = matHangs.items;
+        this.grid.setHeaderItems(2, matHangs.items);
+      });
     });
   }
 
