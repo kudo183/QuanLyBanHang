@@ -29,7 +29,7 @@
     </div>
 </ng-template>
 
-<h-window #windowDonHang [visible]="false" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" (evOk)="selectDonHang(windowDonHang);"
+<h-window [name]="'windowDonHangOfChiTietDonHang'" #windowDonHang [visible]="false" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" (evOk)="selectDonHang(windowDonHang);"
     [width]="500" [height]="200">
-    <app-don-hang #donHang></app-don-hang>
+    <app-don-hang #donHang [name]="'viewDonHangOfChiTietDonHang'"></app-don-hang>
 </h-window>

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
+import { ReferenceDataService } from '../reference-data.service';
 import { Converter } from '../converter';
 
 import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
@@ -15,6 +16,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 })
 export class DonHangComponent implements OnInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
+  @Input() name='viewDonHang';
 
   maKhachHangSource = [];
   maKhoHangSource = [];
@@ -29,27 +31,29 @@ export class DonHangComponent implements OnInit {
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
   OrderTypeEnum = HSimpleGridSetting.OrderTypeEnum;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
     console.log('constructor: ');
   }
 
   ngOnInit() {
     console.log('don-hang ngOnInit');
-    this.dataService.getAll('rkhachhangchanh').subscribe(data => {
-      this.maKhachHangChanhArr = data.items;
-    });
-
-    this.dataService.getAll('rkhachhang').subscribe(data => {
-      this.maKhachHangSource = data.items;
-      this.grid.settings.columnSettings[2].headerSetting.items = data.items;
-    });
-    this.dataService.getAll('rkhohang').subscribe(data => {
-      this.maKhoHangSource = data.items;
-      this.grid.settings.columnSettings[3].headerSetting.items = data.items;
-    });
-    this.dataService.getAll('rchanh').subscribe(data => {
-      this.maChanhSource = data.items;
-      this.grid.settings.columnSettings[4].headerSetting.items = data.items;
+    this.grid.evAfterInit.subscribe(event => {
+      this.refDataService.get('rkhachhangchanh').subscribe(khachHangChanhs => {
+        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+          this.refDataService.get('rkhohang').subscribe(khoHangs => {
+            this.refDataService.get('rchanh').subscribe(chanhs => {
+              this.maKhachHangChanhArr = khachHangChanhs.items;
+              this.maKhachHangSource = khachHangs.items;
+              this.grid.setHeaderItems(2, khachHangs.items);
+              this.maKhoHangSource = khoHangs.items;
+              this.grid.setHeaderItems(3, khoHangs.items);
+              this.maChanhSource = chanhs.items;
+              this.grid.setHeaderItems(4, chanhs.items);
+              this.onLoad(undefined);
+            });
+          });
+        });
+      });
     });
   }
 
@@ -87,10 +91,6 @@ export class DonHangComponent implements OnInit {
       this.grid.settings.pagingSetting.pageCount = data.pageCount;
       this.grid.settings.pagingSetting.rowCount = data.items.length;
     });
-  }
-
-  onFilterChanged(event) {
-    console.log('onFilterChanged');
   }
 
   getChanhByMaKhachHang(maKhachHang) {
