@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
+import { ReferenceDataService } from '../reference-data.service';
 import { Converter } from '../converter';
 
 import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
@@ -16,7 +17,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class ChuyenHangComponent implements OnInit {
 
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
-
+  @Input() name = 'viewChuyenHang';
   maNhanVienSource = [];
 
   entities: Array<any>;
@@ -25,22 +26,17 @@ export class ChuyenHangComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
     console.log('constructor: ');
   }
 
   ngOnInit() {
     console.log('chuyen-hang ngOnInit');
-    this.dataService.getAll('rnhanvien').subscribe(data => {
-      this.maNhanVienSource = data.items;
-      this.grid.settings.columnSettings[2].headerSetting.items = data.items;
-    });
-  }
-
-  print() {
-    console.log('don-hang print');
-    this.entities.forEach(item => {
-      console.log(JSON.stringify(item));
+    this.grid.evAfterInit.subscribe(event => {
+      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+        this.maNhanVienSource = nhanViens.items;
+        this.grid.setHeaderItems(2, nhanViens.items);
+      });
     });
   }
 
@@ -67,9 +63,5 @@ export class ChuyenHangComponent implements OnInit {
       this.grid.settings.pagingSetting.pageCount = data.pageCount;
       this.grid.settings.pagingSetting.rowCount = data.items.length;
     });
-  }
-
-  onFilterChanged(event) {
-    console.log('onFilterChanged');
   }
 }

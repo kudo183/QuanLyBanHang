@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -24,6 +24,8 @@ export class ChuyenHangDonHangComponent implements OnInit {
 
   @ViewChild('windowChuyenHang') windowChuyenHang: HWindowComponent;
   @ViewChild('chuyenHang') chuyenHang: ChuyenHangComponent;
+
+  @Input() name = 'viewChuyenHangDonHang';
 
   entities: Array<any>;
 
