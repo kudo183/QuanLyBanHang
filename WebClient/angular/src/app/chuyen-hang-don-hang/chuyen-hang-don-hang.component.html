@@ -19,7 +19,7 @@
 
 <ng-template #donHangTemplate let-item let-columnSetting="columnSetting">
     <div style="display: flex">
-        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.donHang.displayText}}</div>
+        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.donHang?.displayText}}</div>
         <button style="width: 30px; border: 1px solid transparent; border-radius: 4px; background-color: #eaeaea; cursor: pointer"
             (click)="showDonHang(item, columnSetting.cellValueProperty);">
             <i class="fa fa-search" aria-hidden="true"></i>
@@ -34,7 +34,7 @@
 
 <ng-template #chuyenHangTemplate let-item let-columnSetting="columnSetting">
     <div style="display: flex">
-        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.chuyenHang.displayText}}</div>
+        <div style="white-space: nowrap; overflow: hidden;" [style.width]="(columnSetting.width - 30)+'px'">{{item.chuyenHang?.displayText}}</div>
         <button style="width: 30px; border: 1px solid transparent; border-radius: 4px; background-color: #eaeaea; cursor: pointer"
             (click)="showChuyenHang(item, columnSetting.cellValueProperty);">
             <i class="fa fa-search" aria-hidden="true"></i>
