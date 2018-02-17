@@ -32,6 +32,7 @@
     border-radius: 4px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .panel .form-control {
