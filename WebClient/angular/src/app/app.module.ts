@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { TonKhoComponent } from './ton-kho/ton-kho.component';
 import { ChiPhiComponent } from './chi-phi/chi-phi.component';
 
-import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule, HWindowModule } from './shared';
+import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule, HWindowModule, HSplitPanelModule, HDraggableModule } from './shared';
 import { DonHangComplexComponent } from './don-hang-complex/don-hang-complex.component';
 import { DonHangComponent } from './don-hang/don-hang.component';
 import { ChiTietDonHangComponent } from './chi-tiet-don-hang/chi-tiet-don-hang.component';
@@ -47,6 +47,8 @@ import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-co
     HComboBoxModule,
     HNumberModule,
     HWindowModule,
+    HSplitPanelModule,
+    HDraggableModule,
     routing
   ],
   providers: [Title, AuthService, CheckLogin, DataService, ReferenceDataService],

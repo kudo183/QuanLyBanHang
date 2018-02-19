@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ChuyenHangComponent } from '../chuyen-hang/chuyen-hang.component';
 import { ChuyenHangDonHangComponent } from '../chuyen-hang-don-hang/chuyen-hang-don-hang.component';
 import { ChiTietChuyenHangDonHangComponent } from '../chi-tiet-chuyen-hang-don-hang/chi-tiet-chuyen-hang-don-hang.component';
@@ -8,7 +8,7 @@ import { ChiTietChuyenHangDonHangComponent } from '../chi-tiet-chuyen-hang-don-h
   templateUrl: './chuyen-hang-complex.component.html',
   styleUrls: ['./chuyen-hang-complex.component.css']
 })
-export class ChuyenHangComplexComponent implements OnInit {
+export class ChuyenHangComplexComponent implements AfterViewInit {
 
   @ViewChild('chuyenHangComp') chuyenHangComp: ChuyenHangComponent;
   @ViewChild('chuyenHangDonHangComp') chuyenHangDonHangComp: ChuyenHangDonHangComponent;
@@ -16,7 +16,7 @@ export class ChuyenHangComplexComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.chuyenHangComp.grid.evSelectedItemChanged.subscribe(event => {
       this.chuyenHangDonHangComp.grid.settings.columnSettings[1].headerSetting.isEnableFilter = true;
       this.chuyenHangDonHangComp.grid.settings.columnSettings[1].headerSetting.filterValue = event.id;
@@ -29,5 +29,4 @@ export class ChuyenHangComplexComponent implements OnInit {
       this.chiTietChuyenHangDonHangComp.onLoad(undefined);
     });
   }
-
 }

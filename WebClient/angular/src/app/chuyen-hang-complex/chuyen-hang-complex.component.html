@@ -1,11 +1,11 @@
-<div style="height: 100%;">
-    <div style="height: 30%;">
-      <app-chuyen-hang #chuyenHangComp></app-chuyen-hang>
-    </div>
-    <div style="height: 30%;">
-        <app-chuyen-hang-don-hang #chuyenHangDonHangComp></app-chuyen-hang-don-hang>
-      </div>
-    <div style="height: 40%;">
-        <app-chi-tiet-chuyen-hang-don-hang #chiTietChuyenHangDonHangComp></app-chi-tiet-chuyen-hang-don-hang>
-    </div>
+<h-split-panel [isVertical]="true">
+  <div *hSplitPanel="35">
+    <app-chuyen-hang #chuyenHangComp></app-chuyen-hang>
   </div>
+  <div *hSplitPanel="25">
+    <app-chuyen-hang-don-hang #chuyenHangDonHangComp></app-chuyen-hang-don-hang>
+  </div>
+  <div *hSplitPanel="40">
+    <app-chi-tiet-chuyen-hang-don-hang #chiTietChuyenHangDonHangComp></app-chi-tiet-chuyen-hang-don-hang>
+  </div>
+</h-split-panel>
