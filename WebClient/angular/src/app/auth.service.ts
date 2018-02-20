@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MyURLSearchParams } from './httpUtils';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user: string, pass: string): Observable<any> {
-    const body = new URLSearchParams();
+    const body = MyURLSearchParams.create();
     body.set('user', user);
     body.set('pass', pass);
     const options = {
@@ -27,7 +28,7 @@ export class AuthService {
   }
 
   register(user: string): Observable<any> {
-    const body = new URLSearchParams();
+    const body = MyURLSearchParams.create();
     body.set('user', user);
     body.set('tenantname', user);
     const options = {
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   requestPassword(email: string): Observable<any> {
-    const body = new URLSearchParams();
+    const body = MyURLSearchParams.create();
     body.set('email', email);
     body.set('purpose', 'resetpassword');
     const options = {
@@ -47,7 +48,7 @@ export class AuthService {
   }
 
   resetPassword(token: string, pass: string): Observable<any> {
-    const body = new URLSearchParams();
+    const body = MyURLSearchParams.create();
     body.set('token', token);
     body.set('pass', pass);
     const options = {

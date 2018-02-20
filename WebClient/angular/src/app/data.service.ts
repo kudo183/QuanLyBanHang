@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { MyURLSearchParams } from './httpUtils';
 
 @Injectable()
 export class DataService {
@@ -44,7 +45,7 @@ export class DataService {
   }
 
   getByID(controller: string, id: number) {
-    const body = new URLSearchParams();
+    const body = MyURLSearchParams.create();
     body.set('id', '' + id);
 
     return this.http.post<PagingResult>(this.getFullUri(controller, 'getbyid'), body.toString(), {
