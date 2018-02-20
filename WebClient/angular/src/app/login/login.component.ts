@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService) {
+    this.user = localStorage.getItem('user');
   }
 
   ngOnInit() {
@@ -45,23 +46,25 @@ export class LoginComponent implements OnInit {
     this.message = '';
     this.authService.login(this.user, this.pass)
       .subscribe(
-      data => {
-        this.router.navigate([this.returnUrl]);
-      },
-      error => {
-        this.loading = false;
-        switch (error.status) {
-          case 400:
-            this.message = 'bad request';
-            break;
-          case 401:
-            this.message = 'wrong pass';
-            break;
-          case 404:
-            this.message = 'user not exist';
-            break;
+        data => {
+          localStorage.setItem('user', this.user);
+          this.router.navigate([this.returnUrl]);
+          // location.href = this.returnUrl;
+        },
+        error => {
+          this.loading = false;
+          switch (error.status) {
+            case 400:
+              this.message = 'bad request';
+              break;
+            case 401:
+              this.message = 'wrong pass';
+              break;
+            case 404:
+              this.message = 'user not exist';
+              break;
+          }
         }
-      }
       );
   }
 
@@ -70,24 +73,24 @@ export class LoginComponent implements OnInit {
     this.message = '';
     this.authService.register(this.user)
       .subscribe(
-      data => {
-        this.loading = false;
-        this.message = 'Please check your email to get the access link.';
-      },
-      error => {
-        this.loading = false;
-        switch (error.status) {
-          case 400:
-            this.message = 'bad request';
-            break;
-          case 401:
-            this.message = 'Unauthorized';
-            break;
-          case 404:
-            this.message = 'user not exist';
-            break;
+        data => {
+          this.loading = false;
+          this.message = 'Please check your email to get the access link.';
+        },
+        error => {
+          this.loading = false;
+          switch (error.status) {
+            case 400:
+              this.message = 'bad request';
+              break;
+            case 401:
+              this.message = 'Unauthorized';
+              break;
+            case 404:
+              this.message = 'user not exist';
+              break;
+          }
         }
-      }
       );
   }
 
@@ -96,24 +99,24 @@ export class LoginComponent implements OnInit {
     this.message = '';
     this.authService.requestPassword(this.user)
       .subscribe(
-      data => {
-        this.loading = false;
-        this.message = 'check your email for reset password link.';
-      },
-      error => {
-        this.loading = false;
-        switch (error.status) {
-          case 400:
-            this.message = 'bad request';
-            break;
-          case 401:
-            this.message = 'Unauthorized';
-            break;
-          case 404:
-            this.message = 'user not exist';
-            break;
+        data => {
+          this.loading = false;
+          this.message = 'check your email for reset password link.';
+        },
+        error => {
+          this.loading = false;
+          switch (error.status) {
+            case 400:
+              this.message = 'bad request';
+              break;
+            case 401:
+              this.message = 'Unauthorized';
+              break;
+            case 404:
+              this.message = 'user not exist';
+              break;
+          }
         }
-      }
       );
   }
 
@@ -127,25 +130,25 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.resetPassword(this.resetPassToken, this.pass)
       .subscribe(
-      data => {
-        this.loading = false;
-        // this.switchMode(this.ModeEnum.LOGIN);
-        this.loginOK();
-      },
-      error => {
-        this.loading = false;
-        switch (error.status) {
-          case 400:
-            this.message = 'bad request';
-            break;
-          case 401:
-            this.message = 'Unauthorized';
-            break;
-          case 404:
-            this.message = 'user not exist';
-            break;
+        data => {
+          this.loading = false;
+          // this.switchMode(this.ModeEnum.LOGIN);
+          this.loginOK();
+        },
+        error => {
+          this.loading = false;
+          switch (error.status) {
+            case 400:
+              this.message = 'bad request';
+              break;
+            case 401:
+              this.message = 'Unauthorized';
+              break;
+            case 404:
+              this.message = 'user not exist';
+              break;
+          }
         }
-      }
       );
   }
 
