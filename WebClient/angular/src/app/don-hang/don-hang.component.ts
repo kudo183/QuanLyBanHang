@@ -16,7 +16,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 })
 export class DonHangComponent implements OnInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
-  @Input() name='viewDonHang';
+  @Input() name = 'viewDonHang';
 
   maKhachHangSource = [];
   maKhoHangSource = [];
@@ -57,10 +57,67 @@ export class DonHangComponent implements OnInit {
     });
   }
 
-  print() {
-    console.log('don-hang print');
-    this.entities.forEach(item => {
-      console.log(JSON.stringify(item));
+  print(): void {
+    if (this.grid.selectedItem === undefined) {
+      return;
+    }
+
+    let tenKhachHang = this.maKhachHangSource.find(p => p.id === this.grid.selectedItem.maKhachHang).tenKhachHang;
+
+    const qe = new QueryExpression();
+    qe.addWhereOption('=', 'maDonHang', this.grid.selectedItem.id, WhereOptionTypes.Int);
+    this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
+      this.dataService.getIntList('tchitietchuyenhangdonhang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
+        this.refDataService.get('tmathang').subscribe(matHangs => {
+          let printContents, popupWin, tenMatHangIn, tongSoLuong, soLuongConLai;
+          printContents = '<div style="text-align:center;font-weight:bold;height:10mm">' + tenKhachHang + '</div>';
+
+          ctdhs.items.forEach(p => {
+            tongSoLuong = 0;
+            ctchdhs.items.forEach(ctchdh => {
+              if (ctchdh.maChiTietDonHang === p.id) {
+                tongSoLuong = tongSoLuong + ctchdh.soLuong;
+              }
+            });
+            soLuongConLai = p.soLuong - tongSoLuong;
+            if (soLuongConLai > 0) {
+              tenMatHangIn = matHangs.items.find(mh => mh.id === p.maMatHang).tenMatHangIn;
+              printContents = printContents + '<div>' + this.formatNumber(soLuongConLai) + tenMatHangIn + '</div>';
+            }
+          });
+
+          popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+          popupWin.document.open();
+          popupWin.document.write(`<html><body style="width:58mm;min-height:50mm;font-family:'Courier New';white-space:pre-wrap" onload="window.print();window.close()">${printContents}</body></html>`);
+          popupWin.document.close();
+        });
+      });
+    });
+  }
+
+  printAll(): void {
+    if (this.grid.selectedItem === undefined) {
+      return;
+    }
+
+    let tenKhachHang = this.maKhachHangSource.find(p => p.id === this.grid.selectedItem.maKhachHang).tenKhachHang;
+
+    const qe = new QueryExpression();
+    qe.addWhereOption('=', 'maDonHang', this.grid.selectedItem.id, WhereOptionTypes.Int);
+    this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
+      this.refDataService.get('tmathang').subscribe(matHangs => {
+        let printContents, popupWin, tenMatHangIn;
+        printContents = '<div style="text-align:center;font-weight:bold;height:10mm">' + tenKhachHang + '</div>';
+        ctdhs.items.forEach(p => {
+          tenMatHangIn = matHangs.items.find(mh => mh.id === p.maMatHang).tenMatHangIn;
+          printContents = printContents + '<div>' + this.formatNumber(p.soLuong) + tenMatHangIn + '</div>';
+        });
+
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`<html><body style="width:58mm;min-height:50mm;font-family:'Courier New';white-space:pre-wrap" onload="window.print();window.close()">${printContents}</body></html>`);
+        popupWin.document.close();
+      });
     });
   }
 
@@ -98,5 +155,18 @@ export class DonHangComponent implements OnInit {
     return this.maChanhSource.filter(p => {
       return maKhachHangChanhFilteredArr.findIndex(item => item.maChanh === p.id) !== -1;
     });
+  }
+
+  formatNumber(number: number) {
+    if (number < 10) {
+      return number + '   ';
+    }
+    if (number < 100) {
+      return number + '  ';
+    }
+    if (number < 1000) {
+      return number + ' ';
+    }
+    return number + '';
   }
 }

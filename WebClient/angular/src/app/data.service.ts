@@ -138,4 +138,13 @@ export class QueryExpression {
   orderOptions = new Array<OrderOption>();
   pageIndex = 1;
   pageSize = 30;
+
+  addWhereOption(predicate, propertyPath, value, $type) {
+    const we = new WhereOption();
+    we.predicate = predicate;
+    we.propertyPath = propertyPath;
+    we.value = value;
+    we.$type = $type;
+    this.whereOptions.push(we);
+  }
 }
