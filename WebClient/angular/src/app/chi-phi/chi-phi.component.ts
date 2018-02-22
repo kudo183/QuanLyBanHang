@@ -51,10 +51,9 @@ export class ChiPhiComponent implements OnInit {
   }
 
   onSave(changeSet) {
-    console.log('onSave: ');
-    console.log('added: ' + changeSet[0].length + '  ' + JSON.stringify(changeSet[0]));
-    console.log('deleted: ' + changeSet[1].length + '  ' + JSON.stringify(changeSet[1]));
-    console.log('changed: ' + changeSet[2].length + '  ' + JSON.stringify(changeSet[2]));
+    this.dataService.save('tchiphi', changeSet[0], changeSet[1], changeSet[2]).subscribe(p => {
+      this.onLoad(undefined);
+    });
   }
 
   onLoad(event) {
