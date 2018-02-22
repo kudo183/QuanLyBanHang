@@ -37,7 +37,6 @@ export class ChuyenHangComplexComponent implements AfterViewInit {
                       this.dataService.getByID('tDonHang', chdh.maDonHang).subscribe(dh => {
                         this.dataService.getByID('tChuyenHang', chdh.maChuyenHang).subscribe(ch => {
                           this.dataService.getIntList('tChiTietChuyenHangDonHang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
-                            const items = [];
                             ctdhs.items.forEach(ctdh => {
                               const newItem: any = {};
                               newItem.maChuyenHangDonHang = maChuyenHangDonHang;
@@ -57,10 +56,10 @@ export class ChuyenHangComplexComponent implements AfterViewInit {
                                 }
                               });
                               newItem.soLuong = ctdh.soLuong - soLuongDaGiao;
-
-                              items.push(newItem);
+                              
+                              comp.grid.items.push(newItem);
                             });
-                            comp.entities = items;
+                            comp.grid.updateGrid();
                           });
                         });
                       });
