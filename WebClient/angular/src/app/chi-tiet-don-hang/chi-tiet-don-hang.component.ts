@@ -55,6 +55,16 @@ export class ChiTietDonHangComponent implements OnInit {
 
   onAddingItem(newItem) {
     newItem.maMatHangSource = this.maMatHangSource;
+    if (newItem.maDonHang !== undefined) {
+      this.refDataService.get('rkhohang').subscribe(khoHangs => {
+        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+          this.dataService.getByID('tDonHang', newItem.maDonHang).subscribe(p => {
+            newItem.donHang = p;
+            newItem.donHang.displayText = this.getDonHangDisplayText(newItem.donHang, khoHangs, khachHangs);
+          });
+        });
+      });
+    }
   }
 
   onSave(changeSet) {

@@ -55,6 +55,24 @@ export class ChuyenHangDonHangComponent implements OnInit {
   }
 
   onAddingItem(newItem) {
+    if (newItem.maDonHang !== undefined) {
+      this.refDataService.get('rkhohang').subscribe(khoHangs => {
+        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+          this.dataService.getByID('tDonHang', newItem.maDonHang).subscribe(dh => {
+            newItem.donHang = dh;
+            newItem.donHang.displayText = this.getDonHangDisplayText(newItem.donHang, khoHangs, khachHangs);
+          });
+        });
+      });
+    }
+    if (newItem.maChuyenHang !== undefined) {
+      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+        this.dataService.getByID('tChuyenHang', newItem.maChuyenHang).subscribe(ch => {
+          newItem.chuyenHang = ch;
+          newItem.chuyenHang.displayText = this.getChuyenHangDisplayText(newItem.chuyenHang, nhanViens);
+        })
+      });
+    }
   }
 
   onSave(changeSet) {

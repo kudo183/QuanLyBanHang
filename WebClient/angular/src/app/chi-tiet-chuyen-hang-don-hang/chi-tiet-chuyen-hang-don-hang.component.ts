@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -25,6 +25,9 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
 
   @ViewChild('windowChuyenHangDonHang') windowChuyenHangDonHang: HWindowComponent;
   @ViewChild('chuyenHangDonHang') chuyenHangDonHang: ChuyenHangDonHangComponent;
+
+  @Output() evAfterLoad = new EventEmitter();
+
   entities: Array<any>;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
@@ -40,6 +43,33 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
   }
 
   onAddingItem(newItem) {
+    if (newItem.maChuyenHangDonHang !== undefined) {
+      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+        this.dataService.getByID('tChuyenHangDonHang', newItem.maChuyenHangDonHang).subscribe(chdh => {
+          newItem.chuyenHangDonHang = chdh;
+          this.dataService.getByID('tChuyenHang', chdh.maChuyenHang).subscribe(ch => {
+            newItem.chuyenHangDonHang.chuyenHang = ch;
+            newItem.chuyenHangDonHang.displayText = this.getChuyenHangDonHangDisplayText(newItem.chuyenHangDonHang, nhanViens);
+          });
+        });
+      });
+    }
+
+    if (newItem.maChiTietDonHang !== undefined) {
+      this.refDataService.get('rkhohang').subscribe(khoHangs => {
+        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
+          this.refDataService.get('tmathang').subscribe(matHangs => {
+            this.dataService.getByID('tChiTietDonHang', newItem.maChiTietDonHang).subscribe(ctdh => {
+              newItem.chiTietDonHang = ctdh;
+              this.dataService.getByID('tDonHang', ctdh.maDonHang).subscribe(dh => {
+                newItem.chiTietDonHang.donHang = dh;
+                newItem.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(newItem.chiTietDonHang, khoHangs, khachHangs, matHangs);
+              })
+            });
+          });
+        });
+      });
+    }
   }
 
   onSave(changeSet) {
@@ -57,22 +87,25 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
             this.dataService.get('tChiTietChuyenHangDonHang', qe).subscribe(ctchdh => {
               this.dataService.getIntList('tChiTietDonHang', 'id', ctchdh.items.map(p => p.maChiTietDonHang)).subscribe(ctdh => {
                 this.dataService.getIntList('tChuyenHangDonHang', 'id', ctchdh.items.map(p => p.maChuyenHangDonHang)).subscribe(chdh => {
-                  ctchdh.items.forEach(p => {
-                    p.chiTietDonHang = ctdh.items.find(p1 => p1.id === p.maChiTietDonHang);
-                    p.chuyenHangDonHang = chdh.items.find(p1 => p1.id === p.maChuyenHangDonHang);
-                    this.dataService.getByID('tDonHang', p.chiTietDonHang.maDonHang).subscribe(donHang => {
-                      this.dataService.getByID('tChuyenHang', p.chuyenHangDonHang.maChuyenHang).subscribe(chuyenHang => {
+                  this.dataService.getIntList('tDonHang', 'id', chdh.items.map(p => p.maDonHang)).subscribe(donHang => {
+                    this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(chuyenHang => {
 
-                        p.chuyenHangDonHang.chuyenHang = chuyenHang;
+                      ctchdh.items.forEach((p, index) => {
+                        p.chiTietDonHang = ctdh.items.find(p1 => p1.id === p.maChiTietDonHang);
+                        p.chuyenHangDonHang = chdh.items.find(p1 => p1.id === p.maChuyenHangDonHang);
+
+                        p.chuyenHangDonHang.chuyenHang = chuyenHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maChuyenHang);
                         p.chuyenHangDonHang.displayText = this.getChuyenHangDonHangDisplayText(p.chuyenHangDonHang, nhanViens);
 
-                        p.chiTietDonHang.donHang = donHang;
+                        p.chiTietDonHang.donHang = donHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maDonHang);
                         p.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(p.chiTietDonHang, khoHangs, khachHangs, matHangs);
-
-                        this.entities = ctchdh.items;
-                        this.grid.settings.pagingSetting.pageCount = ctchdh.pageCount;
-                        this.grid.settings.pagingSetting.rowCount = ctchdh.items.length;
                       });
+
+                      this.entities = ctchdh.items;
+                      this.grid.settings.pagingSetting.pageCount = ctchdh.pageCount;
+                      this.grid.settings.pagingSetting.rowCount = ctchdh.items.length;
+
+                      this.evAfterLoad.emit();
                     });
                   });
                 });
