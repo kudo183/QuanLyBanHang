@@ -69,9 +69,10 @@ export class DonHangComponent implements OnInit {
     this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
       this.dataService.getIntList('tchitietchuyenhangdonhang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
         this.refDataService.get('tmathang').subscribe(matHangs => {
-          let printContents, popupWin, tenMatHangIn, tongSoLuong, soLuongConLai;
-          printContents = '<div style="text-align:center;font-weight:bold;height:10mm">' + tenKhachHang + '</div>';
+          let printContents, tenMatHangIn, tongSoLuong, soLuongConLai;
+          printContents = this.toTitleDiv(tenKhachHang);
 
+          const tableContent = [];
           ctdhs.items.forEach(p => {
             tongSoLuong = 0;
             ctchdhs.items.forEach(ctchdh => {
@@ -82,14 +83,11 @@ export class DonHangComponent implements OnInit {
             soLuongConLai = p.soLuong - tongSoLuong;
             if (soLuongConLai > 0) {
               tenMatHangIn = matHangs.items.find(mh => mh.id === p.maMatHang).tenMatHangIn;
-              printContents = printContents + '<div>' + this.formatNumber(soLuongConLai) + tenMatHangIn + '</div>';
+              tableContent.push([p.soLuong, tenMatHangIn]);
             }
           });
-
-          popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
-          popupWin.document.open();
-          popupWin.document.write(`<html><body style="width:58mm;min-height:50mm;font-family:'Courier New';white-space:pre-wrap" onload="window.print();window.close()">${printContents}</body></html>`);
-          popupWin.document.close();
+          printContents = printContents + this.toHtmlTable(tableContent);
+          this.printContent(printContents);
         });
       });
     });
@@ -106,17 +104,16 @@ export class DonHangComponent implements OnInit {
     qe.addWhereOption('=', 'maDonHang', this.grid.selectedItem.id, WhereOptionTypes.Int);
     this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
       this.refDataService.get('tmathang').subscribe(matHangs => {
-        let printContents, popupWin, tenMatHangIn;
-        printContents = '<div style="text-align:center;font-weight:bold;height:10mm">' + tenKhachHang + '</div>';
+        let printContents, tenMatHangIn;
+        printContents = this.toTitleDiv(tenKhachHang);
+
+        const tableContent = [];
         ctdhs.items.forEach(p => {
           tenMatHangIn = matHangs.items.find(mh => mh.id === p.maMatHang).tenMatHangIn;
-          printContents = printContents + '<div>' + this.formatNumber(p.soLuong) + tenMatHangIn + '</div>';
+          tableContent.push([p.soLuong, tenMatHangIn]);
         });
-
-        popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
-        popupWin.document.open();
-        popupWin.document.write(`<html><body style="width:58mm;min-height:50mm;font-family:'Courier New';white-space:pre-wrap" onload="window.print();window.close()">${printContents}</body></html>`);
-        popupWin.document.close();
+        printContents = printContents + this.toHtmlTable(tableContent);
+        this.printContent(printContents);
       });
     });
   }
@@ -156,16 +153,69 @@ export class DonHangComponent implements OnInit {
     });
   }
 
-  formatNumber(number: number) {
-    if (number < 10) {
-      return number + '   ';
+  private toTitleDiv(title: string): string {
+    return `<div class="title">${title}</div>`;
+  }
+
+  private htmlTableRowSpacer(colCount: number): string {
+    return '<tr class="spacer">' + '<td></td>'.repeat(colCount) + '</tr>';
+  }
+
+  private toHtmlTable(tableContent: Array<Array<string>>): string {
+    let result = '';
+    if (tableContent === undefined || tableContent.length === 0) {
+      return result;
     }
-    if (number < 100) {
-      return number + '  ';
-    }
-    if (number < 1000) {
-      return number + ' ';
-    }
-    return number + '';
+    result = result + '<table>';
+    let spacer = this.htmlTableRowSpacer(tableContent[0].length);
+    tableContent.forEach(row => {
+      result = result + '<tr>';
+      row.forEach((cell, index) => {
+        result = result + `<td class="col${index + 1}">${cell}</td>`;
+      });
+      result = result + '</tr>';
+      result = result + spacer;
+    });
+    result = result + '</table>';
+    return result;
+  }
+
+  private printContent(content: string): void {
+    const style = `
+      body {
+          margin: 0px;
+          width: 48mm;
+          font-family: 'Arial'
+      }
+      
+      .title {
+          text-align: center;
+          font-weight: bold;
+          height: 10mm
+      }
+      
+      .spacer {
+          height: 2mm;
+      }
+      
+      td {
+          vertical-align: top;
+      }
+      
+      .col1 {
+          width: 10mm;
+      }
+      
+      .col2 {
+          width: 38mm;
+      }
+    `;
+    const printHtml = `<html><head><style>${style}</style></head><body onload="window.print();window.close()">${content}</body></html>`;
+
+    console.log(printHtml);
+    let popupWin = window.open('', '_blank', 'top=0,left=0,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(printHtml);
+    popupWin.document.close();
   }
 }
