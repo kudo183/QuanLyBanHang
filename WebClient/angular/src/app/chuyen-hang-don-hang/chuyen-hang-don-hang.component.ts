@@ -40,15 +40,13 @@ export class ChuyenHangDonHangComponent implements OnInit {
     console.log('chuyen-hang-don-hang ngOnInit');
 
     this.donHang.grid.evSelectedItemChanged.subscribe(item => {
-      this.refDataService.get('rkhohang').subscribe(khoHangs => {
-        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-          this.windowDonHang.title = this.getDonHangDisplayText(item, khoHangs, khachHangs);
-        });
+      this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
+        this.windowDonHang.title = this.getDonHangDisplayText(item, khoHangs, khachHangs);
       });
     });
 
     this.chuyenHang.grid.evSelectedItemChanged.subscribe(item => {
-      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+      this.actionRequireNhanVien(nhanViens => {
         this.windowChuyenHang.title = this.getChuyenHangDisplayText(item, nhanViens);
       });
     });
@@ -56,17 +54,15 @@ export class ChuyenHangDonHangComponent implements OnInit {
 
   onAddingItem(newItem) {
     if (newItem.maDonHang !== undefined) {
-      this.refDataService.get('rkhohang').subscribe(khoHangs => {
-        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-          this.dataService.getByID('tDonHang', newItem.maDonHang).subscribe(dh => {
-            newItem.donHang = dh;
-            newItem.donHang.displayText = this.getDonHangDisplayText(newItem.donHang, khoHangs, khachHangs);
-          });
+      this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
+        this.dataService.getByID('tDonHang', newItem.maDonHang).subscribe(dh => {
+          newItem.donHang = dh;
+          newItem.donHang.displayText = this.getDonHangDisplayText(newItem.donHang, khoHangs, khachHangs);
         });
       });
     }
     if (newItem.maChuyenHang !== undefined) {
-      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+      this.actionRequireNhanVien(nhanViens => {
         this.dataService.getByID('tChuyenHang', newItem.maChuyenHang).subscribe(ch => {
           newItem.chuyenHang = ch;
           newItem.chuyenHang.displayText = this.getChuyenHangDisplayText(newItem.chuyenHang, nhanViens);
@@ -82,24 +78,22 @@ export class ChuyenHangDonHangComponent implements OnInit {
   }
 
   onLoad(event) {
-    this.refDataService.get('rkhohang').subscribe(khoHangs => {
-      this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-        this.refDataService.get('rnhanvien').subscribe(nhanViens => {
-          const qe = Converter.FromHSimpleGridSettingToQueryExpression(this.grid.settings);
-          this.dataService.get('tChuyenHangDonHang', qe).subscribe(chdh => {
-            this.dataService.getIntList('tDonHang', 'id', chdh.items.map(p => p.maDonHang)).subscribe(dh => {
-              this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(ch => {
-                chdh.items.forEach(p => {
-                  p.donHang = dh.items.find(p1 => p1.id === p.maDonHang);
-                  p.donHang.displayText = this.getDonHangDisplayText(p.donHang, khoHangs, khachHangs);
+    this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
+      this.actionRequireNhanVien(nhanViens => {
+        const qe = Converter.FromHSimpleGridSettingToQueryExpression(this.grid.settings);
+        this.dataService.get('tChuyenHangDonHang', qe).subscribe(chdh => {
+          this.dataService.getIntList('tDonHang', 'id', chdh.items.map(p => p.maDonHang)).subscribe(dh => {
+            this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(ch => {
+              chdh.items.forEach(p => {
+                p.donHang = dh.items.find(p1 => p1.id === p.maDonHang);
+                p.donHang.displayText = this.getDonHangDisplayText(p.donHang, khoHangs, khachHangs);
 
-                  p.chuyenHang = ch.items.find(p1 => p1.id === p.maChuyenHang);
-                  p.chuyenHang.displayText = this.getChuyenHangDisplayText(p.chuyenHang, nhanViens);
-                });
-                this.entities = chdh.items;
-                this.grid.settings.pagingSetting.pageCount = chdh.pageCount;
-                this.grid.settings.pagingSetting.rowCount = chdh.items.length;
+                p.chuyenHang = ch.items.find(p1 => p1.id === p.maChuyenHang);
+                p.chuyenHang.displayText = this.getChuyenHangDisplayText(p.chuyenHang, nhanViens);
               });
+              this.entities = chdh.items;
+              this.grid.settings.pagingSetting.pageCount = chdh.pageCount;
+              this.grid.settings.pagingSetting.rowCount = chdh.items.length;
             });
           });
         });
@@ -125,13 +119,11 @@ export class ChuyenHangDonHangComponent implements OnInit {
     }
     const item = window.data.item;
     const property = window.data.property;
-    this.refDataService.get('rkhohang').subscribe(khoHangs => {
-      this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-        item[property] = this.donHang.grid.selectedItem.id;
-        item.donHang = this.donHang.grid.selectedItem;
-        item.donHang.displayText = this.getDonHangDisplayText(item.donHang, khoHangs, khachHangs);
-        window.hide();
-      });
+    this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
+      item[property] = this.donHang.grid.selectedItem.id;
+      item.donHang = this.donHang.grid.selectedItem;
+      item.donHang.displayText = this.getDonHangDisplayText(item.donHang, khoHangs, khachHangs);
+      window.hide();
     });
   }
 
@@ -153,7 +145,7 @@ export class ChuyenHangDonHangComponent implements OnInit {
     }
     const item = window.data.item;
     const property = window.data.property;
-    this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+    this.actionRequireNhanVien(nhanViens => {
       item[property] = this.chuyenHang.grid.selectedItem.id;
       item.chuyenHang = this.chuyenHang.grid.selectedItem;
       item.chuyenHang.displayText = this.getChuyenHangDisplayText(item.chuyenHang, nhanViens);
@@ -166,8 +158,21 @@ export class ChuyenHangDonHangComponent implements OnInit {
     const tenKho = khoHangs.items.find(p2 => p2.id === donHang.maKhoHang).tenKho;
     return donHang.id + '|' + tenKho + '|' + tenKhachHang;
   }
+
   getChuyenHangDisplayText(chuyenHang, rnhanViens) {
     const tenNhanVien = rnhanViens.items.find(p2 => p2.id === chuyenHang.maNhanVienGiaoHang).tenNhanVien;
     return chuyenHang.id + '|' + tenNhanVien;
+  }
+
+  actionRequireKhoHangKhachHang(action) {
+    this.refDataService.gets(['rKhoHang', 'rKhachHang']).subscribe(data => {
+      action(data[0], data[1]);
+    });
+  }
+
+  actionRequireNhanVien(action) {
+    this.refDataService.get('rNhanVien').subscribe(nhanViens => {
+      action(nhanViens);
+    });
   }
 }

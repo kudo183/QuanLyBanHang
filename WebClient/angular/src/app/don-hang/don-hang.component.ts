@@ -38,21 +38,19 @@ export class DonHangComponent implements OnInit {
   ngOnInit() {
     console.log('don-hang ngOnInit');
     this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.get('rkhachhangchanh').subscribe(khachHangChanhs => {
-        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-          this.refDataService.get('rkhohang').subscribe(khoHangs => {
-            this.refDataService.get('rchanh').subscribe(chanhs => {
-              this.maKhachHangChanhArr = khachHangChanhs.items;
-              this.maKhachHangSource = khachHangs.items;
-              this.grid.setHeaderItems(2, khachHangs.items);
-              this.maKhoHangSource = khoHangs.items;
-              this.grid.setHeaderItems(3, khoHangs.items);
-              this.maChanhSource = chanhs.items;
-              this.grid.setHeaderItems(4, chanhs.items);
-              this.onLoad(undefined);
-            });
-          });
-        });
+      this.refDataService.gets(['rkhachhangchanh', 'rkhachhang', 'rkhohang', 'rchanh']).subscribe(data => {
+        const khachHangChanhs = data[0];
+        const khachHangs = data[1];
+        const khoHangs = data[2];
+        const chanhs = data[3];
+        this.maKhachHangChanhArr = khachHangChanhs.items;
+        this.maKhachHangSource = khachHangs.items;
+        this.grid.setHeaderItems(2, khachHangs.items);
+        this.maKhoHangSource = khoHangs.items;
+        this.grid.setHeaderItems(3, khoHangs.items);
+        this.maChanhSource = chanhs.items;
+        this.grid.setHeaderItems(4, chanhs.items);
+        this.onLoad(undefined);
       });
     });
   }
@@ -66,9 +64,9 @@ export class DonHangComponent implements OnInit {
 
     const qe = new QueryExpression();
     qe.addWhereOption('=', 'maDonHang', this.grid.selectedItem.id, WhereOptionTypes.Int);
-    this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
-      this.dataService.getIntList('tchitietchuyenhangdonhang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
-        this.refDataService.get('tmathang').subscribe(matHangs => {
+    this.actionRequireMatHang(matHangs => {
+      this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
+        this.dataService.getIntList('tchitietchuyenhangdonhang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
           let printContents, tenMatHangIn, tongSoLuong, soLuongConLai;
           printContents = this.toTitleDiv(tenKhachHang);
 
@@ -102,8 +100,8 @@ export class DonHangComponent implements OnInit {
 
     const qe = new QueryExpression();
     qe.addWhereOption('=', 'maDonHang', this.grid.selectedItem.id, WhereOptionTypes.Int);
-    this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
-      this.refDataService.get('tmathang').subscribe(matHangs => {
+    this.actionRequireMatHang(matHangs => {
+      this.dataService.get('tchitietdonhang', qe).subscribe(ctdhs => {
         let printContents, tenMatHangIn;
         printContents = this.toTitleDiv(tenKhachHang);
 
@@ -217,5 +215,11 @@ export class DonHangComponent implements OnInit {
     popupWin.document.open();
     popupWin.document.write(printHtml);
     popupWin.document.close();
+  }
+
+  actionRequireMatHang(action) {
+    this.refDataService.get('tMatHang').subscribe(matHangs => {
+      action(matHangs)
+    });
   }
 }

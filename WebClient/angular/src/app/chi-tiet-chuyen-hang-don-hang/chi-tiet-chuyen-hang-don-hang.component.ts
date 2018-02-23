@@ -44,7 +44,7 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
 
   onAddingItem(newItem) {
     if (newItem.maChuyenHangDonHang !== undefined) {
-      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+      this.actionRequireNhanVien(nhanViens => {
         this.dataService.getByID('tChuyenHangDonHang', newItem.maChuyenHangDonHang).subscribe(chdh => {
           newItem.chuyenHangDonHang = chdh;
           this.dataService.getByID('tChuyenHang', chdh.maChuyenHang).subscribe(ch => {
@@ -56,17 +56,13 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
     }
 
     if (newItem.maChiTietDonHang !== undefined) {
-      this.refDataService.get('rkhohang').subscribe(khoHangs => {
-        this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-          this.refDataService.get('tmathang').subscribe(matHangs => {
-            this.dataService.getByID('tChiTietDonHang', newItem.maChiTietDonHang).subscribe(ctdh => {
-              newItem.chiTietDonHang = ctdh;
-              this.dataService.getByID('tDonHang', ctdh.maDonHang).subscribe(dh => {
-                newItem.chiTietDonHang.donHang = dh;
-                newItem.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(newItem.chiTietDonHang, khoHangs, khachHangs, matHangs);
-              })
-            });
-          });
+      this.actionRequireKhoHangKhachHangMatHang((khoHangs, khachHangs, matHangs) => {
+        this.dataService.getByID('tChiTietDonHang', newItem.maChiTietDonHang).subscribe(ctdh => {
+          newItem.chiTietDonHang = ctdh;
+          this.dataService.getByID('tDonHang', ctdh.maDonHang).subscribe(dh => {
+            newItem.chiTietDonHang.donHang = dh;
+            newItem.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(newItem.chiTietDonHang, khoHangs, khachHangs, matHangs);
+          })
         });
       });
     }
@@ -79,35 +75,31 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
   }
 
   onLoad(event) {
-    this.refDataService.get('rkhohang').subscribe(khoHangs => {
-      this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-        this.refDataService.get('tmathang').subscribe(matHangs => {
-          this.refDataService.get('rnhanvien').subscribe(nhanViens => {
-            const qe = Converter.FromHSimpleGridSettingToQueryExpression(this.grid.settings);
-            this.dataService.get('tChiTietChuyenHangDonHang', qe).subscribe(ctchdh => {
-              this.dataService.getIntList('tChiTietDonHang', 'id', ctchdh.items.map(p => p.maChiTietDonHang)).subscribe(ctdh => {
-                this.dataService.getIntList('tChuyenHangDonHang', 'id', ctchdh.items.map(p => p.maChuyenHangDonHang)).subscribe(chdh => {
-                  this.dataService.getIntList('tDonHang', 'id', chdh.items.map(p => p.maDonHang)).subscribe(donHang => {
-                    this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(chuyenHang => {
+    this.actionRequireKhoHangKhachHangMatHang((khoHangs, khachHangs, matHangs) => {
+      this.actionRequireNhanVien(nhanViens => {
+        const qe = Converter.FromHSimpleGridSettingToQueryExpression(this.grid.settings);
+        this.dataService.get('tChiTietChuyenHangDonHang', qe).subscribe(ctchdh => {
+          this.dataService.getIntList('tChiTietDonHang', 'id', ctchdh.items.map(p => p.maChiTietDonHang)).subscribe(ctdh => {
+            this.dataService.getIntList('tChuyenHangDonHang', 'id', ctchdh.items.map(p => p.maChuyenHangDonHang)).subscribe(chdh => {
+              this.dataService.getIntList('tDonHang', 'id', chdh.items.map(p => p.maDonHang)).subscribe(donHang => {
+                this.dataService.getIntList('tChuyenHang', 'id', chdh.items.map(p => p.maChuyenHang)).subscribe(chuyenHang => {
 
-                      ctchdh.items.forEach((p, index) => {
-                        p.chiTietDonHang = ctdh.items.find(p1 => p1.id === p.maChiTietDonHang);
-                        p.chuyenHangDonHang = chdh.items.find(p1 => p1.id === p.maChuyenHangDonHang);
+                  ctchdh.items.forEach((p, index) => {
+                    p.chiTietDonHang = ctdh.items.find(p1 => p1.id === p.maChiTietDonHang);
+                    p.chuyenHangDonHang = chdh.items.find(p1 => p1.id === p.maChuyenHangDonHang);
 
-                        p.chuyenHangDonHang.chuyenHang = chuyenHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maChuyenHang);
-                        p.chuyenHangDonHang.displayText = this.getChuyenHangDonHangDisplayText(p.chuyenHangDonHang, nhanViens);
+                    p.chuyenHangDonHang.chuyenHang = chuyenHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maChuyenHang);
+                    p.chuyenHangDonHang.displayText = this.getChuyenHangDonHangDisplayText(p.chuyenHangDonHang, nhanViens);
 
-                        p.chiTietDonHang.donHang = donHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maDonHang);
-                        p.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(p.chiTietDonHang, khoHangs, khachHangs, matHangs);
-                      });
-
-                      this.entities = ctchdh.items;
-                      this.grid.settings.pagingSetting.pageCount = ctchdh.pageCount;
-                      this.grid.settings.pagingSetting.rowCount = ctchdh.items.length;
-
-                      this.evAfterLoad.emit();
-                    });
+                    p.chiTietDonHang.donHang = donHang.items.find(p1 => p1.id === p.chuyenHangDonHang.maDonHang);
+                    p.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(p.chiTietDonHang, khoHangs, khachHangs, matHangs);
                   });
+
+                  this.entities = ctchdh.items;
+                  this.grid.settings.pagingSetting.pageCount = ctchdh.pageCount;
+                  this.grid.settings.pagingSetting.rowCount = ctchdh.items.length;
+
+                  this.evAfterLoad.emit();
                 });
               });
             });
@@ -135,17 +127,13 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
     }
     const item = window.data.item;
     const property = window.data.property;
-    this.refDataService.get('rkhohang').subscribe(khoHangs => {
-      this.refDataService.get('rkhachhang').subscribe(khachHangs => {
-        this.refDataService.get('tmathang').subscribe(matHangs => {
-          item[property] = this.chiTietDonHang.grid.selectedItem.id;
-          this.dataService.getByID('tDonHang', this.chiTietDonHang.grid.selectedItem.maDonHang).subscribe(donHang => {
-            item.chiTietDonHang = this.chiTietDonHang.grid.selectedItem;
-            item.chiTietDonHang.donHang = donHang;
-            item.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(item.chiTietDonHang, khoHangs, khachHangs, matHangs);
-            window.hide();
-          });
-        });
+    this.actionRequireKhoHangKhachHangMatHang((khoHangs, khachHangs, matHangs) => {
+      item[property] = this.chiTietDonHang.grid.selectedItem.id;
+      this.dataService.getByID('tDonHang', this.chiTietDonHang.grid.selectedItem.maDonHang).subscribe(donHang => {
+        item.chiTietDonHang = this.chiTietDonHang.grid.selectedItem;
+        item.chiTietDonHang.donHang = donHang;
+        item.chiTietDonHang.displayText = this.getChiTietDonHangDisplayText(item.chiTietDonHang, khoHangs, khachHangs, matHangs);
+        window.hide();
       });
     });
   }
@@ -176,7 +164,7 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
     }
     const item = window.data.item;
     const property = window.data.property;
-    this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+    this.actionRequireNhanVien(nhanViens => {
       item[property] = this.chuyenHangDonHang.grid.selectedItem.id;
       this.dataService.getByID('tChuyenHang', this.chuyenHangDonHang.grid.selectedItem.maChuyenHang).subscribe(chuyenHang => {
         item.chuyenHangDonHang = this.chuyenHangDonHang.grid.selectedItem;
@@ -191,5 +179,17 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
     const chuyenHang = chuyenHangDonHang.chuyenHang;
     const tenNhanVien = nhanViens.items.find(p2 => p2.id === chuyenHang.maNhanVienGiaoHang).tenNhanVien;
     return chuyenHangDonHang.id + '|' + chuyenHang.id + '|' + tenNhanVien;
+  }
+
+  actionRequireKhoHangKhachHangMatHang(action) {
+    this.refDataService.gets(['rKhoHang', 'rKhachHang', 'tMatHang']).subscribe(data => {
+      action(data[0], data[1], data[2]);
+    });
+  }
+
+  actionRequireNhanVien(action) {
+    this.refDataService.get('rNhanVien').subscribe(nhanViens => {
+      action(nhanViens);
+    });
   }
 }

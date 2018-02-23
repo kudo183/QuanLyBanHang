@@ -2,7 +2,7 @@
   <div class="filter">
       <input type="date" [(ngModel)]="ngay">
       <h-combobox [items]="khoHangs" [width]="'100px'" [itemTextPath]="'tenKho'" [itemValuePath]="'id'" [(selectedValue)]="maKhoHang"></h-combobox>
-      <h-combobox [items]="loaiHangs" [width]="'150px'" [itemTextPath]="'tenLoai'" [itemValuePath]="'id'" [(selectedValue)]="maLoaiHang"></h-combobox>
+      <h-combobox [items]="loaiHangs" [itemPerPage]="50" [width]="'150px'" [itemTextPath]="'tenLoai'" [itemValuePath]="'id'" [(selectedValue)]="maLoaiHang"></h-combobox>
   </div>
   <div class="body">
     <h-simple-grid [settings]="simpleGridSetting" [items]="entities" (evLoad)="onLoad($event)"></h-simple-grid>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption, PagingResult } from '../data.service';
+import { ReferenceDataService } from '../reference-data.service';
 import { Converter } from '../converter';
 
 import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
@@ -53,16 +54,12 @@ export class TonKhoComponent implements OnInit {
   canhBaoTonKhos = {};
   matHangs = {};
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
     this.initGridSetting();
   }
 
   ngOnInit() {
-    Observable.forkJoin(
-      this.dataService.getAll('rloaihang'),
-      this.dataService.getAll('rkhohang'),
-      this.dataService.getAll('tmathang'),
-      this.dataService.getAll('rcanhbaotonkho'))
+    this.refDataService.gets(['rloaihang', 'rkhohang', 'tmathang', 'rcanhbaotonkho'])
       .subscribe((data) => {
         const itemsLoaiHang = <PagingResult>data[0];
         const itemsKhoHang = <PagingResult>data[1];

@@ -33,14 +33,14 @@ export class ChiPhiComponent implements OnInit {
   ngOnInit() {
     console.log('chi-phi ngOnInit');
     this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.get('rloaichiphi').subscribe(loaiChiPhis => {
-        this.refDataService.get('rnhanvien').subscribe(nhanViens => {
-          this.maLoaiChiPhiSource = loaiChiPhis.items;
-          this.grid.setHeaderItems(2, loaiChiPhis.items);
-          this.maNhanVienGiaoHangSource = nhanViens.items;
-          this.grid.setHeaderItems(3, nhanViens.items);
-          this.onLoad(undefined);
-        });
+      this.refDataService.gets(['rloaichiphi', 'rnhanvien']).subscribe(data => {
+        const loaiChiPhis = data[0];
+        const nhanViens = data[1];
+        this.maLoaiChiPhiSource = loaiChiPhis.items;
+        this.grid.setHeaderItems(2, loaiChiPhis.items);
+        this.maNhanVienGiaoHangSource = nhanViens.items;
+        this.grid.setHeaderItems(3, nhanViens.items);
+        this.onLoad(undefined);
       });
     });
   }
