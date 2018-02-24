@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -16,7 +16,7 @@ import { HSimpleGridSetting, HSimpleGridComponent, HWindowComponent } from '../s
   templateUrl: './chi-tiet-chuyen-hang-don-hang.component.html',
   styleUrls: ['./chi-tiet-chuyen-hang-don-hang.component.css']
 })
-export class ChiTietChuyenHangDonHangComponent implements OnInit {
+export class ChiTietChuyenHangDonHangComponent implements AfterViewInit {
 
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
 
@@ -34,12 +34,9 @@ export class ChiTietChuyenHangDonHangComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
-    console.log('constructor: ');
-  }
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
 
-  ngOnInit() {
-    console.log('chi-tiet-chuyen-hang-don-hang ngOnInit');
+  ngAfterViewInit() {
   }
 
   onAddingItem(newItem) {

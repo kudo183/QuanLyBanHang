@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -14,7 +14,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   templateUrl: './don-hang.component.html',
   styleUrls: ['./don-hang.component.css']
 })
-export class DonHangComponent implements OnInit {
+export class DonHangComponent implements AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'viewDonHang';
 
@@ -31,27 +31,22 @@ export class DonHangComponent implements OnInit {
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
   OrderTypeEnum = HSimpleGridSetting.OrderTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
-    console.log('constructor: ');
-  }
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
 
-  ngOnInit() {
-    console.log('don-hang ngOnInit');
-    this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.gets(['rkhachhangchanh', 'rkhachhang', 'rkhohang', 'rchanh']).subscribe(data => {
-        const khachHangChanhs = data[0];
-        const khachHangs = data[1];
-        const khoHangs = data[2];
-        const chanhs = data[3];
-        this.maKhachHangChanhArr = khachHangChanhs.items;
-        this.maKhachHangSource = khachHangs.items;
-        this.grid.setHeaderItems(2, khachHangs.items);
-        this.maKhoHangSource = khoHangs.items;
-        this.grid.setHeaderItems(3, khoHangs.items);
-        this.maChanhSource = chanhs.items;
-        this.grid.setHeaderItems(4, chanhs.items);
-        this.onLoad(undefined);
-      });
+  ngAfterViewInit() {
+    this.refDataService.gets(['rkhachhangchanh', 'rkhachhang', 'rkhohang', 'rchanh']).subscribe(data => {
+      const khachHangChanhs = data[0];
+      const khachHangs = data[1];
+      const khoHangs = data[2];
+      const chanhs = data[3];
+      this.maKhachHangChanhArr = khachHangChanhs.items;
+      this.maKhachHangSource = khachHangs.items;
+      this.grid.setHeaderItems(2, khachHangs.items);
+      this.maKhoHangSource = khoHangs.items;
+      this.grid.setHeaderItems(3, khoHangs.items);
+      this.maChanhSource = chanhs.items;
+      this.grid.setHeaderItems(4, chanhs.items);
+      this.onLoad(undefined);
     });
   }
 

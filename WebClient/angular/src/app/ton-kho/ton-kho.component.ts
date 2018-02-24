@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -14,7 +14,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   templateUrl: './ton-kho.component.html',
   styleUrls: ['./ton-kho.component.css']
 })
-export class TonKhoComponent implements OnInit {
+export class TonKhoComponent implements AfterViewInit {
 
   simpleGridSetting = new HSimpleGridSetting.GridSetting();
 
@@ -58,7 +58,7 @@ export class TonKhoComponent implements OnInit {
     this.initGridSetting();
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.refDataService.gets(['rloaihang', 'rkhohang', 'tmathang', 'rcanhbaotonkho'])
       .subscribe((data) => {
         const itemsLoaiHang = <PagingResult>data[0];

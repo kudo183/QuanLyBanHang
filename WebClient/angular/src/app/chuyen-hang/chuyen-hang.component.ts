@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -14,7 +14,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   templateUrl: './chuyen-hang.component.html',
   styleUrls: ['./chuyen-hang.component.css']
 })
-export class ChuyenHangComponent implements OnInit {
+export class ChuyenHangComponent implements AfterViewInit {
 
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'viewChuyenHang';
@@ -26,17 +26,12 @@ export class ChuyenHangComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
-    console.log('constructor: ');
-  }
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
 
-  ngOnInit() {
-    console.log('chuyen-hang ngOnInit');
-    this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.get('rnhanvien').subscribe(nhanViens => {
-        this.maNhanVienSource = nhanViens.items;
-        this.grid.setHeaderItems(2, nhanViens.items);
-      });
+  ngAfterViewInit() {
+    this.refDataService.get('rnhanvien').subscribe(nhanViens => {
+      this.maNhanVienSource = nhanViens.items;
+      this.grid.setHeaderItems(2, nhanViens.items);
     });
   }
 

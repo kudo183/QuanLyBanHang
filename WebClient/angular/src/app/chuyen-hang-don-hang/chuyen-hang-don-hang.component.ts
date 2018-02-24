@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -16,7 +16,7 @@ import { HSimpleGridSetting, HSimpleGridComponent, HWindowComponent } from '../s
   templateUrl: './chuyen-hang-don-hang.component.html',
   styleUrls: ['./chuyen-hang-don-hang.component.css']
 })
-export class ChuyenHangDonHangComponent implements OnInit {
+export class ChuyenHangDonHangComponent implements AfterViewInit {
 
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @ViewChild('windowDonHang') windowDonHang: HWindowComponent;
@@ -36,9 +36,7 @@ export class ChuyenHangDonHangComponent implements OnInit {
   constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
   }
 
-  ngOnInit() {
-    console.log('chuyen-hang-don-hang ngOnInit');
-
+  ngAfterViewInit() {
     this.donHang.grid.evSelectedItemChanged.subscribe(item => {
       this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
         this.windowDonHang.title = this.getDonHangDisplayText(item, khoHangs, khachHangs);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -15,7 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent, HWindowComponent } from '../s
   templateUrl: './chi-tiet-don-hang.component.html',
   styleUrls: ['./chi-tiet-don-hang.component.css']
 })
-export class ChiTietDonHangComponent implements OnInit {
+export class ChiTietDonHangComponent implements AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
 
   @ViewChild('windowDonHang') windowDonHang: HWindowComponent;
@@ -30,24 +30,18 @@ export class ChiTietDonHangComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
-    console.log('constructor: ');
-  }
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
 
-  ngOnInit() {
-    console.log('chi-tiet-don-hang ngOnInit');
-
+  ngAfterViewInit() {
     this.donHang.grid.evSelectedItemChanged.subscribe(item => {
       this.actionRequireKhoHangKhachHang((khoHangs, khachHangs) => {
         this.windowDonHang.title = this.getDonHangDisplayText(item, khoHangs, khachHangs);
       });
     });
 
-    this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.get('tmathang').subscribe(matHangs => {
-        this.maMatHangSource = matHangs.items;
-        this.grid.setHeaderItems(2, matHangs.items);
-      });
+    this.refDataService.get('tmathang').subscribe(matHangs => {
+      this.maMatHangSource = matHangs.items;
+      this.grid.setHeaderItems(2, matHangs.items);
     });
   }
 

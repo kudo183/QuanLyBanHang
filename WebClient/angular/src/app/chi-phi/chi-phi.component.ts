@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
 import { ReferenceDataService } from '../reference-data.service';
+import { PartialMethodService } from '../partial-method.service';
 import { Converter } from '../converter';
 
 import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
@@ -14,7 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   templateUrl: './chi-phi.component.html',
   styleUrls: ['./chi-phi.component.css']
 })
-export class ChiPhiComponent implements OnInit {
+export class ChiPhiComponent implements AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
 
   maLoaiChiPhiSource = [];
@@ -26,22 +27,17 @@ export class ChiPhiComponent implements OnInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) {
-    console.log('constructor: ');
-  }
+  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
 
-  ngOnInit() {
-    console.log('chi-phi ngOnInit');
-    this.grid.evAfterInit.subscribe(event => {
-      this.refDataService.gets(['rloaichiphi', 'rnhanvien']).subscribe(data => {
-        const loaiChiPhis = data[0];
-        const nhanViens = data[1];
-        this.maLoaiChiPhiSource = loaiChiPhis.items;
-        this.grid.setHeaderItems(2, loaiChiPhis.items);
-        this.maNhanVienGiaoHangSource = nhanViens.items;
-        this.grid.setHeaderItems(3, nhanViens.items);
-        this.onLoad(undefined);
-      });
+  ngAfterViewInit() {
+    this.refDataService.gets(['rloaichiphi', 'rnhanvien']).subscribe(data => {
+      const loaiChiPhis = data[0];
+      const nhanViens = data[1];
+      this.maLoaiChiPhiSource = loaiChiPhis.items;
+      this.grid.setHeaderItems(2, loaiChiPhis.items);
+      this.maNhanVienGiaoHangSource = nhanViens.items;
+      this.grid.setHeaderItems(3, nhanViens.items);
+      this.onLoad(undefined);
     });
   }
 
