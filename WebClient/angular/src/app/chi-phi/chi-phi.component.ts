@@ -27,7 +27,12 @@ export class ChiPhiComponent implements AfterViewInit {
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
   FilterOperatorTypeEnum = HSimpleGridSetting.FilterOperatorTypeEnum;
 
-  constructor(private dataService: DataService, private refDataService: ReferenceDataService) { }
+  className = ChiPhiComponent.name;
+
+  constructor(
+    private dataService: DataService,
+    private refDataService: ReferenceDataService,
+    private partialMethodService: PartialMethodService) { }
 
   ngAfterViewInit() {
     this.refDataService.gets(['rloaichiphi', 'rnhanvien']).subscribe(data => {
@@ -64,6 +69,8 @@ export class ChiPhiComponent implements AfterViewInit {
       this.entities = data.items;
       this.grid.settings.pagingSetting.pageCount = data.pageCount;
       this.grid.settings.pagingSetting.rowCount = data.items.length;
+
+      this.partialMethodService.afterLoadPartial(this.className, [this]);
     });
   }
 }

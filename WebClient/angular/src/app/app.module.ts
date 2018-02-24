@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { DataService } from './data.service';
 import { ReferenceDataService } from './reference-data.service';
 import { CheckLogin } from './checkLogin';
+import { PartialMethodService } from './partial-method.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -51,7 +52,7 @@ import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-co
     HDraggableModule,
     routing
   ],
-  providers: [Title, AuthService, CheckLogin, DataService, ReferenceDataService],
+  providers: [Title, AuthService, CheckLogin, DataService, ReferenceDataService, PartialMethodService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
