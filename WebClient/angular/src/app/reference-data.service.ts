@@ -11,29 +11,30 @@ import { DataService } from './data.service';
 export class ReferenceDataService {
   private cache = {};
 
-  constructor(private dataService: DataService) {
-    const keyProperty = 'id';
+  keyProperty = 'id';
 
-    this.cache['rloaihang'] = this.createCacheObject(keyProperty, 'tenLoai', true);
-    this.cache['tmathang'] = this.createCacheObject(keyProperty, 'tenMatHang', true);
-    this.cache['rkhohang'] = this.createCacheObject(keyProperty, 'tenKho', true);
-    this.cache['rkhachhang'] = this.createCacheObject(keyProperty, 'tenKhachHang', true);
-    this.cache['rnhanvien'] = this.createCacheObject(keyProperty, 'tenNhanVien', true);
-    this.cache['rloaichiphi'] = this.createCacheObject(keyProperty, 'tenLoaiChiPhi', true);
-    this.cache['rkhachhangchanh'] = this.createCacheObject(keyProperty, undefined, true);
-    this.cache['rchanh'] = this.createCacheObject(keyProperty, 'tenChanh', true);
-    this.cache['rcanhbaotonkho'] = this.createCacheObject(keyProperty, undefined, true);    
+  constructor(private dataService: DataService) {
+    this.cache['rloaihang'] = this.createCacheObject('tenLoai', true, item => { return item.tenLoai; });
+    this.cache['tmathang'] = this.createCacheObject('tenMatHang', true, item => { return item.tenMatHang; });
+    this.cache['rkhohang'] = this.createCacheObject('tenKho', true, item => { return item.tenKho; });
+    this.cache['rkhachhang'] = this.createCacheObject('tenKhachHang', true, item => { return item.tenKhachHang; });
+    this.cache['rnhanvien'] = this.createCacheObject('tenNhanVien', true, item => { return item.tenNhanVien; });
+    this.cache['rloaichiphi'] = this.createCacheObject('tenLoaiChiPhi', true, item => { return item.tenLoaiChiPhi; });
+    this.cache['rkhachhangchanh'] = this.createCacheObject(undefined, true, undefined);
+    this.cache['rchanh'] = this.createCacheObject('tenChanh', true, item => { return item.tenChanh; });
+    this.cache['rcanhbaotonkho'] = this.createCacheObject(undefined, true, undefined);
   }
 
-  private createCacheObject(keyProperty, sortProperty, isAscending) {
+  private createCacheObject(sortProperty, isAscending, displayTextFunc) {
     return {
       data: [],
       isLoaded: false,
-      keyProperty: keyProperty,
+      keyProperty: this.keyProperty,
       sortProperty: sortProperty,
       isAscending: isAscending,
       isLoading: false,
-      loadSubject: new Subject()
+      loadSubject: new Subject(),
+      displayTextFunc: displayTextFunc || (item => { return item[this.keyProperty]; })
     }
   }
 
@@ -46,6 +47,9 @@ export class ReferenceDataService {
         return this.dataService.getAll(controller).pipe(
           tap(data => {
             cache.isLoaded = true;
+            data.items.forEach(item => {
+              item.displayText = cache.displayTextFunc(item);
+            });
             cache.data = data;
             if (cache.sortProperty !== undefined) {
               this.sort(cache.data.items, cache.sortProperty, cache.isAscending);
