@@ -1,0 +1,19 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tChiTietChuyenKho'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenKho" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChuyenKhoWindow">
+        <h-header headerText="MaChuyenKho" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maMatHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maMatHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaMatHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuong" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+</h-simple-grid>
+
+<h-window [name]="'window_maChuyenKhoOftChiTietChuyenKho'" #maChuyenKhoWindow [visible]="false" [ngContent]="maChuyenKho" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" [width]="500" [height]="200">
+    <app-tChuyenKho [name]="'view_tChuyenKhoOftChiTietChuyenKho'" #maChuyenKho></app-tChuyenKho>
+</h-window>
+

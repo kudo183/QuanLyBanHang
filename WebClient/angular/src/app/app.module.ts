@@ -23,7 +23,9 @@ import { ChuyenHangComponent } from './chuyen-hang/chuyen-hang.component';
 import { ChuyenHangDonHangComponent } from './chuyen-hang-don-hang/chuyen-hang-don-hang.component';
 import { ChiTietChuyenHangDonHangComponent } from './chi-tiet-chuyen-hang-don-hang/chi-tiet-chuyen-hang-don-hang.component';
 import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-complex.component';
-// import { HSemanticDropDownModule } from './shared';
+
+import { GenModule } from './gen';
+import { TestGenComponent } from './gen/test-gen.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-co
     ChuyenHangComponent,
     ChuyenHangDonHangComponent,
     ChiTietChuyenHangDonHangComponent,
-    ChuyenHangComplexComponent
+    ChuyenHangComplexComponent,
+    TestGenComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-co
     HWindowModule,
     HSplitPanelModule,
     HDraggableModule,
+    GenModule,
     routing
   ],
   providers: [Title, AuthService, CheckLogin, DataService, ReferenceDataService, PartialMethodService],

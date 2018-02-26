@@ -1,0 +1,24 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tDonHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.DatePicker" cellValueProperty="ngay" [cellValueType]="DataTypeEnum.Date">
+        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhachHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhachHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhoHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaKhoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maChanh" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maChanhSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaChanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuong" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="TongSoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="xong" [cellValueType]="DataTypeEnum.Bool">
+        <h-header headerText="Xong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.CheckBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

@@ -1,0 +1,12 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_rChanh'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maBaiXe" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maBaiXeSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaBaiXe" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenChanh" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenChanh" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

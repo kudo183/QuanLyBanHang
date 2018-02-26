@@ -1,0 +1,15 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_rKhachHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maDiaDiem" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maDiaDiemSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaDiaDiem" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenKhachHang" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="khachRieng" [cellValueType]="DataTypeEnum.Bool">
+        <h-header headerText="KhachRieng" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.CheckBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

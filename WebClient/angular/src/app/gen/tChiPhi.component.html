@@ -1,0 +1,21 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tChiPhi'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.DatePicker" cellValueProperty="ngay" [cellValueType]="DataTypeEnum.Date">
+        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maLoaiChiPhi" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maLoaiChiPhiSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaLoaiChiPhi" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNhanVienGiaoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNhanVienGiaoHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaNhanVienGiaoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soTien" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="SoTien" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="ghiChu" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="GhiChu" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

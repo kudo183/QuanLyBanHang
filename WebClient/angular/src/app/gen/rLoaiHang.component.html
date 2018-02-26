@@ -1,0 +1,12 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_rLoaiHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenLoai" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenLoai" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="hangNhaLam" [cellValueType]="DataTypeEnum.Bool">
+        <h-header headerText="HangNhaLam" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.CheckBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

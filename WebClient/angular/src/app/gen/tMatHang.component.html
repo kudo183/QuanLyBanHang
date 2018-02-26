@@ -1,0 +1,27 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tMatHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maLoai" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maLoaiSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaLoai" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenMatHang" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenMatHang" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenMatHangDayDu" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenMatHangDayDu" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tenMatHangIn" [cellValueType]="DataTypeEnum.String">
+        <h-header headerText="TenMatHangIn" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soKy" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="SoKy" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soMet" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="SoMet" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="maHinhAnh" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="MaHinhAnh" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+</h-simple-grid>
+

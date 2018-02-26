@@ -1,0 +1,23 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tChiTietToaHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maToaHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maToaHangWindow">
+        <h-header headerText="MaToaHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChiTietDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChiTietDonHangWindow">
+        <h-header headerText="MaChiTietDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="giaTien" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="GiaTien" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+</h-simple-grid>
+
+<h-window [name]="'window_maToaHangOftChiTietToaHang'" #maToaHangWindow [visible]="false" [ngContent]="maToaHang" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" [width]="500" [height]="200">
+    <app-tToaHang [name]="'view_tToaHangOftChiTietToaHang'" #maToaHang></app-tToaHang>
+</h-window>
+
+<h-window [name]="'window_maChiTietDonHangOftChiTietToaHang'" #maChiTietDonHangWindow [visible]="false" [ngContent]="maChiTietDonHang" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" [width]="500" [height]="200">
+    <app-tChiTietDonHang [name]="'view_tChiTietDonHangOftChiTietToaHang'" #maChiTietDonHang></app-tChiTietDonHang>
+</h-window>
+

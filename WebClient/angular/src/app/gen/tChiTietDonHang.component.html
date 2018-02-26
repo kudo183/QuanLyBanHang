@@ -1,0 +1,22 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tChiTietDonHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maDonHangWindow">
+        <h-header headerText="MaDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maMatHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maMatHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaMatHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuong" [cellValueType]="DataTypeEnum.Int">
+        <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="xong" [cellValueType]="DataTypeEnum.Bool">
+        <h-header headerText="Xong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.CheckBox"></h-header>
+    </h-column>
+</h-simple-grid>
+
+<h-window [name]="'window_maDonHangOftChiTietDonHang'" #maDonHangWindow [visible]="false" [ngContent]="maDonHang" [hasOkButton]="true" [hasCancelButton]="true" [hasCloseButton]="false" [width]="500" [height]="200">
+    <app-tDonHang [name]="'view_tDonHangOftChiTietDonHang'" #maDonHang></app-tDonHang>
+</h-window>
+

@@ -1,0 +1,18 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_tNhapHang'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.DatePicker" cellValueProperty="ngay" [cellValueType]="DataTypeEnum.Date">
+        <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNhanVien" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNhanVienSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaNhanVien" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNhaCungCap" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNhaCungCapSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaNhaCungCap" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhoHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaKhoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+</h-simple-grid>
+

@@ -1,0 +1,12 @@
+﻿<h-simple-grid [items]="entities" [name]="'view_rMatHangNguyenLieu'" (evAddingItem)="onAddingItem($event)" (evSave)="onSave($event)" (evLoad)="onLoad($event)">
+    <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
+        <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maMatHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maMatHangSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaMatHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+    <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNguyenLieu" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNguyenLieuSource" itemTextPath="displayText" itemValuePath="id">
+        <h-header headerText="MaNguyenLieu" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+    </h-column>
+</h-simple-grid>
+
