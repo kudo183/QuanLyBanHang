@@ -3,10 +3,10 @@
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChuyenHangWindow">
-        <h-header headerText="MaChuyenHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+        <h-header headerText="MaChuyenHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maDonHangWindow">
-        <h-header headerText="MaDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+        <h-header headerText="MaDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="TongSoLuongTheoDonHang" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>

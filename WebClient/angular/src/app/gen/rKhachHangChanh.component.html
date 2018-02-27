@@ -3,10 +3,10 @@
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maChanh" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maChanhSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaChanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaChanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhachHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhachHangSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.CheckBox" cellValueProperty="laMacDinh" [cellValueType]="DataTypeEnum.Bool">
         <h-header headerText="LaMacDinh" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.CheckBox"></h-header>

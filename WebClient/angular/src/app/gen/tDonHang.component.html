@@ -6,13 +6,13 @@
         <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhachHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhachHangSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaKhachHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maKhoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maKhoHangSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaKhoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaKhoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maChanh" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maChanhSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaChanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaChanh" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuong" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="TongSoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>

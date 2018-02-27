@@ -6,10 +6,10 @@
         <h-header headerText="Ngay" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.DatePicker"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNguyenLieu" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNguyenLieuSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaNguyenLieu" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaNguyenLieu" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNhaCungCap" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNhaCungCapSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaNhaCungCap" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaNhaCungCap" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuong" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>

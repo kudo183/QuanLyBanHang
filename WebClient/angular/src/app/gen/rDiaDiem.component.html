@@ -3,7 +3,7 @@
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNuoc" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNuocSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaNuoc" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaNuoc" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.TextBox" cellValueProperty="tinh" [cellValueType]="DataTypeEnum.String">
         <h-header headerText="Tinh" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>

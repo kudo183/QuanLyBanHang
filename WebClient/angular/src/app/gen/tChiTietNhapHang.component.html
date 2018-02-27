@@ -3,10 +3,10 @@
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maNhapHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maNhapHangWindow">
-        <h-header headerText="MaNhapHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
+        <h-header headerText="MaNhapHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maMatHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maMatHangSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaMatHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaMatHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuong" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>

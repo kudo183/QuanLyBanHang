@@ -9,7 +9,7 @@
         <h-header headerText="Gio" [filterOperatorType]="FilterOperatorTypeEnum.TEXT" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maNhanVienGiaoHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maNhanVienGiaoHangSource" itemTextPath="displayText" itemValuePath="id">
-        <h-header headerText="MaNhanVienGiaoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
+        <h-header headerText="MaNhanVienGiaoHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HComboBox" itemTextPath="displayText" itemValuePath="id"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongDonHang" [cellValueType]="DataTypeEnum.Int">
         <h-header headerText="TongDonHang" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
