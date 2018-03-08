@@ -1,8 +1,6 @@
-﻿import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
 import { PartialMethodService } from '../partial-method.service';
 import { ReferenceDataService } from '../reference-data.service';
@@ -14,7 +12,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   selector: 'app-rBaiXe',
   templateUrl: './rBaiXe.component.html'
 })
-export class rBaiXeComponent implements AfterViewInit {
+export class rBaiXeComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_rBaiXe';
 
@@ -28,6 +26,12 @@ export class rBaiXeComponent implements AfterViewInit {
 
   
   constructor(private dataService: DataService, private refDataService: ReferenceDataService, private partialMethodService: PartialMethodService) { }
+
+  ngOnInit() {
+    this.grid.evAfterContentInit.subscribe(p => {
+      this.partialMethodService.afterContentInitPartial(this.className, [this]);
+    });
+  }
 
   ngAfterViewInit() {
     this.onLoad(undefined);
@@ -57,9 +61,5 @@ export class rBaiXeComponent implements AfterViewInit {
         this.partialMethodService.afterLoadPartial(this.className, [this]);
       });
     });
-  }
-
-  getDisplayText(itemID): Observable<string> {
-    return this.partialMethodService.getDisplayText(this.className, [this, itemID]);
   }
 }

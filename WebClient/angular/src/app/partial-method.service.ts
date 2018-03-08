@@ -8,6 +8,12 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class PartialMethodService {
+    afterContentInitPartial(className, parameters){
+        switch (className) {
+            case tDonHangPartial.className:
+                return tDonHangPartial.afterContentInitPartial(parameters);
+        }
+    }
 
     loadReferenceDataPartial(className, parameters): Observable<any> {
         switch (className) {
@@ -33,16 +39,6 @@ export class PartialMethodService {
         switch (className) {
             case ChiPhiPartial.className:
                 ChiPhiPartial.afterLoad(parameters);
-        }
-    }
-
-    getDisplayText(className, parameters): Observable<string> {
-        console.debug('PartialMethodService getDisplayText');
-        switch (className) {
-            case tDonHangPartial.className:
-                return tDonHangPartial.getDisplayText(parameters);
-            default:
-                return of(parameters[1]);
         }
     }
 }

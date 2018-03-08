@@ -1,8 +1,6 @@
-﻿import { Component, AfterViewInit, ViewChild, Input } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/from';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
 import { PartialMethodService } from '../partial-method.service';
 import { ReferenceDataService } from '../reference-data.service';
@@ -14,7 +12,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   selector: 'app-rDiaDiem',
   templateUrl: './rDiaDiem.component.html'
 })
-export class rDiaDiemComponent implements AfterViewInit {
+export class rDiaDiemComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_rDiaDiem';
 
@@ -29,6 +27,12 @@ export class rDiaDiemComponent implements AfterViewInit {
   maNuocSource = [];
   
   constructor(private dataService: DataService, private refDataService: ReferenceDataService, private partialMethodService: PartialMethodService) { }
+
+  ngOnInit() {
+    this.grid.evAfterContentInit.subscribe(p => {
+      this.partialMethodService.afterContentInitPartial(this.className, [this]);
+    });
+  }
 
   ngAfterViewInit() {
     this.refDataService.gets(['rNuoc']).subscribe(data => {
@@ -66,9 +70,5 @@ export class rDiaDiemComponent implements AfterViewInit {
         this.partialMethodService.afterLoadPartial(this.className, [this]);
       });
     });
-  }
-
-  getDisplayText(itemID): Observable<string> {
-    return this.partialMethodService.getDisplayText(this.className, [this, itemID]);
   }
 }
