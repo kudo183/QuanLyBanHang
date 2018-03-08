@@ -2,7 +2,7 @@
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maNhapHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maNhapHangNavigation" [component]="maNhapHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maNhapHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maNhapHangNavigation" [component]="maNhapHangWindow" [isTabStop]="false">
         <h-header headerText="MaNhapHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HComboBox" cellValueProperty="maMatHang" [cellValueType]="DataTypeEnum.Int" itemsSourceName="maMatHangSource" itemTextPath="displayText" itemValuePath="id">

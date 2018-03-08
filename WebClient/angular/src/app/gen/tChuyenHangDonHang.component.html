@@ -2,16 +2,16 @@
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maChuyenHangNavigation" [component]="maChuyenHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maChuyenHangNavigation" [component]="maChuyenHangWindow" [isTabStop]="false">
         <h-header headerText="MaChuyenHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maDonHangNavigation" [component]="maDonHangWindow">
         <h-header headerText="MaDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int">
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int" [isReadOnly]="true" [isTabStop]="false">
         <h-header headerText="TongSoLuongTheoDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongThucTe" [cellValueType]="DataTypeEnum.Int">
+    <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="tongSoLuongThucTe" [cellValueType]="DataTypeEnum.Int" [isReadOnly]="true" [isTabStop]="false">
         <h-header headerText="TongSoLuongThucTe" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
 </h-simple-grid>
