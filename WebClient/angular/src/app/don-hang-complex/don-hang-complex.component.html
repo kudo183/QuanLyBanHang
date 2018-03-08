@@ -1,8 +1,17 @@
-<h-split-panel [isVertical]="true">
+<!-- <h-split-panel [isVertical]="true">
   <div *hSplitPanel="50">
     <app-don-hang #donHangComp></app-don-hang>
   </div>
   <div *hSplitPanel="50">
     <app-chi-tiet-don-hang #chiTietDonHangComp></app-chi-tiet-don-hang>
+  </div>
+</h-split-panel> -->
+
+<h-split-panel [isVertical]="true">
+  <div *hSplitPanel="50">
+    <app-tDonHang #donHangComp></app-tDonHang>
+  </div>
+  <div *hSplitPanel="50">
+    <app-tChiTietDonHang #chiTietDonHangComp></app-tChiTietDonHang>
   </div>
 </h-split-panel>

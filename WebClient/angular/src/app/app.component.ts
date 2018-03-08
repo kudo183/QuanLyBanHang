@@ -30,6 +30,10 @@ export class AppComponent implements AfterViewInit {
     this.menuItems.push({
       link: '/chuyenhangcomplex',
       text: 'Chuyen Hang'
+    });    
+    this.menuItems.push({
+      link: '/all',
+      text: 'All'
     });
     this.menuItems.push({
       link: '/logout',

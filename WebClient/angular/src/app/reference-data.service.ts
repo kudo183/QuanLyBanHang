@@ -27,8 +27,9 @@ export class ReferenceDataService {
     this.cache['rnhacungcap'] = this.createCacheObject(true, item => { return item.tenNhaCungCap; });
     this.cache['rnguyenlieu'] = this.createCacheObject(true, undefined);
     this.cache['rbaixe'] = this.createCacheObject(true, item => { return item.diaDiemBaiXe; });
-    this.cache['rdiadiem'] = this.createCacheObject(true, item => { return item.tenNuoc; });
+    this.cache['rdiadiem'] = this.createCacheObject(true, item => { return item.tinh; });
     this.cache['rloainguyenlieu'] = this.createCacheObject(true, item => { return item.tenLoai; });
+    this.cache['rnuoc'] = this.createCacheObject(true, item => { return item.tenNuoc; });
   }
 
   private createCacheObject(isAscending, displayTextFunc) {

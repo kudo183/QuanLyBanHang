@@ -2,14 +2,14 @@
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maToaHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maToaHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maToaHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maToaHangNavigation" [component]="maToaHangWindow">
         <h-header headerText="MaToaHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChiTietDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChiTietDonHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChiTietDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maChiTietDonHangNavigation" [component]="maChiTietDonHangWindow">
         <h-header headerText="MaChiTietDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="giaTien" [cellValueType]="DataTypeEnum.Int">
-        <h-header headerText="GiaTien" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+        <h-header headerText="GiaTien" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
 </h-simple-grid>
 

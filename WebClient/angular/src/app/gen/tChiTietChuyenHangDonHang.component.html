@@ -2,17 +2,17 @@
     <h-column [type]="EditorTypeEnum.Span" cellValueProperty="id" [cellValueType]="DataTypeEnum.Int" [isKeyProperty]="true">
         <h-header headerText="ID" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenHangDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChuyenHangDonHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChuyenHangDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maChuyenHangDonHangNavigation" [component]="maChuyenHangDonHangWindow">
         <h-header headerText="MaChuyenHangDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
-    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChiTietDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" [component]="maChiTietDonHangWindow">
+    <h-column [type]="EditorTypeEnum.HForeignKeyPicker" cellValueProperty="maChiTietDonHang" [cellValueType]="DataTypeEnum.Int" itemValuePath="id" itemTextPath="displayText" itemName="maChiTietDonHangNavigation" [component]="maChiTietDonHangWindow">
         <h-header headerText="MaChiTietDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.TextBox"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuong" [cellValueType]="DataTypeEnum.Int">
-        <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+        <h-header headerText="SoLuong" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
     <h-column [type]="EditorTypeEnum.HNumber" cellValueProperty="soLuongTheoDonHang" [cellValueType]="DataTypeEnum.Int">
-        <h-header headerText="SoLuongTheoDonHang" [filterOperatorType]="FilterOperatorTypeEnum.Number" [filterType]="EditorTypeEnum.HNumber"></h-header>
+        <h-header headerText="SoLuongTheoDonHang" [filterOperatorType]="FilterOperatorTypeEnum.NUMBER" [filterType]="EditorTypeEnum.HNumber"></h-header>
     </h-column>
 </h-simple-grid>
 
