@@ -17,6 +17,7 @@ export class tChiTietDonHangPartial {
         tonKhoColumn.headerSetting.headerText = 'Ton Kho';
         tonKhoColumn.headerSetting.filterOperatorType = HSimpleGridSetting.FilterOperatorTypeEnum.NUMBER;
         tonKhoColumn.headerSetting.filterType = HSimpleGridSetting.EditorTypeEnum.HNumber;
+        tonKhoColumn.headerSetting.hasOnlyText = true;
         tonKhoColumn.cellValueProperty = 'tonKho';
         tonKhoColumn.cellValueType = HSimpleGridSetting.DataTypeEnum.Int;
         tonKhoColumn.type = HSimpleGridSetting.EditorTypeEnum.HNumber;
