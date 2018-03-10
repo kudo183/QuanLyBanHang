@@ -124,6 +124,10 @@ export class WhereOption {
   value: any;
 
   toJSON() {
+    if (this.$type === WhereOptionTypes.IntList) {
+      const uniqueArray = Array.from(new Set(this.value));
+      return { $type: this.$type, predicate: this.predicate, propertyPath: this.propertyPath, value: uniqueArray };
+    }
     return { $type: this.$type, predicate: this.predicate, propertyPath: this.propertyPath, value: this.value };
   }
 }
