@@ -8,10 +8,12 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class PartialMethodService {
-    afterContentInitPartial(className, parameters){
+    afterContentInitPartial(className, parameters) {
         switch (className) {
             case tDonHangPartial.className:
                 return tDonHangPartial.afterContentInitPartial(parameters);
+            case tChiTietDonHangPartial.className:
+                return tChiTietDonHangPartial.afterContentInitPartial(parameters);
         }
     }
 
