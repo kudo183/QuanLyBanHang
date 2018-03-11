@@ -5,6 +5,7 @@ import { Utils } from '../utils';
 import { HSimpleGridSetting } from '../shared';
 
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
+import { DisplayTextUtils } from './displayTextUtils';
 
 export class tChiTietDonHangPartial {
 
@@ -40,10 +41,13 @@ export class tChiTietDonHangPartial {
             qe.addWhereOption('=', 'ngay', `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, WhereOptionTypes.Date);
             dataService.get('ttonkho', qe).subscribe(tonKhos => {
                 data.items.forEach(item => {
+                    Utils.addCallback(item, (obj, prop) => {
+                        this.propertyChangedCallback(comp, dataService, obj, prop);
+                    });
                     const dh = donHangs.items.find(p => p.id === item.maDonHang);
                     item.maDonHangNavigation = {
                         maKhoHang: dh.maKhoHang,
-                        displayText: `${dh.id}-${dh.maKhachHang}-${dh.maKhoHang}`
+                        displayText: DisplayTextUtils.donHang(dh)
                     };
                     const mh = tonKhos.items.find(p => p.maKhoHang === dh.maKhoHang && p.maMatHang === item.maMatHang);
                     if (mh !== undefined) {
@@ -51,37 +55,6 @@ export class tChiTietDonHangPartial {
                     } else {
                         item.tonKho = '';
                     }
-
-                    Utils.addCallback(item, (obj, prop) => {
-                        switch (prop) {
-                            case 'maDonHang': {
-                                console.log('maDonHang changed');
-                                dataService.getByID('tdonhang', obj[prop]).subscribe(p => {
-                                    item.maDonHangNavigation = {
-                                        maKhoHang: dh.maKhoHang,
-                                        displayText: `${p.id}-${p.maKhachHang}-${p.maKhoHang}`
-                                    };
-                                    comp.grid.updateGrid();
-                                });
-                                break;
-                            }
-                            case 'maMatHang': {
-                                console.log('maMatHang changed');
-                                const qe = new QueryExpression();
-                                const date = new Date();
-                                qe.addWhereOption('=', 'maMatHang', obj.maMatHang, WhereOptionTypes.Int);
-                                qe.addWhereOption('=', 'maKhoHang', obj.maDonHangNavigation.maKhoHang, WhereOptionTypes.Int);
-                                qe.addWhereOption('=', 'ngay', `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, WhereOptionTypes.Date);
-                                dataService.get('ttonkho', qe).subscribe(tonKhos => {
-                                    if (tonKhos.items.length === 1) {
-                                        obj.tonKho = tonKhos.items[0].soLuong;
-                                    } else {
-                                        obj.tonKho = '';
-                                    }
-                                });
-                            }
-                        }
-                    });
                 });
                 subject.next();
             });
@@ -89,4 +62,35 @@ export class tChiTietDonHangPartial {
         return subject;
     }
 
+    static propertyChangedCallback(comp, dataService, obj, prop) {
+        switch (prop) {
+            case 'maDonHang': {
+                console.log('maDonHang changed');
+                dataService.getByID('tdonhang', obj[prop]).subscribe(p => {
+                    obj.maDonHangNavigation = {
+                        maKhoHang: p.maKhoHang,
+                        displayText: DisplayTextUtils.donHang(p)
+                    };
+                    comp.grid.updateGrid();
+                });
+                break;
+            }
+            case 'maMatHang': {
+                console.log('maMatHang changed');
+                const qe = new QueryExpression();
+                const date = new Date();
+                qe.addWhereOption('=', 'maMatHang', obj.maMatHang, WhereOptionTypes.Int);
+                qe.addWhereOption('=', 'maKhoHang', obj.maDonHangNavigation.maKhoHang, WhereOptionTypes.Int);
+                qe.addWhereOption('=', 'ngay', `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, WhereOptionTypes.Date);
+                dataService.get('ttonkho', qe).subscribe(tonKhos => {
+                    if (tonKhos.items.length === 1) {
+                        obj.tonKho = tonKhos.items[0].soLuong;
+                    } else {
+                        obj.tonKho = '';
+                    }
+                    comp.grid.updateGrid();
+                });
+            }
+        }
+    }
 }

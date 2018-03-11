@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ChiPhiPartial } from './partial/chi-phi-partial';
 import { tDonHangPartial } from './partial/tDonHang-partial';
+import { tChuyenHangDonHangPartial } from './partial/tChuyenHangDonHang-partial';
+import { tChiTietChuyenHangDonHangPartial } from './partial/tChiTietChuyenHangDonHang-partial';
 import { tChiTietDonHangPartial } from './partial/tChiTietDonHang-partial';
 import { Observable } from 'rxjs/Observable';
 // import { Subject } from 'rxjs/Subject';
@@ -33,6 +35,10 @@ export class PartialMethodService {
         switch (className) {
             case tChiTietDonHangPartial.className:
                 return tChiTietDonHangPartial.processItemListPartial(parameters);
+            case tChuyenHangDonHangPartial.className:
+                return tChuyenHangDonHangPartial.processItemListPartial(parameters);
+            case tChiTietChuyenHangDonHangPartial.className:
+                return tChiTietChuyenHangDonHangPartial.processItemListPartial(parameters);
         }
         return of('');
     }
