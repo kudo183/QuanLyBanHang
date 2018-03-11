@@ -5,6 +5,7 @@ import { Utils } from '../utils';
 import { HSimpleGridSetting } from '../shared';
 
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
+import { ReferenceDataService } from '../reference-data.service';
 import { DisplayTextUtils } from './displayTextUtils';
 
 export class tChiTietDonHangPartial {
@@ -31,47 +32,57 @@ export class tChiTietDonHangPartial {
         const comp = parameters[0];
         const data = parameters[1];
         const dataService: DataService = comp.dataService;
+        const refDataService: ReferenceDataService = comp.refDataService;
 
         const subject = new Subject();
-        dataService.getIntList('tdonhang', 'id', data.items.map(p => p.maDonHang)).subscribe(donHangs => {
-            const qe = new QueryExpression();
-            const date = new Date();
-            qe.addWhereOption('IN', 'maMatHang', data.items.map(p => p.maMatHang), WhereOptionTypes.IntList);
-            qe.addWhereOption('IN', 'maKhoHang', donHangs.items.map(p => p.maKhoHang), WhereOptionTypes.IntList);
-            qe.addWhereOption('=', 'ngay', `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, WhereOptionTypes.Date);
-            dataService.get('ttonkho', qe).subscribe(tonKhos => {
-                data.items.forEach(item => {
-                    Utils.addCallback(item, (obj, prop) => {
-                        this.propertyChangedCallback(comp, dataService, obj, prop);
+
+        refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+            dataService.getIntList('tdonhang', 'id', data.items.map(p => p.maDonHang)).subscribe(donHangs => {
+                const qe = new QueryExpression();
+                const date = new Date();
+                qe.addWhereOption('IN', 'maMatHang', data.items.map(p => p.maMatHang), WhereOptionTypes.IntList);
+                qe.addWhereOption('IN', 'maKhoHang', donHangs.items.map(p => p.maKhoHang), WhereOptionTypes.IntList);
+                qe.addWhereOption('=', 'ngay', `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, WhereOptionTypes.Date);
+                dataService.get('ttonkho', qe).subscribe(tonKhos => {
+                    data.items.forEach(item => {
+                        Utils.addCallback(item, (obj, prop) => {
+                            this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
+                        });
+                        const dh = donHangs.items.find(p => p.id === item.maDonHang);
+                        const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                        const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
+                        item.maDonHangNavigation = {
+                            maKhoHang: dh.maKhoHang,
+                            displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
+                        };
+                        const mh = tonKhos.items.find(p => p.maKhoHang === dh.maKhoHang && p.maMatHang === item.maMatHang);
+                        if (mh !== undefined) {
+                            item.tonKho = mh.soLuong;
+                        } else {
+                            item.tonKho = '';
+                        }
                     });
-                    const dh = donHangs.items.find(p => p.id === item.maDonHang);
-                    item.maDonHangNavigation = {
-                        maKhoHang: dh.maKhoHang,
-                        displayText: DisplayTextUtils.donHang(dh)
-                    };
-                    const mh = tonKhos.items.find(p => p.maKhoHang === dh.maKhoHang && p.maMatHang === item.maMatHang);
-                    if (mh !== undefined) {
-                        item.tonKho = mh.soLuong;
-                    } else {
-                        item.tonKho = '';
-                    }
+                    subject.next();
                 });
-                subject.next();
             });
         });
         return subject;
     }
 
-    static propertyChangedCallback(comp, dataService, obj, prop) {
+    static propertyChangedCallback(comp, refDataService, dataService, obj, prop) {
         switch (prop) {
             case 'maDonHang': {
                 console.log('maDonHang changed');
-                dataService.getByID('tdonhang', obj[prop]).subscribe(p => {
-                    obj.maDonHangNavigation = {
-                        maKhoHang: p.maKhoHang,
-                        displayText: DisplayTextUtils.donHang(p)
-                    };
-                    comp.grid.updateGrid();
+                refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+                    dataService.getByID('tdonhang', obj[prop]).subscribe(dh => {
+                        const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                        const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
+                        obj.maDonHangNavigation = {
+                            maKhoHang: dh.maKhoHang,
+                            displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
+                        };
+                        comp.grid.updateGrid();
+                    });
                 });
                 break;
             }

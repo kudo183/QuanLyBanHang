@@ -24,11 +24,13 @@ export class tChuyenHangDonHangPartial {
                 dataService.getIntList('tChuyenHang', 'id', data.items.map(p => p.maChuyenHang)).subscribe(chuyenHangs => {
                     data.items.forEach(item => {
                         Utils.addCallback(item, (obj, prop) => {
-                            this.propertyChangedCallback(comp, dataService, obj, prop);
+                            this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
                         });
                         const dh = donHangs.items.find(p => p.id === item.maDonHang);
+                        const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                        const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
                         item.maDonHangNavigation = {
-                            displayText: DisplayTextUtils.donHang(dh)
+                            displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
                         };
                         const ch = chuyenHangs.items.find(p => p.id === item.maChuyenHang);
                         item.maChuyenHangNavigation = {
@@ -42,14 +44,18 @@ export class tChuyenHangDonHangPartial {
         return subject;
     }
 
-    static propertyChangedCallback(comp, dataService, obj, prop) {
+    static propertyChangedCallback(comp, refDataService, dataService, obj, prop) {
         switch (prop) {
             case 'maDonHang': {
-                dataService.getByID('tdonhang', obj[prop]).subscribe(p => {
-                    obj.maDonHangNavigation = {
-                        displayText: DisplayTextUtils.donHang(p)
-                    };
-                    comp.grid.updateGrid();
+                refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+                    dataService.getByID('tdonhang', obj[prop]).subscribe(dh => {
+                        const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                        const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
+                        obj.maDonHangNavigation = {
+                            displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
+                        };
+                        comp.grid.updateGrid();
+                    });
                 });
                 break;
             }
