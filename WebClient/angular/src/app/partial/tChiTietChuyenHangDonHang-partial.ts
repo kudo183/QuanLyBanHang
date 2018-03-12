@@ -19,20 +19,23 @@ export class tChiTietChuyenHangDonHangPartial {
         const refDataService: ReferenceDataService = comp.refDataService;
 
         const subject = new Subject();
-        this.itemListRequire(refDataService, dataService, data, (chdhs, chs, dhs, ctdhs) => {
+        this.itemListRequire(refDataService, dataService, data, (chdhs, chs, dhs, ctdhs, refData) => {
             data.items.forEach(item => {
                 Utils.addCallback(item, (obj, prop) => {
-                    this.propertyChangedCallback(comp, dataService, obj, prop);
+                    this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
                 });
                 const chdh = chdhs.items.find(p => p.id === item.maChuyenHangDonHang);
                 const ch = chs.items.find(p => p.id === chdh.maChuyenHang);
                 const dh = dhs.items.find(p => p.id === chdh.maDonHang);
+                const nhanVien = refData[0].items.find(p => p.id === ch.maNhanVienGiaoHang);
+                const khoHang = refData[1].items.find(p => p.id === dh.maKhoHang);
+                const khachHang = refData[2].items.find(p => p.id === dh.maKhachHang);
                 item.maChuyenHangDonHangNavigation = {
-                    displayText: DisplayTextUtils.chuyenHangDonHang(chdh, ch, dh)
+                    displayText: DisplayTextUtils.chuyenHangDonHang(chdh, ch, dh, nhanVien, khoHang, khachHang)
                 };
                 const ctdh = ctdhs.items.find(p => p.id === item.maChiTietDonHang);
                 item.maChiTietDonHangNavigation = {
-                    displayText: `${ctdh.id}-${ctdh.maDonHang}`
+                    displayText: DisplayTextUtils.chiTietDonHang(ctdh, dh, khoHang, khachHang)
                 };
             });
             subject.next();
@@ -41,12 +44,12 @@ export class tChiTietChuyenHangDonHangPartial {
     }
 
     static itemListRequire(refDataService, dataService, data, callback) {
-        refDataService.gets(['rKhoHang', 'rKhachHang', 'rNhanVien']).subscribe(refData => {
+        refDataService.gets(['rNhanVien', 'rKhoHang', 'rKhachHang']).subscribe(refData => {
             dataService.getIntList('tChuyenHangDonHang', 'id', data.items.map(p => p.maChuyenHangDonHang)).subscribe(chdhs => {
                 dataService.getIntList('tChiTietDonHang', 'id', data.items.map(p => p.maChiTietDonHang)).subscribe(ctdhs => {
                     dataService.getIntList('tDonHang', 'id', chdhs.items.map(p => p.maDonHang)).subscribe(dhs => {
                         dataService.getIntList('tChuyenHang', 'id', chdhs.items.map(p => p.maChuyenHang)).subscribe(chs => {
-                            callback(chdhs, chs, dhs, ctdhs);
+                            callback(chdhs, chs, dhs, ctdhs, refData);
                         });
                     });
                 });
@@ -54,12 +57,10 @@ export class tChiTietChuyenHangDonHangPartial {
         });
     }
 
-    static propertyChangedCallback(comp, dataService, obj, prop) {
+    static propertyChangedCallback(comp, refDataService, dataService, obj, prop) {
         switch (prop) {
             case 'maChuyenHangDonHang': {
-                console.debug('maChuyenHangDonHang changed');
-                console.debug(dataService);
-                DisplayTextUtils.getChuyenHangDonHang(dataService, obj[prop], (text) => {
+                DisplayTextUtils.getChuyenHangDonHang(refDataService, dataService, obj[prop], (text) => {
                     obj.maChuyenHangDonHangNavigation = {
                         displayText: text
                     };
@@ -68,9 +69,9 @@ export class tChiTietChuyenHangDonHangPartial {
                 break;
             }
             case 'maChiTietDonHang': {
-                dataService.getByID('tChiTietDonHang', obj[prop]).subscribe(p => {
+                DisplayTextUtils.getChiTietDonHang(refDataService, dataService, obj[prop], (text) => {
                     obj.maChiTietDonHangNavigation = {
-                        displayText: `${p.id}-${p.maDonHang}`
+                        displayText: text
                     };
                     comp.grid.updateGrid();
                 });

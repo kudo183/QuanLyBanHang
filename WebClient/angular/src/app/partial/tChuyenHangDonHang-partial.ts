@@ -33,8 +33,9 @@ export class tChuyenHangDonHangPartial {
                             displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
                         };
                         const ch = chuyenHangs.items.find(p => p.id === item.maChuyenHang);
+                        const nhanVien = refData[2].items.find(p => p.id === ch.maNhanVienGiaoHang);
                         item.maChuyenHangNavigation = {
-                            displayText: `${ch.id}-${ch.maNhanVienGiaoHang}`
+                            displayText: DisplayTextUtils.chuyenHang(ch, nhanVien)
                         };
                     });
                     subject.next();
@@ -60,11 +61,14 @@ export class tChuyenHangDonHangPartial {
                 break;
             }
             case 'maChuyenHang': {
-                dataService.getByID('tchuyenhang', obj[prop]).subscribe(p => {
-                    obj.maChuyenHangNavigation = {
-                        displayText: `${p.id}-${p.maNhanVienGiaoHang}`
-                    };
-                    comp.grid.updateGrid();
+                refDataService.gets(['rnhanvien']).subscribe(refData => {
+                    dataService.getByID('tchuyenhang', obj[prop]).subscribe(ch => {
+                        const nhanVien = refData[0].items.find(p => p.id === ch.maNhanVienGiaoHang);
+                        obj.maChuyenHangNavigation = {
+                            displayText: DisplayTextUtils.chuyenHang(ch, nhanVien)
+                        };
+                        comp.grid.updateGrid();
+                    });
                 });
                 break;
             }
