@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ChiPhiPartial } from './partial/chi-phi-partial';
+import { tChiPhiPartial } from './partial/tChiPhi-partial';
 import { tDonHangPartial } from './partial/tDonHang-partial';
 import { tChuyenHangDonHangPartial } from './partial/tChuyenHangDonHang-partial';
 import { tChiTietChuyenHangDonHangPartial } from './partial/tChiTietChuyenHangDonHang-partial';
@@ -45,8 +45,8 @@ export class PartialMethodService {
 
     afterLoadPartial(className, parameters) {
         switch (className) {
-            case ChiPhiPartial.className:
-                ChiPhiPartial.afterLoad(parameters);
+            case tChiPhiPartial.className:
+                tChiPhiPartial.afterLoadPartial(parameters);
             case tChiTietChuyenHangDonHangPartial.className:
                 tChiTietChuyenHangDonHangPartial.afterLoadPartial(parameters);
         }

@@ -13,15 +13,9 @@ import { PartialMethodService } from './partial-method.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { TonKhoComponent } from './ton-kho/ton-kho.component';
-import { ChiPhiComponent } from './chi-phi/chi-phi.component';
 
 import { HTopMenuModule, HSimpleGridModule, HComboBoxModule, HNumberModule, HWindowModule, HSplitPanelModule, HDraggableModule } from './shared';
 import { DonHangComplexComponent } from './don-hang-complex/don-hang-complex.component';
-import { DonHangComponent } from './don-hang/don-hang.component';
-import { ChiTietDonHangComponent } from './chi-tiet-don-hang/chi-tiet-don-hang.component';
-import { ChuyenHangComponent } from './chuyen-hang/chuyen-hang.component';
-import { ChuyenHangDonHangComponent } from './chuyen-hang-don-hang/chuyen-hang-don-hang.component';
-import { ChiTietChuyenHangDonHangComponent } from './chi-tiet-chuyen-hang-don-hang/chi-tiet-chuyen-hang-don-hang.component';
 import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-complex.component';
 
 import { GenModule } from './gen';
@@ -32,13 +26,7 @@ import { TestGenComponent } from './gen/test-gen.component';
     AppComponent,
     LoginComponent,
     TonKhoComponent,
-    ChiPhiComponent,
     DonHangComplexComponent,
-    DonHangComponent,
-    ChiTietDonHangComponent,
-    ChuyenHangComponent,
-    ChuyenHangDonHangComponent,
-    ChiTietChuyenHangDonHangComponent,
     ChuyenHangComplexComponent,
     TestGenComponent
   ],
