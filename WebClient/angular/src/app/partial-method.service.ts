@@ -47,6 +47,8 @@ export class PartialMethodService {
         switch (className) {
             case ChiPhiPartial.className:
                 ChiPhiPartial.afterLoad(parameters);
+            case tChiTietChuyenHangDonHangPartial.className:
+                tChiTietChuyenHangDonHangPartial.afterLoadPartial(parameters);
         }
     }
 }

@@ -35,17 +35,18 @@ export class DisplayTextUtils {
             });
         });
     }
-    static chiTietDonHang(ctdh, dh, khoHang, khachHang) {
+    static chiTietDonHang(ctdh, dh, khoHang, khachHang, matHang) {
         const ngay = DisplayTextUtils.formatDate(new Date(dh.ngay));
-        return `${ctdh.id}|${dh.id}|${ngay}|${khoHang.tenKho}|${khachHang.tenKhachHang}`;
+        return `${ctdh.id}|${dh.id}|${ngay}|${khoHang.tenKho}|${khachHang.tenKhachHang}|${matHang.tenMatHang}`;
     }
     static getChiTietDonHang(refDataService, dataService, id, callback) {
-        refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+        refDataService.gets(['rkhohang', 'rkhachhang', 'tmathang']).subscribe(refData => {
             dataService.getByID('tChiTietDonHang', id).subscribe(ctdh => {
                 dataService.getByID('tDonHang', ctdh.maDonHang).subscribe(dh => {
                     const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
                     const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
-                    callback(DisplayTextUtils.chiTietDonHang(ctdh, dh, khoHang, khachHang))
+                    const matHang = refData[2].items.find(p => p.id === dh.maMatHang);
+                    callback(DisplayTextUtils.chiTietDonHang(ctdh, dh, khoHang, khachHang, matHang))
                 });
             });
         });
