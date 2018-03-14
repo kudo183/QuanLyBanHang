@@ -20,6 +20,9 @@ import { ChuyenHangComplexComponent } from './chuyen-hang-complex/chuyen-hang-co
 
 import { GenModule } from './gen';
 import { TestGenComponent } from './gen/test-gen.component';
+import { NhapHangComplexComponent } from './nhap-hang-complex/nhap-hang-complex.component';
+import { ChuyenKhoComplexComponent } from './chuyen-kho-complex/chuyen-kho-complex.component';
+import { ToaHangComplexComponent } from './toa-hang-complex/toa-hang-complex.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { TestGenComponent } from './gen/test-gen.component';
     TonKhoComponent,
     DonHangComplexComponent,
     ChuyenHangComplexComponent,
-    TestGenComponent
+    TestGenComponent,
+    NhapHangComplexComponent,
+    ChuyenKhoComplexComponent,
+    ToaHangComplexComponent
   ],
   imports: [
     BrowserModule,

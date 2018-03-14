@@ -1,0 +1,8 @@
+<h-split-panel [isVertical]="true">
+  <div *hSplitPanel="40">
+    <app-tToaHang #toaHangComp></app-tToaHang>
+  </div>
+  <div *hSplitPanel="60">
+    <app-tChiTietToaHang #chiTietToaHangComp [autoLoad]="false"></app-tChiTietToaHang>
+  </div>
+</h-split-panel>

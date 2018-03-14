@@ -24,13 +24,25 @@ export class AppComponent implements AfterViewInit {
       text: 'Chi Phi'
     });
     this.menuItems.push({
-      link: '/donhangcomplex',
+      link: '/donhang',
       text: 'Don Hang'
     });
     this.menuItems.push({
-      link: '/chuyenhangcomplex',
+      link: '/chuyenhang',
       text: 'Chuyen Hang'
-    });    
+    });
+    this.menuItems.push({
+      link: '/nhaphang',
+      text: 'Nhap Hang'
+    });
+    this.menuItems.push({
+      link: '/chuyenkho',
+      text: 'Chuyen Kho'
+    });
+    this.menuItems.push({
+      link: '/toahang',
+      text: 'Toa Hang'
+    });
     this.menuItems.push({
       link: '/all',
       text: 'All'

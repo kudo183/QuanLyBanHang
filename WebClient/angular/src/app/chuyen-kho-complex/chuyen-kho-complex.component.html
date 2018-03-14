@@ -1,0 +1,8 @@
+<h-split-panel [isVertical]="true">
+  <div *hSplitPanel="40">
+    <app-tChuyenKho #chuyenKhoComp></app-tChuyenKho>
+  </div>
+  <div *hSplitPanel="60">
+    <app-tChiTietChuyenKho #chiTietChuyenKhoComp [autoLoad]="false"></app-tChiTietChuyenKho>
+  </div>
+</h-split-panel>
