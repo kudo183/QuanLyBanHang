@@ -15,6 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class tChuyenKhoComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_tChuyenKho';
+  @Input() autoLoad = true;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
@@ -45,7 +46,7 @@ export class tChuyenKhoComponent implements OnInit, AfterViewInit {
       this.maKhoHangNhapSource = data[2].items;
       this.grid.setHeaderItems(4, data[2].items);
       this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        this.onLoad(undefined);
+        if (this.autoLoad === true) { this.onLoad(undefined); }
       });
     });
   }

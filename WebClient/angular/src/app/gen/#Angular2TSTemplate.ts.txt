@@ -15,6 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class <EntityName>Component implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_<EntityName>';
+  @Input() autoLoad = true;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;

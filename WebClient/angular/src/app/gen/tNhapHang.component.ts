@@ -15,6 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class tNhapHangComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_tNhapHang';
+  @Input() autoLoad = true;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
@@ -45,7 +46,7 @@ export class tNhapHangComponent implements OnInit, AfterViewInit {
       this.maNhaCungCapSource = data[2].items;
       this.grid.setHeaderItems(3, data[2].items);
       this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        this.onLoad(undefined);
+        if (this.autoLoad === true) { this.onLoad(undefined); }
       });
     });
   }

@@ -15,6 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class rNhanVienComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_rNhanVien';
+  @Input() autoLoad = true;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
@@ -39,7 +40,7 @@ export class rNhanVienComponent implements OnInit, AfterViewInit {
       this.maPhuongTienSource = data[0].items;
       this.grid.setHeaderItems(1, data[0].items);
       this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        this.onLoad(undefined);
+        if (this.autoLoad === true) { this.onLoad(undefined); }
       });
     });
   }

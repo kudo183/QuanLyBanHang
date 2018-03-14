@@ -15,6 +15,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
 export class rKhoHangComponent implements OnInit, AfterViewInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_rKhoHang';
+  @Input() autoLoad = true;
 
   DataTypeEnum = HSimpleGridSetting.DataTypeEnum;
   EditorTypeEnum = HSimpleGridSetting.EditorTypeEnum;
@@ -34,7 +35,9 @@ export class rKhoHangComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.onLoad(undefined);
+    this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+      if (this.autoLoad === true) { this.onLoad(undefined); }
+    });
   }
 
   onAddingItem(item) {
