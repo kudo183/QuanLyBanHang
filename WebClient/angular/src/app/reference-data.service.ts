@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
-import { map, tap } from 'rxjs/operators';
 import { DataService } from './data.service';
 
 @Injectable()
@@ -36,10 +35,10 @@ export class ReferenceDataService {
     return {
       data: [],
       isLoaded: false,
+      isLoading: false,
       keyProperty: this.keyProperty,
       sortProperty: this.sortProperty,
       isAscending: isAscending,
-      isLoading: false,
       loadSubject: new Subject(),
       displayTextFunc: displayTextFunc || (item => { return item[this.keyProperty] + ''; })
     }
@@ -51,24 +50,24 @@ export class ReferenceDataService {
     if (cache.isLoaded === false) {
       if (cache.isLoading === false) {
         cache.isLoading = true;
-        return this.dataService.getAll(controller).pipe(
-          tap(data => {
-            cache.isLoaded = true;
-            data.items.forEach(item => {
-              item.displayText = cache.displayTextFunc(item);
-            });
-            cache.data = data;
-            if (cache.sortProperty !== undefined) {
-              this.sort(cache.data.items, cache.sortProperty, cache.isAscending);
-            }
-            cache.isLoading = false;
-            cache.loadSubject.next(cache.data);
-          }));
-      } else {
-        return cache.loadSubject;
+        this.dataService.getAll(controller).subscribe(data => {
+          data.items.forEach(item => {
+            item.displayText = cache.displayTextFunc(item);
+          });
+          cache.data = data;
+          if (cache.sortProperty !== undefined) {
+            this.sort(cache.data.items, cache.sortProperty, cache.isAscending);
+          }
+          console.log('get: ' + controller);
+          cache.isLoaded = true;
+          cache.loadSubject.next(cache.data);
+          cache.loadSubject.complete();
+        });
       }
+      return cache.loadSubject.asObservable();
+    } else {
+      return of(cache.data);
     }
-    return of(cache.data);
   }
 
   gets(controllers: Array<string>): Observable<any> {
