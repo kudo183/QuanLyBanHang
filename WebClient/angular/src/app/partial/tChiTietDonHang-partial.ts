@@ -39,19 +39,25 @@ export class tChiTietDonHangPartial {
         });
 
         this.requireDonHang(comp, dataService, item.maDonHang, dh => {
-            refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
-                const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
-                const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
-                item.maDonHangNavigation = {
-                    maKhoHang: dh.maKhoHang,
-                    displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
-                };
-                comp.grid.updateGrid();
-            });
+            if (dh !== undefined) {
+                refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+                    const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                    const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
+                    item.maDonHangNavigation = {
+                        maKhoHang: dh.maKhoHang,
+                        displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
+                    };
+                    comp.grid.updateGrid();
+                });
+            }
         });
     }
 
     static requireDonHang(comp, dataService, maDonHang, callback) {
+        if (maDonHang === undefined || maDonHang === null || maDonHang == '') {
+            callback(undefined);
+            return;
+        }
         let donHang;
         if (comp.cache.donHangs !== undefined) {
             donHang = comp.cache.donHangs.find(p => p.id === maDonHang);
