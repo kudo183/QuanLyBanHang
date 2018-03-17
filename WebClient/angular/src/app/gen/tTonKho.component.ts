@@ -33,15 +33,15 @@ export class tTonKhoComponent implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    this.refDataService.gets(['rKhoHang', 'tMatHang']).subscribe(data => {
-      this.maKhoHangSource = data[0].items;
-      this.grid.setHeaderItems(3, data[0].items);
-      this.maMatHangSource = data[1].items;
-      this.grid.setHeaderItems(2, data[1].items);
-      this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        if (this.autoLoad === true) { this.onLoad(undefined); }
+      this.refDataService.gets(['rKhoHang', 'tMatHang']).subscribe(data => {
+        this.maKhoHangSource = data[0].items;
+        this.grid.setHeaderItems(3, data[0].items);
+        this.maMatHangSource = data[1].items;
+        this.grid.setHeaderItems(2, data[1].items);
+        this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+          if (this.autoLoad === true) { this.onLoad(undefined); }
+        });
       });
     });
   }

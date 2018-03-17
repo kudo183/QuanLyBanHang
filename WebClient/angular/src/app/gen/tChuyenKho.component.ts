@@ -34,17 +34,17 @@ export class tChuyenKhoComponent implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    this.refDataService.gets(['rNhanVien', 'rKhoHang', 'rKhoHang']).subscribe(data => {
-      this.maNhanVienSource = data[0].items;
-      this.grid.setHeaderItems(2, data[0].items);
-      this.maKhoHangXuatSource = data[1].items;
-      this.grid.setHeaderItems(3, data[1].items);
-      this.maKhoHangNhapSource = data[2].items;
-      this.grid.setHeaderItems(4, data[2].items);
-      this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        if (this.autoLoad === true) { this.onLoad(undefined); }
+      this.refDataService.gets(['rNhanVien', 'rKhoHang', 'rKhoHang']).subscribe(data => {
+        this.maNhanVienSource = data[0].items;
+        this.grid.setHeaderItems(2, data[0].items);
+        this.maKhoHangXuatSource = data[1].items;
+        this.grid.setHeaderItems(3, data[1].items);
+        this.maKhoHangNhapSource = data[2].items;
+        this.grid.setHeaderItems(4, data[2].items);
+        this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+          if (this.autoLoad === true) { this.onLoad(undefined); }
+        });
       });
     });
   }

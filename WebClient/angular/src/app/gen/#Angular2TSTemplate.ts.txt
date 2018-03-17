@@ -32,9 +32,9 @@ export class <EntityName>Component implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    <LoadReferenceDatas>
+      <LoadReferenceDatas>
+    });
   }
 
   onAddingItem(item) {

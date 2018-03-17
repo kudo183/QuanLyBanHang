@@ -32,13 +32,13 @@ export class tPhuThuKhachHangComponent implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    this.refDataService.gets(['rKhachHang']).subscribe(data => {
-      this.maKhachHangSource = data[0].items;
-      this.grid.setHeaderItems(2, data[0].items);
-      this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        if (this.autoLoad === true) { this.onLoad(undefined); }
+      this.refDataService.gets(['rKhachHang']).subscribe(data => {
+        this.maKhachHangSource = data[0].items;
+        this.grid.setHeaderItems(2, data[0].items);
+        this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+          if (this.autoLoad === true) { this.onLoad(undefined); }
+        });
       });
     });
   }

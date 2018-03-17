@@ -32,13 +32,13 @@ export class rNguyenLieuComponent implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    this.refDataService.gets(['rLoaiNguyenLieu']).subscribe(data => {
-      this.maLoaiNguyenLieuSource = data[0].items;
-      this.grid.setHeaderItems(1, data[0].items);
-      this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-        if (this.autoLoad === true) { this.onLoad(undefined); }
+      this.refDataService.gets(['rLoaiNguyenLieu']).subscribe(data => {
+        this.maLoaiNguyenLieuSource = data[0].items;
+        this.grid.setHeaderItems(1, data[0].items);
+        this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+          if (this.autoLoad === true) { this.onLoad(undefined); }
+        });
       });
     });
   }

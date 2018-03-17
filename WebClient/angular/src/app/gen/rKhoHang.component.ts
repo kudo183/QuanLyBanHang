@@ -31,10 +31,10 @@ export class rKhoHangComponent implements OnInit {
   ngOnInit() {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
-    });
 
-    this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
-      if (this.autoLoad === true) { this.onLoad(undefined); }
+      this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
+        if (this.autoLoad === true) { this.onLoad(undefined); }
+      });
     });
   }
 
