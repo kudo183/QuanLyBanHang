@@ -45,7 +45,7 @@ export class DisplayTextUtils {
                 dataService.getByID('tDonHang', ctdh.maDonHang).subscribe(dh => {
                     const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
                     const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
-                    const matHang = refData[2].items.find(p => p.id === dh.maMatHang);
+                    const matHang = refData[2].items.find(p => p.id === ctdh.maMatHang);
                     callback(DisplayTextUtils.chiTietDonHang(ctdh, dh, khoHang, khachHang, matHang))
                 });
             });
