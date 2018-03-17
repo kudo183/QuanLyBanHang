@@ -7,15 +7,6 @@ export class tDonHangPartial {
 
     static className = 'tDonHangComponent';
 
-    static getDisplayText(parameters): Observable<string> {
-        const comp = parameters[0];
-        const itemID = parameters[1];
-
-        let displayText = itemID + '|partial';
-
-        return of(displayText);
-    }
-
     static afterContentInitPartial(parameters) {
         const comp = parameters[0];
         const buttons = new Array<any>();

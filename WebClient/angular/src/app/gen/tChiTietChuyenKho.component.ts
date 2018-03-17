@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
@@ -12,7 +12,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   selector: 'app-tChiTietChuyenKho',
   templateUrl: './tChiTietChuyenKho.component.html'
 })
-export class tChiTietChuyenKhoComponent implements OnInit, AfterViewInit {
+export class tChiTietChuyenKhoComponent implements OnInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_tChiTietChuyenKho';
   @Input() autoLoad = true;
@@ -33,9 +33,7 @@ export class tChiTietChuyenKhoComponent implements OnInit, AfterViewInit {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
     });
-  }
 
-  ngAfterViewInit() {
     this.refDataService.gets(['tMatHang']).subscribe(data => {
       this.maMatHangSource = data[0].items;
       this.grid.setHeaderItems(2, data[0].items);

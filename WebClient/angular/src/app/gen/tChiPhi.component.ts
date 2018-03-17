@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
@@ -12,7 +12,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   selector: 'app-tChiPhi',
   templateUrl: './tChiPhi.component.html'
 })
-export class tChiPhiComponent implements OnInit, AfterViewInit {
+export class tChiPhiComponent implements OnInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_tChiPhi';
   @Input() autoLoad = true;
@@ -34,9 +34,7 @@ export class tChiPhiComponent implements OnInit, AfterViewInit {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
     });
-  }
 
-  ngAfterViewInit() {
     this.refDataService.gets(['rNhanVien', 'rLoaiChiPhi']).subscribe(data => {
       this.maNhanVienGiaoHangSource = data[0].items;
       this.grid.setHeaderItems(3, data[0].items);

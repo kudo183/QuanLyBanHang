@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
@@ -12,7 +12,7 @@ import { HSimpleGridSetting, HSimpleGridComponent } from '../shared';
   selector: 'app-rLoaiNguyenLieu',
   templateUrl: './rLoaiNguyenLieu.component.html'
 })
-export class rLoaiNguyenLieuComponent implements OnInit, AfterViewInit {
+export class rLoaiNguyenLieuComponent implements OnInit {
   @ViewChild(HSimpleGridComponent) grid: HSimpleGridComponent;
   @Input() name = 'view_rLoaiNguyenLieu';
   @Input() autoLoad = true;
@@ -32,9 +32,7 @@ export class rLoaiNguyenLieuComponent implements OnInit, AfterViewInit {
     this.grid.evAfterContentInit.subscribe(p => {
       this.partialMethodService.afterContentInitPartial(this.className, [this]);
     });
-  }
 
-  ngAfterViewInit() {
     this.partialMethodService.loadReferenceDataPartial(this.className, [this]).subscribe(event => {
       if (this.autoLoad === true) { this.onLoad(undefined); }
     });
