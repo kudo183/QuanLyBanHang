@@ -28,6 +28,9 @@ export class PartialMethodService {
 
     processItemPartial(className, parameters) {
         switch (className) {
+            case tChiTietDonHangPartial.className:
+                tChiTietDonHangPartial.processItemPartial(parameters);
+                break;
         }
     }
 

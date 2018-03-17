@@ -28,16 +28,57 @@ export class tChiTietDonHangPartial {
         comp.grid.settings.columnSettings = temp;
     }
 
+    static processItemPartial(parameters) {
+        const comp = parameters[0];
+        const item = parameters[1];
+        const dataService: DataService = comp.dataService;
+        const refDataService: ReferenceDataService = comp.refDataService;
+
+        Utils.addCallback(item, (obj, prop) => {
+            this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
+        });
+
+        this.requireDonHang(comp, dataService, item.maDonHang, dh => {
+            refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
+                const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
+                const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
+                item.maDonHangNavigation = {
+                    maKhoHang: dh.maKhoHang,
+                    displayText: DisplayTextUtils.donHang(dh, khoHang, khachHang)
+                };
+                comp.grid.updateGrid();
+            });
+        });
+    }
+
+    static requireDonHang(comp, dataService, maDonHang, callback) {
+        let donHang;
+        if (comp.cache.donHangs !== undefined) {
+            donHang = comp.cache.donHangs.find(p => p.id === maDonHang);
+        }
+
+        if (donHang !== undefined) {
+            callback(donHang);
+        } else {
+            dataService.getByID('tdonhang', maDonHang).subscribe(dh => {
+                comp.cache.donHangs.push(dh);
+                callback(dh);
+            });
+        }
+    }
+
     static processItemListPartial(parameters): Observable<any> {
         const comp = parameters[0];
         const data = parameters[1];
         const dataService: DataService = comp.dataService;
         const refDataService: ReferenceDataService = comp.refDataService;
 
+        comp.cache = comp.cache || {};
         const subject = new Subject();
 
         refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
             dataService.getIntList('tdonhang', 'id', data.items.map(p => p.maDonHang)).subscribe(donHangs => {
+                comp.cache.donHangs = donHangs.items;
                 const qe = new QueryExpression();
                 const date = new Date();
                 qe.addWhereOption('IN', 'maMatHang', data.items.map(p => p.maMatHang), WhereOptionTypes.IntList);
@@ -72,9 +113,8 @@ export class tChiTietDonHangPartial {
     static propertyChangedCallback(comp, refDataService, dataService, obj, prop) {
         switch (prop) {
             case 'maDonHang': {
-                console.log('maDonHang changed');
-                refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
-                    dataService.getByID('tdonhang', obj[prop]).subscribe(dh => {
+                this.requireDonHang(comp, dataService, obj[prop], dh => {
+                    refDataService.gets(['rkhohang', 'rkhachhang']).subscribe(refData => {
                         const khoHang = refData[0].items.find(p => p.id === dh.maKhoHang);
                         const khachHang = refData[1].items.find(p => p.id === dh.maKhachHang);
                         obj.maDonHangNavigation = {
@@ -87,7 +127,6 @@ export class tChiTietDonHangPartial {
                 break;
             }
             case 'maMatHang': {
-                console.log('maMatHang changed');
                 const qe = new QueryExpression();
                 const date = new Date();
                 qe.addWhereOption('=', 'maMatHang', obj.maMatHang, WhereOptionTypes.Int);
