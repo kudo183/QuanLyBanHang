@@ -4,6 +4,7 @@ import { tDonHangPartial } from './partial/tDonHang-partial';
 import { tChuyenHangDonHangPartial } from './partial/tChuyenHangDonHang-partial';
 import { tChiTietChuyenHangDonHangPartial } from './partial/tChiTietChuyenHangDonHang-partial';
 import { tChiTietDonHangPartial } from './partial/tChiTietDonHang-partial';
+import { tChiTietNhapHangPartial } from './partial/tChiTietNhapHang-partial';
 import { Observable } from 'rxjs/Observable';
 // import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
@@ -16,6 +17,8 @@ export class PartialMethodService {
                 return tDonHangPartial.afterContentInitPartial(parameters);
             case tChiTietDonHangPartial.className:
                 return tChiTietDonHangPartial.afterContentInitPartial(parameters);
+            case tChiTietNhapHangPartial.className:
+                return tChiTietNhapHangPartial.afterContentInitPartial(parameters);
         }
     }
 
@@ -31,6 +34,9 @@ export class PartialMethodService {
             case tChiTietDonHangPartial.className:
                 tChiTietDonHangPartial.processItemPartial(parameters);
                 break;
+            case tChiTietNhapHangPartial.className:
+                tChiTietNhapHangPartial.processItemPartial(parameters);
+                break;
             case tChuyenHangDonHangPartial.className:
                 tChuyenHangDonHangPartial.processItemPartial(parameters);
                 break;
@@ -44,6 +50,8 @@ export class PartialMethodService {
         switch (className) {
             case tChiTietDonHangPartial.className:
                 return tChiTietDonHangPartial.processItemListPartial(parameters);
+            case tChiTietNhapHangPartial.className:
+                return tChiTietNhapHangPartial.processItemListPartial(parameters);
             case tChuyenHangDonHangPartial.className:
                 return tChuyenHangDonHangPartial.processItemListPartial(parameters);
             case tChiTietChuyenHangDonHangPartial.className:

@@ -14,6 +14,19 @@ export class DisplayTextUtils {
             });
         });
     }
+    static nhapHang(nh, khoHang, nhaCungCap) {
+        const ngay = DisplayTextUtils.formatDate(new Date(nh.ngay));
+        return `${nh.id}|${ngay}|${khoHang.tenKho}|${nhaCungCap.tenNhaCungCap}`;
+    }
+    static getNhapHang(comp, refDataService, dataService, id, callback) {
+        refDataService.gets(['rkhohang', 'rnhacungcap']).subscribe(refData => {
+            ComponentCacheUtils.requireNhapHang(comp, dataService, id, nh => {
+                const khoHang = refData[0].items.find(p => p.id === nh.maKhoHang);
+                const nhaCungCap = refData[1].items.find(p => p.id === nh.maNhaCungCap);
+                callback(DisplayTextUtils.nhapHang(nh, khoHang, nhaCungCap), nh);
+            });
+        });
+    }
     static chuyenHang(ch, nhanVien) {
         const ngay = DisplayTextUtils.formatDate(new Date(ch.ngay));
         return `${ch.id}|${ngay}|${ch.gio}|${nhanVien.tenNhanVien}`;
