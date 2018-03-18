@@ -5,6 +5,7 @@ import { tChuyenHangDonHangPartial } from './partial/tChuyenHangDonHang-partial'
 import { tChiTietChuyenHangDonHangPartial } from './partial/tChiTietChuyenHangDonHang-partial';
 import { tChiTietDonHangPartial } from './partial/tChiTietDonHang-partial';
 import { tChiTietNhapHangPartial } from './partial/tChiTietNhapHang-partial';
+import { tChiTietChuyenKhoPartial } from './partial/tChiTietChuyenKho-partial';
 import { Observable } from 'rxjs/Observable';
 // import { Subject } from 'rxjs/Subject';
 import { of } from 'rxjs/observable/of';
@@ -19,6 +20,8 @@ export class PartialMethodService {
                 return tChiTietDonHangPartial.afterContentInitPartial(parameters);
             case tChiTietNhapHangPartial.className:
                 return tChiTietNhapHangPartial.afterContentInitPartial(parameters);
+            case tChiTietChuyenKhoPartial.className:
+                return tChiTietChuyenKhoPartial.afterContentInitPartial(parameters);
         }
     }
 
@@ -37,6 +40,9 @@ export class PartialMethodService {
             case tChiTietNhapHangPartial.className:
                 tChiTietNhapHangPartial.processItemPartial(parameters);
                 break;
+            case tChiTietChuyenKhoPartial.className:
+                tChiTietChuyenKhoPartial.processItemPartial(parameters);
+                break;
             case tChuyenHangDonHangPartial.className:
                 tChuyenHangDonHangPartial.processItemPartial(parameters);
                 break;
@@ -52,6 +58,8 @@ export class PartialMethodService {
                 return tChiTietDonHangPartial.processItemListPartial(parameters);
             case tChiTietNhapHangPartial.className:
                 return tChiTietNhapHangPartial.processItemListPartial(parameters);
+            case tChiTietChuyenKhoPartial.className:
+                return tChiTietChuyenKhoPartial.processItemListPartial(parameters);
             case tChuyenHangDonHangPartial.className:
                 return tChuyenHangDonHangPartial.processItemListPartial(parameters);
             case tChiTietChuyenHangDonHangPartial.className:

@@ -30,6 +30,10 @@ export class ComponentCacheUtils {
         this.require(comp, 'nhapHangs', 'tnhaphang', dataService, id, callback);
     }
 
+    static requireChuyenKho(comp, dataService, id, callback) {
+        this.require(comp, 'chuyenKhos', 'tchuyenkho', dataService, id, callback);
+    }
+
     static requireChuyenHang(comp, dataService, id, callback) {
         this.require(comp, 'chuyenHangs', 'tchuyenhang', dataService, id, callback);
     }
@@ -53,6 +57,10 @@ export class ComponentCacheUtils {
     
     static setNhapHang(comp, value) {
         this.set(comp, 'nhapHangs', value);
+    }
+    
+    static setChuyenKho(comp, value) {
+        this.set(comp, 'chuyenKhos', value);
     }
     
     static setChuyenHang(comp, value) {
