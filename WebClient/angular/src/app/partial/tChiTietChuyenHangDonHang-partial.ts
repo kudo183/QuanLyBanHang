@@ -7,10 +7,51 @@ import { HSimpleGridSetting } from '../shared';
 import { DataService, QueryExpression, WhereOption, WhereOptionTypes, OrderOption } from '../data.service';
 import { ReferenceDataService } from '../reference-data.service';
 import { DisplayTextUtils } from './displayTextUtils';
+import { ComponentCacheUtils } from './componentCacheUtils';
 
 export class tChiTietChuyenHangDonHangPartial {
 
     static className = 'tChiTietChuyenHangDonHangComponent';
+
+    static processItemPartial(parameters) {
+        const comp = parameters[0];
+        const item = parameters[1];
+        const dataService: DataService = comp.dataService;
+        const refDataService: ReferenceDataService = comp.refDataService;
+
+        Utils.addCallback(item, (obj, prop) => {
+            this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
+        });
+
+        ComponentCacheUtils.requireChuyenHangDonHang(comp, dataService, item.maChuyenHangDonHang, chdh => {
+            ComponentCacheUtils.requireChiTietDonHang(comp, dataService, item.maChiTietDonHang, ctdh => {
+                refDataService.gets(['rNhanVien', 'rKhoHang', 'rKhachHang', 'tmathang']).subscribe(refData => {
+                    if (chdh !== undefined) {
+                        ComponentCacheUtils.requireChuyenHang(comp, dataService, chdh.maChuyenHang, ch => {
+                            ComponentCacheUtils.requireDonHang(comp, dataService, chdh.maDonHang, dh => {
+                                const nhanVien = refData[0].items.find(p => p.id === ch.maNhanVienGiaoHang);
+                                const khoHang = refData[1].items.find(p => p.id === dh.maKhoHang);
+                                const khachHang = refData[2].items.find(p => p.id === dh.maKhachHang);
+                                item.maChuyenHangDonHangNavigation = {
+                                    displayText: DisplayTextUtils.chuyenHangDonHang(chdh, ch, dh, nhanVien, khoHang, khachHang)
+                                };
+                            });
+                        });
+                    }
+                    if (ctdh !== undefined) {
+                        ComponentCacheUtils.requireDonHang(comp, dataService, ctdh.maDonHang, dh => {
+                            const khoHang = refData[1].items.find(p => p.id === dh.maKhoHang);
+                            const khachHang = refData[2].items.find(p => p.id === dh.maKhachHang);
+                            const matHang = refData[3].items.find(p => p.id === ctdh.maMatHang);
+                            item.maChiTietDonHangNavigation = {
+                                displayText: DisplayTextUtils.chiTietDonHang(ctdh, dh, khoHang, khachHang, matHang)
+                            };
+                        });
+                    }
+                });
+            });
+        });
+    }
 
     static processItemListPartial(parameters): Observable<any> {
         const comp = parameters[0];
@@ -20,6 +61,10 @@ export class tChiTietChuyenHangDonHangPartial {
 
         const subject = new Subject();
         this.itemListRequire(refDataService, dataService, data, (chdhs, chs, dhs, ctdhs, refData) => {
+            ComponentCacheUtils.setChuyenHangDonHang(comp, chdhs.items);
+            ComponentCacheUtils.setChiTietDonHang(comp, ctdhs.items);
+            ComponentCacheUtils.setDonHang(comp, dhs.items);
+            ComponentCacheUtils.setChuyenHang(comp, chs.items);
             data.items.forEach(item => {
                 Utils.addCallback(item, (obj, prop) => {
                     this.propertyChangedCallback(comp, refDataService, dataService, obj, prop);
@@ -53,7 +98,7 @@ export class tChiTietChuyenHangDonHangPartial {
             return;
         }
         const maChuyenHangDonHang = comp.grid.settings.columnSettings[1].headerSetting.filterValue;
-        this.afterLoadRequire(refDataService, dataService, maChuyenHangDonHang, (chdh, ctchdhs, ctdhs, ch, dh, nhanViens, khoHangs, khachHangs, matHangs) => {
+        this.afterLoadRequire(comp, refDataService, dataService, maChuyenHangDonHang, (chdh, ctchdhs, ctdhs, ch, dh, nhanViens, khoHangs, khachHangs, matHangs) => {
             const newItems = [];
             const nhanVien = nhanViens.items.find(p => p.id === ch.maNhanVienGiaoHang);
             const khoHang = khoHangs.items.find(p => p.id === dh.maKhoHang);
@@ -100,16 +145,16 @@ export class tChiTietChuyenHangDonHangPartial {
         });
     }
 
-    static afterLoadRequire(refDataService, dataService, maChuyenHangDonHang, callback) {
-        dataService.getByID('tChuyenHangDonHang', maChuyenHangDonHang).subscribe(chdh => {
+    static afterLoadRequire(comp, refDataService, dataService, maChuyenHangDonHang, callback) {
+        ComponentCacheUtils.requireChuyenHangDonHang(comp, dataService, maChuyenHangDonHang, chdh => {
             const qe = new QueryExpression();
             qe.addWhereOption('=', 'maDonHang', chdh.maDonHang, WhereOptionTypes.Int);
             qe.addWhereOption('=', 'xong', false, WhereOptionTypes.Bool);
             dataService.get('tChiTietDonHang', qe).subscribe(ctdhs => {
                 if (ctdhs.items.length > 0) {
                     refDataService.gets(['rnhanvien', 'rkhohang', 'rkhachhang', 'tmathang']).subscribe(refData => {
-                        dataService.getByID('tDonHang', chdh.maDonHang).subscribe(dh => {
-                            dataService.getByID('tChuyenHang', chdh.maChuyenHang).subscribe(ch => {
+                        ComponentCacheUtils.requireDonHang(comp, dataService, chdh.maDonHang, dh => {
+                            ComponentCacheUtils.requireChuyenHang(comp, dataService, chdh.maChuyenHang, ch => {
                                 dataService.getIntList('tChiTietChuyenHangDonHang', 'maChiTietDonHang', ctdhs.items.map(p => p.id)).subscribe(ctchdhs => {
                                     callback(chdh, ctchdhs, ctdhs, ch, dh, refData[0], refData[1], refData[2], refData[3]);
                                 });
@@ -124,7 +169,7 @@ export class tChiTietChuyenHangDonHangPartial {
     static propertyChangedCallback(comp, refDataService, dataService, obj, prop) {
         switch (prop) {
             case 'maChuyenHangDonHang': {
-                DisplayTextUtils.getChuyenHangDonHang(refDataService, dataService, obj[prop], (text) => {
+                DisplayTextUtils.getChuyenHangDonHang(comp, refDataService, dataService, obj[prop], (text) => {
                     obj.maChuyenHangDonHangNavigation = {
                         displayText: text
                     };
@@ -133,7 +178,7 @@ export class tChiTietChuyenHangDonHangPartial {
                 break;
             }
             case 'maChiTietDonHang': {
-                DisplayTextUtils.getChiTietDonHang(refDataService, dataService, obj[prop], (text) => {
+                DisplayTextUtils.getChiTietDonHang(comp, refDataService, dataService, obj[prop], (text) => {
                     obj.maChiTietDonHangNavigation = {
                         displayText: text
                     };

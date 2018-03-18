@@ -34,6 +34,9 @@ export class PartialMethodService {
             case tChuyenHangDonHangPartial.className:
                 tChuyenHangDonHangPartial.processItemPartial(parameters);
                 break;
+            case tChiTietChuyenHangDonHangPartial.className:
+                tChiTietChuyenHangDonHangPartial.processItemPartial(parameters);
+                break;
         }
     }
 
