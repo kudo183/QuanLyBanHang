@@ -52,6 +52,18 @@ export class DisplayTextUtils {
             });
         });
     }
+    static toaHang(th, khachHang) {
+        const ngay = DisplayTextUtils.formatDate(new Date(th.ngay));
+        return `${th.id}|${ngay}|${khachHang.tenKhachHang}`;
+    }
+    static getToaHang(comp, refDataService, dataService, id, callback) {
+        ComponentCacheUtils.requireToaHang(comp, dataService, id, th => {
+            refDataService.gets(['rkhachhang']).subscribe(refData => {
+                const khachHang = refData[0].items.find(p => p.id === th.maKhachHang);
+                callback(DisplayTextUtils.toaHang(th, khachHang), th);
+            });
+        });
+    }
     static chuyenHangDonHang(chdh, ch, dh, nhanVien, khoHang, khachHang) {
         const ngayDH = DisplayTextUtils.formatDate(new Date(dh.ngay));
         const ngayCH = DisplayTextUtils.formatDate(new Date(ch.ngay));

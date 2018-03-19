@@ -46,6 +46,10 @@ export class ComponentCacheUtils {
         this.require(comp, 'ctdhs', 'tchitietdonhang', dataService, id, callback);
     }
 
+    static requireToaHang(comp, dataService, id, callback) {
+        this.require(comp, 'toaHangs', 'ttoahang', dataService, id, callback);
+    }
+
     static set(comp, cacheProperty, value) {
         comp.cache = comp.cache || {};
         comp.cache[cacheProperty] = value;
@@ -73,5 +77,9 @@ export class ComponentCacheUtils {
     
     static setChiTietDonHang(comp, value) {
         this.set(comp, 'ctdhs', value);
+    }
+    
+    static setToaHang(comp, value) {
+        this.set(comp, 'toaHangs', value);
     }
 }
